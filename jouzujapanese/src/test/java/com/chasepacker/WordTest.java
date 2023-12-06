@@ -8,7 +8,7 @@ import com.chasepacker.ConjugationCode.Word;
 
 public class WordTest {
     @Test
-    void testRomanjiParser() {
+    public void testRomanjiParser() {
 
         String[] tests = {"taberu", "nomu", "suru", "kuru", "asobu", "nonde",
         "asobiniikumaenitabemonowotabenakerebanarimasen", 
@@ -30,7 +30,7 @@ public class WordTest {
     }
 
     @Test
-    void testSetupMap() {
+    public void testSetupMap() {
 
         Word.setupMap();
 
@@ -43,16 +43,16 @@ public class WordTest {
     }
 
     @Test
-    void testHiraganaParser() {
+    public void testHiraganaParser() {
 
         String[] results = {"taberu", "nomu", "suru", "kuru", "asobu", "nonde",
         "asobiniikumaenitabemonowotabenakerebanarimasen", 
         "nondeiruhitodesunedokonisundeimasuka",
-        "tabenakatta"};
+        "tabenakatta", "matteiru"};
         String[] tests = {"たべる", "のむ", "する", "くる", "あそぶ", "のんで", 
         "あそびにいくまえにたべものをたべなければなりません", 
         "のんでいるひとですねどこにすんでいますか",
-        "たべなかった"};
+        "たべなかった", "まっている"};
 
         for(int i = 0; i < tests.length; i++)
         {

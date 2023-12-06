@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RuVerb.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker.ConjugationCode</a> &gt; <span class="el_source">RuVerb.java</span></div><h1>RuVerb.java</h1><pre class="source lang-java linenums">package com.chasepacker.ConjugationCode;
+public class RuVerb implements Verb{
+
+    private int type;
+    private String kanji;
+    private String hiragana;
+    private String romanji;
+    private String meaning;
+
+
+    private String cutRu(String result)
+    {
+<span class="nc" id="L13">        return result.substring(0, result.length()-2);</span>
+    }
+
+
+<span class="fc" id="L17">    public RuVerb(String kan, String hira, String roma, String mean)</span>
+    {
+<span class="fc" id="L19">        type = 2;</span>
+<span class="fc" id="L20">        kanji = kan;</span>
+<span class="fc" id="L21">        hiragana = hira;</span>
+<span class="fc" id="L22">        romanji = roma;</span>
+<span class="fc" id="L23">        meaning = mean;</span>
+<span class="fc" id="L24">    }</span>
+
+
+    @Override
+    public String forPosPres() {
+        
+<span class="nc" id="L30">        String result = romanji;</span>
+
+        //cut off ru
+<span class="nc" id="L33">        result = cutRu(result);</span>
+
+        //add masu
+<span class="nc" id="L36">        result += &quot;masu&quot;;</span>
+
+<span class="nc" id="L38">        return result;</span>
+    }
+
+    @Override
+    public String forPosPast() {
+        
+<span class="nc" id="L44">        String result = romanji;</span>
+
+        //cut off ru
+<span class="nc" id="L47">        result = cutRu(result);</span>
+
+        //add mashita
+<span class="nc" id="L50">        result += &quot;mashita&quot;;</span>
+
+<span class="nc" id="L52">        return result;</span>
+    }
+
+    @Override
+    public String forPosCan() {
+        
+<span class="nc" id="L58">        String result = romanji;</span>
+
+        //cut off ru
+<span class="nc" id="L61">        result = cutRu(result);</span>
+
+        //add raremasu
+<span class="nc" id="L64">        result += &quot;raremasu&quot;;</span>
+
+<span class="nc" id="L66">        return result;</span>
+    }
+
+    @Override
+    public String forPosCaus() {
+        
+<span class="nc" id="L72">        String result = romanji;</span>
+
+<span class="nc" id="L74">        result = cutRu(result);</span>
+
+<span class="nc" id="L76">        result += &quot;sasemasu&quot;;</span>
+
+<span class="nc" id="L78">        return result;</span>
+    }
+
+    @Override
+    public String forPosPass() {
+
+        //For ru verbs, Passive form is the same as the Potential form
+        //ex. たべるーたべられます
+       
+<span class="nc" id="L87">        return forPosCan();</span>
+        
+    }
+
+    @Override
+    public String forNegPres() {
+        
+<span class="nc" id="L94">        String result = romanji;</span>
+
+        //cut off ru
+<span class="nc" id="L97">        result = cutRu(result);</span>
+        
+        //add masen
+<span class="nc" id="L100">        result += &quot;masen&quot;;</span>
+
+<span class="nc" id="L102">        return result;</span>
+    }
+
+    @Override
+    public String forNegPast() {
+      
+<span class="nc" id="L108">        String result = romanji;</span>
+
+        //cut off ru
+<span class="nc" id="L111">        result = cutRu(result);</span>
+        //add masendeshita
+<span class="nc" id="L113">        result += &quot;masendeshita&quot;;</span>
+
+<span class="nc" id="L115">        return result;</span>
+    }
+
+    @Override
+    public String forNegCan() {
+        
+<span class="nc" id="L121">        String result = romanji;</span>
+
+        //Cut of ru
+<span class="nc" id="L124">        result = cutRu(result);</span>
+
+        //add raremasen
+<span class="nc" id="L127">        result += &quot;raremasen&quot;;</span>
+
+<span class="nc" id="L129">        return result;</span>
+    }
+
+    @Override
+    public String forNegCaus() {
+        
+<span class="nc" id="L135">        String result = romanji;</span>
+
+<span class="nc" id="L137">        result = cutRu(result);</span>
+
+<span class="nc" id="L139">        result += &quot;sasemasen&quot;;</span>
+
+<span class="nc" id="L141">        return result;</span>
+    }
+
+    @Override
+    public String forNegPass() {
+
+        //Same as potential form
+        
+<span class="nc" id="L149">        return forNegCan();</span>
+    }
+
+    @Override
+    public String casPosPres() {
+        
+<span class="nc" id="L155">        return romanji;</span>
+    }
+
+    @Override
+    public String casPosPast() {
+<span class="nc" id="L160">        String result = romanji;</span>
+        
+        //remove ru
+<span class="nc" id="L163">        result = cutRu(result);</span>
+
+        //add ta
+<span class="nc" id="L166">        result += &quot;ta&quot;;</span>
+<span class="nc" id="L167">        return result;</span>
+    }
+
+    @Override
+    public String casPosCan() {
+        
+<span class="nc" id="L173">        String result = romanji;</span>
+
+        //remove ru
+<span class="nc" id="L176">        result = cutRu(result);</span>
+
+        //add rareru
+<span class="nc" id="L179">        result += &quot;rareru&quot;;</span>
+<span class="nc" id="L180">        return result;</span>
+    }
+
+    @Override
+    public String casPosCaus() {
+        
+<span class="nc" id="L186">        String result = romanji;</span>
+
+<span class="nc" id="L188">        result = cutRu(result);</span>
+
+<span class="nc" id="L190">        result += &quot;saseru&quot;;</span>
+
+<span class="nc" id="L192">        return result;</span>
+    }
+
+    @Override
+    public String casPosPass() {
+        
+        //same as potential form
+        
+<span class="nc" id="L200">        return casPosCan();</span>
+    }
+
+    @Override
+    public String casNegPres() {
+<span class="nc" id="L205">        String result = romanji;</span>
+
+        //remove ru
+<span class="nc" id="L208">        result = cutRu(result);</span>
+
+        //add nai
+<span class="nc" id="L211">        result += &quot;nai&quot;;</span>
+
+<span class="nc" id="L213">        return result;</span>
+    }
+
+    @Override
+    public String casNegPast() {
+<span class="nc" id="L218">        String result = romanji;</span>
+
+        //remove ru
+<span class="nc" id="L221">        result = cutRu(result);</span>
+
+        //add nakatta
+<span class="nc" id="L224">        result += &quot;nakatta&quot;;</span>
+
+<span class="nc" id="L226">        return result;</span>
+    }
+
+    @Override
+    public String casNegCan() {
+<span class="nc" id="L231">        String result = romanji;</span>
+
+        //remove ru
+<span class="nc" id="L234">        result = cutRu(result);</span>
+
+        //add rarenai
+<span class="nc" id="L237">        result+= &quot;rarenai&quot;;</span>
+<span class="nc" id="L238">        return result;</span>
+    }
+
+    @Override
+    public String casNegCaus() {
+        
+<span class="nc" id="L244">        String result = romanji;</span>
+
+<span class="nc" id="L246">        result = cutRu(result);</span>
+
+<span class="nc" id="L248">        result += &quot;sasenai&quot;;</span>
+<span class="nc" id="L249">        return result;</span>
+    }
+
+    @Override
+    public String casNegPass() {
+        //Same as potential form
+<span class="nc" id="L255">        return casNegCan();</span>
+    }
+
+    @Override
+    public String getKanji() {
+        
+<span class="nc" id="L261">        return kanji;</span>
+    }
+
+    @Override
+    public String getHiragana() {
+        
+<span class="nc" id="L267">        return hiragana;</span>
+    }
+
+    @Override
+    public String getRomanji() {
+        
+<span class="nc" id="L273">        return romanji;</span>
+    }
+
+    @Override
+    public String getEngMeaning() {
+        
+<span class="nc" id="L279">        return meaning;</span>
+    }
+
+    @Override
+    public int getType() {
+        
+<span class="nc" id="L285">        return type;</span>
+    }
+
+    @Override
+    public String te() {
+
+<span class="nc" id="L291">        String result = romanji;</span>
+
+        //remove ru
+<span class="nc" id="L294">        result = cutRu(result);</span>
+
+        //add te
+<span class="nc" id="L297">        result += &quot;te&quot;;</span>
+        
+<span class="nc" id="L299">        return result;</span>
+    }
+
+    @Override
+    public String toString()
+    {
+<span class="nc" id="L305">        return romanji;</span>
+    }
+
+
+    @Override
+    public String tara() {
+        
+<span class="nc" id="L312">        return casPosPast() + &quot;ra&quot;;</span>
+    }
+
+
+    @Override
+    public String tari() {
+<span class="nc" id="L318">        return casPosPast() + &quot;ri&quot;;</span>
+    }
+
+
+    @Override
+    public String ba() {
+
+<span class="nc" id="L325">        String result = romanji;</span>
+
+<span class="nc" id="L327">        result = result.substring(0, result.length()-1);</span>
+
+<span class="nc" id="L329">        result += &quot;eba&quot;;</span>
+
+<span class="nc" id="L331">        return result;</span>
+        
+    }
+
+
+    @Override
+    public String negBa() {
+
+<span class="nc" id="L339">        String result = casNegPres();</span>
+        
+<span class="nc" id="L341">        return result.substring(0, result.length()-1) + &quot;kereba&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

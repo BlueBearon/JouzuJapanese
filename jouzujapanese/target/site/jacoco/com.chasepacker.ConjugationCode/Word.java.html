@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Word.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker.ConjugationCode</a> &gt; <span class="el_source">Word.java</span></div><h1>Word.java</h1><pre class="source lang-java linenums">package com.chasepacker.ConjugationCode;
+import java.util.HashMap;
+import java.util.Map;
+
+
+public interface Word {
+
+    /**
+     * Hashmap that contains the conversions between each hiragana and its romanji counterpart.
+     * Romanji is the key and hiragana is the value.
+     * 
+     * Cannot be used until Word.setupMap() has been called.
+     */
+<span class="fc" id="L14">    static Map&lt;String, String&gt; ROMATOHIRA = new HashMap&lt;String, String&gt;();</span>
+
+    /**
+     * Hashmap that contains the conversions between each hiragana and its romanji counterpart.
+     * Hiragana is the key and romanji is the value.
+     * 
+     * Cannot be used until Word.setupMap() has been called.
+     */
+<span class="fc" id="L22">    static Map&lt;String, String&gt; HIRATOROMA = new HashMap&lt;String, String&gt;();</span>
+
+    /**
+     * Marks whether or not the hashmaps have been initialized.
+     * When setupMap() is called, the value becomes true and the maps
+     * are not reinitialized after that point.
+     */
+<span class="fc" id="L29">    static boolean[] setup = {false};</span>
+
+<span class="fc" id="L31">    public static final String[] ROMANJI = </span>
+<span class="fc" id="L32">    {&quot;a&quot;, &quot;i&quot;, &quot;u&quot;, &quot;e&quot;, &quot;o&quot;, </span>
+<span class="fc" id="L33">    &quot;ka&quot;, &quot;ki&quot;, &quot;ku&quot;, &quot;ke&quot;, &quot;ko&quot;,</span>
+<span class="fc" id="L34">    &quot;ga&quot;, &quot;gi&quot;, &quot;gu&quot;, &quot;ge&quot;, &quot;go&quot;,</span>
+<span class="fc" id="L35">    &quot;sa&quot;, &quot;shi&quot;, &quot;su&quot;, &quot;se&quot;, &quot;so&quot;,</span>
+<span class="fc" id="L36">    &quot;za&quot;, &quot;ji&quot;, &quot;zu&quot;, &quot;ze&quot;, &quot;zo&quot;,</span>
+<span class="fc" id="L37">    &quot;ta&quot;, &quot;chi&quot;, &quot;tsu&quot;, &quot;te&quot;, &quot;to&quot;,</span>
+<span class="fc" id="L38">    &quot;da&quot;, &quot;dji&quot;, &quot;dzu&quot;, &quot;de&quot;, &quot;do&quot;,</span>
+<span class="fc" id="L39">    &quot;na&quot;, &quot;ni&quot;, &quot;nu&quot;, &quot;ne&quot;, &quot;no&quot;,</span>
+<span class="fc" id="L40">    &quot;ha&quot;, &quot;hi&quot;, &quot;fu&quot;, &quot;he&quot;, &quot;ho&quot;,</span>
+<span class="fc" id="L41">    &quot;ba&quot;, &quot;bi&quot;, &quot;bu&quot;, &quot;be&quot;, &quot;bo&quot;, </span>
+<span class="fc" id="L42">    &quot;pa&quot;, &quot;pi&quot;, &quot;pu&quot;, &quot;pe&quot;, &quot;po&quot;,</span>
+<span class="fc" id="L43">    &quot;ma&quot;, &quot;mi&quot;, &quot;mu&quot;, &quot;me&quot;, &quot;mo&quot;,</span>
+<span class="fc" id="L44">    &quot;ra&quot;, &quot;ri&quot;, &quot;ru&quot;, &quot;re&quot;, &quot;ro&quot;,</span>
+<span class="fc" id="L45">    &quot;ya&quot;, &quot;yu&quot;, &quot;yo&quot;, &quot;wa&quot;, &quot;wo&quot;, &quot;n&quot;,</span>
+<span class="fc" id="L46">    &quot;kya&quot;, &quot;kyu&quot;, &quot;kyo&quot;,</span>
+<span class="fc" id="L47">    &quot;gya&quot;, &quot;gyu&quot;, &quot;gyo&quot;,</span>
+<span class="fc" id="L48">    &quot;sha&quot;, &quot;shu&quot;, &quot;sho&quot;,</span>
+<span class="fc" id="L49">    &quot;jya&quot;, &quot;jyu&quot;, &quot;jyo&quot;,</span>
+<span class="fc" id="L50">    &quot;cha&quot;, &quot;chu&quot;, &quot;cho&quot;,</span>
+<span class="fc" id="L51">    &quot;nya&quot;, &quot;nyu&quot;, &quot;nyo&quot;,</span>
+<span class="fc" id="L52">    &quot;hya&quot;, &quot;hyu&quot;, &quot;hyo&quot;,</span>
+<span class="fc" id="L53">    &quot;bya&quot;, &quot;byu&quot;, &quot;byo&quot;,</span>
+<span class="fc" id="L54">    &quot;pya&quot;, &quot;pyu&quot;, &quot;pyo&quot;,</span>
+<span class="fc" id="L55">    &quot;mya&quot;, &quot;myu&quot;, &quot;myo&quot;,</span>
+<span class="fc" id="L56">    &quot;rya&quot;, &quot;ryu&quot;, &quot;ryo&quot;</span>
+    };
+
+<span class="fc" id="L59">    public static final String[] HIRAGANA = </span>
+<span class="fc" id="L60">    {&quot;あ&quot;, &quot;い&quot;, &quot;う&quot;, &quot;え&quot;, &quot;お&quot;, </span>
+<span class="fc" id="L61">    &quot;か&quot;, &quot;き&quot;, &quot;く&quot;, &quot;け&quot;, &quot;こ&quot;,</span>
+<span class="fc" id="L62">    &quot;が&quot;, &quot;ぎ&quot;, &quot;ぐ&quot;, &quot;げ&quot;, &quot;ご&quot;,</span>
+<span class="fc" id="L63">    &quot;さ&quot;, &quot;し&quot;, &quot;す&quot;, &quot;せ&quot;, &quot;そ&quot;,</span>
+<span class="fc" id="L64">    &quot;ざ&quot;, &quot;じ&quot;, &quot;ず&quot;, &quot;ぜ&quot;, &quot;ぞ&quot;,</span>
+<span class="fc" id="L65">    &quot;た&quot;, &quot;ち&quot;, &quot;つ&quot;, &quot;て&quot;, &quot;と&quot;,</span>
+<span class="fc" id="L66">    &quot;だ&quot;, &quot;ぢ&quot;, &quot;づ&quot;, &quot;で&quot;, &quot;ど&quot;,</span>
+<span class="fc" id="L67">    &quot;な&quot;, &quot;に&quot;, &quot;ぬ&quot;, &quot;ね&quot;, &quot;の&quot;,</span>
+<span class="fc" id="L68">    &quot;は&quot;, &quot;ひ&quot;, &quot;ふ&quot;, &quot;へ&quot;, &quot;ほ&quot;,</span>
+<span class="fc" id="L69">    &quot;ば&quot;, &quot;び&quot;, &quot;ぶ&quot;, &quot;べ&quot;, &quot;ぼ&quot;, </span>
+<span class="fc" id="L70">    &quot;ぱ&quot;, &quot;ぴ&quot;, &quot;ぷ&quot;, &quot;ぺ&quot;, &quot;ぽ&quot;,</span>
+<span class="fc" id="L71">    &quot;ま&quot;, &quot;み&quot;, &quot;む&quot;, &quot;め&quot;, &quot;も&quot;,</span>
+<span class="fc" id="L72">    &quot;ら&quot;, &quot;り&quot;, &quot;る&quot;, &quot;れ&quot;, &quot;ろ&quot;,</span>
+<span class="fc" id="L73">    &quot;や&quot;, &quot;ゆ&quot;, &quot;よ&quot;, &quot;わ&quot;, &quot;を&quot;, &quot;ん&quot;,</span>
+<span class="fc" id="L74">    &quot;きゃ&quot;, &quot;きゅ&quot;, &quot;きょ&quot;,</span>
+<span class="fc" id="L75">    &quot;ぎゃ&quot;, &quot;ぎゅ&quot;, &quot;ぎょ&quot;,</span>
+<span class="fc" id="L76">    &quot;しゃ&quot;, &quot;しゅ&quot;, &quot;しょ&quot;,</span>
+<span class="fc" id="L77">    &quot;じゃ&quot;, &quot;じゅ&quot;, &quot;じょ&quot;,</span>
+<span class="fc" id="L78">    &quot;ちゃ&quot;, &quot;ちゅ&quot;, &quot;ちょ&quot;,</span>
+<span class="fc" id="L79">    &quot;にゃ&quot;, &quot;にゅ&quot;, &quot;にょ&quot;,</span>
+<span class="fc" id="L80">    &quot;ひゃ&quot;, &quot;ひゅ&quot;, &quot;ひょ&quot;,</span>
+<span class="fc" id="L81">    &quot;びゃ&quot;, &quot;びゅ&quot;, &quot;びょ&quot;,</span>
+<span class="fc" id="L82">    &quot;ぴゃ&quot;, &quot;ぴゅ&quot;, &quot;ぴょ&quot;,</span>
+<span class="fc" id="L83">    &quot;みゃ&quot;, &quot;みゅ&quot;, &quot;みょ&quot;,</span>
+<span class="fc" id="L84">    &quot;りゃ&quot;, &quot;りゅ&quot;, &quot;りょ&quot;</span>
+<span class="fc" id="L85">    };</span>
+
+    /**
+     * Uses the Hiragana and romanji string arrays, to create the hashmaps used for converting
+     * between the two writing systems.
+     * 
+     * Will be called by first conversion request
+     */
+    public static void setupMap()
+    {
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        for(int i = 0; i &lt; ROMANJI.length; i++)</span>
+        {
+<span class="fc" id="L97">            ROMATOHIRA.put(ROMANJI[i], HIRAGANA[i]);</span>
+<span class="fc" id="L98">            HIRATOROMA.put(HIRAGANA[i], ROMANJI[i]);</span>
+        }
+
+<span class="fc" id="L101">        setup[0] = true;</span>
+<span class="fc" id="L102">    }</span>
+
+   
+    /**
+     * @return kanji string representation of word
+     */
+    public String getKanji();
+    /**
+     * @return hiragana string representation of word
+     */
+    public String getHiragana();
+    /**
+     * @return romanji string representation of word
+     */
+    public String getRomanji();
+    /**
+     * @return string with english meaning of word
+     */
+    public String getEngMeaning();
+
+    /**
+     * Returns type of a word.
+     * 
+     * Adjective:  
+     * 1 - い Adjective
+     * 2 - な Adjective
+     * 
+     * Verb:
+     * 1 - う Verbs
+     * 2 - る Verbs
+     * 3 - する・くる Verbs
+     * @return int type
+     */
+    public int getType();
+
+    /**
+     * Converts a word in romanji to a word in hiragana.
+     * Scans romanji word and replaces alphabet letters with their hiragana counterpart.
+     * 
+     * @param romanji word to be converted
+     * @return String of word in hiragana
+     */
+    public static String romanjiParser(String romanji)
+    {
+
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">        if(!setup[0])</span>
+<span class="nc" id="L148">            setupMap();</span>
+        
+<span class="fc" id="L150">        StringBuilder res = new StringBuilder();//Contains the result as we build it</span>
+        String token; //Contains the active string we are trying to convert into a hiragana character
+<span class="fc" id="L152">        int index = 0;</span>
+
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        while(index &lt; romanji.length())</span>
+        {
+<span class="fc" id="L156">            token = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L158" title="All 2 branches covered.">            while(!ROMATOHIRA.containsKey(token))</span>
+            {
+<span class="fc" id="L160">                token += romanji.charAt(index);</span>
+<span class="fc" id="L161">                index++;</span>
+
+                //Need to check for extended sounds (tta becomes った), 
+                //so check to see if next char is the same
+<span class="fc bfc" id="L165" title="All 4 branches covered.">                if(index &lt; romanji.length() &amp;&amp; token.equals(String.valueOf(romanji.charAt(index))))</span>
+                {
+<span class="fc" id="L167">                    token = &quot;&quot;;</span>
+<span class="fc" id="L168">                    res.append(&quot;っ&quot;);</span>
+                }
+            }
+
+            //We need to ensure that we don't cut of at n when the actual token should be na, ni, etc.
+<span class="fc bfc" id="L173" title="All 4 branches covered.">            if(token.equals(&quot;n&quot;) &amp;&amp; index &lt; romanji.length())</span>
+            {
+<span class="fc" id="L175">                String check = token + romanji.charAt(index);</span>
+
+<span class="fc bfc" id="L177" title="All 2 branches covered.">                if(ROMATOHIRA.containsKey(check))</span>
+                {
+<span class="fc" id="L179">                    index++;</span>
+<span class="fc" id="L180">                    res.append(ROMATOHIRA.get(check));</span>
+<span class="fc" id="L181">                }</span>
+                else
+                {
+<span class="fc" id="L184">                    res.append(ROMATOHIRA.get(token));</span>
+                }
+<span class="fc" id="L186">            }</span>
+            else
+            {
+<span class="fc" id="L189">                res.append(ROMATOHIRA.get(token));</span>
+            }
+
+        }
+
+<span class="fc" id="L194">        return res.toString();</span>
+    }
+
+    /**
+     * Converts a word or phrase from hiragana to romanji.  Scans the given string and
+     * converts each hiragana to its romanji counterpart.
+     * 
+     * @param hiragana String to be converted
+     * @return converted romanji string
+     */
+    public static String hiraganaParser(String hiragana)
+    {
+<span class="pc bpc" id="L206" title="1 of 2 branches missed.">        if(!setup[0])</span>
+<span class="nc" id="L207">        setupMap();</span>
+
+<span class="fc" id="L209">        StringBuilder res = new StringBuilder();</span>
+<span class="fc" id="L210">        int len = hiragana.length();</span>
+<span class="fc" id="L211">        boolean smalltsu = false;</span>
+
+<span class="fc" id="L213">        int index = 0;</span>
+
+<span class="fc bfc" id="L215" title="All 2 branches covered.">        while(index &lt; len)</span>
+        {
+            
+            //Need to check for extended hiragana such as きゅ, so we need to check a character ahead
+<span class="fc" id="L219">            String checkString = &quot;&quot;;</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">            if(index + 1 &lt; len)</span>
+            {
+<span class="fc" id="L222">                checkString = String.valueOf(hiragana.charAt(index)) + String.valueOf(hiragana.charAt(index+1));</span>
+            }
+
+<span class="fc" id="L225">            String toadd = &quot;&quot;;</span>
+            
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            if(HIRATOROMA.containsKey(checkString))//If we do have an extended hiragana</span>
+            {
+<span class="nc" id="L229">                toadd = HIRATOROMA.get(checkString);</span>
+
+<span class="nc bnc" id="L231" title="All 2 branches missed.">                if(smalltsu)//in case of extended sound, we repeat the first char:  って -&gt; tte</span>
+                {
+<span class="nc" id="L233">                    res.append(toadd.charAt(0) + toadd);</span>
+<span class="nc" id="L234">                    smalltsu = false;</span>
+<span class="nc" id="L235">                }</span>
+                else
+                {
+<span class="nc" id="L238">                    res.append(toadd);</span>
+                }
+                
+<span class="nc" id="L241">                index+=2;//skip ahead as that is two characters</span>
+<span class="nc" id="L242">            }</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">            else if(hiragana.charAt(index) == 'っ')//if we have an extended sound such as って</span>
+            {
+<span class="fc" id="L245">                smalltsu = true;//mark flag, so that we can add additional char when we know what it is</span>
+<span class="fc" id="L246">                index++;</span>
+<span class="fc" id="L247">            }</span>
+            else
+            {
+<span class="fc" id="L250">                toadd = HIRATOROMA.get(String.valueOf(hiragana.charAt(index)));</span>
+
+<span class="fc bfc" id="L252" title="All 2 branches covered.">                if(smalltsu)</span>
+                {
+<span class="fc" id="L254">                    res.append(toadd.charAt(0) + toadd);</span>
+<span class="fc" id="L255">                    smalltsu = false;</span>
+<span class="fc" id="L256">                }</span>
+                else
+                {
+<span class="fc" id="L259">                    res.append(toadd);</span>
+                }
+
+<span class="fc" id="L262">                index++;</span>
+            }
+
+            
+        }
+
+<span class="fc" id="L268">        return res.toString();</span>
+    }
+
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

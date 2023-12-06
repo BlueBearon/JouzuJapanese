@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IAdjective.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker.ConjugationCode</a> &gt; <span class="el_source">IAdjective.java</span></div><h1>IAdjective.java</h1><pre class="source lang-java linenums">package com.chasepacker.ConjugationCode;
+public class IAdjective implements Adjective{
+
+    private int type;
+    private String kanji;
+    private String hiragana;
+    private String romanji;
+    private String meaning;
+
+<span class="nc" id="L10">    public IAdjective(String kan, String hira, String roma, String mean)</span>
+    {
+<span class="nc" id="L12">        type = 0;</span>
+<span class="nc" id="L13">        kanji = kan;</span>
+<span class="nc" id="L14">        hiragana = hira;</span>
+<span class="nc" id="L15">        romanji = roma;</span>
+<span class="nc" id="L16">        meaning = mean;</span>
+
+<span class="nc" id="L18">    }</span>
+
+    private String removei(String result)
+    {
+<span class="nc" id="L22">        return result.substring(0, result.length()-2);</span>
+    }
+
+    @Override
+    public String forPosPres() {
+<span class="nc" id="L27">        String result = romanji;</span>
+
+        //add desu
+<span class="nc" id="L30">        result += &quot;desu&quot;;</span>
+        
+<span class="nc" id="L32">        return result;</span>
+    }
+
+    @Override
+    public String forPosPast() {
+<span class="nc" id="L37">        String result = romanji;</span>
+
+        //call casPosPast()
+<span class="nc" id="L40">        result = casPosPast();</span>
+        //add desu
+<span class="nc" id="L42">        result+= &quot;desu&quot;;</span>
+<span class="nc" id="L43">        return result;</span>
+    }
+
+    @Override
+    public String forNegPres() {
+<span class="nc" id="L48">        String result = romanji;</span>
+
+        //call casNegPres
+<span class="nc" id="L51">        result = casNegPres();</span>
+        //add desu
+<span class="nc" id="L53">        result+= &quot;desu&quot;;</span>
+<span class="nc" id="L54">        return result;</span>
+    }
+
+    @Override
+    public String forNegPast() {
+<span class="nc" id="L59">        String result = romanji;</span>
+
+        //call casNegPast
+<span class="nc" id="L62">        result = casNegPast();</span>
+        //add desu
+<span class="nc" id="L64">        result += &quot;desu&quot;;</span>
+<span class="nc" id="L65">        return result;</span>
+    }
+
+    @Override
+    public String casPosPres() {
+        
+<span class="nc" id="L71">        return romanji;</span>
+    }
+
+    @Override
+    public String casPosPast() {
+<span class="nc" id="L76">        String result = romanji;</span>
+
+        //remove i
+<span class="nc" id="L79">        result = removei(result);</span>
+        //add katta
+<span class="nc" id="L81">        result+= &quot;katta&quot;;</span>
+<span class="nc" id="L82">        return result;</span>
+    }
+
+    @Override
+    public String casNegPres() {
+<span class="nc" id="L87">        String result = romanji;</span>
+
+        //remove i
+<span class="nc" id="L90">        result = removei(result);</span>
+        //add kunai
+<span class="nc" id="L92">        result += &quot;kunai&quot;;</span>
+<span class="nc" id="L93">        return result;</span>
+    }
+
+    @Override
+    public String casNegPast() {
+<span class="nc" id="L98">        String result = romanji;</span>
+
+        //remove i
+<span class="nc" id="L101">        result = removei(result);</span>
+        //add kunakatta
+<span class="nc" id="L103">        result += &quot;kunakatta&quot;;</span>
+<span class="nc" id="L104">        return result;</span>
+    }
+
+    @Override
+    public String getKanji() {
+        
+<span class="nc" id="L110">        return kanji;</span>
+    }
+
+    @Override
+    public String getHiragana() {
+        
+<span class="nc" id="L116">        return hiragana;</span>
+    }
+
+    @Override
+    public String getRomanji() {
+        
+<span class="nc" id="L122">        return romanji;</span>
+    }
+
+    @Override
+    public String getEngMeaning() {
+     
+<span class="nc" id="L128">        return meaning;</span>
+    }
+
+    @Override
+    public int getType() {
+        
+<span class="nc" id="L134">        return type;</span>
+    }
+
+    @Override
+    public String te() {
+<span class="nc" id="L139">        String result = romanji;</span>
+
+        //remove i
+<span class="nc" id="L142">        result = removei(result);</span>
+        //replace with kute
+<span class="nc" id="L144">        result+= &quot;kute&quot;;</span>
+<span class="nc" id="L145">        return result;</span>
+    }
+
+    @Override
+    public String toString()
+    {
+<span class="nc" id="L151">        return romanji;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

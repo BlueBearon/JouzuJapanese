@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IrrVerb.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker.ConjugationCode</a> &gt; <span class="el_source">IrrVerb.java</span></div><h1>IrrVerb.java</h1><pre class="source lang-java linenums">package com.chasepacker.ConjugationCode;
+public class IrrVerb implements Verb{
+
+    private int type;
+    private String kanji;
+    private String hiragana;
+    private String romanji;
+    private String meaning;
+    private int kuru;
+
+<span class="nc" id="L11">    public IrrVerb(String kan, String hira, String roma, String mean)</span>
+    {
+<span class="nc" id="L13">        type = 3;</span>
+<span class="nc" id="L14">        kanji = kan;</span>
+<span class="nc" id="L15">        hiragana = hira;</span>
+<span class="nc" id="L16">        romanji = roma;</span>
+<span class="nc" id="L17">        meaning = mean;</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        kuru = romanji.equals(&quot;kuru&quot;) ? 1 : 0;</span>
+<span class="nc" id="L19">    }</span>
+
+
+    @Override
+    public String forPosPres() {
+        
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L26">            return &quot;kimasu&quot;;</span>
+        else
+<span class="nc" id="L28">            return romanji.replace(&quot;suru&quot;, &quot;shimasu&quot;);</span>
+        
+    }
+
+    @Override
+    public String forPosPast() {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L35">            return &quot;kimashita&quot;;</span>
+        else
+<span class="nc" id="L37">            return romanji.replace(&quot;suru&quot;, &quot;shimashita&quot;);</span>
+    }
+
+    @Override
+    public String forPosCan() {
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L43">            return &quot;koraremasu&quot;;</span>
+        else
+<span class="nc" id="L45">            return romanji.replace(&quot;suru&quot;, &quot;dekimasu&quot;);</span>
+    }
+
+    @Override
+    public String forPosCaus() {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L51">            return &quot;kosasemasu&quot;;</span>
+        else
+<span class="nc" id="L53">            return romanji.replace(&quot;suru&quot;, &quot;sasemasu&quot;);</span>
+    }
+
+    @Override
+    public String forPosPass() {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L59">            return &quot;koraremasu&quot;;</span>
+        else
+<span class="nc" id="L61">            return romanji.replace(&quot;suru&quot;, &quot;saremasu&quot;);</span>
+    }
+
+    @Override
+    public String forNegPres() {
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L67">            return &quot;kimasen&quot;;</span>
+        else
+<span class="nc" id="L69">            return romanji.replace(&quot;suru&quot;, &quot;shimasen&quot;);</span>
+    }
+
+    @Override
+    public String forNegPast() {
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L75">            return &quot;kimasendeshita&quot;;</span>
+        else
+<span class="nc" id="L77">            return romanji.replace(&quot;suru&quot;, &quot;shimasendeshita&quot;);</span>
+    }
+
+    @Override
+    public String forNegCan() {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L83">            return &quot;koraremasen&quot;;</span>
+        else
+<span class="nc" id="L85">            return romanji.replace(&quot;suru&quot;, &quot;dekimasen&quot;);</span>
+    }
+
+    @Override
+    public String forNegCaus() {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L91">            return &quot;kosasemasen&quot;;</span>
+        else
+<span class="nc" id="L93">            return romanji.replace(&quot;suru&quot;, &quot;sasemasen&quot;);</span>
+    }
+
+    @Override
+    public String forNegPass() {
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L99">            return &quot;koraremasen&quot;;</span>
+        else
+<span class="nc" id="L101">            return romanji.replace(&quot;suru&quot;, &quot;saremasen&quot;);</span>
+    }
+
+    @Override
+    public String casPosPres() {
+<span class="nc" id="L106">        return romanji;</span>
+    }
+
+    @Override
+    public String casPosPast() {
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L112">            return &quot;kita&quot;;</span>
+        else
+<span class="nc" id="L114">            return romanji.replace(&quot;suru&quot;, &quot;shita&quot;);</span>
+    }
+
+    @Override
+    public String casPosCan() {
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L120">            return &quot;korareru&quot;;</span>
+        else
+<span class="nc" id="L122">            return romanji.replace(&quot;suru&quot;, &quot;dekiru&quot;);</span>
+    }
+
+    @Override
+    public String casPosCaus() {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L128">            return &quot;kosaseru&quot;;</span>
+        else
+<span class="nc" id="L130">            return romanji.replace(&quot;suru&quot;, &quot;saseru&quot;);</span>
+    }
+
+    @Override
+    public String casPosPass() {
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L136">            return &quot;korareru&quot;;</span>
+        else
+<span class="nc" id="L138">            return romanji.replace(&quot;suru&quot;, &quot;sareru&quot;);</span>
+    }
+
+    @Override
+    public String casNegPres() {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L144">            return &quot;konai&quot;;</span>
+        else
+<span class="nc" id="L146">            return romanji.replace(&quot;suru&quot;, &quot;shinai&quot;);</span>
+    }
+
+    @Override
+    public String casNegPast() {
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L152">            return &quot;konakatta&quot;;</span>
+        else
+<span class="nc" id="L154">            return romanji.replace(&quot;suru&quot;, &quot;shinakatta&quot;);</span>
+    }
+
+    @Override
+    public String casNegCan() {
+<span class="nc bnc" id="L159" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L160">            return &quot;korarenai&quot;;</span>
+        else
+<span class="nc" id="L162">            return romanji.replace(&quot;suru&quot;, &quot;dekinai&quot;);</span>
+    }
+
+    @Override
+    public String casNegCaus() {
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L168">            return &quot;kosasenai&quot;;</span>
+        else
+<span class="nc" id="L170">            return romanji.replace(&quot;suru&quot;, &quot;sasenai&quot;);</span>
+    }
+
+    @Override
+    public String casNegPass() {
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L176">            return &quot;korarenai&quot;;</span>
+        else
+<span class="nc" id="L178">            return romanji.replace(&quot;suru&quot;, &quot;sarenai&quot;);</span>
+    }
+
+    @Override
+    public String getKanji() {
+        
+<span class="nc" id="L184">        return kanji;</span>
+    }
+
+    @Override
+    public String getHiragana() {
+        
+<span class="nc" id="L190">        return hiragana;</span>
+    }
+
+    @Override
+    public String getRomanji() {
+        
+<span class="nc" id="L196">        return romanji;</span>
+    }
+
+    @Override
+    public String getEngMeaning() {
+        
+<span class="nc" id="L202">        return meaning;</span>
+    }
+
+    @Override
+    public int getType() {
+<span class="nc" id="L207">        return type;</span>
+    }
+
+    @Override
+    public String te() {
+<span class="nc bnc" id="L212" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L213">            return romanji.replace(&quot;kuru&quot;, &quot;kite&quot;);</span>
+        else
+<span class="nc" id="L215">            return romanji.replace(&quot;suru&quot;, &quot;shite&quot;);</span>
+    }
+
+    @Override
+    public String toString()
+    {
+<span class="nc" id="L221">        return romanji;</span>
+    }
+
+
+    @Override
+    public String tara() {
+<span class="nc" id="L227">        return casPosPast() + &quot;ra&quot;;</span>
+    }
+
+
+    @Override
+    public String tari() {
+<span class="nc" id="L233">        return casPosPast() + &quot;ri&quot;;</span>
+    }
+
+
+    @Override
+    public String ba() {
+
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        if(kuru == 1)</span>
+<span class="nc" id="L241">            return romanji.replace(&quot;kuru&quot;, &quot;kureba&quot;);</span>
+        else
+<span class="nc" id="L243">            return romanji.replace(&quot;suru&quot;, &quot;sureba&quot;);</span>
+        
+
+    }
+
+
+    @Override
+    public String negBa() {
+<span class="nc" id="L251">        String result = casNegPres();</span>
+        
+<span class="nc" id="L253">        return result.substring(0, result.length()-1) + &quot;kereba&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

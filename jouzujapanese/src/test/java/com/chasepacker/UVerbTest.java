@@ -17,7 +17,7 @@ public class UVerbTest {
      * @throws Exception
      */
     @Test
-    void testKaeru()
+    public void testKaeru()
     {
 
         UVerb testword = new UVerb("帰る", "かえる", "kaeru", "to return");
@@ -34,7 +34,7 @@ public class UVerbTest {
      * @throws Exception
      */
     @Test
-    void testNomu()
+    public void testNomu()
     {
 
         UVerb testword = new UVerb("飲む", "のむ", "nomu", "to drink");
@@ -49,7 +49,7 @@ public class UVerbTest {
      * @throws Exception
      */
     @Test
-    void testMatsu()
+    public void testMatsu()
     {
 
         UVerb testword = new UVerb("待つ", "まつ", "matsu", "to wait");
@@ -64,7 +64,7 @@ public class UVerbTest {
      * @throws Exception
      */
     @Test
-    void testKau()
+    public void testKau()
     {
 
         UVerb testword = new UVerb("かう", "かう", "kau", "to buy");
