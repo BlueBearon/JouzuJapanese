@@ -106,5 +106,33 @@ public class NaAdjective implements Adjective{
     {
         return hiragana;
     }
+
+    @Override
+    public String getConjugation(ConjugationType conjugationType) {
+       
+        switch(conjugationType)
+        {
+            case CASUAL_POSITIVE_PRESENT:
+                return casualPositivePresent();
+            case CASUAL_NEGATIVE_PRESENT:
+                return casualNegativePresent();
+            case CASUAL_POSITIVE_PAST:
+                return casualPositivePast();
+            case CASUAL_NEGATIVE_PAST:
+                return casualNegativePast();
+            case FORMAL_POSITIVE_PRESENT:
+                return formalPositivePresent();
+            case FORMAL_NEGATIVE_PRESENT:
+                return formalNegativePresent();
+            case FORMAL_POSITIVE_PAST:
+                return formalPositivePast();
+            case FORMAL_NEGATIVE_PAST:
+                return formalNegativePast();
+            case TE:
+                return te();
+            default:
+                return "Error";
+        }
+    }
     
 }

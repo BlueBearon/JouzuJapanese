@@ -560,5 +560,87 @@ public class RuVerb implements Verb{
 
         return result;
     }
+
+
+	@Override
+	public String getConjugation(ConjugationType conjugationType) {
+
+        switch(conjugationType)
+        {
+            case CASUAL_POSITIVE_PRESENT:
+                return casualPositivePresent();
+            case CASUAL_NEGATIVE_PRESENT:
+                return casualNegativePresent();
+            case CASUAL_POSITIVE_PAST:
+                return casualPositivePast();
+            case CASUAL_NEGATIVE_PAST:
+                return casualNegativePast();
+            case FORMAL_POSITIVE_PRESENT:
+                return formalPositivePresent();
+            case FORMAL_NEGATIVE_PRESENT:
+                return formalNegativePresent();
+            case FORMAL_POSITIVE_PAST:
+                return formalPositivePast();
+            case FORMAL_NEGATIVE_PAST:
+                return formalNegativePast();
+            case TE:
+                return te();
+            case POTENTIAL:
+                return potential();
+            case PASSIVE:
+                return passive();
+            case CAUSATIVE:
+                return causative();
+            case VOLITIONAL:
+                return volitional();
+            case POTENTIAL_CASUAL_NEGATIVE_PRESENT:
+                return potentialCasualNegativePresent();
+            case POTENTIAL_CASUAL_POSITIVE_PAST:
+                return potentialCasualPositivePast();
+            case POTENTIAL_CASUAL_NEGATIVE_PAST:
+                return potentialCasualNegativePast();
+            case POTENTIAL_FORMAL_POSITIVE_PRESENT:
+                return potentialFormalPositivePresent();
+            case POTENTIAL_FORMAL_NEGATIVE_PRESENT:
+                return potentialFormalNegativePresent();
+            case POTENTIAL_FORMAL_POSITIVE_PAST:
+                return potentialFormalPositivePast();
+            case POTENTIAL_FORMAL_NEGATIVE_PAST:
+                return potentialFormalNegativePast();
+            case PASSIVE_CASUAL_NEGATIVE_PRESENT:
+                return passiveCasualNegativePresent();
+            case PASSIVE_CASUAL_POSITIVE_PAST:
+                return passiveCasualPositivePast();
+            case PASSIVE_CASUAL_NEGATIVE_PAST:
+                return passiveCasualNegativePast();
+            case PASSIVE_FORMAL_POSITIVE_PRESENT:
+                return passiveFormalPositivePresent();
+            case PASSIVE_FORMAL_NEGATIVE_PRESENT:
+                return passiveFormalNegativePresent();
+            case PASSIVE_FORMAL_POSITIVE_PAST:
+                return passiveFormalPositivePast();
+            case PASSIVE_FORMAL_NEGATIVE_PAST:
+                return passiveFormalNegativePast();
+            case CAUSATIVE_CASUAL_NEGATIVE_PRESENT:
+                return causativeCasualNegativePresent();
+            case CAUSATIVE_CASUAL_POSITIVE_PAST:
+                return causativeCasualPositivePast();
+            case CAUSATIVE_CASUAL_NEGATIVE_PAST:
+                return causativeCasualNegativePast();
+            case CAUSATIVE_FORMAL_POSITIVE_PRESENT:
+                return causativeFormalPositivePresent();
+            case CAUSATIVE_FORMAL_NEGATIVE_PRESENT:
+                return causativeFormalNegativePresent();
+            case CAUSATIVE_FORMAL_POSITIVE_PAST:
+                return causativeFormalPositivePast();
+            case CAUSATIVE_FORMAL_NEGATIVE_PAST:
+                return causativeFormalNegativePast();
+            case VOLITIONAL_FORMAL:
+                return volitionalFormal();
+            default:
+                return "Error";
+
+        }
+	}
     
 }

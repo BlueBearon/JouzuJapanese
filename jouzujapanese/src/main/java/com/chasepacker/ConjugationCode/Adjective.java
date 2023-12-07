@@ -55,5 +55,13 @@ public interface Adjective extends Word{
      */
     public String te();
 
+
+    /**
+     * Returns the requested conjugation of the adjective.
+     * Uses switch statement to determine which conjugation to return.
+     * @param conjugationType
+     */
+    public String getConjugation(ConjugationType conjugationType);
+
     
 }
