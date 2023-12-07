@@ -79,7 +79,7 @@ public class SampleXMLParser {
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
 
-            NodeList nList = doc.getElementsByTagName("RuVerb");
+            NodeList nList = doc.getElementsByTagName("UVerb");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
@@ -111,7 +111,7 @@ public class SampleXMLParser {
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
 
-            NodeList nList = doc.getElementsByTagName("RuVerb");
+            NodeList nList = doc.getElementsByTagName("IrrVerb");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
@@ -143,7 +143,7 @@ public class SampleXMLParser {
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
 
-            NodeList nList = doc.getElementsByTagName("RuVerb");
+            NodeList nList = doc.getElementsByTagName("IAdjective");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
@@ -176,7 +176,7 @@ public class SampleXMLParser {
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
 
-            NodeList nList = doc.getElementsByTagName("RuVerb");
+            NodeList nList = doc.getElementsByTagName("NaAdjective");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
@@ -211,14 +211,30 @@ public class SampleXMLParser {
 
         System.out.println("Ru Verbs");
         for (RuVerb ruVerb : ruVerbs) {
-            System.out.println(ruVerb.getKanji());
+            System.out.println(ruVerb.getRomanji());
         }
 
         System.out.println("U Verbs");
         for (UVerb uVerb : uVerbs) {
-            System.out.println(uVerb.getKanji());
+            System.out.println(uVerb.getRomanji());
+        }
+
+        System.out.println("Irr Verbs");
+        for (IrrVerb irrVerb : irrVerbs) {
+            System.out.println(irrVerb.getRomanji());
+        }
+
+        System.out.println("I Adjectives");
+        for (IAdjective iAdjective : iAdjectives) {
+            System.out.println(iAdjective.getRomanji());
+        }
+
+        System.out.println("Na Adjectives");
+        for (NaAdjective naAdjective : naAdjectives) {
+            System.out.println(naAdjective.getRomanji());
         }
         
+
 
         
     }
