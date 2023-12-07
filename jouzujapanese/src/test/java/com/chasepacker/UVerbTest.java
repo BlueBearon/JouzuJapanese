@@ -99,6 +99,94 @@ public class UVerbTest {
         expected = "かえろう";
 
         assertEquals(expected, testword.volitional());
+
+        expected = "かえれない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "かえれた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "かえれなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "かえれます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "かえれません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "かえれました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "かえれませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "かえられない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "かえられた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "かえられなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "かえられます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "かえられません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "かえられました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "かえられませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "かえらせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "かえらせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "かえらせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "かえらせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "かえらせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "かえらせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "かえらせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "かえりましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
     }
 
     /**
@@ -165,6 +253,94 @@ public class UVerbTest {
         expected = "のもう";
 
         assertEquals(expected, testword.volitional());
+
+        expected = "のめない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "のめた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "のめなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "のめます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "のめません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "のめました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "のめませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "のまれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "のまれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "のまれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "のまれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "のまれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "のまれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "のまれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "のませない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "のませた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "のませなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "のませます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "のませません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "のませました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "のませませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "のみましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
 
     }
 
@@ -233,6 +409,93 @@ public class UVerbTest {
 
         assertEquals(expected, testword.volitional());
 
+        expected = "まてない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "まてた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "まてなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "まてます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "まてません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "まてました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "まてませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "またれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "またれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "またれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "またれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "またれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "またれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "またれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "またせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "またせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "またせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "またせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "またせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "またせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "またせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "まちましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
     }
 
     /**
@@ -299,6 +562,94 @@ public class UVerbTest {
         expected = "かおう";
 
         assertEquals(expected, testword.volitional());
+
+        expected = "かえない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "かえた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "かえなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "かえます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "かえません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "かえました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "かえませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "かわれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "かわれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "かわれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "かわれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "かわれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "かわれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "かわれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "かわせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "かわせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "かわせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "かわせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "かわせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "かわせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "かわせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "かいましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
 
     }
 
@@ -367,6 +718,94 @@ public class UVerbTest {
 
         assertEquals(expected, testword.volitional());
 
+        expected = "しねない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "しねた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "しねなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "しねます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "しねません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "しねました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "しねませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "しなれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "しなれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "しなれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "しなれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "しなれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "しなれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "しなれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "しなせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "しなせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "しなせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "しなせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "しなせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "しなせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "しなせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "しにましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
+
     }
 
     /**
@@ -430,6 +869,94 @@ public class UVerbTest {
         expected = "なおそう";
 
         assertEquals(expected, testword.volitional());
+
+        expected = "なおせない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "なおせた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "なおせなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "なおせます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "なおせません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "なおせました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "なおせませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "なおされない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "なおされた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "なおされなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "なおされます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "なおされません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "なおされました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "なおされませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "なおさせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "なおさせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "なおさせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "なおさせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "なおさせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "なおさせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "なおさせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "なおしましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
 
     }
 
@@ -495,6 +1022,94 @@ public class UVerbTest {
 
         assertEquals(expected, testword.volitional());
 
+        expected = "およげない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "およげた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "およげなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "およげます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "およげません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "およげました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "およげませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "およがれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "およがれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "およがれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "およがれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "およがれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "およがれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "およがれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "およがせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "およがせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "およがせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "およがせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "およがせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "およがせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "およがせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "およぎましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
+
     }
 
     /**
@@ -558,6 +1173,94 @@ public class UVerbTest {
         expected = "ひらこう";
 
         assertEquals(expected, testword.volitional());
+
+        expected = "ひらけない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "ひらけた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "ひらけなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "ひらけます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "ひらけません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "ひらけました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "ひらけませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "ひらかれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "ひらかれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "ひらかれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "ひらかれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "ひらかれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "ひらかれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "ひらかれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "ひらかせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "ひらかせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "ひらかせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "ひらかせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "ひらかせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "ひらかせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "ひらかせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "ひらきましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
 
     }
 
@@ -623,6 +1326,94 @@ public class UVerbTest {
 
         assertEquals(expected, testword.volitional());
 
+        expected = "あそべない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "あそべた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "あそべなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "あそべます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "あそべません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "あそべました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "あそべませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "あそばれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "あそばれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "あそばれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "あそばれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "あそばれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "あそばれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "あそばれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "あそばせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "あそばせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "あそばせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "あそばせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "あそばせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "あそばせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "あそばせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "あそびましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
+
     }
 
     /**
@@ -686,6 +1477,94 @@ public class UVerbTest {
         expected = "いこう";
 
         assertEquals(expected, testword.volitional());
+
+        expected = "いけない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "いけた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "いけなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "いけます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "いけません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "いけました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "いけませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "いかれない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "いかれた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "いかれなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "いかれます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "いかれません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "いかれました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "いかれませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "いかせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "いかせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "いかせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "いかせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "いかせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "いかせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "いかせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "いきましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
 
     }
 

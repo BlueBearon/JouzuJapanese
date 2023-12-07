@@ -18,51 +18,51 @@ public class NaAdjective implements Adjective{
     }
 
     @Override
-    public String forPosPres() {
-        //add desu
-        return romanji + "desu";
+    public String formalPositivePresent() {
+        //add です
+        return hiragana + "です";
     }
 
     @Override
-    public String forPosPast() {
-        // Add deshita
-        return romanji + "deshita";
+    public String formalPositivePast() {
+        // Add でした
+        return hiragana + "でした";
     }
 
     @Override
-    public String forNegPres() {
-        // add jyanaidesu
-        return romanji + "jyanaidesu";
+    public String formalNegativePresent() {
+        // add じゃないです
+        return hiragana + "じゃないです";
     }
 
     @Override
-    public String forNegPast() {
-        // add jyanakattadesu
-        return romanji + "jyanakattadesu";
+    public String formalNegativePast() {
+        // add じゃなかったです
+        return hiragana + "じゃなかったです";
     }
 
     @Override
-    public String casPosPres() {
-        // add da
-        return romanji + "da";
+    public String casualPositivePresent() {
+        // add だ
+        return hiragana + "だ";
     }
 
     @Override
-    public String casPosPast() {
-        // add datta
-        return romanji + "datta";
+    public String casualPositivePast() {
+        // add だった
+        return hiragana + "だった";
     }
 
     @Override
-    public String casNegPres() {
-        // add jyanai
-        return romanji + "jyanai";
+    public String casualNegativePresent() {
+        // add じゃない
+        return hiragana + "じゃない";
     }
 
     @Override
-    public String casNegPast() {
-        // add jyanakatta
-        return romanji + "jyanakatta";
+    public String casualNegativePast() {
+        // add じゃなかった
+        return hiragana + "じゃなかった";
     }
 
     @Override
@@ -98,13 +98,13 @@ public class NaAdjective implements Adjective{
     @Override
     public String te() {
         // add "de"
-        return romanji + "de";
+        return hiragana + "で";
     }
 
     @Override
     public String toString()
     {
-        return romanji;
+        return hiragana;
     }
     
 }

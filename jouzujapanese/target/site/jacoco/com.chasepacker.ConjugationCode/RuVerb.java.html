@@ -233,6 +233,333 @@ public class RuVerb implements Verb{
 
 <span class="fc" id="L234">        return result;</span>
     }
+
+
+    @Override
+    public String potentialCasualNegativePresent() {
+        
+<span class="fc" id="L241">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L244">        result = result.substring(0, result.length()-1);</span>
+
+        //add ない
+<span class="fc" id="L247">        result += &quot;ない&quot;;</span>
+
+<span class="fc" id="L249">        return result;</span>
+    }
+
+
+    @Override
+    public String potentialCasualPositivePast() {
+        
+<span class="fc" id="L256">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L259">        result = result.substring(0, result.length()-1);</span>
+
+        //add た
+<span class="fc" id="L262">        result += &quot;た&quot;;</span>
+
+<span class="fc" id="L264">        return result;</span>
+    }
+
+
+    @Override
+    public String potentialCasualNegativePast() {
+        
+<span class="fc" id="L271">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L274">        result = result.substring(0, result.length()-1);</span>
+
+        //add なかった
+<span class="fc" id="L277">        result += &quot;なかった&quot;;</span>
+
+<span class="fc" id="L279">        return result;</span>
+    }
+
+
+    @Override
+    public String potentialFormalPositivePresent() {
+        
+<span class="fc" id="L286">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L289">        result = result.substring(0, result.length()-1);</span>
+
+        //add ます
+<span class="fc" id="L292">        result += &quot;ます&quot;;</span>
+
+<span class="fc" id="L294">        return result;</span>
+    }
+
+
+    @Override
+    public String potentialFormalNegativePresent() {
+        
+<span class="fc" id="L301">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L304">        result = result.substring(0, result.length()-1);</span>
+
+        //add ません
+<span class="fc" id="L307">        result += &quot;ません&quot;;</span>
+
+<span class="fc" id="L309">        return result;</span>
+    }
+
+
+    @Override
+    public String potentialFormalPositivePast() {
+        
+<span class="fc" id="L316">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L319">        result = result.substring(0, result.length()-1);</span>
+
+        //add ました
+<span class="fc" id="L322">        result += &quot;ました&quot;;</span>
+
+<span class="fc" id="L324">        return result;</span>
+    }
+
+
+    @Override
+    public String potentialFormalNegativePast() {
+        
+<span class="fc" id="L331">        String result = potential();</span>
+
+        //remove る
+<span class="fc" id="L334">        result = result.substring(0, result.length()-1);</span>
+
+        //add ませんでした
+<span class="fc" id="L337">        result += &quot;ませんでした&quot;;</span>
+
+<span class="fc" id="L339">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveCasualNegativePresent() {
+        
+<span class="fc" id="L346">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L349">        result = result.substring(0, result.length()-1);</span>
+
+        //add ない
+<span class="fc" id="L352">        result += &quot;ない&quot;;</span>
+
+<span class="fc" id="L354">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveCasualPositivePast() {
+        
+<span class="fc" id="L361">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L364">        result = result.substring(0, result.length()-1);</span>
+
+        //add た
+<span class="fc" id="L367">        result += &quot;た&quot;;</span>
+
+<span class="fc" id="L369">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveCasualNegativePast() {
+        
+<span class="fc" id="L376">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L379">        result = result.substring(0, result.length()-1);</span>
+
+        //add なかった
+<span class="fc" id="L382">        result += &quot;なかった&quot;;</span>
+
+<span class="fc" id="L384">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveFormalPositivePresent() {
+        
+<span class="fc" id="L391">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L394">        result = result.substring(0, result.length()-1);</span>
+
+        //add ます
+<span class="fc" id="L397">        result += &quot;ます&quot;;</span>
+
+<span class="fc" id="L399">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveFormalNegativePresent() {
+        
+<span class="fc" id="L406">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L409">        result = result.substring(0, result.length()-1);</span>
+
+        //add ません
+<span class="fc" id="L412">        result += &quot;ません&quot;;</span>
+
+<span class="fc" id="L414">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveFormalPositivePast() {
+        
+<span class="fc" id="L421">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L424">        result = result.substring(0, result.length()-1);</span>
+
+        //add ました
+<span class="fc" id="L427">        result += &quot;ました&quot;;</span>
+
+<span class="fc" id="L429">        return result;</span>
+    }
+
+
+    @Override
+    public String passiveFormalNegativePast() {
+        
+<span class="fc" id="L436">        String result = passive();</span>
+
+        //remove る
+<span class="fc" id="L439">        result = result.substring(0, result.length()-1);</span>
+
+        //add ませんでした
+<span class="fc" id="L442">        result += &quot;ませんでした&quot;;</span>
+
+<span class="fc" id="L444">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeCasualNegativePresent() {
+        
+<span class="fc" id="L451">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L454">        result = result.substring(0, result.length()-1);</span>
+
+        //add ない
+<span class="fc" id="L457">        result += &quot;ない&quot;;</span>
+
+<span class="fc" id="L459">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeCasualPositivePast() {
+        
+<span class="fc" id="L466">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L469">        result = result.substring(0, result.length()-1);</span>
+
+        //add た
+<span class="fc" id="L472">        result += &quot;た&quot;;</span>
+
+<span class="fc" id="L474">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeCasualNegativePast() {
+        
+<span class="fc" id="L481">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L484">        result = result.substring(0, result.length()-1);</span>
+
+        //add なかった
+<span class="fc" id="L487">        result += &quot;なかった&quot;;</span>
+
+<span class="fc" id="L489">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeFormalPositivePresent() {
+        
+<span class="fc" id="L496">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L499">        result = result.substring(0, result.length()-1);</span>
+
+        //add ます
+<span class="fc" id="L502">        result += &quot;ます&quot;;</span>
+
+<span class="fc" id="L504">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeFormalNegativePresent() {
+        
+<span class="fc" id="L511">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L514">        result = result.substring(0, result.length()-1);</span>
+
+        //add ません
+<span class="fc" id="L517">        result += &quot;ません&quot;;</span>
+
+<span class="fc" id="L519">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeFormalPositivePast() {
+        
+<span class="fc" id="L526">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L529">        result = result.substring(0, result.length()-1);</span>
+
+        //add ました
+<span class="fc" id="L532">        result += &quot;ました&quot;;</span>
+
+<span class="fc" id="L534">        return result;</span>
+    }
+
+
+    @Override
+    public String causativeFormalNegativePast() {
+        
+<span class="fc" id="L541">        String result = causative();</span>
+
+        //remove る
+<span class="fc" id="L544">        result = result.substring(0, result.length()-1);</span>
+
+        //add ませんでした
+<span class="fc" id="L547">        result += &quot;ませんでした&quot;;</span>
+
+<span class="fc" id="L549">        return result;</span>
+    }
+
+
+    @Override
+    public String volitionalFormal() {
+        
+<span class="fc" id="L556">        String result = hiragana.substring(0, hiragana.length()-1);</span>
+
+        //add ましょう
+<span class="fc" id="L559">        result += &quot;ましょう&quot;;</span>
+
+<span class="fc" id="L561">        return result;</span>
+    }
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

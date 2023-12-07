@@ -19,88 +19,88 @@ public class IAdjective implements Adjective{
 
     private String removei(String result)
     {
-        return result.substring(0, result.length()-2);
+        return result.substring(0, result.length()-1);
     }
 
     @Override
-    public String forPosPres() {
-        String result = romanji;
+    public String formalPositivePresent() {
+        String result = hiragana;
 
-        //add desu
-        result += "desu";
+        //add です
+        result += "です";
         
         return result;
     }
 
     @Override
-    public String forPosPast() {
-        String result = romanji;
+    public String formalPositivePast() {
+        String result = hiragana;
 
         //call casPosPast()
-        result = casPosPast();
-        //add desu
-        result+= "desu";
+        result = casualPositivePast();
+        //add です
+        result+= "です";
         return result;
     }
 
     @Override
-    public String forNegPres() {
-        String result = romanji;
+    public String formalNegativePresent() {
+        String result = hiragana;
 
         //call casNegPres
-        result = casNegPres();
-        //add desu
-        result+= "desu";
+        result = casualNegativePresent();
+        //add です
+        result+= "です";
         return result;
     }
 
     @Override
-    public String forNegPast() {
-        String result = romanji;
+    public String formalNegativePast() {
+        String result = hiragana;
 
         //call casNegPast
-        result = casNegPast();
-        //add desu
-        result += "desu";
+        result = casualNegativePast();
+        //add です
+        result += "です";
         return result;
     }
 
     @Override
-    public String casPosPres() {
+    public String casualPositivePresent() {
         
-        return romanji;
+        return hiragana;
     }
 
     @Override
-    public String casPosPast() {
-        String result = romanji;
+    public String casualPositivePast() {
+        String result = hiragana;
 
         //remove i
         result = removei(result);
-        //add katta
-        result+= "katta";
+        //add かった
+        result+= "かった";
         return result;
     }
 
     @Override
-    public String casNegPres() {
-        String result = romanji;
+    public String casualNegativePresent() {
+        String result = hiragana;
 
         //remove i
         result = removei(result);
-        //add kunai
-        result += "kunai";
+        //add くない
+        result += "くない";
         return result;
     }
 
     @Override
-    public String casNegPast() {
-        String result = romanji;
+    public String casualNegativePast() {
+        String result = hiragana;
 
         //remove i
         result = removei(result);
-        //add kunakatta
-        result += "kunakatta";
+        //add くなかった
+        result += "くなかった";
         return result;
     }
 
@@ -136,19 +136,19 @@ public class IAdjective implements Adjective{
 
     @Override
     public String te() {
-        String result = romanji;
+        String result = hiragana;
 
         //remove i
         result = removei(result);
         //replace with kute
-        result+= "kute";
+        result+= "くて";
         return result;
     }
 
     @Override
     public String toString()
     {
-        return romanji;
+        return hiragana;
     }
     
 }

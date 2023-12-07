@@ -8,85 +8,85 @@ public class NaAdjective implements Adjective{
     private String meaning;
 
     public NaAdjective(String kan, String hira, String roma, String mean)
-<span class="nc" id="L11">    {</span>
-<span class="nc" id="L12">        type = 0;</span>
-<span class="nc" id="L13">        kanji = kan;</span>
-<span class="nc" id="L14">        hiragana = hira;</span>
-<span class="nc" id="L15">        romanji = roma;</span>
-<span class="nc" id="L16">        meaning = mean;</span>
+<span class="fc" id="L11">    {</span>
+<span class="fc" id="L12">        type = 0;</span>
+<span class="fc" id="L13">        kanji = kan;</span>
+<span class="fc" id="L14">        hiragana = hira;</span>
+<span class="fc" id="L15">        romanji = roma;</span>
+<span class="fc" id="L16">        meaning = mean;</span>
 
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L18">    }</span>
 
     @Override
-    public String forPosPres() {
-        //add desu
-<span class="nc" id="L23">        return romanji + &quot;desu&quot;;</span>
+    public String formalPositivePresent() {
+        //add です
+<span class="fc" id="L23">        return hiragana + &quot;です&quot;;</span>
     }
 
     @Override
-    public String forPosPast() {
-        // Add deshita
-<span class="nc" id="L29">        return romanji + &quot;deshita&quot;;</span>
+    public String formalPositivePast() {
+        // Add でした
+<span class="fc" id="L29">        return hiragana + &quot;でした&quot;;</span>
     }
 
     @Override
-    public String forNegPres() {
-        // add jyanaidesu
-<span class="nc" id="L35">        return romanji + &quot;jyanaidesu&quot;;</span>
+    public String formalNegativePresent() {
+        // add じゃないです
+<span class="fc" id="L35">        return hiragana + &quot;じゃないです&quot;;</span>
     }
 
     @Override
-    public String forNegPast() {
-        // add jyanakattadesu
-<span class="nc" id="L41">        return romanji + &quot;jyanakattadesu&quot;;</span>
+    public String formalNegativePast() {
+        // add じゃなかったです
+<span class="fc" id="L41">        return hiragana + &quot;じゃなかったです&quot;;</span>
     }
 
     @Override
-    public String casPosPres() {
-        // add da
-<span class="nc" id="L47">        return romanji + &quot;da&quot;;</span>
+    public String casualPositivePresent() {
+        // add だ
+<span class="fc" id="L47">        return hiragana + &quot;だ&quot;;</span>
     }
 
     @Override
-    public String casPosPast() {
-        // add datta
-<span class="nc" id="L53">        return romanji + &quot;datta&quot;;</span>
+    public String casualPositivePast() {
+        // add だった
+<span class="fc" id="L53">        return hiragana + &quot;だった&quot;;</span>
     }
 
     @Override
-    public String casNegPres() {
-        // add jyanai
-<span class="nc" id="L59">        return romanji + &quot;jyanai&quot;;</span>
+    public String casualNegativePresent() {
+        // add じゃない
+<span class="fc" id="L59">        return hiragana + &quot;じゃない&quot;;</span>
     }
 
     @Override
-    public String casNegPast() {
-        // add jyanakatta
-<span class="nc" id="L65">        return romanji + &quot;jyanakatta&quot;;</span>
+    public String casualNegativePast() {
+        // add じゃなかった
+<span class="fc" id="L65">        return hiragana + &quot;じゃなかった&quot;;</span>
     }
 
     @Override
     public String getKanji() {
         
-<span class="nc" id="L71">        return kanji;</span>
+<span class="fc" id="L71">        return kanji;</span>
     }
 
     @Override
     public String getHiragana() {
         
-<span class="nc" id="L77">        return hiragana;</span>
+<span class="fc" id="L77">        return hiragana;</span>
     }
 
     @Override
     public String getRomanji() {
         
-<span class="nc" id="L83">        return romanji;</span>
+<span class="fc" id="L83">        return romanji;</span>
     }
 
     @Override
     public String getEngMeaning() {
         
-<span class="nc" id="L89">        return meaning;</span>
+<span class="fc" id="L89">        return meaning;</span>
     }
 
     @Override
@@ -98,13 +98,13 @@ public class NaAdjective implements Adjective{
     @Override
     public String te() {
         // add &quot;de&quot;
-<span class="nc" id="L101">        return romanji + &quot;de&quot;;</span>
+<span class="fc" id="L101">        return hiragana + &quot;で&quot;;</span>
     }
 
     @Override
     public String toString()
     {
-<span class="nc" id="L107">        return romanji;</span>
+<span class="nc" id="L107">        return hiragana;</span>
     }
     
 }

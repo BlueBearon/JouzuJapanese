@@ -67,10 +67,94 @@ public interface Verb extends Word{
     public String potential();
 
     /**
+     * Returns the potential form of the verb, casual negative present
+     * @return passive form of verb
+     */
+    public String potentialCasualNegativePresent();
+    
+    /**
+     * Returns the potential form of the verb, casual positive past
+     * @return
+     */
+    public String potentialCasualPositivePast();
+
+    /**
+     * Returns the potential form of the verb, casual negative past
+     * @return
+     */
+    public String potentialCasualNegativePast();
+
+    /**
+     * Returns the potential form of the verb, formal positive present
+     * @return
+     */
+    public String potentialFormalPositivePresent();
+
+    /**
+     * Returns the potential form of the verb, formal negative present
+     * @return
+     */
+    public String potentialFormalNegativePresent();
+
+    /**
+     * Returns the potential form of the verb, formal positive past
+     * @return
+     */
+    public String potentialFormalPositivePast();
+
+    /**
+     * Returns the potential form of the verb, formal negative past
+     * @return
+     */
+    public String potentialFormalNegativePast();
+
+    /**
      * Returns the passive form of the verb
      * @return passive form of verb
      */
     public String passive();
+
+    /**
+     * Returns the passive form of the verb, casual negative present
+     * @return passive form of verb
+     */
+    public String passiveCasualNegativePresent();
+
+    /**
+     * Returns the passive form of the verb, casual positive past
+     * @return passive form of verb
+     */
+    public String passiveCasualPositivePast();
+
+    /**
+     * Returns the passive form of the verb, casual negative past
+     * @return passive form of verb
+     */
+    public String passiveCasualNegativePast();
+
+    /**
+     * Returns the passive form of the verb, formal positive present
+     * @return passive form of verb
+     */
+    public String passiveFormalPositivePresent();
+
+    /**
+     * Returns the passive form of the verb, formal negative present
+     * @return passive form of verb
+     */
+    public String passiveFormalNegativePresent();
+
+    /**
+     * Returns the passive form of the verb, formal positive past
+     * @return passive form of verb
+     */
+    public String passiveFormalPositivePast();
+
+    /**
+     * Returns the passive form of the verb, formal negative past
+     * @return passive form of verb
+     */
+    public String passiveFormalNegativePast();
 
     /**
      * Returns the causative form of the verb
@@ -79,10 +163,59 @@ public interface Verb extends Word{
     public String causative();
 
     /**
-     * Returns the causative passive form of the verb
-     * @return causative passive form of verb
+     * Returns the causative form of the verb, casual negative present
+     * @return causative form of verb
+     */
+    public String causativeCasualNegativePresent();
+
+    /**
+     * Returns the causative form of the verb, casual positive past
+     * @return causative form of verb
+     */
+    public String causativeCasualPositivePast();
+
+    /**
+     * Returns the causative form of the verb, casual negative past
+     * @return causative form of verb
+     */
+    public String causativeCasualNegativePast();
+
+    /**
+     * Returns the causative form of the verb, formal positive present
+     * @return causative form of verb
+     */
+    public String causativeFormalPositivePresent();
+
+    /**
+     * Returns the causative form of the verb, formal negative present
+     * @return causative form of verb
+     */
+    public String causativeFormalNegativePresent();
+
+    /**
+     * Returns the causative form of the verb, formal positive past
+     * @return causative form of verb
+     */
+    public String causativeFormalPositivePast();
+
+    /**
+     * Returns the causative form of the verb, formal negative past
+     * @return causative form of verb
+     */
+    public String causativeFormalNegativePast();
+
+    /**
+     * Returns the volitional form of the verb
+     * @return volitional passive form of verb
      */
     public String volitional();
+
+    /**
+     * Retuns the volitional form of the verb, formal
+     * @return volitional form of verb
+     */
+    public String volitionalFormal();
+    
 
 
     

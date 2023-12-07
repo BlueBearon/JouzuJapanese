@@ -239,6 +239,292 @@ public class IrrVerb implements Verb{
             return cutVerb(hiragana) + "こよう";
         }
     }
+
+    @Override
+    public String potentialCasualNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できない";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられない";
+        }
+    }
+
+    @Override
+    public String potentialCasualPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できた";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられた";
+        }
+    }
+
+    @Override
+    public String potentialCasualNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できなかった";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられなかった";
+        }
+    }
+
+    @Override
+    public String potentialFormalPositivePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できます";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられます";
+        }
+    }
+
+    @Override
+    public String potentialFormalNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できません";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられません";
+        }
+    }
+
+    @Override
+    public String potentialFormalPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できました";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられました";
+        }
+    }
+
+    @Override
+    public String potentialFormalNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できませんでした";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられませんでした";
+        }
+    }
+
+    @Override
+    public String passiveCasualNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "されない";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられない";
+        }
+    }
+
+    @Override
+    public String passiveCasualPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "された";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられた";
+        }
+    }
+
+    @Override
+    public String passiveCasualNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "されなかった";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられなかった";
+        }
+    }
+
+    @Override
+    public String passiveFormalPositivePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "されます";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられます";
+        }
+    }
+
+    @Override
+    public String passiveFormalNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "されません";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられません";
+        }
+    }
+
+    @Override
+    public String passiveFormalPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "されました";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられました";
+        }
+    }
+
+    @Override
+    public String passiveFormalNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "されませんでした";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられませんでした";
+        }
+    }
+
+    @Override
+    public String causativeCasualNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させない";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせない";
+        }
+    }
+
+    @Override
+    public String causativeCasualPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させた";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせた";
+        }
+    }
+
+    @Override
+    public String causativeCasualNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させなかった";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせなかった";
+        }
+    }
+
+    @Override
+    public String causativeFormalPositivePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させます";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせます";
+        }
+    }
+
+    @Override
+    public String causativeFormalNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させません";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせません";
+        }
+    }
+
+    @Override
+    public String causativeFormalPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させました";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせました";
+        }
+    }
+
+    @Override
+    public String causativeFormalNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させませんでした";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせませんでした";
+        }
+    }
+
+    @Override
+    public String volitionalFormal() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しましょう";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きましょう";
+        }
+    }
     
     
 }

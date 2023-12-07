@@ -239,6 +239,292 @@ public class IrrVerb implements Verb{
 <span class="fc" id="L239">            return cutVerb(hiragana) + &quot;こよう&quot;;</span>
         }
     }
+
+    @Override
+    public String potentialCasualNegativePresent() {
+        
+<span class="fc bfc" id="L246" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L248">            return cutVerb(hiragana) + &quot;できない&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L252">            return cutVerb(hiragana) + &quot;こられない&quot;;</span>
+        }
+    }
+
+    @Override
+    public String potentialCasualPositivePast() {
+        
+<span class="fc bfc" id="L259" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L261">            return cutVerb(hiragana) + &quot;できた&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L265">            return cutVerb(hiragana) + &quot;こられた&quot;;</span>
+        }
+    }
+
+    @Override
+    public String potentialCasualNegativePast() {
+        
+<span class="fc bfc" id="L272" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L274">            return cutVerb(hiragana) + &quot;できなかった&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L278">            return cutVerb(hiragana) + &quot;こられなかった&quot;;</span>
+        }
+    }
+
+    @Override
+    public String potentialFormalPositivePresent() {
+        
+<span class="fc bfc" id="L285" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L287">            return cutVerb(hiragana) + &quot;できます&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L291">            return cutVerb(hiragana) + &quot;こられます&quot;;</span>
+        }
+    }
+
+    @Override
+    public String potentialFormalNegativePresent() {
+        
+<span class="fc bfc" id="L298" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L300">            return cutVerb(hiragana) + &quot;できません&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L304">            return cutVerb(hiragana) + &quot;こられません&quot;;</span>
+        }
+    }
+
+    @Override
+    public String potentialFormalPositivePast() {
+        
+<span class="fc bfc" id="L311" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L313">            return cutVerb(hiragana) + &quot;できました&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L317">            return cutVerb(hiragana) + &quot;こられました&quot;;</span>
+        }
+    }
+
+    @Override
+    public String potentialFormalNegativePast() {
+        
+<span class="fc bfc" id="L324" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L326">            return cutVerb(hiragana) + &quot;できませんでした&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L330">            return cutVerb(hiragana) + &quot;こられませんでした&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveCasualNegativePresent() {
+        
+<span class="fc bfc" id="L337" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L339">            return cutVerb(hiragana) + &quot;されない&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L343">            return cutVerb(hiragana) + &quot;こられない&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveCasualPositivePast() {
+        
+<span class="fc bfc" id="L350" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L352">            return cutVerb(hiragana) + &quot;された&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L356">            return cutVerb(hiragana) + &quot;こられた&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveCasualNegativePast() {
+        
+<span class="fc bfc" id="L363" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L365">            return cutVerb(hiragana) + &quot;されなかった&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L369">            return cutVerb(hiragana) + &quot;こられなかった&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveFormalPositivePresent() {
+        
+<span class="fc bfc" id="L376" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L378">            return cutVerb(hiragana) + &quot;されます&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L382">            return cutVerb(hiragana) + &quot;こられます&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveFormalNegativePresent() {
+        
+<span class="fc bfc" id="L389" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L391">            return cutVerb(hiragana) + &quot;されません&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L395">            return cutVerb(hiragana) + &quot;こられません&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveFormalPositivePast() {
+        
+<span class="fc bfc" id="L402" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L404">            return cutVerb(hiragana) + &quot;されました&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L408">            return cutVerb(hiragana) + &quot;こられました&quot;;</span>
+        }
+    }
+
+    @Override
+    public String passiveFormalNegativePast() {
+        
+<span class="fc bfc" id="L415" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L417">            return cutVerb(hiragana) + &quot;されませんでした&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L421">            return cutVerb(hiragana) + &quot;こられませんでした&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeCasualNegativePresent() {
+        
+<span class="fc bfc" id="L428" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L430">            return cutVerb(hiragana) + &quot;させない&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L434">            return cutVerb(hiragana) + &quot;こさせない&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeCasualPositivePast() {
+        
+<span class="fc bfc" id="L441" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L443">            return cutVerb(hiragana) + &quot;させた&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L447">            return cutVerb(hiragana) + &quot;こさせた&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeCasualNegativePast() {
+        
+<span class="fc bfc" id="L454" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L456">            return cutVerb(hiragana) + &quot;させなかった&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L460">            return cutVerb(hiragana) + &quot;こさせなかった&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeFormalPositivePresent() {
+        
+<span class="fc bfc" id="L467" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L469">            return cutVerb(hiragana) + &quot;させます&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L473">            return cutVerb(hiragana) + &quot;こさせます&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeFormalNegativePresent() {
+        
+<span class="fc bfc" id="L480" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L482">            return cutVerb(hiragana) + &quot;させません&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L486">            return cutVerb(hiragana) + &quot;こさせません&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeFormalPositivePast() {
+        
+<span class="fc bfc" id="L493" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L495">            return cutVerb(hiragana) + &quot;させました&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L499">            return cutVerb(hiragana) + &quot;こさせました&quot;;</span>
+        }
+    }
+
+    @Override
+    public String causativeFormalNegativePast() {
+        
+<span class="fc bfc" id="L506" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L508">            return cutVerb(hiragana) + &quot;させませんでした&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L512">            return cutVerb(hiragana) + &quot;こさせませんでした&quot;;</span>
+        }
+    }
+
+    @Override
+    public String volitionalFormal() {
+        
+<span class="fc bfc" id="L519" title="All 2 branches covered.">        if(isSuru(hiragana))</span>
+        {
+<span class="fc" id="L521">            return cutVerb(hiragana) + &quot;しましょう&quot;;</span>
+        }
+        else
+        {
+<span class="fc" id="L525">            return cutVerb(hiragana) + &quot;きましょう&quot;;</span>
+        }
+    }
     
     
 }

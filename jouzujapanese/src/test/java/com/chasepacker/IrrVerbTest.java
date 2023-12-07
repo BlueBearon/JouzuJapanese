@@ -94,6 +94,94 @@ public class IrrVerbTest {
         expected = "させる";
 
         assertEquals(expected, verb.causative());
+
+        expected = "できない";
+
+        assertEquals(expected, verb.potentialCasualNegativePresent());
+
+        expected = "できた";
+
+        assertEquals(expected, verb.potentialCasualPositivePast());
+
+        expected = "できなかった";
+
+        assertEquals(expected, verb.potentialCasualNegativePast());
+
+        expected = "できます";
+
+        assertEquals(expected, verb.potentialFormalPositivePresent());
+
+        expected = "できません";
+
+        assertEquals(expected, verb.potentialFormalNegativePresent());
+
+        expected = "できました";
+
+        assertEquals(expected, verb.potentialFormalPositivePast());
+
+        expected = "できませんでした";
+
+        assertEquals(expected, verb.potentialFormalNegativePast());
+
+        expected = "させない";
+
+        assertEquals(expected, verb.causativeCasualNegativePresent());
+
+        expected = "させた";
+
+        assertEquals(expected, verb.causativeCasualPositivePast());
+
+        expected = "させなかった";
+
+        assertEquals(expected, verb.causativeCasualNegativePast());
+
+        expected = "させます";
+
+        assertEquals(expected, verb.causativeFormalPositivePresent());
+
+        expected = "させません";
+
+        assertEquals(expected, verb.causativeFormalNegativePresent());
+
+        expected = "させました";
+
+        assertEquals(expected, verb.causativeFormalPositivePast());
+
+        expected = "させませんでした";
+
+        assertEquals(expected, verb.causativeFormalNegativePast());
+
+        expected = "されない";
+
+        assertEquals(expected, verb.passiveCasualNegativePresent());
+
+        expected = "された";
+
+        assertEquals(expected, verb.passiveCasualPositivePast());
+
+        expected = "されなかった";
+
+        assertEquals(expected, verb.passiveCasualNegativePast());
+
+        expected = "されます";
+
+        assertEquals(expected, verb.passiveFormalPositivePresent());
+
+        expected = "されません";
+
+        assertEquals(expected, verb.passiveFormalNegativePresent());
+
+        expected = "されました";
+
+        assertEquals(expected, verb.passiveFormalPositivePast());
+
+        expected = "されませんでした";
+
+        assertEquals(expected, verb.passiveFormalNegativePast());
+
+        expected = "しましょう";
+
+        assertEquals(expected, verb.volitionalFormal());
     }
 
     /**
@@ -154,6 +242,94 @@ public class IrrVerbTest {
         expected = "こられる";
 
         assertEquals(expected, verb.passive());
+
+        expected = "こられない";
+
+        assertEquals(expected, verb.potentialCasualNegativePresent());
+
+        expected = "こられた";
+
+        assertEquals(expected, verb.potentialCasualPositivePast());
+
+        expected = "こられなかった";
+
+        assertEquals(expected, verb.potentialCasualNegativePast());
+
+        expected = "こられます";
+
+        assertEquals(expected, verb.potentialFormalPositivePresent());
+
+        expected = "こられません";
+
+        assertEquals(expected, verb.potentialFormalNegativePresent());
+
+        expected = "こられました";
+
+        assertEquals(expected, verb.potentialFormalPositivePast());
+
+        expected = "こられませんでした";
+
+        assertEquals(expected, verb.potentialFormalNegativePast());
+
+        expected = "こさせない";
+
+        assertEquals(expected, verb.causativeCasualNegativePresent());
+
+        expected = "こさせた";
+
+        assertEquals(expected, verb.causativeCasualPositivePast());
+
+        expected = "こさせなかった";
+
+        assertEquals(expected, verb.causativeCasualNegativePast());
+
+        expected = "こさせます";
+
+        assertEquals(expected, verb.causativeFormalPositivePresent());
+
+        expected = "こさせません";
+
+        assertEquals(expected, verb.causativeFormalNegativePresent());
+
+        expected = "こさせました";
+
+        assertEquals(expected, verb.causativeFormalPositivePast());
+
+        expected = "こさせませんでした";
+
+        assertEquals(expected, verb.causativeFormalNegativePast());
+
+        expected = "こられない";
+
+        assertEquals(expected, verb.passiveCasualNegativePresent());
+
+        expected = "こられた";
+
+        assertEquals(expected, verb.passiveCasualPositivePast());
+
+        expected = "こられなかった";
+
+        assertEquals(expected, verb.passiveCasualNegativePast());
+
+        expected = "こられます";
+
+        assertEquals(expected, verb.passiveFormalPositivePresent());
+
+        expected = "こられません";
+
+        assertEquals(expected, verb.passiveFormalNegativePresent());
+
+        expected = "こられました";
+
+        assertEquals(expected, verb.passiveFormalPositivePast());
+
+        expected = "こられませんでした";
+
+        assertEquals(expected, verb.passiveFormalNegativePast());
+
+        expected = "きましょう";
+
+        assertEquals(expected, verb.volitionalFormal());
     }
 
     /**
@@ -214,6 +390,94 @@ public class IrrVerbTest {
         expected = "せんたくされる";
 
         assertEquals(expected, verb.passive());
+
+        expected = "せんたくできない";
+
+        assertEquals(expected, verb.potentialCasualNegativePresent());
+
+        expected = "せんたくできた";
+
+        assertEquals(expected, verb.potentialCasualPositivePast());
+
+        expected = "せんたくできなかった";
+
+        assertEquals(expected, verb.potentialCasualNegativePast());
+
+        expected = "せんたくできます";
+
+        assertEquals(expected, verb.potentialFormalPositivePresent());
+
+        expected = "せんたくできません";
+
+        assertEquals(expected, verb.potentialFormalNegativePresent());
+
+        expected = "せんたくできました";
+
+        assertEquals(expected, verb.potentialFormalPositivePast());
+
+        expected = "せんたくできませんでした";
+
+        assertEquals(expected, verb.potentialFormalNegativePast());
+
+        expected = "せんたくさせない";
+
+        assertEquals(expected, verb.causativeCasualNegativePresent());
+
+        expected = "せんたくさせた";
+
+        assertEquals(expected, verb.causativeCasualPositivePast());
+
+        expected = "せんたくさせなかった";
+
+        assertEquals(expected, verb.causativeCasualNegativePast());
+
+        expected = "せんたくさせます";
+
+        assertEquals(expected, verb.causativeFormalPositivePresent());
+
+        expected = "せんたくさせません";
+
+        assertEquals(expected, verb.causativeFormalNegativePresent());
+
+        expected = "せんたくさせました";
+
+        assertEquals(expected, verb.causativeFormalPositivePast());
+
+        expected = "せんたくさせませんでした";
+
+        assertEquals(expected, verb.causativeFormalNegativePast());
+
+        expected = "せんたくされない";
+
+        assertEquals(expected, verb.passiveCasualNegativePresent());
+
+        expected = "せんたくされた";
+
+        assertEquals(expected, verb.passiveCasualPositivePast());
+
+        expected = "せんたくされなかった";
+
+        assertEquals(expected, verb.passiveCasualNegativePast());
+
+        expected = "せんたくされます";
+
+        assertEquals(expected, verb.passiveFormalPositivePresent());
+
+        expected = "せんたくされません";
+
+        assertEquals(expected, verb.passiveFormalNegativePresent());
+
+        expected = "せんたくされました";
+
+        assertEquals(expected, verb.passiveFormalPositivePast());
+
+        expected = "せんたくされませんでした";
+
+        assertEquals(expected, verb.passiveFormalNegativePast());
+
+        expected = "せんたくしましょう";
+
+        assertEquals(expected, verb.volitionalFormal());
     }
 
     /**
@@ -274,6 +538,94 @@ public class IrrVerbTest {
         expected = "むかえにこられる";
 
         assertEquals(expected, verb.passive());
+
+        expected = "むかえにこられない";
+
+        assertEquals(expected, verb.potentialCasualNegativePresent());
+
+        expected = "むかえにこられた";
+
+        assertEquals(expected, verb.potentialCasualPositivePast());
+
+        expected = "むかえにこられなかった";
+
+        assertEquals(expected, verb.potentialCasualNegativePast());
+
+        expected = "むかえにこられます";
+
+        assertEquals(expected, verb.potentialFormalPositivePresent());
+
+        expected = "むかえにこられません";
+
+        assertEquals(expected, verb.potentialFormalNegativePresent());
+
+        expected = "むかえにこられました";
+
+        assertEquals(expected, verb.potentialFormalPositivePast());
+
+        expected = "むかえにこられませんでした";
+
+        assertEquals(expected, verb.potentialFormalNegativePast());
+
+        expected = "むかえにこさせない";
+
+        assertEquals(expected, verb.causativeCasualNegativePresent());
+
+        expected = "むかえにこさせた";
+
+        assertEquals(expected, verb.causativeCasualPositivePast());
+
+        expected = "むかえにこさせなかった";
+
+        assertEquals(expected, verb.causativeCasualNegativePast());
+
+        expected = "むかえにこさせます";
+
+        assertEquals(expected, verb.causativeFormalPositivePresent());
+
+        expected = "むかえにこさせません";
+
+        assertEquals(expected, verb.causativeFormalNegativePresent());
+
+        expected = "むかえにこさせました";
+
+        assertEquals(expected, verb.causativeFormalPositivePast());
+
+        expected = "むかえにこさせませんでした";
+
+        assertEquals(expected, verb.causativeFormalNegativePast());
+
+        expected = "むかえにこられない";
+
+        assertEquals(expected, verb.passiveCasualNegativePresent());
+
+        expected = "むかえにこられた";
+
+        assertEquals(expected, verb.passiveCasualPositivePast());
+
+        expected = "むかえにこられなかった";
+
+        assertEquals(expected, verb.passiveCasualNegativePast());
+
+        expected = "むかえにこられます";
+
+        assertEquals(expected, verb.passiveFormalPositivePresent());
+
+        expected = "むかえにこられません";
+
+        assertEquals(expected, verb.passiveFormalNegativePresent());
+
+        expected = "むかえにこられました";
+
+        assertEquals(expected, verb.passiveFormalPositivePast());
+
+        expected = "むかえにこられませんでした";
+
+        assertEquals(expected, verb.passiveFormalNegativePast());
+
+        expected = "むかえにきましょう";
+
+        assertEquals(expected, verb.volitionalFormal());
     }
 
    

@@ -304,5 +304,334 @@ public class UVerb implements Verb{
         return result;
     }
 
+    @Override
+    public String potentialCasualNegativePresent() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ない
+        result += "ない";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialCasualPositivePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add た
+        result += "た";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialCasualNegativePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalPositivePresent() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalNegativePresent() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalPositivePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalNegativePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveCasualNegativePresent() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ない
+        result += "ない";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveCasualPositivePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add た
+        result += "た";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveCasualNegativePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalPositivePresent() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalNegativePresent() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalPositivePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalNegativePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeCasualNegativePresent() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ない
+        result += "ない";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeCasualPositivePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add た
+        result += "た";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeCasualNegativePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalPositivePresent() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalNegativePresent() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalPositivePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalNegativePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+    @Override
+    public String volitionalFormal() {
+        
+        String result = hiragana;
+
+        String replacement = Word.uToi(result.substring(result.length()-1));
+
+        result = result.substring(0, result.length()-1);
+
+        result += replacement + "ましょう";
+
+        return result;
+
+    }
+
 
 }

@@ -1,5 +1,7 @@
-com\chasepacker\RuVerbTest.class
-com\chasepacker\IrrVerbTest.class
+com\chasepacker\IAdjectiveTest.class
 com\chasepacker\AppTest.class
 com\chasepacker\UVerbTest.class
 com\chasepacker\WordTest.class
+com\chasepacker\NaAdjectiveTest.class
+com\chasepacker\RuVerbTest.class
+com\chasepacker\IrrVerbTest.class

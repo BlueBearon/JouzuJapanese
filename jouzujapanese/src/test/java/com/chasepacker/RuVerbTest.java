@@ -99,5 +99,95 @@ public class RuVerbTest {
 
         assertEquals(expected, testword.volitional());
 
+        expected = "たべられない";
+
+        assertEquals(expected, testword.potentialCasualNegativePresent());
+
+        expected = "たべられた";
+
+        assertEquals(expected, testword.potentialCasualPositivePast());
+
+        expected = "たべられなかった";
+
+        assertEquals(expected, testword.potentialCasualNegativePast());
+
+        expected = "たべられます";
+
+        assertEquals(expected, testword.potentialFormalPositivePresent());
+
+        expected = "たべられません";
+
+        assertEquals(expected, testword.potentialFormalNegativePresent());
+
+        expected = "たべられました";
+
+        assertEquals(expected, testword.potentialFormalPositivePast());
+
+        expected = "たべられませんでした";
+
+        assertEquals(expected, testword.potentialFormalNegativePast());
+
+        expected = "たべられない";
+
+        assertEquals(expected, testword.passiveCasualNegativePresent());
+
+        expected = "たべられた";
+
+        assertEquals(expected, testword.passiveCasualPositivePast());
+
+        expected = "たべられなかった";
+
+        assertEquals(expected, testword.passiveCasualNegativePast());
+
+        expected = "たべられます";
+
+        assertEquals(expected, testword.passiveFormalPositivePresent());
+
+        expected = "たべられません";
+
+        assertEquals(expected, testword.passiveFormalNegativePresent());
+
+        expected = "たべられました";
+
+        assertEquals(expected, testword.passiveFormalPositivePast());
+
+        expected = "たべられませんでした";
+
+        assertEquals(expected, testword.passiveFormalNegativePast());
+
+        expected = "たべさせない";
+
+        assertEquals(expected, testword.causativeCasualNegativePresent());
+
+        expected = "たべさせた";
+
+        assertEquals(expected, testword.causativeCasualPositivePast());
+
+        expected = "たべさせなかった";
+
+        assertEquals(expected, testword.causativeCasualNegativePast());
+
+        expected = "たべさせます";
+
+        assertEquals(expected, testword.causativeFormalPositivePresent());
+
+        expected = "たべさせません";
+
+        assertEquals(expected, testword.causativeFormalNegativePresent());
+
+        expected = "たべさせました";
+
+        assertEquals(expected, testword.causativeFormalPositivePast());
+
+        expected = "たべさせませんでした";
+
+        assertEquals(expected, testword.causativeFormalNegativePast());
+
+        expected = "たべましょう";
+
+        assertEquals(expected, testword.volitionalFormal());
+
+        
+
     }
 }
