@@ -1,0 +1,57 @@
+package com.chasepacker.ConjugationCode;
+
+
+public enum ConjugationType {
+    CASUAL_POSITIVE_PRESENT,
+    CASUAL_NEGATIVE_PRESENT,
+    CASUAL_POSITIVE_PAST,
+    CASUAL_NEGATIVE_PAST,
+    FORMAL_POSITIVE_PRESENT,
+    FORMAL_NEGATIVE_PRESENT,
+    FORMAL_POSITIVE_PAST,
+    FORMAL_NEGATIVE_PAST,
+    TE,
+    POTENTIAL,
+    PASSIVE,
+    CAUSATIVE,
+    VOLITIONAL,
+    POTENTIAL_CASUAL_NEGATIVE_PRESENT,
+    POTENTIAL_CASUAL_POSITIVE_PAST,
+    POTENTIAL_CASUAL_NEGATIVE_PAST,
+    POTENTIAL_FORMAL_POSITIVE_PRESENT,
+    POTENTIAL_FORMAL_NEGATIVE_PRESENT,
+    POTENTIAL_FORMAL_POSITIVE_PAST,
+    POTENTIAL_FORMAL_NEGATIVE_PAST,
+    PASSIVE_CASUAL_NEGATIVE_PRESENT,
+    PASSIVE_CASUAL_POSITIVE_PAST,
+    PASSIVE_CASUAL_NEGATIVE_PAST,
+    PASSIVE_FORMAL_POSITIVE_PRESENT,
+    PASSIVE_FORMAL_NEGATIVE_PRESENT,
+    PASSIVE_FORMAL_POSITIVE_PAST,
+    PASSIVE_FORMAL_NEGATIVE_PAST,
+    CAUSATIVE_CASUAL_NEGATIVE_PRESENT,
+    CAUSATIVE_CASUAL_POSITIVE_PAST,
+    CAUSATIVE_CASUAL_NEGATIVE_PAST,
+    CAUSATIVE_FORMAL_POSITIVE_PRESENT,
+    CAUSATIVE_FORMAL_NEGATIVE_PRESENT,
+    CAUSATIVE_FORMAL_POSITIVE_PAST,
+    CAUSATIVE_FORMAL_NEGATIVE_PAST,
+    VOLITIONAL_FORMAL;
+
+    /**
+     * Returns the ConjugationType from the string
+     * @param text
+     * @return
+     */
+    public static ConjugationType fromString(String text) {
+        if (text != null) {
+            for (ConjugationType b : ConjugationType.values()) {
+                if (text.equalsIgnoreCase(b.toString())) {
+                    return b;
+                }
+            }
+        }
+        return null;
+    }
+}
+

@@ -1,150 +1,232 @@
 package com.chasepacker.ConjugationCode;
+
+
 public interface Verb extends Word{
 
-    /**
-     * Conjugation for Formal Positive Present/Future
-     * @return string result
-     */
-    public String forPosPres();
-    /**
-     * Conjugation for Formal Positive Past
-     * @return string result
-     */
-    public String forPosPast();
-    /**
-     * Conjugation for Formal Positive potential
-     * @return string result
-     */
-    public String forPosCan();
-    /**
-     * Conjugation for Formal Positive Causative
-     * @return string result
-     */
-    public String forPosCaus();
-    /**
-     * Conjugation for Formal Positive Passive
-     * @return string result
-     */
-    public String forPosPass();
-    /**
-     * Conjugation for Formal Negative Present/Future
-     * @return string result
-     */
-    public String forNegPres();
-
-    /**
-     * Conjugation for Formal Negative Past
-     * @return string result
-     */
-    public String forNegPast();
-
-    /**
-     * Conjugation for Formal Negative Potential
-     * @return string result
-     */
-    public String forNegCan();
-
-    /**
-     * Conjugation for Formal Negative Causative
-     * @return string result
-     */
-    public String forNegCaus();
-
-    /**
-     * Conjugation for Formal Negative Passive
-     * @return string result
-     */
-    public String forNegPass();
-
-    /**
-     * Conjugation for Casual Positive Present/Future
-     * @return string result
-     */
-    public String casPosPres();
-
-    /**
-     * Conjugation for Casual Positive Past
-     * @return string result
-     */
-    public String casPosPast();
-
-    /**
-     * Conjugation for Casual Positive Potential
-     * @return string result
-     */
-    public String casPosCan();
-
-    /**
-     * Conjugation for Casual Positive Casuative
-     * @return string result
-     */
-    public String casPosCaus();
-
-    /**
-     * Conjugation for Casual Positive Passive
-     * @return string result
-     */
-    public String casPosPass();
-
-    /**
-     * Conjugation for Casual Negative Present/Future
-     * @return string result
-     */
-    public String casNegPres();
-
-    /**
-     * Conjugation for Casual Negative Past
-     * @return string result
-     */
-    public String casNegPast();
-
-    /**
-     * Conjugation for Casual Negative Potential
-     * @return string result
-     */
-    public String casNegCan();
-
-    /**
-     * Conjugation for Casual Negative Causative
-     * @return string result
-     */
-    public String casNegCaus();
-
-    /**
-     * Conjugation for Casual Negative Passive
-     * @return string result
-     */
-    public String casNegPass();
-
-    /**
-     * Conjugation for te form
-     * @return string result
-     */
-    public String te();
+    //Base Conjugation Forms
     
     /**
-     * Conjugation for tara form
-     * @return string result
+     * Returns the dictionary form of the verb (causal positive present)
+     * @return dictionary form of verb
      */
-    public String tara();
+    public String casualPositivePresent();
 
     /**
-     * Conjugation for tari form
-     * @return string result
+     * Returns the casual negative present form of the verb
+     * @return  casual negative present form of verb
      */
-    public String tari();
+    public String casualNegativePresent();
 
     /**
-     * Conjugation for ba form
-     * @return string result
+     * Returns the casual positive past form of the verb
+     * @return casual positive past form of verb
      */
-    public String ba();
+    public String casualPositivePast();
 
     /**
-     * Conjugation for negative ba form
-     * @return string result
+     * Returns the casual negative past form of the verb
+     * @return casual negative past form of verb
      */
-    public String negBa();
+    public String casualNegativePast();
+
+    /**
+     * Returns the formal positive present form of the verb
+     * @return formal positive present form of verb
+     */
+    public String formalPositivePresent();
+
+    /**
+     * Returns the formal negative present form of the verb
+     * @return formal negative present form of verb
+     */
+    public String formalNegativePresent();
+
+    /**
+     * Returns the formal positive past form of the verb
+     * @return formal positive past form of verb
+     */
+    public String formalPositivePast();
+
+    /**
+     * Returns the formal negative past form of the verb
+     * @return formal negative past form of verb
+     */
+    public String formalNegativePast();
+
+    /**
+     * Returns the te form of the verb
+     * @return te form of verb
+     */
+    public String te();
+
+
+    //Modifiers
+
+    /**
+     * Returns the potential form of the verb
+     * @return potential form of verb
+     */
+    public String potential();
+
+    /**
+     * Returns the potential form of the verb, casual negative present
+     * @return passive form of verb
+     */
+    public String potentialCasualNegativePresent();
+    
+    /**
+     * Returns the potential form of the verb, casual positive past
+     * @return
+     */
+    public String potentialCasualPositivePast();
+
+    /**
+     * Returns the potential form of the verb, casual negative past
+     * @return
+     */
+    public String potentialCasualNegativePast();
+
+    /**
+     * Returns the potential form of the verb, formal positive present
+     * @return
+     */
+    public String potentialFormalPositivePresent();
+
+    /**
+     * Returns the potential form of the verb, formal negative present
+     * @return
+     */
+    public String potentialFormalNegativePresent();
+
+    /**
+     * Returns the potential form of the verb, formal positive past
+     * @return
+     */
+    public String potentialFormalPositivePast();
+
+    /**
+     * Returns the potential form of the verb, formal negative past
+     * @return
+     */
+    public String potentialFormalNegativePast();
+
+    /**
+     * Returns the passive form of the verb
+     * @return passive form of verb
+     */
+    public String passive();
+
+    /**
+     * Returns the passive form of the verb, casual negative present
+     * @return passive form of verb
+     */
+    public String passiveCasualNegativePresent();
+
+    /**
+     * Returns the passive form of the verb, casual positive past
+     * @return passive form of verb
+     */
+    public String passiveCasualPositivePast();
+
+    /**
+     * Returns the passive form of the verb, casual negative past
+     * @return passive form of verb
+     */
+    public String passiveCasualNegativePast();
+
+    /**
+     * Returns the passive form of the verb, formal positive present
+     * @return passive form of verb
+     */
+    public String passiveFormalPositivePresent();
+
+    /**
+     * Returns the passive form of the verb, formal negative present
+     * @return passive form of verb
+     */
+    public String passiveFormalNegativePresent();
+
+    /**
+     * Returns the passive form of the verb, formal positive past
+     * @return passive form of verb
+     */
+    public String passiveFormalPositivePast();
+
+    /**
+     * Returns the passive form of the verb, formal negative past
+     * @return passive form of verb
+     */
+    public String passiveFormalNegativePast();
+
+    /**
+     * Returns the causative form of the verb
+     * @return causative form of verb
+     */
+    public String causative();
+
+    /**
+     * Returns the causative form of the verb, casual negative present
+     * @return causative form of verb
+     */
+    public String causativeCasualNegativePresent();
+
+    /**
+     * Returns the causative form of the verb, casual positive past
+     * @return causative form of verb
+     */
+    public String causativeCasualPositivePast();
+
+    /**
+     * Returns the causative form of the verb, casual negative past
+     * @return causative form of verb
+     */
+    public String causativeCasualNegativePast();
+
+    /**
+     * Returns the causative form of the verb, formal positive present
+     * @return causative form of verb
+     */
+    public String causativeFormalPositivePresent();
+
+    /**
+     * Returns the causative form of the verb, formal negative present
+     * @return causative form of verb
+     */
+    public String causativeFormalNegativePresent();
+
+    /**
+     * Returns the causative form of the verb, formal positive past
+     * @return causative form of verb
+     */
+    public String causativeFormalPositivePast();
+
+    /**
+     * Returns the causative form of the verb, formal negative past
+     * @return causative form of verb
+     */
+    public String causativeFormalNegativePast();
+
+    /**
+     * Returns the volitional form of the verb
+     * @return volitional passive form of verb
+     */
+    public String volitional();
+
+    /**
+     * Retuns the volitional form of the verb, formal
+     * @return volitional form of verb
+     */
+    public String volitionalFormal();
+
+
+    /**
+     * Returns the requested conjugation of the word.
+     * uses switch Statement to determine which conjugation to return
+     * @param conjugationType
+     */
+    public String getConjugation(ConjugationType conjugationType);
+    
+
 
     
     

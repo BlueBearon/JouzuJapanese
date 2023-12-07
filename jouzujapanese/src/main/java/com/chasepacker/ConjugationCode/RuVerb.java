@@ -7,13 +7,6 @@ public class RuVerb implements Verb{
     private String romanji;
     private String meaning;
 
-
-    private String cutRu(String result)
-    {
-        return result.substring(0, result.length()-2);
-    }
-
-
     public RuVerb(String kan, String hira, String roma, String mean)
     {
         type = 2;
@@ -25,241 +18,11 @@ public class RuVerb implements Verb{
 
 
     @Override
-    public String forPosPres() {
-        
-        String result = romanji;
-
-        //cut off ru
-        result = cutRu(result);
-
-        //add masu
-        result += "masu";
-
-        return result;
-    }
-
-    @Override
-    public String forPosPast() {
-        
-        String result = romanji;
-
-        //cut off ru
-        result = cutRu(result);
-
-        //add mashita
-        result += "mashita";
-
-        return result;
-    }
-
-    @Override
-    public String forPosCan() {
-        
-        String result = romanji;
-
-        //cut off ru
-        result = cutRu(result);
-
-        //add raremasu
-        result += "raremasu";
-
-        return result;
-    }
-
-    @Override
-    public String forPosCaus() {
-        
-        String result = romanji;
-
-        result = cutRu(result);
-
-        result += "sasemasu";
-
-        return result;
-    }
-
-    @Override
-    public String forPosPass() {
-
-        //For ru verbs, Passive form is the same as the Potential form
-        //ex. たべるーたべられます
-       
-        return forPosCan();
-        
-    }
-
-    @Override
-    public String forNegPres() {
-        
-        String result = romanji;
-
-        //cut off ru
-        result = cutRu(result);
-        
-        //add masen
-        result += "masen";
-
-        return result;
-    }
-
-    @Override
-    public String forNegPast() {
-      
-        String result = romanji;
-
-        //cut off ru
-        result = cutRu(result);
-        //add masendeshita
-        result += "masendeshita";
-
-        return result;
-    }
-
-    @Override
-    public String forNegCan() {
-        
-        String result = romanji;
-
-        //Cut of ru
-        result = cutRu(result);
-
-        //add raremasen
-        result += "raremasen";
-
-        return result;
-    }
-
-    @Override
-    public String forNegCaus() {
-        
-        String result = romanji;
-
-        result = cutRu(result);
-
-        result += "sasemasen";
-
-        return result;
-    }
-
-    @Override
-    public String forNegPass() {
-
-        //Same as potential form
-        
-        return forNegCan();
-    }
-
-    @Override
-    public String casPosPres() {
-        
-        return romanji;
-    }
-
-    @Override
-    public String casPosPast() {
-        String result = romanji;
-        
-        //remove ru
-        result = cutRu(result);
-
-        //add ta
-        result += "ta";
-        return result;
-    }
-
-    @Override
-    public String casPosCan() {
-        
-        String result = romanji;
-
-        //remove ru
-        result = cutRu(result);
-
-        //add rareru
-        result += "rareru";
-        return result;
-    }
-
-    @Override
-    public String casPosCaus() {
-        
-        String result = romanji;
-
-        result = cutRu(result);
-
-        result += "saseru";
-
-        return result;
-    }
-
-    @Override
-    public String casPosPass() {
-        
-        //same as potential form
-        
-        return casPosCan();
-    }
-
-    @Override
-    public String casNegPres() {
-        String result = romanji;
-
-        //remove ru
-        result = cutRu(result);
-
-        //add nai
-        result += "nai";
-
-        return result;
-    }
-
-    @Override
-    public String casNegPast() {
-        String result = romanji;
-
-        //remove ru
-        result = cutRu(result);
-
-        //add nakatta
-        result += "nakatta";
-
-        return result;
-    }
-
-    @Override
-    public String casNegCan() {
-        String result = romanji;
-
-        //remove ru
-        result = cutRu(result);
-
-        //add rarenai
-        result+= "rarenai";
-        return result;
-    }
-
-    @Override
-    public String casNegCaus() {
-        
-        String result = romanji;
-
-        result = cutRu(result);
-
-        result += "sasenai";
-        return result;
-    }
-
-    @Override
-    public String casNegPass() {
-        //Same as potential form
-        return casNegCan();
-    }
-
-    @Override
     public String getKanji() {
         
         return kanji;
     }
+
 
     @Override
     public String getHiragana() {
@@ -267,11 +30,13 @@ public class RuVerb implements Verb{
         return hiragana;
     }
 
+
     @Override
     public String getRomanji() {
         
         return romanji;
     }
+
 
     @Override
     public String getEngMeaning() {
@@ -279,66 +44,603 @@ public class RuVerb implements Verb{
         return meaning;
     }
 
+
     @Override
     public int getType() {
         
         return type;
     }
 
+
     @Override
-    public String te() {
+    public String casualPositivePresent() {
+          
+        return hiragana;
+    }
 
-        String result = romanji;
 
-        //remove ru
-        result = cutRu(result);
-
-        //add te
-        result += "te";
+    @Override
+    public String casualNegativePresent() {
         
+        //remove る
+        String result = hiragana.substring(0, hiragana.length()-1);
+
+        //add ない
+        result += "ない";
+
         return result;
     }
 
-    @Override
-    public String toString()
-    {
-        return romanji;
-    }
-
 
     @Override
-    public String tara() {
+    public String casualPositivePast() {
         
-        return casPosPast() + "ra";
-    }
+        String result = hiragana;
 
-
-    @Override
-    public String tari() {
-        return casPosPast() + "ri";
-    }
-
-
-    @Override
-    public String ba() {
-
-        String result = romanji;
-
+        //remove る
         result = result.substring(0, result.length()-1);
 
-        result += "eba";
+        //add た
+        result += "た";
 
         return result;
-        
     }
 
 
     @Override
-    public String negBa() {
-
-        String result = casNegPres();
+    public String casualNegativePast() {
         
-        return result.substring(0, result.length()-1) + "kereba";
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
     }
+
+
+    @Override
+    public String formalPositivePresent() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String formalNegativePresent() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String formalPositivePast() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+
+    }
+    @Override
+    public String formalNegativePast() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+
+    @Override
+    public String te() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add て
+        result += "て";
+        
+        return result;
+    }
+
+
+    @Override
+    public String potential() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add られる
+        result += "られる";
+
+        return result;
+    }
+
+
+    @Override
+    public String passive() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add られる
+        result += "られる";
+
+        return result;
+    }
+
+
+    @Override
+    public String causative() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add させる
+        result += "させる";
+
+        return result;
+    }
+
+    @Override
+    public String volitional() {
+        
+        String result = hiragana;
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add よう
+        result += "よう";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialCasualNegativePresent() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ない
+        result += "ない";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialCasualPositivePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add た
+        result += "た";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialCasualNegativePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalPositivePresent() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalNegativePresent() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalPositivePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+    }
+
+
+    @Override
+    public String potentialFormalNegativePast() {
+        
+        String result = potential();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveCasualNegativePresent() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ない
+        result += "ない";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveCasualPositivePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add た
+        result += "た";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveCasualNegativePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalPositivePresent() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalNegativePresent() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalPositivePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+    }
+
+
+    @Override
+    public String passiveFormalNegativePast() {
+        
+        String result = passive();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeCasualNegativePresent() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ない
+        result += "ない";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeCasualPositivePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add た
+        result += "た";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeCasualNegativePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add なかった
+        result += "なかった";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalPositivePresent() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ます
+        result += "ます";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalNegativePresent() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ません
+        result += "ません";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalPositivePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ました
+        result += "ました";
+
+        return result;
+    }
+
+
+    @Override
+    public String causativeFormalNegativePast() {
+        
+        String result = causative();
+
+        //remove る
+        result = result.substring(0, result.length()-1);
+
+        //add ませんでした
+        result += "ませんでした";
+
+        return result;
+    }
+
+
+    @Override
+    public String volitionalFormal() {
+        
+        String result = hiragana.substring(0, hiragana.length()-1);
+
+        //add ましょう
+        result += "ましょう";
+
+        return result;
+    }
+
+
+	@Override
+	public String getConjugation(ConjugationType conjugationType) {
+
+        switch(conjugationType)
+        {
+            case CASUAL_POSITIVE_PRESENT:
+                return casualPositivePresent();
+            case CASUAL_NEGATIVE_PRESENT:
+                return casualNegativePresent();
+            case CASUAL_POSITIVE_PAST:
+                return casualPositivePast();
+            case CASUAL_NEGATIVE_PAST:
+                return casualNegativePast();
+            case FORMAL_POSITIVE_PRESENT:
+                return formalPositivePresent();
+            case FORMAL_NEGATIVE_PRESENT:
+                return formalNegativePresent();
+            case FORMAL_POSITIVE_PAST:
+                return formalPositivePast();
+            case FORMAL_NEGATIVE_PAST:
+                return formalNegativePast();
+            case TE:
+                return te();
+            case POTENTIAL:
+                return potential();
+            case PASSIVE:
+                return passive();
+            case CAUSATIVE:
+                return causative();
+            case VOLITIONAL:
+                return volitional();
+            case POTENTIAL_CASUAL_NEGATIVE_PRESENT:
+                return potentialCasualNegativePresent();
+            case POTENTIAL_CASUAL_POSITIVE_PAST:
+                return potentialCasualPositivePast();
+            case POTENTIAL_CASUAL_NEGATIVE_PAST:
+                return potentialCasualNegativePast();
+            case POTENTIAL_FORMAL_POSITIVE_PRESENT:
+                return potentialFormalPositivePresent();
+            case POTENTIAL_FORMAL_NEGATIVE_PRESENT:
+                return potentialFormalNegativePresent();
+            case POTENTIAL_FORMAL_POSITIVE_PAST:
+                return potentialFormalPositivePast();
+            case POTENTIAL_FORMAL_NEGATIVE_PAST:
+                return potentialFormalNegativePast();
+            case PASSIVE_CASUAL_NEGATIVE_PRESENT:
+                return passiveCasualNegativePresent();
+            case PASSIVE_CASUAL_POSITIVE_PAST:
+                return passiveCasualPositivePast();
+            case PASSIVE_CASUAL_NEGATIVE_PAST:
+                return passiveCasualNegativePast();
+            case PASSIVE_FORMAL_POSITIVE_PRESENT:
+                return passiveFormalPositivePresent();
+            case PASSIVE_FORMAL_NEGATIVE_PRESENT:
+                return passiveFormalNegativePresent();
+            case PASSIVE_FORMAL_POSITIVE_PAST:
+                return passiveFormalPositivePast();
+            case PASSIVE_FORMAL_NEGATIVE_PAST:
+                return passiveFormalNegativePast();
+            case CAUSATIVE_CASUAL_NEGATIVE_PRESENT:
+                return causativeCasualNegativePresent();
+            case CAUSATIVE_CASUAL_POSITIVE_PAST:
+                return causativeCasualPositivePast();
+            case CAUSATIVE_CASUAL_NEGATIVE_PAST:
+                return causativeCasualNegativePast();
+            case CAUSATIVE_FORMAL_POSITIVE_PRESENT:
+                return causativeFormalPositivePresent();
+            case CAUSATIVE_FORMAL_NEGATIVE_PRESENT:
+                return causativeFormalNegativePresent();
+            case CAUSATIVE_FORMAL_POSITIVE_PAST:
+                return causativeFormalPositivePast();
+            case CAUSATIVE_FORMAL_NEGATIVE_PAST:
+                return causativeFormalNegativePast();
+            case VOLITIONAL_FORMAL:
+                return volitionalFormal();
+            default:
+                return "Error";
+
+        }
+	}
     
 }

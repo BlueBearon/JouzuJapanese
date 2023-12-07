@@ -5,28 +5,6 @@ import java.util.Map;
 
 public interface Word {
 
-    /**
-     * Hashmap that contains the conversions between each hiragana and its romanji counterpart.
-     * Romanji is the key and hiragana is the value.
-     * 
-     * Cannot be used until Word.setupMap() has been called.
-     */
-    static Map<String, String> ROMATOHIRA = new HashMap<String, String>();
-
-    /**
-     * Hashmap that contains the conversions between each hiragana and its romanji counterpart.
-     * Hiragana is the key and romanji is the value.
-     * 
-     * Cannot be used until Word.setupMap() has been called.
-     */
-    static Map<String, String> HIRATOROMA = new HashMap<String, String>();
-
-    /**
-     * Marks whether or not the hashmaps have been initialized.
-     * When setupMap() is called, the value becomes true and the maps
-     * are not reinitialized after that point.
-     */
-    static boolean[] setup = {false};
 
     public static final String[] ROMANJI = 
     {"a", "i", "u", "e", "o", 
@@ -83,6 +61,102 @@ public interface Word {
     "みゃ", "みゅ", "みょ",
     "りゃ", "りゅ", "りょ"
     };
+
+    /**
+     * Hashmap that contains the conversions between each hiragana and its romanji counterpart.
+     * Romanji is the key and hiragana is the value.
+     * 
+     * Cannot be used until Word.setupMap() has been called.
+     */
+    static Map<String, String> ROMATOHIRA = new HashMap<String, String>();
+    
+    
+
+    /**
+     * Hashmap that contains the conversions between each hiragana and its romanji counterpart.
+     * Hiragana is the key and romanji is the value.
+     * 
+     * Cannot be used until Word.setupMap() has been called.
+     */
+    static Map<String, String> HIRATOROMA = new HashMap<String, String>();
+
+    static Map<String, String> UTOA = Map.ofEntries(
+        Map.entry("う", "わ"),
+        Map.entry("く", "か"),
+        Map.entry("す", "さ"),
+        Map.entry("つ", "た"),
+        Map.entry("ぬ", "な"),
+        Map.entry("ふ", "は"),
+        Map.entry("む", "ま"),
+        Map.entry("ゆ", "や"),
+        Map.entry("る", "ら"),
+        Map.entry("ぐ", "が"),
+        Map.entry("ず", "ざ"),
+        Map.entry("づ", "だ"),
+        Map.entry("ぶ", "ば"),
+        Map.entry("ぷ", "ぱ")
+    );
+
+    static Map<String, String> UTOE = Map.ofEntries(
+        Map.entry("う", "え"),
+        Map.entry("く", "け"),
+        Map.entry("す", "せ"),
+        Map.entry("つ", "て"),
+        Map.entry("ぬ", "ね"),
+        Map.entry("ふ", "へ"),
+        Map.entry("む", "め"),
+        Map.entry("ゆ", "い"),
+        Map.entry("る", "れ"),
+        Map.entry("ぐ", "げ"),
+        Map.entry("ず", "ぜ"),
+        Map.entry("づ", "で"),
+        Map.entry("ぶ", "べ"),
+        Map.entry("ぷ", "ぺ")
+    );
+
+
+    static Map<String, String> UTOO = Map.ofEntries(
+        Map.entry("う", "お"),
+        Map.entry("く", "こ"),
+        Map.entry("す", "そ"),
+        Map.entry("つ", "と"),
+        Map.entry("ぬ", "の"),
+        Map.entry("ふ", "ほ"),
+        Map.entry("む", "も"),
+        Map.entry("ゆ", "よ"),
+        Map.entry("る", "ろ"),
+        Map.entry("ぐ", "ご"),
+        Map.entry("ず", "ぞ"),
+        Map.entry("づ", "ど"),
+        Map.entry("ぶ", "ぼ"),
+        Map.entry("ぷ", "ぽ")
+    );
+
+    static Map<String, String> UTOI = Map.ofEntries(
+        Map.entry("う", "い"),
+        Map.entry("く", "き"),
+        Map.entry("す", "し"),
+        Map.entry("つ", "ち"),
+        Map.entry("ぬ", "に"),
+        Map.entry("ふ", "ひ"),
+        Map.entry("む", "み"),
+        Map.entry("ゆ", "い"),
+        Map.entry("る", "り"),
+        Map.entry("ぐ", "ぎ"),
+        Map.entry("ず", "じ"),
+        Map.entry("づ", "ぢ"),
+        Map.entry("ぶ", "び"),
+        Map.entry("ぷ", "ぴ")
+    );
+
+    /**
+     * Marks whether or not the hashmaps have been initialized.
+     * When setupMap() is called, the value becomes true and the maps
+     * are not reinitialized after that point.
+     */
+    static boolean[] setup = {false};
+
+    
 
     /**
      * Uses the Hiragana and romanji string arrays, to create the hashmaps used for converting
@@ -266,6 +340,46 @@ public interface Word {
         }
 
         return res.toString();
+    }
+
+    /**
+     * Given a う hiragana, returns the corresponding あ hiragana
+     * @param kana
+     * @return
+     */
+    public static String uToa(String kana)
+    {
+        return UTOA.get(kana);
+    }
+
+    /**
+     * Given a う hiragana, returns the corresponding え hiragana
+     * @param kana
+     * @return
+     */
+    public static String uToe(String kana)
+    {
+        return UTOE.get(kana);
+    }
+
+    /**
+     * Given a う hiragana, returns the corresponding い hiragana
+     * @param kana
+     * @return
+     */
+    public static String uToi(String kana)
+    {
+        return UTOI.get(kana);
+    }
+
+    /**
+     * Given a う hiragana, returns the corresponding お hiragana
+     * @param kana
+     * @return
+     */
+    public static String uToo(String kana)
+    {
+        return UTOO.get(kana);
     }
 
 

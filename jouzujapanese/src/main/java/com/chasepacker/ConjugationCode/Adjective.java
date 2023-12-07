@@ -5,55 +5,63 @@ public interface Adjective extends Word{
      * Conjugation for Formal Positive Present/Future
      * @return string result
      */
-    public String forPosPres();
+    public String formalPositivePresent();
 
     /**
      * Conjugation for Formal Positive Past
      * @return string result
      */
-    public String forPosPast();
+    public String formalPositivePast();
 
     /**
      * Conjugation for Formal Negative Present/Future
      * @return string result
      */
-    public String forNegPres();
+    public String formalNegativePresent();
 
     /**
      * Conjugation for Formal Negative Past
      * @return string result
      */
-    public String forNegPast();
+    public String formalNegativePast();
 
     /**
      * Conjugation for Casual Positive Present/Future
      * @return string result
      */
-    public String casPosPres();
+    public String casualPositivePresent();
 
     /**
      * Conjugation for Casual Positive Past
      * @return string result
      */
-    public String casPosPast();
+    public String casualPositivePast();
 
     /**
      * Conjugation for Casual Negative Present/Future
      * @return string result
      */
-    public String casNegPres();
+    public String casualNegativePresent();
 
     /**
      * Conjugation for Casual Negative Past
      * @return string result
      */
-    public String casNegPast();
+    public String casualNegativePast();
 
     /**
      * Conjugatino for te form
      * @return string result
      */
     public String te();
+
+
+    /**
+     * Returns the requested conjugation of the adjective.
+     * Uses switch statement to determine which conjugation to return.
+     * @param conjugationType
+     */
+    public String getConjugation(ConjugationType conjugationType);
 
     
 }
