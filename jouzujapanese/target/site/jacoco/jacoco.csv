@@ -1,8 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-jouzujapanese,com.chasepacker.ConjugationCode,RuVerb,389,18,0,0,84,7,32,1,32,1
-jouzujapanese,com.chasepacker.ConjugationCode,IrrVerb,347,0,44,0,82,0,54,0,32,0
-jouzujapanese,com.chasepacker.ConjugationCode,Word,31,1074,5,27,10,105,4,16,0,4
-jouzujapanese,com.chasepacker.ConjugationCode,UVerb,987,28,69,0,179,8,69,1,32,1
+jouzujapanese,com.chasepacker.ConjugationCode,RuVerb,3,296,0,0,1,59,1,18,1,18
+jouzujapanese,com.chasepacker.ConjugationCode,IrrVerb,3,406,0,24,1,50,1,32,1,20
+jouzujapanese,com.chasepacker.ConjugationCode,Word,31,1450,5,27,8,116,4,20,0,8
+jouzujapanese,com.chasepacker.ConjugationCode,UVerb,3,653,0,18,1,114,1,32,1,18
 jouzujapanese,com.chasepacker.ConjugationCode,NaAdjective,126,0,0,0,22,0,16,0,16,0
 jouzujapanese,com.chasepacker.ConjugationCode,IAdjective,184,0,0,0,46,0,17,0,17,0
 jouzujapanese,com.chasepacker,App,7,0,0,0,3,0,2,0,2,0

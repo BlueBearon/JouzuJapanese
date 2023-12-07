@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UVerb.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker.ConjugationCode</a> &gt; <span class="el_source">UVerb.java</span></div><h1>UVerb.java</h1><pre class="source lang-java linenums">package com.chasepacker.ConjugationCode;
+
+
 public class UVerb implements Verb{
 
     private int type;
@@ -6,462 +8,302 @@ public class UVerb implements Verb{
     private String hiragana;
     private String romanji;
     private String meaning;
-    private char lastchar;
 
-
-    private String removeu(String result)
-    {
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        if(lastchar != 'つ')</span>
-<span class="nc" id="L15">            return result.substring(0, result.length()-1);</span>
-        else
-<span class="nc" id="L17">            return result.substring(0, result.length()-3);</span>
-    }
-
-<span class="fc" id="L20">    public UVerb(String kan, String hira, String roma, String mean)</span>
-    {
-<span class="fc" id="L22">        type = 1;</span>
-<span class="fc" id="L23">        kanji = kan;</span>
-<span class="fc" id="L24">        hiragana = hira;</span>
-<span class="fc" id="L25">        romanji = roma;</span>
-<span class="fc" id="L26">        meaning = mean;</span>
-<span class="fc" id="L27">        lastchar = hiragana.charAt(hiragana.length()-1);</span>
-<span class="fc" id="L28">    }</span>
-
-    @Override
-    public String forPosPres() {
-<span class="nc" id="L32">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L35">        result = removeu(result);</span>
-
-        //replace with imasu
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L39">            result += &quot;chimasu&quot;;</span>
-        else
-<span class="nc" id="L41">            result += &quot;imasu&quot;;</span>
-
-
-<span class="nc" id="L44">        return result;</span>
-    }
-
-    @Override
-    public String forPosPast() {
-       
-<span class="nc" id="L50">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L53">        result = removeu(result);</span>
-
-        //replace with imashita
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L57">            result += &quot;chimashita&quot;;</span>
-        else
-<span class="nc" id="L59">            result += &quot;imashita&quot;;</span>
-        
-<span class="nc" id="L61">        return result;</span>
-    }
-
-    @Override
-    public String forPosCan() {
-<span class="nc" id="L66">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L69">        result = removeu(result);</span>
-
-        //replace with emasu
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L73">            result += &quot;temasu&quot;;</span>
-        else
-<span class="nc" id="L75">            result += &quot;emasu&quot;;</span>
-<span class="nc" id="L76">        return result;</span>
-    }
-
-    @Override
-    public String forPosCaus() {
-        
-<span class="nc" id="L82">        String result = romanji;</span>
-
-<span class="nc" id="L84">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L86" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L87">            result += &quot;tasemasu&quot;;</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L89">            result += &quot;wasemasu&quot;;</span>
-        else
-<span class="nc" id="L91">            result += &quot;asemasu&quot;;</span>
-
-
-<span class="nc" id="L94">        return result;</span>
-    }
-
-    @Override
-    public String forPosPass() {
-        
-<span class="nc" id="L100">        String result = romanji;</span>
-
-<span class="nc" id="L102">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L104" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L105">            result += &quot;taremasu&quot;;</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L107">            result += &quot;waremasu&quot;;</span>
-        else
-<span class="nc" id="L109">            result += &quot;aremasu&quot;;</span>
-<span class="nc" id="L110">        return result;</span>
-    }
-
-    @Override
-    public String forNegPres() {
-        
-<span class="nc" id="L116">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L119">        result = removeu(result);</span>
-
-        //replace with imasen
-<span class="nc bnc" id="L122" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L123">            result += &quot;chimasen&quot;;</span>
-        else
-<span class="nc" id="L125">            result += &quot;imasen&quot;;</span>
-
-<span class="nc" id="L127">        return result;</span>
-    }
-
-    @Override
-    public String forNegPast() {
-        
-<span class="nc" id="L133">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L136">        result = removeu(result);</span>
-
-        //replace with imasendeshita
-<span class="nc bnc" id="L139" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L140">            result += &quot;chimasendeshita&quot;;</span>
-        else
-<span class="nc" id="L142">            result += &quot;imasendeshita&quot;;</span>
-
-<span class="nc" id="L144">        return result;</span>
-    }
-
-    @Override
-    public String forNegCan() {
-        
-<span class="nc" id="L150">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L153">        result = removeu(result);</span>
-
-        //replace with emasen
-<span class="nc bnc" id="L156" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L157">            result += &quot;temasen&quot;;</span>
-        else
-<span class="nc" id="L159">            result += &quot;emasen&quot;;</span>
-
-<span class="nc" id="L161">        return result;</span>
-    }
-
-    @Override
-    public String forNegCaus() {
-        
-<span class="nc" id="L167">        String result = romanji;</span>
-
-<span class="nc" id="L169">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L171" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L172">            result += &quot;tasemasen&quot;;</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L174">            result += &quot;wasemasen&quot;;</span>
-        else
-<span class="nc" id="L176">            result += &quot;asemasen&quot;;</span>
-<span class="nc" id="L177">        return result;</span>
-    }
-
-    @Override
-    public String forNegPass() {
-        
-<span class="nc" id="L183">        String result = romanji;</span>
-<span class="nc" id="L184">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L186" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L187">            result += &quot;taremasen&quot;;</span>
-<span class="nc bnc" id="L188" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L189">            result += &quot;waremasen&quot;;</span>
-        else
-<span class="nc" id="L191">            result += &quot;aremasen&quot;;</span>
-<span class="nc" id="L192">        return result;</span>
-    }
-
-    @Override
-    public String casPosPres() {
-
-<span class="nc" id="L198">        return romanji;</span>
-    }
-
-    @Override
-    public String casPosPast() {
-<span class="nc" id="L203">        String result = romanji;</span>
-
-        //call te
-<span class="nc" id="L206">        result = te();</span>
-
-        //replace e with a
-<span class="nc" id="L209">        result = result.substring(0, result.length()-1);</span>
-<span class="nc" id="L210">        result+= &quot;a&quot;;</span>
-
-<span class="nc" id="L212">        return result;</span>
-    }
-
-    @Override
-    public String casPosCan() {
-<span class="nc" id="L217">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L220">        result = removeu(result);</span>
-
-        //replace with eru
-<span class="nc bnc" id="L223" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L224">            result += &quot;teru&quot;;</span>
-        else
-<span class="nc" id="L226">            result += &quot;eru&quot;;</span>
-
-        
-<span class="nc" id="L229">        return result;</span>
-    }
-
-    @Override
-    public String casPosCaus() {
-<span class="nc" id="L234">        String result = romanji;</span>
-
-<span class="nc" id="L236">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L238" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L239">            result += &quot;taseru&quot;;</span>
-<span class="nc bnc" id="L240" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L241">            result += &quot;waseru&quot;;</span>
-        else
-<span class="nc" id="L243">            result += &quot;aseru&quot;;</span>
-
-        
-<span class="nc" id="L246">        return result;</span>
-    }
-
-    @Override
-    public String casPosPass() {
-        
-<span class="nc" id="L252">        String result = romanji;</span>
-<span class="nc" id="L253">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L255" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L256">            result += &quot;tareru&quot;;</span>
-<span class="nc bnc" id="L257" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L258">            result += &quot;wareru&quot;;</span>
-        else
-<span class="nc" id="L260">            result += &quot;areru&quot;;</span>
-<span class="nc" id="L261">        return result;</span>
-    }
-
-    @Override
-    public String casNegPres() {
-<span class="nc" id="L266">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L269">        result = removeu(result);</span>
-
-        //replace with anai
-<span class="nc bnc" id="L272" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L273">            result += &quot;tanai&quot;;</span>
-<span class="nc bnc" id="L274" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L275">            result += &quot;wanai&quot;;</span>
-        else
-<span class="nc" id="L277">            result += &quot;anai&quot;;</span>
-        
-<span class="nc" id="L279">        return result;</span>
-    }
-
-    @Override
-    public String casNegPast() {
-<span class="nc" id="L284">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L287">        result = removeu(result);</span>
-
-        //replace with anakatta
-<span class="nc bnc" id="L290" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L291">            result += &quot;tanakatta&quot;;</span>
-<span class="nc bnc" id="L292" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L293">            result += &quot;wanakatta&quot;;</span>
-        else
-<span class="nc" id="L295">            result += &quot;anakatta&quot;;</span>
-<span class="nc" id="L296">        return result;</span>
-    }
-
-    @Override
-    public String casNegCan() {
-<span class="nc" id="L301">        String result = romanji;</span>
-
-        //remove u
-<span class="nc" id="L304">        result = removeu(result);</span>
-
-        //replace with enai
-<span class="nc bnc" id="L307" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L308">            result += &quot;tenai&quot;;</span>
-        else
-<span class="nc" id="L310">            result += &quot;enai&quot;;</span>
-<span class="nc" id="L311">        return result;</span>
-    }
-
-    @Override
-    public String casNegCaus() {
-        
-<span class="nc" id="L317">        String result = romanji;</span>
-<span class="nc" id="L318">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L320" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L321">            result += &quot;tasenai&quot;;</span>
-<span class="nc bnc" id="L322" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L323">            result += &quot;wasenai&quot;;</span>
-        else
-<span class="nc" id="L325">            result += &quot;asenai&quot;;</span>
-<span class="nc" id="L326">        return result;</span>
-    }
-
-    @Override
-    public String casNegPass() {
-       
-<span class="nc" id="L332">        String result = romanji;</span>
-
-<span class="nc" id="L334">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L336" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L337">            result += &quot;tarenai&quot;;</span>
-<span class="nc bnc" id="L338" title="All 2 branches missed.">        else if(lastchar == 'う')</span>
-<span class="nc" id="L339">            result += &quot;warenai&quot;;</span>
-        else
-<span class="nc" id="L341">            result += &quot;arenai&quot;;</span>
-<span class="nc" id="L342">        return result;</span>
-    }
+    public UVerb(String kan, String hira, String roma, String mean)
+<span class="fc" id="L13">    {</span>
+<span class="fc" id="L14">        type = 1;</span>
+<span class="fc" id="L15">        kanji = kan;</span>
+<span class="fc" id="L16">        hiragana = hira;</span>
+<span class="fc" id="L17">        romanji = roma;</span>
+<span class="fc" id="L18">        meaning = mean;</span>
+<span class="fc" id="L19">    }</span>
 
     @Override
     public String getKanji() {
         
-<span class="nc" id="L348">        return kanji;</span>
+<span class="fc" id="L24">        return kanji;</span>
     }
+
 
     @Override
     public String getHiragana() {
         
-<span class="nc" id="L354">        return hiragana;</span>
+<span class="fc" id="L31">        return hiragana;</span>
     }
+
 
     @Override
     public String getRomanji() {
-       
-<span class="nc" id="L360">        return romanji;</span>
+        
+<span class="fc" id="L38">        return romanji;</span>
     }
+
 
     @Override
     public String getEngMeaning() {
-       
-<span class="nc" id="L366">        return meaning;</span>
+        
+<span class="fc" id="L45">        return meaning;</span>
     }
+
 
     @Override
     public int getType() {
-     
-<span class="nc" id="L372">        return type;</span>
+        
+<span class="nc" id="L52">        return type;</span>
+    }
+
+
+    @Override
+    public String casualPositivePresent() {
+          
+<span class="fc" id="L59">        return hiragana;</span>
     }
 
     @Override
-    public String te() {
-<span class="nc" id="L377">        String result = romanji;</span>
-
-        /*
-         * る・う・つーーって
-         * すーーして
-         * くーーいて
-         * ぐーーいで
-         * む・ぶ・ぬーーんで
-         */
-        //remove u
+    public String casualNegativePresent() {
         
-<span class="nc" id="L388">        int len = result.length();</span>
+<span class="fc" id="L65">        String result = hiragana;</span>
 
-<span class="nc bnc" id="L390" title="All 2 branches missed.">        if(result.equals(&quot;iku&quot;))</span>
-<span class="nc" id="L391">            return &quot;itte&quot;;</span>
+<span class="fc" id="L67">        String replacement = Word.uToa(result.substring(result.length()-1));</span>
 
-        //replace with form as seen above
-<span class="nc bnc" id="L394" title="All 7 branches missed.">        switch(lastchar)</span>
+<span class="fc" id="L69">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L71">        result += replacement + &quot;ない&quot;;</span>
+
+<span class="fc" id="L73">        return result;</span>
+    }
+
+
+    @Override
+    public String casualPositivePast() {
+        
+<span class="fc" id="L80">        String result = hiragana;</span>
+
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if(result == &quot;いく&quot;)</span>
         {
-            case 'う':
-<span class="nc" id="L397">                result = result.substring(0, len-1);</span>
-<span class="nc" id="L398">                result += &quot;tte&quot;;</span>
-<span class="nc" id="L399">                break;</span>
-            case 'る':
-<span class="nc" id="L401">                result = result.substring(0, len-2);</span>
-<span class="nc" id="L402">                result += &quot;tte&quot;;</span>
-<span class="nc" id="L403">                break;</span>
-            case 'つ':
-<span class="nc" id="L405">                result = result.substring(0, len-3);</span>
-<span class="nc" id="L406">                result += &quot;tte&quot;;</span>
-<span class="nc" id="L407">                break;</span>
-            case 'す':
-<span class="nc" id="L409">                result = result.substring(0, len-2);</span>
-<span class="nc" id="L410">                result += &quot;shite&quot;;</span>
-<span class="nc" id="L411">                break;</span>
-            case 'く':
-<span class="nc" id="L413">                result = result.substring(0, len-2);</span>
-<span class="nc" id="L414">                result += &quot;ite&quot;;</span>
-<span class="nc" id="L415">                break;</span>
-            case 'ぐ':
-<span class="nc" id="L417">                result = result.substring(0, len-2);</span>
-<span class="nc" id="L418">                result += &quot;ide&quot;;</span>
-<span class="nc" id="L419">                break;</span>
+<span class="fc" id="L84">            return &quot;いった&quot;;</span>
+        }
+
+<span class="fc" id="L87">        String lastchar = result.substring(result.length()-1);</span>
+
+<span class="fc bfc" id="L89" title="All 7 branches covered.">        switch(lastchar)</span>
+        {
+            case &quot;う&quot;:
+<span class="fc" id="L92">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L93">                result += &quot;った&quot;;</span>
+<span class="fc" id="L94">                break;</span>
+            case &quot;る&quot;:
+<span class="fc" id="L96">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L97">                result += &quot;った&quot;;</span>
+<span class="fc" id="L98">                break;</span>
+            case &quot;つ&quot;:
+<span class="fc" id="L100">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L101">                result += &quot;った&quot;;</span>
+<span class="fc" id="L102">                break;</span>
+            case &quot;す&quot;:
+<span class="fc" id="L104">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L105">                result += &quot;した&quot;;</span>
+<span class="fc" id="L106">                break;</span>
+            case &quot;く&quot;:
+<span class="fc" id="L108">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L109">                result += &quot;いた&quot;;</span>
+<span class="fc" id="L110">                break;</span>
+            case &quot;ぐ&quot;:
+<span class="fc" id="L112">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L113">                result += &quot;いだ&quot;;</span>
+<span class="fc" id="L114">                break;</span>
             default:
-<span class="nc" id="L421">                result = result.substring(0, len-2);</span>
-<span class="nc" id="L422">                result += &quot;nde&quot;;</span>
+<span class="fc" id="L116">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L117">                result += &quot;んだ&quot;;</span>
 
         }
 
-
-<span class="nc" id="L427">        return result;</span>
+<span class="fc" id="L121">        return result;</span>
     }
 
-    @Override
-    public String toString()
-    {
-<span class="nc" id="L433">        return romanji;</span>
-    }
 
     @Override
-    public String tara() {
-<span class="nc" id="L438">        return casPosPast() + &quot;ra&quot;;</span>
-    }
-
-    @Override
-    public String tari() {
-<span class="nc" id="L443">        return casPosPast() + &quot;ri&quot;;</span>
-    }
-
-    @Override
-    public String ba() {
-<span class="nc" id="L448">        String result = romanji;</span>
-
-<span class="nc" id="L450">        result = removeu(result);</span>
-
-<span class="nc bnc" id="L452" title="All 2 branches missed.">        if(lastchar == 'つ')</span>
-<span class="nc" id="L453">            result += &quot;teba&quot;;</span>
-        else
-<span class="nc" id="L455">            result += &quot;eba&quot;;</span>
-<span class="nc" id="L456">        return result;</span>
-    }
-
-    @Override
-    public String negBa() {
-<span class="nc" id="L461">        String result = casNegPres();</span>
+    public String casualNegativePast() {
         
-<span class="nc" id="L463">        return result.substring(0, result.length()-1) + &quot;kereba&quot;;</span>
+<span class="fc" id="L128">        String result = hiragana;</span>
+
+<span class="fc" id="L130">        String replacement = Word.uToa(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L132">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L134">        result += replacement + &quot;なかった&quot;;</span>
+
+<span class="fc" id="L136">        return result;</span>
     }
+
+
+    @Override
+    public String formalPositivePresent() {
+        
+<span class="fc" id="L143">        String result = hiragana;</span>
+
+<span class="fc" id="L145">        String replacement = Word.uToi(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L147">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L149">        result += replacement + &quot;ます&quot;;</span>
+
+<span class="fc" id="L151">        return result;</span>
+    }
+
+
+    @Override
+    public String formalNegativePresent() {
+        
+<span class="fc" id="L158">        String result = hiragana;</span>
+
+<span class="fc" id="L160">        String replacement = Word.uToi(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L162">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L164">        result += replacement + &quot;ません&quot;;</span>
+
+<span class="fc" id="L166">        return result;</span>
+    }
+
+
+    @Override
+    public String formalPositivePast() {
+        
+<span class="fc" id="L173">        String result = hiragana;</span>
+
+<span class="fc" id="L175">        String replacement = Word.uToi(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L177">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L179">        result += replacement + &quot;ました&quot;;</span>
+
+<span class="fc" id="L181">        return result;</span>
+
+    }
+    @Override
+    public String formalNegativePast() {
+        
+<span class="fc" id="L187">        String result = hiragana;</span>
+
+<span class="fc" id="L189">        String replacement = Word.uToi(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L191">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L193">        result += replacement + &quot;ませんでした&quot;;</span>
+
+<span class="fc" id="L195">        return result;</span>
+    }
+
     
+    @Override
+    public String te() {
+        
+<span class="fc" id="L202">        String result = hiragana;</span>
+
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if(result == &quot;いく&quot;)</span>
+        {
+<span class="fc" id="L206">            return &quot;いって&quot;;</span>
+        }
+
+<span class="fc" id="L209">        String lastchar = result.substring(result.length()-1);</span>
+
+<span class="fc bfc" id="L211" title="All 7 branches covered.">        switch(lastchar)</span>
+        {
+            case &quot;う&quot;:
+<span class="fc" id="L214">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L215">                result += &quot;って&quot;;</span>
+<span class="fc" id="L216">                break;</span>
+            case &quot;る&quot;:
+<span class="fc" id="L218">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L219">                result += &quot;って&quot;;</span>
+<span class="fc" id="L220">                break;</span>
+            case &quot;つ&quot;:
+<span class="fc" id="L222">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L223">                result += &quot;って&quot;;</span>
+<span class="fc" id="L224">                break;</span>
+            case &quot;す&quot;:
+<span class="fc" id="L226">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L227">                result += &quot;して&quot;;</span>
+<span class="fc" id="L228">                break;</span>
+            case &quot;く&quot;:
+<span class="fc" id="L230">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L231">                result += &quot;いて&quot;;</span>
+<span class="fc" id="L232">                break;</span>
+            case &quot;ぐ&quot;:
+<span class="fc" id="L234">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L235">                result += &quot;いで&quot;;</span>
+<span class="fc" id="L236">                break;</span>
+            default:
+<span class="fc" id="L238">                result = result.substring(0, result.length()-1);</span>
+<span class="fc" id="L239">                result += &quot;んで&quot;;</span>
+
+        }
+
+<span class="fc" id="L243">        return result;</span>
+        
+    }
+
+
+    @Override
+    public String potential() {
+        
+<span class="fc" id="L251">        String result = hiragana;</span>
+
+<span class="fc" id="L253">        String replacement = Word.uToe(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L255">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L257">        result += replacement + &quot;る&quot;;</span>
+
+<span class="fc" id="L259">        return result;</span>
+    }
+
+
+    @Override
+    public String passive() {
+        
+<span class="fc" id="L266">        String result = hiragana;</span>
+
+<span class="fc" id="L268">        String replacement = Word.uToa(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L270">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L272">        result += replacement + &quot;れる&quot;;</span>
+
+<span class="fc" id="L274">        return result;</span>
+    }
+
+
+    @Override
+    public String causative() {
+        
+<span class="fc" id="L281">        String result = hiragana;</span>
+
+<span class="fc" id="L283">        String replacement = Word.uToa(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L285">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L287">        result += replacement + &quot;せる&quot;;</span>
+
+<span class="fc" id="L289">        return result;</span>
+    }
+
+
+    @Override
+    public String volitional() {
+        
+<span class="fc" id="L296">        String result = hiragana;</span>
+
+<span class="fc" id="L298">        String replacement = Word.uToo(result.substring(result.length()-1));</span>
+
+<span class="fc" id="L300">        result = result.substring(0, result.length()-1);</span>
+
+<span class="fc" id="L302">        result += replacement + &quot;う&quot;;</span>
+
+<span class="fc" id="L304">        return result;</span>
+    }
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -6,7 +6,6 @@ public class IrrVerb implements Verb{
     private String hiragana;
     private String romanji;
     private String meaning;
-    private int kuru;
 
     public IrrVerb(String kan, String hira, String roma, String mean)
     {
@@ -15,167 +14,21 @@ public class IrrVerb implements Verb{
         hiragana = hira;
         romanji = roma;
         meaning = mean;
-        kuru = romanji.equals("kuru") ? 1 : 0;
     }
 
-
-    @Override
-    public String forPosPres() {
-        
-        if(kuru == 1)
-            return "kimasu";
-        else
-            return romanji.replace("suru", "shimasu");
-        
+    /**
+     * Checks if the word ends with suru or kuru
+     * @param word
+     * @return true if the word ends with suru, false if kuru
+     */
+    public Boolean isSuru(String word)
+    {
+        return word.endsWith("する");
     }
 
-    @Override
-    public String forPosPast() {
-        if(kuru == 1)
-            return "kimashita";
-        else
-            return romanji.replace("suru", "shimashita");
-    }
-
-    @Override
-    public String forPosCan() {
-        if(kuru == 1)
-            return "koraremasu";
-        else
-            return romanji.replace("suru", "dekimasu");
-    }
-
-    @Override
-    public String forPosCaus() {
-        if(kuru == 1)
-            return "kosasemasu";
-        else
-            return romanji.replace("suru", "sasemasu");
-    }
-
-    @Override
-    public String forPosPass() {
-        if(kuru == 1)
-            return "koraremasu";
-        else
-            return romanji.replace("suru", "saremasu");
-    }
-
-    @Override
-    public String forNegPres() {
-        if(kuru == 1)
-            return "kimasen";
-        else
-            return romanji.replace("suru", "shimasen");
-    }
-
-    @Override
-    public String forNegPast() {
-        if(kuru == 1)
-            return "kimasendeshita";
-        else
-            return romanji.replace("suru", "shimasendeshita");
-    }
-
-    @Override
-    public String forNegCan() {
-        if(kuru == 1)
-            return "koraremasen";
-        else
-            return romanji.replace("suru", "dekimasen");
-    }
-
-    @Override
-    public String forNegCaus() {
-        if(kuru == 1)
-            return "kosasemasen";
-        else
-            return romanji.replace("suru", "sasemasen");
-    }
-
-    @Override
-    public String forNegPass() {
-        if(kuru == 1)
-            return "koraremasen";
-        else
-            return romanji.replace("suru", "saremasen");
-    }
-
-    @Override
-    public String casPosPres() {
-        return romanji;
-    }
-
-    @Override
-    public String casPosPast() {
-        if(kuru == 1)
-            return "kita";
-        else
-            return romanji.replace("suru", "shita");
-    }
-
-    @Override
-    public String casPosCan() {
-        if(kuru == 1)
-            return "korareru";
-        else
-            return romanji.replace("suru", "dekiru");
-    }
-
-    @Override
-    public String casPosCaus() {
-        if(kuru == 1)
-            return "kosaseru";
-        else
-            return romanji.replace("suru", "saseru");
-    }
-
-    @Override
-    public String casPosPass() {
-        if(kuru == 1)
-            return "korareru";
-        else
-            return romanji.replace("suru", "sareru");
-    }
-
-    @Override
-    public String casNegPres() {
-        if(kuru == 1)
-            return "konai";
-        else
-            return romanji.replace("suru", "shinai");
-    }
-
-    @Override
-    public String casNegPast() {
-        if(kuru == 1)
-            return "konakatta";
-        else
-            return romanji.replace("suru", "shinakatta");
-    }
-
-    @Override
-    public String casNegCan() {
-        if(kuru == 1)
-            return "korarenai";
-        else
-            return romanji.replace("suru", "dekinai");
-    }
-
-    @Override
-    public String casNegCaus() {
-        if(kuru == 1)
-            return "kosasenai";
-        else
-            return romanji.replace("suru", "sasenai");
-    }
-
-    @Override
-    public String casNegPass() {
-        if(kuru == 1)
-            return "korarenai";
-        else
-            return romanji.replace("suru", "sarenai");
+    public String cutVerb(String word)
+    {
+        return word.substring(0, word.length()-2);
     }
 
     @Override
@@ -184,11 +37,13 @@ public class IrrVerb implements Verb{
         return kanji;
     }
 
+
     @Override
     public String getHiragana() {
         
         return hiragana;
     }
+
 
     @Override
     public String getRomanji() {
@@ -196,61 +51,194 @@ public class IrrVerb implements Verb{
         return romanji;
     }
 
+
     @Override
     public String getEngMeaning() {
         
         return meaning;
     }
 
+
     @Override
     public int getType() {
+        
         return type;
     }
 
+
+    @Override
+    public String casualPositivePresent() {
+          
+        return hiragana;
+    }
+
+
+    @Override
+    public String casualNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しない";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こない";
+        }
+       
+    }
+
+
+    @Override
+    public String casualPositivePast() {
+       
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "した";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きた";
+        }
+    }
+
+
+    @Override
+    public String casualNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しなかった";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こなかった";
+        } 
+    }
+
+
+    @Override
+    public String formalPositivePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "します";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きます";
+        }
+    }
+
+
+    @Override
+    public String formalNegativePresent() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しません";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きません";
+        }
+    }
+
+
+    @Override
+    public String formalPositivePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しました";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きました";
+        }
+
+    }
+    @Override
+    public String formalNegativePast() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しませんでした";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きませんでした";
+        }
+    }
+
+
     @Override
     public String te() {
-        if(kuru == 1)
-            return romanji.replace("kuru", "kite");
-        else
-            return romanji.replace("suru", "shite");
-    }
-
-    @Override
-    public String toString()
-    {
-        return romanji;
-    }
-
-
-    @Override
-    public String tara() {
-        return casPosPast() + "ra";
-    }
-
-
-    @Override
-    public String tari() {
-        return casPosPast() + "ri";
-    }
-
-
-    @Override
-    public String ba() {
-
-        if(kuru == 1)
-            return romanji.replace("kuru", "kureba");
-        else
-            return romanji.replace("suru", "sureba");
         
-
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "して";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "きて";
+        }
     }
 
 
     @Override
-    public String negBa() {
-        String result = casNegPres();
+    public String potential() {
         
-        return result.substring(0, result.length()-1) + "kereba";
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "できる";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられる";
+        }
     }
+
+
+    @Override
+    public String passive() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "される";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こられる";
+        }
+    }
+
+
+    @Override
+    public String causative() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "させる";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こさせる";
+        }
+    }
+
+
+    @Override
+    public String volitional() {
+        
+        if(isSuru(hiragana))
+        {
+            return cutVerb(hiragana) + "しよう";
+        }
+        else
+        {
+            return cutVerb(hiragana) + "こよう";
+        }
+    }
+    
     
 }

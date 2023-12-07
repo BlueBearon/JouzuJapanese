@@ -21,9 +21,6 @@ public class WordTest {
 
         for(int i = 0; i < tests.length; i++)
         {
-            System.out.println(tests[i]);
-            System.out.println(Word.romanjiParser(tests[i]));
-            System.out.println(results[i]);
             assertEquals(results[i], Word.romanjiParser(tests[i]));
         }
 
@@ -56,8 +53,6 @@ public class WordTest {
 
         for(int i = 0; i < tests.length; i++)
         {
-            System.out.println(Word.hiraganaParser(tests[i]));
-            System.out.println(results[i]);
             assertEquals(results[i], Word.hiraganaParser(tests[i]));
         }
         
