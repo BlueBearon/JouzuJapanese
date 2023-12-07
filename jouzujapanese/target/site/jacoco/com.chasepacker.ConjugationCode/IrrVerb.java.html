@@ -525,6 +525,87 @@ public class IrrVerb implements Verb{
 <span class="fc" id="L525">            return cutVerb(hiragana) + &quot;きましょう&quot;;</span>
         }
     }
+
+	@Override
+	public String getConjugation(ConjugationType conjugationType) {
+
+<span class="nc bnc" id="L532" title="All 36 branches missed.">        switch(conjugationType)</span>
+        {
+            case CASUAL_POSITIVE_PRESENT:
+<span class="nc" id="L535">                return casualPositivePresent();</span>
+            case CASUAL_NEGATIVE_PRESENT:
+<span class="nc" id="L537">                return casualNegativePresent();</span>
+            case CASUAL_POSITIVE_PAST:
+<span class="nc" id="L539">                return casualPositivePast();</span>
+            case CASUAL_NEGATIVE_PAST:
+<span class="nc" id="L541">                return casualNegativePast();</span>
+            case FORMAL_POSITIVE_PRESENT:
+<span class="nc" id="L543">                return formalPositivePresent();</span>
+            case FORMAL_NEGATIVE_PRESENT:
+<span class="nc" id="L545">                return formalNegativePresent();</span>
+            case FORMAL_POSITIVE_PAST:
+<span class="nc" id="L547">                return formalPositivePast();</span>
+            case FORMAL_NEGATIVE_PAST:
+<span class="nc" id="L549">                return formalNegativePast();</span>
+            case TE:
+<span class="nc" id="L551">                return te();</span>
+            case POTENTIAL:
+<span class="nc" id="L553">                return potential();</span>
+            case PASSIVE:
+<span class="nc" id="L555">                return passive();</span>
+            case CAUSATIVE:
+<span class="nc" id="L557">                return causative();</span>
+            case VOLITIONAL:
+<span class="nc" id="L559">                return volitional();</span>
+            case POTENTIAL_CASUAL_NEGATIVE_PRESENT:
+<span class="nc" id="L561">                return potentialCasualNegativePresent();</span>
+            case POTENTIAL_CASUAL_POSITIVE_PAST:
+<span class="nc" id="L563">                return potentialCasualPositivePast();</span>
+            case POTENTIAL_CASUAL_NEGATIVE_PAST:
+<span class="nc" id="L565">                return potentialCasualNegativePast();</span>
+            case POTENTIAL_FORMAL_POSITIVE_PRESENT:
+<span class="nc" id="L567">                return potentialFormalPositivePresent();</span>
+            case POTENTIAL_FORMAL_NEGATIVE_PRESENT:
+<span class="nc" id="L569">                return potentialFormalNegativePresent();</span>
+            case POTENTIAL_FORMAL_POSITIVE_PAST:
+<span class="nc" id="L571">                return potentialFormalPositivePast();</span>
+            case POTENTIAL_FORMAL_NEGATIVE_PAST:
+<span class="nc" id="L573">                return potentialFormalNegativePast();</span>
+            case PASSIVE_CASUAL_NEGATIVE_PRESENT:
+<span class="nc" id="L575">                return passiveCasualNegativePresent();</span>
+            case PASSIVE_CASUAL_POSITIVE_PAST:
+<span class="nc" id="L577">                return passiveCasualPositivePast();</span>
+            case PASSIVE_CASUAL_NEGATIVE_PAST:
+<span class="nc" id="L579">                return passiveCasualNegativePast();</span>
+            case PASSIVE_FORMAL_POSITIVE_PRESENT:
+<span class="nc" id="L581">                return passiveFormalPositivePresent();</span>
+            case PASSIVE_FORMAL_NEGATIVE_PRESENT:
+<span class="nc" id="L583">                return passiveFormalNegativePresent();</span>
+            case PASSIVE_FORMAL_POSITIVE_PAST:
+<span class="nc" id="L585">                return passiveFormalPositivePast();</span>
+            case PASSIVE_FORMAL_NEGATIVE_PAST:
+<span class="nc" id="L587">                return passiveFormalNegativePast();</span>
+            case CAUSATIVE_CASUAL_NEGATIVE_PRESENT:
+<span class="nc" id="L589">                return causativeCasualNegativePresent();</span>
+            case CAUSATIVE_CASUAL_POSITIVE_PAST:
+<span class="nc" id="L591">                return causativeCasualPositivePast();</span>
+            case CAUSATIVE_CASUAL_NEGATIVE_PAST:
+<span class="nc" id="L593">                return causativeCasualNegativePast();</span>
+            case CAUSATIVE_FORMAL_POSITIVE_PRESENT:
+<span class="nc" id="L595">                return causativeFormalPositivePresent();</span>
+            case CAUSATIVE_FORMAL_NEGATIVE_PRESENT:
+<span class="nc" id="L597">                return causativeFormalNegativePresent();</span>
+            case CAUSATIVE_FORMAL_POSITIVE_PAST:
+<span class="nc" id="L599">                return causativeFormalPositivePast();</span>
+            case CAUSATIVE_FORMAL_NEGATIVE_PAST:
+<span class="nc" id="L601">                return causativeFormalNegativePast();</span>
+            case VOLITIONAL_FORMAL:
+<span class="nc" id="L603">                return volitionalFormal();</span>
+            default:
+<span class="nc" id="L605">                return &quot;Error&quot;;</span>
+
+        }
+	}
     
     
 }

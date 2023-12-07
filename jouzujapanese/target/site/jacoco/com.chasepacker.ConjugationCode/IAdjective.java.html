@@ -150,6 +150,34 @@ public class IAdjective implements Adjective{
     {
 <span class="nc" id="L151">        return hiragana;</span>
     }
+
+    @Override
+    public String getConjugation(ConjugationType conjugationType) {
+       
+<span class="nc bnc" id="L157" title="All 10 branches missed.">        switch(conjugationType)</span>
+        {
+            case CASUAL_POSITIVE_PRESENT:
+<span class="nc" id="L160">                return casualPositivePresent();</span>
+            case CASUAL_NEGATIVE_PRESENT:
+<span class="nc" id="L162">                return casualNegativePresent();</span>
+            case CASUAL_POSITIVE_PAST:
+<span class="nc" id="L164">                return casualPositivePast();</span>
+            case CASUAL_NEGATIVE_PAST:
+<span class="nc" id="L166">                return casualNegativePast();</span>
+            case FORMAL_POSITIVE_PRESENT:
+<span class="nc" id="L168">                return formalPositivePresent();</span>
+            case FORMAL_NEGATIVE_PRESENT:
+<span class="nc" id="L170">                return formalNegativePresent();</span>
+            case FORMAL_POSITIVE_PAST:
+<span class="nc" id="L172">                return formalPositivePast();</span>
+            case FORMAL_NEGATIVE_PAST:
+<span class="nc" id="L174">                return formalNegativePast();</span>
+            case TE:
+<span class="nc" id="L176">                return te();</span>
+            default:
+<span class="nc" id="L178">                return &quot;Error&quot;;</span>
+        }
+    }
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
