@@ -14,12 +14,40 @@ import org.w3c.dom.NodeList;
 
 import com.chasepacker.ConjugationCode.*;
 
-public class SampleXMLParser {
+/**
+ * XMLParser
+ * 
+ * This class parses the XML files and adds the data to the ArrayLists, which can be accessed by the rest of the program
+ * 
+ * @version 1.0
+ * @since 2023-07-01
+ * @author Chase Packer
+ */
+public class XMLParser {
 
+    /**
+     * ArrayList that contains all the RuVerbs
+     */
     public static ArrayList<RuVerb> ruVerbs = new ArrayList<RuVerb>();
+
+    /**
+     * ArrayList that contains all the UVerbs
+     */
     public static ArrayList<UVerb> uVerbs = new ArrayList<UVerb>();
+
+    /**
+     * ArrayList that contains all the Irregular Verbs
+     */
     public static ArrayList<IrrVerb> irrVerbs = new ArrayList<IrrVerb>();
+
+    /**
+     * ArrayList that contains all the IAdjectives
+     */
     public static ArrayList<IAdjective> iAdjectives = new ArrayList<IAdjective>();
+
+    /**
+     * ArrayList that contains all the NaAdjectives
+     */
     public static ArrayList<NaAdjective> naAdjectives = new ArrayList<NaAdjective>();
 
 
@@ -36,7 +64,9 @@ public class SampleXMLParser {
     private final static String naAdjectiveXML = rootDirectory + "\\src\\main\\java\\com\\chasepacker\\Words\\naAdjectives.xml";
 
 
-
+    /**
+     * Parses the ruVerbs.xml file and adds the parsed data to the ruVerbs ArrayList
+     */
     private static void parseRuVerbs()
     {
         try {
@@ -70,6 +100,9 @@ public class SampleXMLParser {
         }
     }
 
+    /**
+     * Parses the uVerbs.xml file and adds the parsed data to the uVerbs ArrayList
+     */
     private static void parseUVerbs()
     {
         try {
@@ -102,6 +135,9 @@ public class SampleXMLParser {
         }
     }
 
+    /**
+     * Parses the irrVerbs.xml file and adds the parsed data to the irrVerbs ArrayList
+     */
     private static void parseIrrVerbs()
     {
         try {
@@ -134,6 +170,9 @@ public class SampleXMLParser {
         }
     }
 
+    /**
+     * Parses the iAdjectives.xml file and adds the parsed data to the iAdjectives ArrayList
+     */
     private static void parseIAdjectives()
     {
         try {
@@ -167,6 +206,9 @@ public class SampleXMLParser {
         }
     }
 
+    /**
+     * Parses the naAdjectives.xml file and adds the parsed data to the naAdjectives ArrayList
+     */
     private static void parseNaAdjectives()
     {
         try {
@@ -200,41 +242,16 @@ public class SampleXMLParser {
     }
 
 
-
-    public static void main(String[] args) {
+    /**
+     * Scans all the XML files and adds the data to the ArrayLists
+     */
+    public static void scan(){
         
         parseRuVerbs();
         parseUVerbs();
         parseIrrVerbs();
         parseIAdjectives();
         parseNaAdjectives();
-
-        System.out.println("Ru Verbs");
-        for (RuVerb ruVerb : ruVerbs) {
-            System.out.println(ruVerb.getRomanji());
-        }
-
-        System.out.println("U Verbs");
-        for (UVerb uVerb : uVerbs) {
-            System.out.println(uVerb.getRomanji());
-        }
-
-        System.out.println("Irr Verbs");
-        for (IrrVerb irrVerb : irrVerbs) {
-            System.out.println(irrVerb.getRomanji());
-        }
-
-        System.out.println("I Adjectives");
-        for (IAdjective iAdjective : iAdjectives) {
-            System.out.println(iAdjective.getRomanji());
-        }
-
-        System.out.println("Na Adjectives");
-        for (NaAdjective naAdjective : naAdjectives) {
-            System.out.println(naAdjective.getRomanji());
-        }
-        
-
 
         
     }
