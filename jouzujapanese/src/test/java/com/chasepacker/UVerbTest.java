@@ -499,8 +499,8 @@ public class UVerbTest {
     }
 
     /**
-     * Tests UVerb conjugation methods by testing the word "死ぬ" (しぬ) "shinu" "to die," 
-     * a UVerb with a "nu" ending.
+     * Tests UVerb conjugation methods by testing the word "買う" (かう) "aku" "to buy," 
+     * a UVerb with a "u" ending.
      * 
      * @param args
      * @throws Exception
