@@ -656,13 +656,13 @@ public class UVerb implements Verb{
                 return formalNegativePast();
             case TE:
                 return te();
-            case POTENTIAL:
+            case POTENTIAL_CASUAL_POSITIVE_PRESENT:
                 return potential();
-            case PASSIVE:
+            case PASSIVE_CASUAL_POSITIVE_PRESENT:
                 return passive();
-            case CAUSATIVE:
+            case CAUSATIVE_CASUAL_POSITIVE_PRESENT:
                 return causative();
-            case VOLITIONAL:
+            case VOLITIONAL_CASUAL:
                 return volitional();
             case POTENTIAL_CASUAL_NEGATIVE_PRESENT:
                 return potentialCasualNegativePresent();

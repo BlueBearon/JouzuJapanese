@@ -11,10 +11,10 @@ public enum ConjugationType {
     FORMAL_POSITIVE_PAST,
     FORMAL_NEGATIVE_PAST,
     TE,
-    POTENTIAL,
-    PASSIVE,
-    CAUSATIVE,
-    VOLITIONAL,
+    POTENTIAL_CASUAL_POSITIVE_PRESENT,
+    PASSIVE_CASUAL_POSITIVE_PRESENT,
+    CAUSATIVE_CASUAL_POSITIVE_PRESENT,
+    VOLITIONAL_CASUAL,
     POTENTIAL_CASUAL_NEGATIVE_PRESENT,
     POTENTIAL_CASUAL_POSITIVE_PAST,
     POTENTIAL_CASUAL_NEGATIVE_PAST,
@@ -77,14 +77,14 @@ public enum ConjugationType {
                 return "Formal Negative Past";
             case TE:
                 return "Te";
-            case POTENTIAL:
-                return "Potential Form";
-            case PASSIVE:
-                return "Passive Form";
-            case CAUSATIVE:
-                return "Causative Form";
-            case VOLITIONAL:
-                return "Volitional Form";
+            case POTENTIAL_CASUAL_POSITIVE_PRESENT:
+                return "Potential Casual Positive Present";
+            case PASSIVE_CASUAL_POSITIVE_PRESENT:
+                return "Passive Casual Positive Present";
+            case CAUSATIVE_CASUAL_POSITIVE_PRESENT:
+                return "Causative Casual Positive Present";
+            case VOLITIONAL_CASUAL:
+                return "Volitional Casual";
             case POTENTIAL_CASUAL_NEGATIVE_PRESENT:
                 return "Potential Casual Negative Present";
             case POTENTIAL_CASUAL_POSITIVE_PAST:

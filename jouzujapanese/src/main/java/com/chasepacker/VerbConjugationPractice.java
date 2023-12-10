@@ -25,9 +25,18 @@ public class VerbConjugationPractice {
 
         answer = answer.toLowerCase();
 
+        if(answer.equals("はい"))
+        {
+            answer = "y";
+        }
+        else if(answer.equals("いいえ"))
+        {
+            answer = "n";
+        }
+
         if(!answer.equals("y") && !answer.equals("n"))
         {
-            System.out.println("Error: Invalid input. Please enter y or n");
+            System.out.println("Error: Invalid input. Please enter y or n or はい or いいえ");
             return askQuestion(question);
         }
 
@@ -258,12 +267,12 @@ public class VerbConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "CASUAL_";
+                return "Casual ";
             case 1:
-                return "FORMAL_";
+                return "Formal ";
             default:
                 System.out.println("Error: selectFormality() returned invalid index");
-                return "CASUAL_";
+                return "Casual ";
         }
     }
 
@@ -281,12 +290,12 @@ public class VerbConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "POSITIVE_";
+                return "Positive ";
             case 1:
-                return "NEGATIVE_";
+                return "Negative ";
             default:
                 System.out.println("Error: selectPolarity() returned invalid index");
-                return "POSITIVE_";
+                return "Postive ";
         }
     }
 
@@ -304,12 +313,12 @@ public class VerbConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "PRESENT";
+                return "Present";
             case 1:
-                return "PAST";
+                return "Past";
             default:
                 System.out.println("Error: selectTense() returned invalid index");
-                return "PRESENT";
+                return "Present";
         }
     }
 
@@ -327,13 +336,13 @@ public class VerbConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "POTENTIAL_";
+                return "Potential ";
             case 1:
-                return "PASSIVE_";
+                return "Passive ";
             case 2:
-                return "CAUSATIVE_";
+                return "Causative ";
             case 3:
-                return "VOLITIONAL_";
+                return "Volitional ";
             default:
                 return "";//Random Generator selected No special modifier
         }
@@ -344,7 +353,7 @@ public class VerbConjugationPractice {
      * Returns a random question based on the options selected by the user
      * @return random question based on the options selected by the user
      */
-    private String[] generateQuestion(boolean[] options)
+    public String[] generateQuestion(boolean[] options)
     {
         String[] result = {"Answer", "Hiragana", "conjugation"};
 
@@ -360,6 +369,18 @@ public class VerbConjugationPractice {
 
         ConjugationType conjugation = ConjugationType.fromString(modifier + formality + polarity + tense);
 
+       if (modifier.equals("Volitional "))
+       {
+            conjugation = ConjugationType.VOLITIONAL_FORMAL;
+       } 
+
+        if (conjugation == null)
+        {
+            System.out.println("Error: generateQuestion() returned invalid conjugation");
+            System.out.println("Offending Results: " + modifier + formality + polarity + tense);
+            return generateQuestion(options);
+        }
+
         result[0] = verb.getConjugation(conjugation);
 
         result[1] = verb.getHiragana();
@@ -374,13 +395,18 @@ public class VerbConjugationPractice {
     {
         boolean endPractice = false;
 
+        XMLParser.scan();
+
+        boolean[] options = getOptions();
+
         while(!endPractice)
         {
-            boolean[] options = getOptions();
-
+            
             String[] question = generateQuestion(options);
 
-            String answer = askQuestion("What is the " + question[2] + " of " + question[1] + "?");
+            System.out.println("What is the " + question[2] + " of " + question[1] + "?");
+
+            String answer = scanner.nextLine();
 
             if(answer.equals(question[0]))
             {
