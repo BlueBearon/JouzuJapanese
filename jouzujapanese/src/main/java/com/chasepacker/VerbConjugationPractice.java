@@ -371,7 +371,20 @@ public class VerbConjugationPractice {
 
        if (modifier.equals("Volitional "))
        {
-            conjugation = ConjugationType.VOLITIONAL_FORMAL;
+            if(formality.equals("Casual "))
+            {
+                conjugation = ConjugationType.VOLITIONAL_CASUAL;
+            }
+            else if(formality.equals("Formal "))
+            {
+                conjugation = ConjugationType.VOLITIONAL_FORMAL;
+            }
+            else
+            {
+                System.out.println("Error: generateQuestion() returned invalid formality");
+                System.out.println("Offending Results: " + modifier + formality + polarity + tense);
+                return generateQuestion(options);
+            }
        } 
 
         if (conjugation == null)

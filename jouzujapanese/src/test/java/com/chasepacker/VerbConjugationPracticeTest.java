@@ -94,7 +94,7 @@ public class VerbConjugationPracticeTest {
     {
         VerbConjugationPractice vcp = new VerbConjugationPractice();
 
-        boolean[] options = {true, true, false, true, true, true, true, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, false, true, true, true, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -104,6 +104,7 @@ public class VerbConjugationPracticeTest {
         {
             String[] result = vcp.generateQuestion(options);
 
+            System.out.println(result[2]);
             assertFalse(result[2].contains("Formal"));
         }
     }
@@ -132,7 +133,7 @@ public class VerbConjugationPracticeTest {
     {
         VerbConjugationPractice vcp = new VerbConjugationPractice();
 
-        boolean[] options = {true, true, true, true, false, true, true, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, true, true, true, false, true, true, true, true};
 
         XMLParser.scan();
 
@@ -142,6 +143,7 @@ public class VerbConjugationPracticeTest {
         {
             String[] result = vcp.generateQuestion(options);
 
+            System.out.println(result[2]);
             assertFalse(result[2].contains("Negative"));
         }
     }
@@ -151,7 +153,7 @@ public class VerbConjugationPracticeTest {
     {
         VerbConjugationPractice vcp = new VerbConjugationPractice();
 
-        boolean[] options = {true, true, true, true, true, false, true, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, false, true, false, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -160,7 +162,7 @@ public class VerbConjugationPracticeTest {
         for (int i = 0; i < testruns; i++)
         {
             String[] result = vcp.generateQuestion(options);
-
+            System.out.println(result[2]);
             assertFalse(result[2].contains("Positive"));
         }
     }
@@ -189,7 +191,7 @@ public class VerbConjugationPracticeTest {
     {
         VerbConjugationPractice vcp = new VerbConjugationPractice();
 
-        boolean[] options = {true, true, true, true, true, true, true, false, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, false, true, true, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -198,7 +200,7 @@ public class VerbConjugationPracticeTest {
         for (int i = 0; i < testruns; i++)
         {
             String[] result = vcp.generateQuestion(options);
-
+            System.out.println(result[2]);
             assertFalse(result[2].contains("Present"));
         }
     }
