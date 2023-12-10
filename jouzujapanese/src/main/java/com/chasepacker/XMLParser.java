@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 
 
 import com.chasepacker.ConjugationCode.*;
+import java.util.random.RandomGenerator;
 
 /**
  * XMLParser
@@ -28,27 +29,79 @@ public class XMLParser {
     /**
      * ArrayList that contains all the RuVerbs
      */
-    public static ArrayList<RuVerb> ruVerbs = new ArrayList<RuVerb>();
+    private static ArrayList<RuVerb> ruVerbs = new ArrayList<RuVerb>();
+
+    /**
+     * Returns a random RuVerb from the ArrayList
+     * @return RuVerb
+     */
+    public static RuVerb getRandomRuVerb(){
+        RandomGenerator randomGenerator = RandomGenerator.getDefault();
+        int randomIndex = randomGenerator.nextInt(ruVerbs.size());
+        return ruVerbs.get(randomIndex);
+    }
 
     /**
      * ArrayList that contains all the UVerbs
      */
-    public static ArrayList<UVerb> uVerbs = new ArrayList<UVerb>();
+    private static ArrayList<UVerb> uVerbs = new ArrayList<UVerb>();
+
+    /**
+     * Returns a random UVerb from the ArrayList
+     * @return UVerb
+     */
+    public static UVerb getRandomUVerb(){
+        RandomGenerator randomGenerator = RandomGenerator.getDefault();
+        int randomIndex = randomGenerator.nextInt(uVerbs.size());
+        return uVerbs.get(randomIndex);
+    }
 
     /**
      * ArrayList that contains all the Irregular Verbs
      */
-    public static ArrayList<IrrVerb> irrVerbs = new ArrayList<IrrVerb>();
+    private static ArrayList<IrrVerb> irrVerbs = new ArrayList<IrrVerb>();
+
+    /**
+     * Returns a random IrrVerb from the ArrayList
+     * @return IrrVerb
+     */
+    public static IrrVerb getRandomIrrVerb(){
+        RandomGenerator randomGenerator = RandomGenerator.getDefault();
+        int randomIndex = randomGenerator.nextInt(irrVerbs.size());
+        return irrVerbs.get(randomIndex);
+    }
 
     /**
      * ArrayList that contains all the IAdjectives
      */
-    public static ArrayList<IAdjective> iAdjectives = new ArrayList<IAdjective>();
+    private static ArrayList<IAdjective> iAdjectives = new ArrayList<IAdjective>();
+
+
+    /**
+     * Returns a random IAdjective from the ArrayList
+     * @return IAdjective
+     */
+    public static IAdjective getRandomIAdjective(){
+        RandomGenerator randomGenerator = RandomGenerator.getDefault();
+        int randomIndex = randomGenerator.nextInt(iAdjectives.size());
+        return iAdjectives.get(randomIndex);
+    }
+
 
     /**
      * ArrayList that contains all the NaAdjectives
      */
-    public static ArrayList<NaAdjective> naAdjectives = new ArrayList<NaAdjective>();
+    private static ArrayList<NaAdjective> naAdjectives = new ArrayList<NaAdjective>();
+
+    /**
+     * Returns a random NaAdjective from the ArrayList
+     * @return NaAdjective
+     */
+    public static NaAdjective getRandomNaAdjective(){
+        RandomGenerator randomGenerator = RandomGenerator.getDefault();
+        int randomIndex = randomGenerator.nextInt(naAdjectives.size());
+        return naAdjectives.get(randomIndex);
+    }
 
 
     //Get the root directory of project
