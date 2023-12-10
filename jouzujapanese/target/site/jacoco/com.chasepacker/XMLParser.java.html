@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>XMLParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker</a> &gt; <span class="el_source">XMLParser.java</span></div><h1>XMLParser.java</h1><pre class="source lang-java linenums">package com.chasepacker;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+
+import com.chasepacker.ConjugationCode.*;
+import java.util.random.RandomGenerator;
+
+/**
+ * XMLParser
+ * 
+ * This class parses the XML files and adds the data to the ArrayLists, which can be accessed by the rest of the program
+ * 
+ * @version 1.0
+ * @since 2023-07-01
+ * @author Chase Packer
+ */
+<span class="nc" id="L27">public class XMLParser {</span>
+
+    /**
+     * ArrayList that contains all the RuVerbs
+     */
+<span class="fc" id="L32">    private static ArrayList&lt;RuVerb&gt; ruVerbs = new ArrayList&lt;RuVerb&gt;();</span>
+
+    /**
+     * Returns a random RuVerb from the ArrayList
+     * @return RuVerb
+     */
+    public static RuVerb getRandomRuVerb(){
+<span class="fc" id="L39">        RandomGenerator randomGenerator = RandomGenerator.getDefault();</span>
+<span class="fc" id="L40">        int randomIndex = randomGenerator.nextInt(ruVerbs.size());</span>
+<span class="fc" id="L41">        return ruVerbs.get(randomIndex);</span>
+    }
+
+    /**
+     * ArrayList that contains all the UVerbs
+     */
+<span class="fc" id="L47">    private static ArrayList&lt;UVerb&gt; uVerbs = new ArrayList&lt;UVerb&gt;();</span>
+
+    /**
+     * Returns a random UVerb from the ArrayList
+     * @return UVerb
+     */
+    public static UVerb getRandomUVerb(){
+<span class="fc" id="L54">        RandomGenerator randomGenerator = RandomGenerator.getDefault();</span>
+<span class="fc" id="L55">        int randomIndex = randomGenerator.nextInt(uVerbs.size());</span>
+<span class="fc" id="L56">        return uVerbs.get(randomIndex);</span>
+    }
+
+    /**
+     * ArrayList that contains all the Irregular Verbs
+     */
+<span class="fc" id="L62">    private static ArrayList&lt;IrrVerb&gt; irrVerbs = new ArrayList&lt;IrrVerb&gt;();</span>
+
+    /**
+     * Returns a random IrrVerb from the ArrayList
+     * @return IrrVerb
+     */
+    public static IrrVerb getRandomIrrVerb(){
+<span class="fc" id="L69">        RandomGenerator randomGenerator = RandomGenerator.getDefault();</span>
+<span class="fc" id="L70">        int randomIndex = randomGenerator.nextInt(irrVerbs.size());</span>
+<span class="fc" id="L71">        return irrVerbs.get(randomIndex);</span>
+    }
+
+    /**
+     * ArrayList that contains all the IAdjectives
+     */
+<span class="fc" id="L77">    private static ArrayList&lt;IAdjective&gt; iAdjectives = new ArrayList&lt;IAdjective&gt;();</span>
+
+
+    /**
+     * Returns a random IAdjective from the ArrayList
+     * @return IAdjective
+     */
+    public static IAdjective getRandomIAdjective(){
+<span class="nc" id="L85">        RandomGenerator randomGenerator = RandomGenerator.getDefault();</span>
+<span class="nc" id="L86">        int randomIndex = randomGenerator.nextInt(iAdjectives.size());</span>
+<span class="nc" id="L87">        return iAdjectives.get(randomIndex);</span>
+    }
+
+
+    /**
+     * ArrayList that contains all the NaAdjectives
+     */
+<span class="fc" id="L94">    private static ArrayList&lt;NaAdjective&gt; naAdjectives = new ArrayList&lt;NaAdjective&gt;();</span>
+
+    /**
+     * Returns a random NaAdjective from the ArrayList
+     * @return NaAdjective
+     */
+    public static NaAdjective getRandomNaAdjective(){
+<span class="nc" id="L101">        RandomGenerator randomGenerator = RandomGenerator.getDefault();</span>
+<span class="nc" id="L102">        int randomIndex = randomGenerator.nextInt(naAdjectives.size());</span>
+<span class="nc" id="L103">        return naAdjectives.get(randomIndex);</span>
+    }
+
+
+    //Get the root directory of project
+<span class="fc" id="L108">    private final static String rootDirectory = System.getProperty(&quot;user.dir&quot;);</span>
+
+    //D:\Coding\Jouzu\JouzuJapanese\jouzujapanese\src\main\java\com\chasepacker\Words\naAdjectives.xml
+    
+
+<span class="fc" id="L113">    private final static String ruVerbXML = rootDirectory + &quot;\\src\\main\\java\\com\\chasepacker\\Words\\ruVerbs.xml&quot;;</span>
+<span class="fc" id="L114">    private final static String uVerbXML = rootDirectory + &quot;\\src\\main\\java\\com\\chasepacker\\Words\\uVerbs.xml&quot;;</span>
+<span class="fc" id="L115">    private final static String irrVerbXML = rootDirectory + &quot;\\src\\main\\java\\com\\chasepacker\\Words\\irrVerbs.xml&quot;;</span>
+<span class="fc" id="L116">    private final static String iAdjectiveXML = rootDirectory + &quot;\\src\\main\\java\\com\\chasepacker\\Words\\iAdjectives.xml&quot;;</span>
+<span class="fc" id="L117">    private final static String naAdjectiveXML = rootDirectory + &quot;\\src\\main\\java\\com\\chasepacker\\Words\\naAdjectives.xml&quot;;</span>
+
+
+    /**
+     * Parses the ruVerbs.xml file and adds the parsed data to the ruVerbs ArrayList
+     */
+    private static void parseRuVerbs()
+    {
+        try {
+<span class="fc" id="L126">            File inputFile = new File(ruVerbXML);</span>
+<span class="fc" id="L127">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L128">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L129">            Document doc = dBuilder.parse(inputFile);</span>
+<span class="fc" id="L130">            doc.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L132">            NodeList nList = doc.getElementsByTagName(&quot;RuVerb&quot;);</span>
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            for (int temp = 0; temp &lt; nList.getLength(); temp++) {</span>
+<span class="fc" id="L135">                Node nNode = nList.item(temp);</span>
+
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">                if (nNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="fc" id="L138">                    Element eElement = (Element) nNode;</span>
+<span class="fc" id="L139">                    String kanji = eElement.getElementsByTagName(&quot;kanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L140">                    String hiragana = eElement.getElementsByTagName(&quot;hiragana&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L141">                    String romanji = eElement.getElementsByTagName(&quot;romanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L142">                    String meaning = eElement.getElementsByTagName(&quot;meaning&quot;).item(0).getTextContent();</span>
+
+                    // Create a new RuVerb object and use it as needed
+                    // RuVerb ruVerb = new RuVerb(kanji, hiragana, romanji, meaning);
+<span class="fc" id="L146">                    RuVerb ruVerb = new RuVerb(kanji, hiragana, romanji, meaning);</span>
+<span class="fc" id="L147">                    ruVerbs.add(ruVerb);</span>
+
+                }
+            }
+<span class="nc" id="L151">        } catch (Exception e) {</span>
+<span class="nc" id="L152">            e.printStackTrace();</span>
+<span class="fc" id="L153">        }</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * Parses the uVerbs.xml file and adds the parsed data to the uVerbs ArrayList
+     */
+    private static void parseUVerbs()
+    {
+        try {
+<span class="fc" id="L162">            File inputFile = new File(uVerbXML);</span>
+<span class="fc" id="L163">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L164">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L165">            Document doc = dBuilder.parse(inputFile);</span>
+<span class="fc" id="L166">            doc.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L168">            NodeList nList = doc.getElementsByTagName(&quot;UVerb&quot;);</span>
+
+<span class="fc bfc" id="L170" title="All 2 branches covered.">            for (int temp = 0; temp &lt; nList.getLength(); temp++) {</span>
+<span class="fc" id="L171">                Node nNode = nList.item(temp);</span>
+
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">                if (nNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="fc" id="L174">                    Element eElement = (Element) nNode;</span>
+<span class="fc" id="L175">                    String kanji = eElement.getElementsByTagName(&quot;kanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L176">                    String hiragana = eElement.getElementsByTagName(&quot;hiragana&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L177">                    String romanji = eElement.getElementsByTagName(&quot;romanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L178">                    String meaning = eElement.getElementsByTagName(&quot;meaning&quot;).item(0).getTextContent();</span>
+
+                    // Create a new RuVerb object and use it as needed
+                    // RuVerb ruVerb = new RuVerb(kanji, hiragana, romanji, meaning);
+<span class="fc" id="L182">                    UVerb uVerb = new UVerb(kanji, hiragana, romanji, meaning);</span>
+<span class="fc" id="L183">                    uVerbs.add(uVerb);</span>
+                }
+            }
+<span class="nc" id="L186">        } catch (Exception e) {</span>
+<span class="nc" id="L187">            e.printStackTrace();</span>
+<span class="fc" id="L188">        }</span>
+<span class="fc" id="L189">    }</span>
+
+    /**
+     * Parses the irrVerbs.xml file and adds the parsed data to the irrVerbs ArrayList
+     */
+    private static void parseIrrVerbs()
+    {
+        try {
+<span class="fc" id="L197">            File inputFile = new File(irrVerbXML);</span>
+<span class="fc" id="L198">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L199">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L200">            Document doc = dBuilder.parse(inputFile);</span>
+<span class="fc" id="L201">            doc.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L203">            NodeList nList = doc.getElementsByTagName(&quot;IrrVerb&quot;);</span>
+
+<span class="fc bfc" id="L205" title="All 2 branches covered.">            for (int temp = 0; temp &lt; nList.getLength(); temp++) {</span>
+<span class="fc" id="L206">                Node nNode = nList.item(temp);</span>
+
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">                if (nNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="fc" id="L209">                    Element eElement = (Element) nNode;</span>
+<span class="fc" id="L210">                    String kanji = eElement.getElementsByTagName(&quot;kanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L211">                    String hiragana = eElement.getElementsByTagName(&quot;hiragana&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L212">                    String romanji = eElement.getElementsByTagName(&quot;romanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L213">                    String meaning = eElement.getElementsByTagName(&quot;meaning&quot;).item(0).getTextContent();</span>
+
+                    // Create a new RuVerb object and use it as needed
+                    // RuVerb ruVerb = new RuVerb(kanji, hiragana, romanji, meaning);
+<span class="fc" id="L217">                    IrrVerb irrVerb = new IrrVerb(kanji, hiragana, romanji, meaning);</span>
+<span class="fc" id="L218">                    irrVerbs.add(irrVerb);</span>
+                }
+            }
+<span class="nc" id="L221">        } catch (Exception e) {</span>
+<span class="nc" id="L222">            e.printStackTrace();</span>
+<span class="fc" id="L223">        }</span>
+<span class="fc" id="L224">    }</span>
+
+    /**
+     * Parses the iAdjectives.xml file and adds the parsed data to the iAdjectives ArrayList
+     */
+    private static void parseIAdjectives()
+    {
+        try {
+<span class="fc" id="L232">            File inputFile = new File(iAdjectiveXML);</span>
+<span class="fc" id="L233">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L234">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L235">            Document doc = dBuilder.parse(inputFile);</span>
+<span class="fc" id="L236">            doc.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L238">            NodeList nList = doc.getElementsByTagName(&quot;IAdjective&quot;);</span>
+
+<span class="fc bfc" id="L240" title="All 2 branches covered.">            for (int temp = 0; temp &lt; nList.getLength(); temp++) {</span>
+<span class="fc" id="L241">                Node nNode = nList.item(temp);</span>
+
+<span class="pc bpc" id="L243" title="1 of 2 branches missed.">                if (nNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="fc" id="L244">                    Element eElement = (Element) nNode;</span>
+<span class="fc" id="L245">                    String kanji = eElement.getElementsByTagName(&quot;kanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L246">                    String hiragana = eElement.getElementsByTagName(&quot;hiragana&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L247">                    String romanji = eElement.getElementsByTagName(&quot;romanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L248">                    String meaning = eElement.getElementsByTagName(&quot;meaning&quot;).item(0).getTextContent();</span>
+
+                    // Create a new RuVerb object and use it as needed
+                    // RuVerb ruVerb = new RuVerb(kanji, hiragana, romanji, meaning);
+<span class="fc" id="L252">                    IAdjective iAdjective = new IAdjective(kanji, hiragana, romanji, meaning);</span>
+<span class="fc" id="L253">                    iAdjectives.add(iAdjective);</span>
+
+                }
+            }
+<span class="nc" id="L257">        } catch (Exception e) {</span>
+<span class="nc" id="L258">            e.printStackTrace();</span>
+<span class="fc" id="L259">        }</span>
+<span class="fc" id="L260">    }</span>
+
+    /**
+     * Parses the naAdjectives.xml file and adds the parsed data to the naAdjectives ArrayList
+     */
+    private static void parseNaAdjectives()
+    {
+        try {
+<span class="fc" id="L268">            File inputFile = new File(naAdjectiveXML);</span>
+<span class="fc" id="L269">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L270">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L271">            Document doc = dBuilder.parse(inputFile);</span>
+<span class="fc" id="L272">            doc.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L274">            NodeList nList = doc.getElementsByTagName(&quot;NaAdjective&quot;);</span>
+
+<span class="fc bfc" id="L276" title="All 2 branches covered.">            for (int temp = 0; temp &lt; nList.getLength(); temp++) {</span>
+<span class="fc" id="L277">                Node nNode = nList.item(temp);</span>
+
+<span class="pc bpc" id="L279" title="1 of 2 branches missed.">                if (nNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="fc" id="L280">                    Element eElement = (Element) nNode;</span>
+<span class="fc" id="L281">                    String kanji = eElement.getElementsByTagName(&quot;kanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L282">                    String hiragana = eElement.getElementsByTagName(&quot;hiragana&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L283">                    String romanji = eElement.getElementsByTagName(&quot;romanji&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L284">                    String meaning = eElement.getElementsByTagName(&quot;meaning&quot;).item(0).getTextContent();</span>
+
+                    // Create a new RuVerb object and use it as needed
+                    // RuVerb ruVerb = new RuVerb(kanji, hiragana, romanji, meaning);
+<span class="fc" id="L288">                    NaAdjective naAdjective = new NaAdjective(kanji, hiragana, romanji, meaning);</span>
+<span class="fc" id="L289">                    naAdjectives.add(naAdjective);</span>
+                }
+            }
+<span class="nc" id="L292">        } catch (Exception e) {</span>
+<span class="nc" id="L293">            e.printStackTrace();</span>
+<span class="fc" id="L294">        }</span>
+<span class="fc" id="L295">    }</span>
+
+
+    /**
+     * Scans all the XML files and adds the data to the ArrayLists
+     */
+    public static void scan(){
+        
+<span class="fc" id="L303">        parseRuVerbs();</span>
+<span class="fc" id="L304">        parseUVerbs();</span>
+<span class="fc" id="L305">        parseIrrVerbs();</span>
+<span class="fc" id="L306">        parseIAdjectives();</span>
+<span class="fc" id="L307">        parseNaAdjectives();</span>
+
+        
+<span class="fc" id="L310">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,10 +1,11 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-jouzujapanese,com.chasepacker.ConjugationCode,RuVerb,115,779,36,0,38,146,37,40,2,40
-jouzujapanese,com.chasepacker.ConjugationCode,IrrVerb,115,1066,36,68,38,116,37,76,2,42
+jouzujapanese,com.chasepacker.ConjugationCode,RuVerb,8,886,2,34,3,181,3,74,1,41
+jouzujapanese,com.chasepacker.ConjugationCode,IrrVerb,8,1173,2,102,3,151,3,110,1,43
 jouzujapanese,com.chasepacker.ConjugationCode,Word,31,1450,5,27,8,116,4,20,0,8
-jouzujapanese,com.chasepacker.ConjugationCode,ConjugationType,240,0,6,0,41,0,5,0,2,0
-jouzujapanese,com.chasepacker.ConjugationCode,UVerb,115,1147,36,18,38,203,37,54,2,40
+jouzujapanese,com.chasepacker.ConjugationCode,ConjugationType,2,315,2,40,1,77,2,39,0,3
+jouzujapanese,com.chasepacker.ConjugationCode,UVerb,8,1254,2,52,3,238,3,88,1,41
 jouzujapanese,com.chasepacker.ConjugationCode,NaAdjective,40,120,10,0,13,20,12,14,3,14
 jouzujapanese,com.chasepacker.ConjugationCode,IAdjective,40,178,10,0,13,44,12,15,3,15
-jouzujapanese,com.chasepacker,SampleXMLParser,539,0,24,0,126,0,20,0,8,0
-jouzujapanese,com.chasepacker,App,7,0,0,0,3,0,2,0,2,0
+jouzujapanese,com.chasepacker,AdjectiveConjugationPractice,502,0,59,0,109,0,45,0,14,0
+jouzujapanese,com.chasepacker,XMLParser,42,521,5,15,17,116,8,15,3,10
+jouzujapanese,com.chasepacker,VerbConjugationPractice,445,297,68,24,101,56,42,23,5,10

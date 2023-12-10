@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdjectiveConjugationPractice.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jouzujapanese</a> &gt; <a href="index.source.html" class="el_package">com.chasepacker</a> &gt; <span class="el_source">AdjectiveConjugationPractice.java</span></div><h1>AdjectiveConjugationPractice.java</h1><pre class="source lang-java linenums">package com.chasepacker;
+
+import com.chasepacker.ConjugationCode.*;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.random.RandomGenerator;
+
+
+<span class="nc" id="L10">public class AdjectiveConjugationPractice {</span>
+
+<span class="nc" id="L12">    private static Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L13">    private static RandomGenerator gen = RandomGenerator.getDefault();</span>
+
+    /**
+     * !For Text Version!
+     * @param question
+     * @return
+     */
+    private String askQuestion(String question)
+    {
+<span class="nc" id="L22">        System.out.println(question);</span>
+
+<span class="nc" id="L24">        String answer = scanner.nextLine();</span>
+
+<span class="nc" id="L26">        answer = answer.toLowerCase();</span>
+
+<span class="nc bnc" id="L28" title="All 4 branches missed.">        if(!answer.equals(&quot;y&quot;) &amp;&amp; !answer.equals(&quot;n&quot;))</span>
+        {
+<span class="nc" id="L30">            System.out.println(&quot;Error: Invalid input. Please enter y or n&quot;);</span>
+<span class="nc" id="L31">            return askQuestion(question);</span>
+        }
+
+<span class="nc" id="L34">        return answer;</span>
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random number between 0 and max
+     * @param max
+     * @return
+     */
+    private int generateRandomNum(int max)
+    {
+<span class="nc" id="L45">        return gen.nextInt(max);</span>
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Verifies that the user has selected at least one option for each category
+     * @param options
+     * @return
+     */
+    private boolean verifyValidOptions(boolean[] options)
+    {
+        
+<span class="nc bnc" id="L57" title="All 4 branches missed.">        if(!options[0] &amp;&amp; !options[1])</span>
+        {
+<span class="nc" id="L59">            System.out.println(&quot;Error: You must select at least one type of adjective&quot;);</span>
+<span class="nc" id="L60">            return false;</span>
+        }
+
+<span class="nc bnc" id="L63" title="All 4 branches missed.">        if(!options[2] &amp;&amp; !options[3])</span>
+        {
+<span class="nc" id="L65">            System.out.println(&quot;Error: You must select at least one formality&quot;);</span>
+<span class="nc" id="L66">            return false;</span>
+        }
+
+<span class="nc bnc" id="L69" title="All 4 branches missed.">        if(!options[4] &amp;&amp; !options[5])</span>
+        {
+<span class="nc" id="L71">            System.out.println(&quot;Error: You must select at least one tense&quot;);</span>
+<span class="nc" id="L72">            return false;</span>
+        }
+
+<span class="nc bnc" id="L75" title="All 4 branches missed.">        if(!options[6] &amp;&amp; !options[7])</span>
+        {
+<span class="nc" id="L77">            System.out.println(&quot;Error: You must select at least one polarity&quot;);</span>
+<span class="nc" id="L78">            return false;</span>
+        }
+
+<span class="nc" id="L81">        return true;</span>
+    }
+
+    /**
+     * !For Text Version ONLY!
+     * Returns an array of booleans representing the options selected by the user
+     * @return array of booleans representing the options selected by the user
+     */
+    private boolean[] getOptions()
+    {
+<span class="nc" id="L91">        boolean includeIAdjectives = false;</span>
+<span class="nc" id="L92">        boolean includeNaAdjectives = false;</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include i-adjectives? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L96">            includeIAdjectives = true;</span>
+        }
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include na-adjectives? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L101">            includeNaAdjectives = true;</span>
+        }
+
+<span class="nc" id="L104">        boolean includeCasual = false;</span>
+<span class="nc" id="L105">        boolean includeFormal = false;</span>
+
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include casual conjugations? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L109">            includeCasual = true;</span>
+        }
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include formal conjugations? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L114">            includeFormal = true;</span>
+        }
+
+<span class="nc" id="L117">        boolean includePresent = false;</span>
+<span class="nc" id="L118">        boolean includePast = false;</span>
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include present tense? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L122">            includePresent = true;</span>
+        }
+
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include past tense? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L127">            includePast = true;</span>
+        }
+
+<span class="nc" id="L130">        boolean includeAffirmative = false;</span>
+<span class="nc" id="L131">        boolean includeNegative = false;</span>
+
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include affirmative conjugations? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L135">            includeAffirmative = true;</span>
+        }
+
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if(askQuestion(&quot;Would you like to include negative conjugations? (y/n)&quot;).equals(&quot;y&quot;))</span>
+        {
+<span class="nc" id="L140">            includeNegative = true;</span>
+        }
+
+<span class="nc" id="L143">        boolean[] options = {includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};</span>
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        if(!verifyValidOptions(options))</span>
+        {
+<span class="nc" id="L147">            return getOptions();</span>
+        }
+
+<span class="nc" id="L150">        return options;</span>
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random index of the array of booleans that is true.
+     * Used to select to make a selection between valid options of the user
+     * @param options
+     * @return
+     */
+    private int selectRandomBoolean(boolean[] options)
+    {
+        
+        //Create an arraylist of the valid options
+<span class="nc" id="L164">        ArrayList&lt;Integer&gt; validOptions = new ArrayList&lt;Integer&gt;();</span>
+
+        //Add the valid options to the arraylist
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        for(int i = 0; i &lt; options.length; i++)</span>
+        {
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if(options[i])//If the option is true, add it to the arraylist</span>
+            {
+<span class="nc" id="L171">                validOptions.add(i);</span>
+            }
+        }
+
+        //Select a random index from the arraylist
+<span class="nc" id="L176">        int randomIndex = generateRandomNum(validOptions.size());</span>
+
+        //Return the value at the random index
+<span class="nc" id="L179">        return validOptions.get(randomIndex);</span>
+        
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random adjective based on the options selected by the user
+     * @return random adjective based on the options selected by the user
+     */
+    private Adjective selectAdjective(boolean iAdjectives, boolean naAdjectives)
+    {
+<span class="nc" id="L190">        boolean[] options = {iAdjectives, naAdjectives};</span>
+
+<span class="nc" id="L192">        int randomIndex = selectRandomBoolean(options);</span>
+
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        if (randomIndex == 0)</span>
+        {
+<span class="nc" id="L196">            return XMLParser.getRandomIAdjective();</span>
+        }
+        else
+        {
+<span class="nc" id="L200">            return XMLParser.getRandomNaAdjective();</span>
+        }
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random formality based on the options selected by the user
+     * @return random formality based on the options selected by the user
+     */
+    private String selectFormality(boolean casual, boolean formal)
+    {
+<span class="nc" id="L211">        boolean[] options = new boolean[]{casual, formal};</span>
+
+<span class="nc" id="L213">        int randomIndex = selectRandomBoolean(options);</span>
+
+<span class="nc bnc" id="L215" title="All 3 branches missed.">        switch(randomIndex)</span>
+        {
+            case 0:
+<span class="nc" id="L218">                return &quot;CASUAL_&quot;;</span>
+            case 1:
+<span class="nc" id="L220">                return &quot;FORMAL_&quot;;</span>
+            default:
+<span class="nc" id="L222">                System.out.println(&quot;Error: selectFormality() returned invalid index&quot;);</span>
+<span class="nc" id="L223">                return &quot;CASUAL_&quot;;</span>
+        }
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random tense based on the options selected by the user
+     * @return random tense based on the options selected by the user
+     */
+    private String selectPolarity(boolean affirmative, boolean negative)
+    {
+<span class="nc" id="L234">        boolean[] options = new boolean[]{affirmative, negative};</span>
+
+<span class="nc" id="L236">        int randomIndex = selectRandomBoolean(options);</span>
+
+<span class="nc bnc" id="L238" title="All 3 branches missed.">        switch(randomIndex)</span>
+        {
+            case 0:
+<span class="nc" id="L241">                return &quot;POSITIVE_&quot;;</span>
+            case 1:
+<span class="nc" id="L243">                return &quot;NEGATIVE_&quot;;</span>
+            default:
+<span class="nc" id="L245">                System.out.println(&quot;Error: selectPolarity() returned invalid index&quot;);</span>
+<span class="nc" id="L246">                return &quot;POSITIVE_&quot;;</span>
+        }
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random tense based on the options selected by the user
+     * @return random tense based on the options selected by the user
+     */
+    private String selectTense(boolean present, boolean past)
+    {
+<span class="nc" id="L257">        boolean[] options = new boolean[]{present, past};</span>
+
+<span class="nc" id="L259">        int randomIndex = selectRandomBoolean(options);</span>
+
+<span class="nc bnc" id="L261" title="All 3 branches missed.">        switch(randomIndex)</span>
+        {
+            case 0:
+<span class="nc" id="L264">                return &quot;PRESENT&quot;;</span>
+            case 1:
+<span class="nc" id="L266">                return &quot;PAST&quot;;</span>
+            default:
+<span class="nc" id="L268">                System.out.println(&quot;Error: selectTense() returned invalid index&quot;);</span>
+<span class="nc" id="L269">                return &quot;PRESENT&quot;;</span>
+        }
+    }
+
+    /**
+     * !Keep for GUI Version!
+     * Returns a random question based on the options selected by the user
+     * @return random question based on the options selected by the user
+     */
+    private String[] generateQuestion(boolean[] options)
+    {
+<span class="nc" id="L280">        String[] result = {&quot;Answer&quot;, &quot;Hiragana&quot;, &quot;conjugation&quot;};</span>
+
+<span class="nc" id="L282">        Adjective adjective = selectAdjective(options[0], options[1]);</span>
+
+<span class="nc" id="L284">        String formality = selectFormality(options[3], options[4]);</span>
+
+<span class="nc" id="L286">        String polarity = selectPolarity(options[7], options[8]);</span>
+
+<span class="nc" id="L288">        String tense = selectTense(options[5], options[6]);</span>
+
+<span class="nc" id="L290">        ConjugationType conjugation = ConjugationType.fromString(formality + polarity + tense);</span>
+
+<span class="nc" id="L292">        result[0] = adjective.getConjugation(conjugation);</span>
+
+<span class="nc" id="L294">        result[1] = adjective.getHiragana();</span>
+
+<span class="nc" id="L296">        result[2] = conjugation.toString();</span>
+        
+<span class="nc" id="L298">        return result;</span>
+    }
+
+    public void startPractice()
+    {
+<span class="nc" id="L303">        boolean endPractice = false;</span>
+
+<span class="nc bnc" id="L305" title="All 2 branches missed.">        while(!endPractice)</span>
+        {
+<span class="nc" id="L307">            boolean[] options = getOptions();</span>
+
+<span class="nc" id="L309">            String[] question = generateQuestion(options);</span>
+
+<span class="nc" id="L311">            String answer = askQuestion(&quot;What is the &quot; + question[2] + &quot; of &quot; + question[1] + &quot;?&quot;);</span>
+
+<span class="nc bnc" id="L313" title="All 2 branches missed.">            if(answer.equals(question[0]))</span>
+            {
+<span class="nc" id="L315">                System.out.println(&quot;Correct!&quot;);</span>
+            }
+            else
+            {
+<span class="nc" id="L319">                System.out.println(&quot;Incorrect. The correct answer is &quot; + question[0]);</span>
+            }
+
+<span class="nc bnc" id="L322" title="All 2 branches missed.">            if(askQuestion(&quot;Would you like to continue? (y/n)&quot;).equals(&quot;n&quot;))</span>
+            {
+<span class="nc" id="L324">                endPractice = true;</span>
+            }
+<span class="nc" id="L326">        }      </span>
+<span class="nc" id="L327">    }</span>
+
+    public static void main(String[] args)
+    {
+<span class="nc" id="L331">        VerbConjugationPractice practice = new VerbConjugationPractice();</span>
+
+<span class="nc" id="L333">        practice.startPractice();</span>
+<span class="nc" id="L334">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
