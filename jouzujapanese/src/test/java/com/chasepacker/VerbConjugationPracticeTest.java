@@ -1,53 +1,10 @@
 package com.chasepacker;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
-import com.chasepacker.ConjugationCode.Verb;
 
 public class VerbConjugationPracticeTest {
-
-
-    /*
-     * public String[] generateQuestion(boolean[] options)
-    {
-        String[] result = {"Answer", "Hiragana", "conjugation"};
-
-        Verb verb = selectVerb(options[0], options[1], options[2]);
-
-        String formality = selectFormality(options[3], options[4]);
-
-        String polarity = selectPolarity(options[7], options[8]);
-
-        String tense = selectTense(options[5], options[6]);
-
-        String modifier = selectModifier(options[9], options[10], options[11], options[12]);
-
-        ConjugationType conjugation = ConjugationType.fromString(modifier + formality + polarity + tense);
-
-       if (modifier.equals("Volitional "))
-       {
-            conjugation = ConjugationType.VOLITIONAL_FORMAL;
-       } 
-
-        if (conjugation == null)
-        {
-            System.out.println("Error: generateQuestion() returned invalid conjugation");
-            System.out.println("Offending Results: " + modifier + formality + polarity + tense);
-            return generateQuestion(options);
-        }
-
-        result[0] = verb.getConjugation(conjugation);
-
-        result[1] = verb.getHiragana();
-
-        result[2] = conjugation.toString();
-        
-        return result;
-    }
-    */
 
 
     @Test
