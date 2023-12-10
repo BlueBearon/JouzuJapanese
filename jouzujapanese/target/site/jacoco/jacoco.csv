@@ -3,9 +3,9 @@ jouzujapanese,com.chasepacker.ConjugationCode,RuVerb,8,886,2,34,3,181,3,74,1,41
 jouzujapanese,com.chasepacker.ConjugationCode,IrrVerb,8,1173,2,102,3,151,3,110,1,43
 jouzujapanese,com.chasepacker.ConjugationCode,Word,31,1450,5,27,8,116,4,20,0,8
 jouzujapanese,com.chasepacker.ConjugationCode,ConjugationType,2,315,2,40,1,77,2,39,0,3
-jouzujapanese,com.chasepacker.ConjugationCode,UVerb,8,1254,2,52,3,238,3,88,1,41
-jouzujapanese,com.chasepacker.ConjugationCode,NaAdjective,40,120,10,0,13,20,12,14,3,14
-jouzujapanese,com.chasepacker.ConjugationCode,IAdjective,40,178,10,0,13,44,12,15,3,15
-jouzujapanese,com.chasepacker,AdjectiveConjugationPractice,502,0,59,0,109,0,45,0,14,0
-jouzujapanese,com.chasepacker,XMLParser,42,521,5,15,17,116,8,15,3,10
+jouzujapanese,com.chasepacker.ConjugationCode,UVerb,11,1251,3,51,4,237,4,87,1,41
+jouzujapanese,com.chasepacker.ConjugationCode,NaAdjective,11,149,2,8,4,29,4,22,2,15
+jouzujapanese,com.chasepacker.ConjugationCode,IAdjective,11,207,2,8,4,53,4,23,2,16
+jouzujapanese,com.chasepacker,AdjectiveConjugationPractice,324,212,61,12,74,40,37,15,5,9
+jouzujapanese,com.chasepacker,XMLParser,18,545,5,15,11,122,6,17,1,12
 jouzujapanese,com.chasepacker,VerbConjugationPractice,445,297,68,24,101,56,42,23,5,10

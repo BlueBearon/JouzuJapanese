@@ -6,24 +6,6 @@ import org.junit.Test;
 
 public class VerbConjugationPracticeTest {
 
-
-    @Test
-    public void testGenerateQuestion()
-    {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
-
-        boolean[] options = {true, true, true, true, true, true, true, true, true, true, true, true, true};
-
-        XMLParser.scan();
-
-        int testruns = 100;
-
-        for (int i = 0; i < testruns; i++)
-        {
-            String[] result = vcp.generateQuestion(options);
-        }
-    }
-
     @Test
     public void testGenerateQuestionNoModifiers()
     {

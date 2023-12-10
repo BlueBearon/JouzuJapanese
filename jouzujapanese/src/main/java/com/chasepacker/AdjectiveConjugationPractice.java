@@ -25,6 +25,15 @@ public class AdjectiveConjugationPractice {
 
         answer = answer.toLowerCase();
 
+        if (answer.equals("はい") || answer.equals("yes") || answer.equals("y") || answer.equals(""))
+        {
+            answer = "y";
+        }
+        else if (answer.equals("いいえ") || answer.equals("no") || answer.equals("n"))
+        {
+            answer = "n";
+        }
+
         if(!answer.equals("y") && !answer.equals("n"))
         {
             System.out.println("Error: Invalid input. Please enter y or n");
@@ -215,12 +224,12 @@ public class AdjectiveConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "CASUAL_";
+                return "Casual ";
             case 1:
-                return "FORMAL_";
+                return "Formal ";
             default:
                 System.out.println("Error: selectFormality() returned invalid index");
-                return "CASUAL_";
+                return "Casual ";
         }
     }
 
@@ -238,12 +247,12 @@ public class AdjectiveConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "POSITIVE_";
+                return "Positive ";
             case 1:
-                return "NEGATIVE_";
+                return "Negative ";
             default:
                 System.out.println("Error: selectPolarity() returned invalid index");
-                return "POSITIVE_";
+                return "Positive ";
         }
     }
 
@@ -261,12 +270,12 @@ public class AdjectiveConjugationPractice {
         switch(randomIndex)
         {
             case 0:
-                return "PRESENT";
+                return "Present";
             case 1:
-                return "PAST";
+                return "Past";
             default:
                 System.out.println("Error: selectTense() returned invalid index");
-                return "PRESENT";
+                return "Present";
         }
     }
 
@@ -275,17 +284,17 @@ public class AdjectiveConjugationPractice {
      * Returns a random question based on the options selected by the user
      * @return random question based on the options selected by the user
      */
-    private String[] generateQuestion(boolean[] options)
+    public String[] generateQuestion(boolean[] options)
     {
         String[] result = {"Answer", "Hiragana", "conjugation"};
 
         Adjective adjective = selectAdjective(options[0], options[1]);
 
-        String formality = selectFormality(options[3], options[4]);
+        String formality = selectFormality(options[2], options[3]);
 
-        String polarity = selectPolarity(options[7], options[8]);
+        String polarity = selectPolarity(options[6], options[7]);
 
-        String tense = selectTense(options[5], options[6]);
+        String tense = selectTense(options[4], options[5]);
 
         ConjugationType conjugation = ConjugationType.fromString(formality + polarity + tense);
 
@@ -302,10 +311,12 @@ public class AdjectiveConjugationPractice {
     {
         boolean endPractice = false;
 
+        XMLParser.scan();
+
+        boolean[] options = getOptions();
+
         while(!endPractice)
         {
-            boolean[] options = getOptions();
-
             String[] question = generateQuestion(options);
 
             String answer = askQuestion("What is the " + question[2] + " of " + question[1] + "?");
@@ -328,7 +339,7 @@ public class AdjectiveConjugationPractice {
 
     public static void main(String[] args)
     {
-        VerbConjugationPractice practice = new VerbConjugationPractice();
+        AdjectiveConjugationPractice practice = new AdjectiveConjugationPractice();
 
         practice.startPractice();
     }
