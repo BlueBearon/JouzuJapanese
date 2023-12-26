@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- English app for practicing Japanese, needs Japanese characters-->
+<html lang = "en">
+
+<head>
+    <meta charset = "utf-8">
+    <title>Jouzu Japanese</title>
+    <link rel = "stylesheet" href = "Prototype.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap">
+    <script src = "Prototype.js"></script>
+</head>
+
+<body>
+
+    <div id = "header" class = "header">
+        <div class = "Heading">上手</div>
+
+        <div id = "nav" class = "tabs">
+            <button id = "toHiraganaTab" class = "navButton">Hiragana</button>
+            <button id = "toKatakanaTab" class = "navButton">Katakana</button>
+            <button id = "toVerbConjugationTab" class = "navButton">Verb</button>
+            <button id = "toAdjectiveConjugationTab" class = "navButton">Adjective</button>
+            <button id = "toAboutTab" class = "navButton">About</button>
+        </div>
+        
+    </div>
+
+    <div id = "QuestionSection" class = "questionSection">
+
+        <div id = "topElements" class = "topElements">
+
+            <div id = "topButtons" class = "topButtons">
+                <button id = "backButton" class = "backButton">
+                    <img class = "backicon" src="assets\back.png" alt="Back">  
+                </button>
+                <button id = "optionsButton" class = "topButton">Options</button>
+            </div>
+
+            <div id = "score" class = "score">
+                <div id = "outOf" class = "outOf">8/10</div>
+                <div id = "percentage" class = "percentage">80%</div>
+            </div>
+        </div>
+
+
+        <div id = "question" class = "conjugationquestion">
+
+            <div id = "conjugationParameters" class = "conjugationParameters">Potential Formal Positive Present</div>
+            <div id = "conjugationWord" class = "conjugationWord">たべる</div>
+            <div id = "userInput" class = "userInput">
+                <input id = "userInputBox" class = "userInputBox" type = "text" name = "userInputBox" value = "">
+                <button id = "submitButton" class = "submitButton">&#8594</button>
+            </div>
+
+        </div>
+
+        <div id = "correctAnswer" class = "correctAnswer">
+            <div id = "correctText" class = "correctText">Correct</div>
+            <div id = "conjugationParametersAnswer" class = "conjugationParametersAnswer">Potential Formal Positive Present</div>
+            <div id = conjugationWordAnswer" class = "conjugationWordAnswer">
+                <img class = "answericon" src= "assets\Correct.png" alt="Description of the image">
+                <div id = "conjugationWordAnswerText" class = "conjugationWordAnswerText">たべられます</div>
+            </div>
+            <button id = "nextButton" class = "submitButton">&#8594</button>
+        </div>
+
+        <div id = "wrongAnswer" class = "wrongAnswer">
+            <div id = "wrongText" class = "wrongText">Incorrect</div>
+            <div id = "conjugationParametersAnswer" class = "conjugationWordAnswer">Potential Formal Positive Present</div>
+            <div id = "givenAnswer" class = "conjugationWordAnswer">
+                <img class = "answericon" src= "assets\Incorrect.png" alt="Description of the image">
+                <div id = "conjugationWordAnswerText" class = "conjugationWordAnswerText">たべさせた</div>
+            </div>
+            <div id = "correctAnswer" class = "conjugationWordAnswer">
+                <img class = "answericon" src= "assets\Correct.png" alt="Description of the image">
+                <div id = "conjugationWordAnswerText" class = "conjugationWordAnswerText">たべられます</div>
+            </div>
+            <button id = "nextButton" class = "submitButton">&#8594</button>
+        </div>
+
+    </div>
+
+</body>
+
+
+</html>
