@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- English app for practicing Japanese, needs Japanese characters-->
+<html lang = "en">
+
+<head>
+    <meta charset = "utf-8">
+    <title>Jouzu Japanese</title>
+    <link rel = "stylesheet" href = "Prototype.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap">
+    <script src = "Prototype.js"></script>
+</head>
+
+
+<body>
+    <div id = "header" class = "header">
+        <div class = "Heading">上手</div>
+
+        <div id = "nav" class = "tabs">
+            <button id = "toHiraganaTab" class = "navButton">Hiragana</button>
+            <button id = "toKatakanaTab" class = "navButton">Katakana</button>
+            <button id = "toVerbConjugationTab" class = "navButton">Verb</button>
+            <button id = "toAdjectiveConjugationTab" class = "navButton">Adjective</button>
+            <button id = "toAboutTab" class = "navButton">About</button>
+        </div>
+        
+    </div>
+
+    <div id = "QuestionSection" class = "questionSection">
+
+        <div id = "topElements" class = "topElements">
+
+            <div id = "topButtons" class = "topButtons">
+                <button id = "backButton" class = "backButton">
+                    <img class = "backicon" src="assets\back.png" alt="Back">  
+                </button>
+                <button id = "optionsButton" class = "topButton">Options</button>
+            </div>
+
+            <div id = "score" class = "score">
+                <div id = "outOf" class = "outOf">8/10</div>
+                <div id = "percentage" class = "percentage">80%</div>
+            </div>
+        </div>
+
+        <div id = "question" class = "kanaquestion">
+            <div id = "kana" class = "kana">た</div>
+            <div id = "userInput" class = "kanaUserInput">
+                <input id = "userInputBox" class = "kanaInputBox" type = "text" name = "userInputBox" value = "">
+                <div id = "hiraganaKeyboard" class = "hiraganaKeyboard">
+                    <button id = "aHira" class = "A"><img class = "kanaButton" src="assets\hiragana\a.png" alt="あ"></button>
+                    <button id = "kaHira" class = "Ka"><img class = "kanaButton" src="assets\hiragana\ka.png" alt="か"></button>
+                    <button id = "saHira" class = "Sa"><img class = "kanaButton" src="assets\hiragana\sa.png" alt="さ"></button>
+                    <button id = "taHira" class = "Ta"><img class = "kanaButton" src="assets\hiragana\ta.png" alt="た"></button>
+                    <button id = "naHira" class = "Na"><img class = "kanaButton" src="assets\hiragana\na.png" alt="な"></button>
+                    <button id = "haHira" class = "Ha"><img class = "kanaButton" src="assets\hiragana\ha.png" alt="は"></button>
+                    <button id = "maHira" class = "Ma"><img class = "kanaButton" src="assets\hiragana\ma.png" alt="ま"></button>
+                    <button id = "yaHira" class = "Ya"><img class = "kanaButton" src="assets\hiragana\ya.png" alt="や"></button>
+                    <button id = "raHira" class = "Ra"><img class = "kanaButton" src="assets\hiragana\ra.png" alt="ら"></button>
+                    <button id = "waHira" class = "Wa"><img class = "kanaButton" src="assets\hiragana\wa.png" alt="わ"></button>
+                    <button id = "smallYaHira" class = "smallYa"><img class = "kanaButton" src="assets\hiragana\smallYa.png" alt="ゃ"></button>
+                    <button id = "dakutenHira" class = "dakuten"><img class = "kanaButton" src="assets\hiragana\dakuten.png" alt="゛"></button>
+                    <button id = "iHira" class = "I"><img class = "kanaButton" src="assets\hiragana\i.png" alt="い"></button>
+                    <button id = "kiHira" class = "Ki"><img class = "kanaButton" src="assets\hiragana\ki.png" alt="き"></button>
+                    <button id = "shiHira" class = "Shi"><img class = "kanaButton" src="assets\hiragana\shi.png" alt="し"></button>
+                    <button id = "chiHira" class = "Chi"><img class = "kanaButton" src="assets\hiragana\chi.png" alt="ち"></button>
+                    <button id = "niHira" class = "Ni"><img class = "kanaButton" src="assets\hiragana\ni.png" alt="に"></button>
+                    <button id = "hiHira" class = "Hi"><img class = "kanaButton" src="assets\hiragana\hi.png" alt="ひ"></button>
+                    <button id = "miHira" class = "Mi"><img class = "kanaButton" src="assets\hiragana\mi.png" alt="み"></button>
+                    <button id = "riHira" class = "Ri"><img class = "kanaButton" src="assets\hiragana\ri.png" alt="り"></button>
+                    <button id = "smallYuHira" class = "smallYu"><img class = "kanaButton" src="assets\hiragana\smallYu.png" alt="ゅ"></button>
+                    <button id = "handakutenHira" class = "handakuten"><img class = "kanaButton" src="assets\hiragana\handakuten.png" alt="゜"></button>
+                    <button id = "uHira" class = "U"><img class = "kanaButton" src="assets\hiragana\u.png" alt="う"></button>
+                    <button id = "kuHira" class = "Ku"><img class = "kanaButton" src="assets\hiragana\ku.png" alt="く"></button>
+                    <button id = "suHira" class = "Su"><img class = "kanaButton" src="assets\hiragana\su.png" alt="す"></button>
+                    <button id = "tsuHira" class = "Tsu"><img class = "kanaButton" src="assets\hiragana\tsu.png" alt="つ"></button>
+                    <button id = "nuHira" class = "Nu"><img class = "kanaButton" src="assets\hiragana\nu.png" alt="ぬ"></button>
+                    <button id = "fuHira" class = "Fu"><img class = "kanaButton" src="assets\hiragana\fu.png" alt="ふ"></button>
+                    <button id = "muHira" class = "Mu"><img class = "kanaButton" src="assets\hiragana\mu.png" alt="む"></button>
+                    <button id = "yuHira" class = "Yu"><img class = "kanaButton" src="assets\hiragana\yu.png" alt="ゆ"></button>
+                    <button id = "ruHira" class = "Ru"><img class = "kanaButton" src="assets\hiragana\ru.png" alt="る"></button>
+                    <button id = "woHira" class = "Wo"><img class = "kanaButton" src="assets\hiragana\wo.png" alt="を"></button>
+                    <button id = "smallYoHira" class = "smallYo"><img class = "kanaButton" src="assets\hiragana\smallYo.png" alt="ょ"></button>
+                    <button id = "eHira" class = "E"><img class = "kanaButton" src="assets\hiragana\e.png" alt="え"></button>
+                    <button id = "keHira" class = "Ke"><img class = "kanaButton" src="assets\hiragana\ke.png" alt="け"></button>
+                    <button id = "seHira" class = "Se"><img class = "kanaButton" src="assets\hiragana\se.png" alt="せ"></button>
+                    <button id = "teHira" class = "Te"><img class = "kanaButton" src="assets\hiragana\te.png" alt="て"></button>
+                    <button id = "neHira" class = "Ne"><img class = "kanaButton" src="assets\hiragana\ne.png" alt="ね"></button>
+                    <button id = "heHira" class = "He"><img class = "kanaButton" src="assets\hiragana\he.png" alt="へ"></button>
+                    <button id = "meHira" class = "Me"><img class = "kanaButton" src="assets\hiragana\me.png" alt="め"></button>
+                    <button id = "reHira" class = "Re"><img class = "kanaButton" src="assets\hiragana\re.png" alt="れ"></button>
+                    <button id = "oHira" class = "O"><img class = "kanaButton" src="assets\hiragana\o.png" alt="お"></button>
+                    <button id = "koHira" class = "Ko"><img class = "kanaButton" src="assets\hiragana\ko.png" alt="こ"></button>
+                    <button id = "soHira" class = "So"><img class = "kanaButton" src="assets\hiragana\so.png" alt="そ"></button>
+                    <button id = "toHira" class = "To"><img class = "kanaButton" src="assets\hiragana\to.png" alt="と"></button>
+                    <button id = "noHira" class = "No"><img class = "kanaButton" src="assets\hiragana\no.png" alt="の"></button>
+                    <button id = "hoHira" class = "Ho"><img class = "kanaButton" src="assets\hiragana\ho.png" alt="ほ"></button>
+                    <button id = "moHira" class = "Mo"><img class = "kanaButton" src="assets\hiragana\mo.png" alt="も"></button>
+                    <button id = "yoHira" class = "Yo"><img class = "kanaButton" src="assets\hiragana\yo.png" alt="よ"></button>
+                    <button id = "roHira" class = "Ro"><img class = "kanaButton" src="assets\hiragana\ro.png" alt="ろ"></button>
+                </div>
+                <div id = "katakanaKeyboard" class = "katakanaKeyboard">
+                    <button id = "aKata" class = "A"><img class = "kanaButton" src="assets\katakana\a.png" alt="ア"></button>
+                    <button id = "kaKata" class = "Ka"><img class = "kanaButton" src="assets\katakana\ka.png" alt="カ"></button>
+                    <button id = "saKata" class = "Sa"><img class = "kanaButton" src="assets\katakana\sa.png" alt="サ"></button>
+                    <button id = "taKata" class = "Ta"><img class = "kanaButton" src="assets\katakana\ta.png" alt="タ"></button>
+                    <button id = "naKata" class = "Na"><img class = "kanaButton" src="assets\katakana\na.png" alt="ナ"></button>
+                    <button id = "haKata" class = "Ha"><img class = "kanaButton" src="assets\katakana\ha.png" alt="ハ"></button>
+                    <button id = "maKata" class = "Ma"><img class = "kanaButton" src="assets\katakana\ma.png" alt="マ"></button>
+                    <button id = "yaKata" class = "Ya"><img class = "kanaButton" src="assets\katakana\ya.png" alt="ヤ"></button>
+                    <button id = "raKata" class = "Ra"><img class = "kanaButton" src="assets\katakana\ra.png" alt="ラ"></button>
+                    <button id = "waKata" class = "Wa"><img class = "kanaButton" src="assets\katakana\wa.png" alt="ワ"></button>
+                    <button id = "smallYaKata" class = "smallYa"><img class = "kanaButton" src="assets\katakana\smallYa.png" alt="ャ"></button>
+                    <button id = "dakutenKata" class = "dakuten"><img class = "kanaButton" src="assets\katakana\dakuten.png" alt="゛"></button>
+                    <button id = "iKata" class = "I"><img class = "kanaButton" src="assets\katakana\i.png" alt="イ"></button>
+                    <button id = "kiKata" class = "Ki"><img class = "kanaButton" src="assets\katakana\ki.png" alt="キ"></button>
+                    <button id = "shiKata" class = "Shi"><img class = "kanaButton" src="assets\katakana\shi.png" alt="シ"></button>
+                    <button id = "chiKata" class = "Chi"><img class = "kanaButton" src="assets\katakana\chi.png" alt="チ"></button>
+                    <button id = "niKata" class = "Ni"><img class = "kanaButton" src="assets\katakana\ni.png" alt="ニ"></button>
+                    <button id = "hiKata" class = "Hi"><img class = "kanaButton" src="assets\katakana\hi.png" alt="ヒ"></button>
+                    <button id = "miKata" class = "Mi"><img class = "kanaButton" src="assets\katakana\mi.png" alt="ミ"></button>
+                    <button id = "riKata" class = "Ri"><img class = "kanaButton" src="assets\katakana\ri.png" alt="リ"></button>
+                    <button id = "smallYuKata" class = "smallYu"><img class = "kanaButton" src="assets\katakana\smallYu.png" alt="ュ"></button>
+                    <button id = "handakutenKata" class = "handakuten"><img class = "kanaButton" src="assets\katakana\handakuten.png" alt="゜"></button>
+                    <button id = "uKata" class = "U"><img class = "kanaButton" src="assets\katakana\u.png" alt="ウ"></button>
+                    <button id = "kuKata" class = "Ku"><img class = "kanaButton" src="assets\katakana\ku.png" alt="ク"></button>
+                    <button id = "suKata" class = "Su"><img class = "kanaButton" src="assets\katakana\su.png" alt="ス"></button>
+                    <button id = "tsuKata" class = "Tsu"><img class = "kanaButton" src="assets\katakana\tsu.png" alt="ツ"></button>
+                    <button id = "nuKata" class = "Nu"><img class = "kanaButton" src="assets\katakana\nu.png" alt="ヌ"></button>
+                    <button id = "fuKata" class = "Fu"><img class = "kanaButton" src="assets\katakana\fu.png" alt="フ"></button>
+                    <button id = "muKata" class = "Mu"><img class = "kanaButton" src="assets\katakana\mu.png" alt="ム"></button>
+                    <button id = "yuKata" class = "Yu"><img class = "kanaButton" src="assets\katakana\yu.png" alt="ユ"></button>
+                    <button id = "ruKata" class = "Ru"><img class = "kanaButton" src="assets\katakana\ru.png" alt="ル"></button>
+                    <button id = "woKata" class = "Wo"><img class = "kanaButton" src="assets\katakana\wo.png" alt="ヲ"></button>
+                    <button id = "smallYoKata" class = "smallYo"><img class = "kanaButton" src="assets\katakana\smallYo.png" alt="ョ"></button>
+                    <button id = "eKata" class = "E"><img class = "kanaButton" src="assets\katakana\e.png" alt="エ"></button>
+                    <button id = "keKata" class = "Ke"><img class = "kanaButton" src="assets\katakana\ke.png" alt="ケ"></button>
+                    <button id = "seKata" class = "Se"><img class = "kanaButton" src="assets\katakana\se.png" alt="セ"></button>
+                    <button id = "teKata" class = "Te"><img class = "kanaButton" src="assets\katakana\te.png" alt="テ"></button>
+                    <button id = "neKata" class = "Ne"><img class = "kanaButton" src="assets\katakana\ne.png" alt="ネ"></button>
+                    <button id = "heKata" class = "He"><img class = "kanaButton" src="assets\katakana\he.png" alt="ヘ"></button>
+                    <button id = "meKata" class = "Me"><img class = "kanaButton" src="assets\katakana\me.png" alt="メ"></button>
+                    <button id = "reKata" class = "Re"><img class = "kanaButton" src="assets\katakana\re.png" alt="レ"></button>
+                    <button id = "oKata" class = "O"><img class = "kanaButton" src="assets\katakana\o.png" alt="オ"></button>
+                    <button id = "koKata" class = "Ko"><img class = "kanaButton" src="assets\katakana\ko.png" alt="コ"></button>
+                    <button id = "soKata" class = "So"><img class = "kanaButton" src="assets\katakana\so.png" alt="ソ"></button>
+                    <button id = "toKata" class = "To"><img class = "kanaButton" src="assets\katakana\to.png" alt="ト"></button>
+                    <button id = "noKata" class = "No"><img class = "kanaButton" src="assets\katakana\no.png" alt="ノ"></button>
+                    <button id = "hoKata" class = "Ho"><img class = "kanaButton" src="assets\katakana\ho.png" alt="ホ"></button>
+                    <button id = "moKata" class = "Mo"><img class = "kanaButton" src="assets\katakana\mo.png" alt="モ"></button>
+                    <button id = "yoKata" class = "Yo"><img class = "kanaButton" src="assets\katakana\yo.png" alt="ヨ"></button>
+                    <button id = "roKata" class = "Ro"><img class = "kanaButton" src="assets\katakana\ro.png" alt="ロ"></button>
+                </div>
+                <button id = "submitButton" class = "submitButton">&#8594</button>
+            </div>
+        </div>
+
+        <div id = "correctAnswer" class = "correctAnswer">
+            <div id = "correctText" class = "correctText">Correct</div>
+            <div id = "questionsymbol" class = "conjugationWordAnswer">ta</div>
+            <div id = "kanaAnswer" class = "conjugationWordAnswer">
+                <img class = "answericon" src= "assets\Correct.png" alt="Correct">
+                <div id = "conjugationWordAnswerText" class = "conjugationWordAnswerText">た</div>
+            </div>
+            <button id = "nextButton" class = "submitButton">&#8594</button>
+
+        </div>
+
+        <div id = "wrongAnswer" class = "wrongAnswer">
+            <div id = "wrongText" class = "wrongText">Incorrect</div>
+            <div id = "questionsymbol" class = "conjugationWordAnswer">ta</div>
+            <div id = "givenAnswer" class = "conjugationWordAnswer">
+                <img class = "answericon" src= "assets\Incorrect.png" alt="Incorrect">
+                <div id = "incorrectAnswerText" class = "conjugationWordAnswerText">べ</div>
+            </div>
+            <div id = "correctAnswer" class = "conjugationWordAnswer">
+                <img class = "answericon" src= "assets\Correct.png" alt="Correct">
+                <div id = "correctAnswerText" class = "conjugationWordAnswerText">た</div>
+            </div>
+            <button id = "nextButton" class = "submitButton">&#8594</button>
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+</html> 

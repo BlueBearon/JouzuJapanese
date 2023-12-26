@@ -213,6 +213,17 @@ body
 
 }
 
+.kanaquestion
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    height: 76vh;
+    gap: 2vh;
+}
+
 .correctAnswer
 {
     display: flex;
@@ -260,11 +271,28 @@ body
 
 }
 
+.kanaUserInput
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
 .userInputBox
 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 20px;
     width: 40vw;
+    height: 5vh;
+}
+
+.kanaInputBox
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    width: 7vw;
     height: 5vh;
 }
 
@@ -317,11 +345,532 @@ body
     font-size: 36px;
 }
 
+.kana
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 48px;
+}
+
 .answericon
 {
     width: 36px;
     height: 36px;
 }
+
+.hiraganaKeyboard
+{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat (5, 1fr);
+    display: none;
+}
+
+.katakanaKeyboard
+{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat (5, 1fr);
+    display: none;
+}
+
+.dakuten
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.handakuten
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.smallYa
+{
+    grid-row: 1;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.smallYu
+{
+    grid-row: 2;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.smallYo
+{
+    grid-row: 3;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Wa
+{
+    grid-row: 1;
+    grid-column: 4;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ra
+{
+    grid-row: 1;
+    grid-column: 5;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ya
+{
+    grid-row: 1;
+    grid-column: 6;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ma
+{
+    grid-row: 1;
+    grid-column: 7;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ha
+{
+    grid-row: 1;
+    grid-column: 8;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Na
+{
+    grid-row: 1;
+    grid-column: 9;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ta
+{
+    grid-row: 1;
+    grid-column: 10;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Sa
+{
+    grid-row: 1;
+    grid-column: 11;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ka
+{
+    grid-row: 1;
+    grid-column: 12;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.A
+{
+    grid-row: 1;
+    grid-column: 13;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ri
+{
+    grid-row: 2;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Mi
+{
+    grid-row: 2;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Hi
+{
+    grid-row: 2;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ni
+{
+    grid-row: 2;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Chi
+{
+    grid-row: 2;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Shi
+{
+    grid-row: 2;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ki
+{
+    grid-row: 2;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.I
+{
+    grid-row: 2;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ru
+{
+    grid-row: 3;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Yu
+{
+    grid-row: 3;
+    grid-column: 6;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Mu
+{
+    grid-row: 3;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Fu
+{
+    grid-row: 3;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Nu
+{
+    grid-row: 3;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Tsu
+{
+    grid-row: 3;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Su
+{
+    grid-row: 3;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ku
+{
+    grid-row: 3;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.U
+{
+    grid-row: 3;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Re
+{
+    grid-row: 4;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Me
+{
+    grid-row: 4;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.He
+{
+    grid-row: 4;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ne
+{
+    grid-row: 4;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Te
+{
+    grid-row: 4;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Se
+{
+    grid-row: 4;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ke
+{
+    grid-row: 4;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.E
+{
+    grid-row: 4;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Wo
+{
+    grid-row: 5;
+    grid-column: 4;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ro
+{
+    grid-row: 5;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Yo
+{
+    grid-row: 5;
+    grid-column: 6;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Mo
+{
+    grid-row: 5;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ho
+{
+    grid-row: 5;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.No
+{
+    grid-row: 5;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.To
+{
+    grid-row: 5;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.So
+{
+    grid-row: 5;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ko
+{
+    grid-row: 5;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.O
+{
+    grid-row: 5;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.kanaButton
+{
+    height: 7vh;
+    width: 4vw;
+}
+
+
+
+
+
+
+
+
 
 
 
