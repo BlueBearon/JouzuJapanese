@@ -1,3 +1,6 @@
+
+/* MAIN ELEMENTS */
+
 .header
 {
     /*Horizontal Strip
@@ -57,6 +60,8 @@ body
     align-items: center;
 }
 
+/*HOME PAGE*/
+
 .twoSection
 {
     display: flex;
@@ -76,15 +81,6 @@ body
     align-items: center;
     gap: 5vh;
 
-}
-
-.questionSection
-{
-    display: flex;
-    flex-direction: column;
-    width: 98vw;
-    height: 76vh;
-    margin: 2vh 1vw; 
 }
 
 .navButton
@@ -118,6 +114,18 @@ body
     width: 45vw;
     border-radius: 10px;
     height: 15vh;
+}
+
+
+/*PRACTICE PAGES*/
+
+.questionSection
+{
+    display: flex;
+    flex-direction: column;
+    width: 98vw;
+    height: 76vh;
+    margin: 2vh 1vw; 
 }
 
 .topElements
@@ -356,6 +364,9 @@ body
     width: 36px;
     height: 36px;
 }
+
+
+/*Hiragana and Katakana Keyboard*/
 
 .hiraganaKeyboard
 {
@@ -863,6 +874,277 @@ body
     height: 7vh;
     width: 4vw;
 }
+
+/*OPTIONS*/
+
+.options
+{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 20vw;
+    top: 20vh;
+    width: 60vw; /* Full width */
+    height: 60vh; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgb(255, 255, 255); /* Black w/ opacity */ 
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.optionsTopSection
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1vw;
+    padding-left: 1vw;
+    height: 5vh;
+}
+
+.optionsTitle
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    color: black;
+}
+
+.optionsContainer
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    padding-left: 1vw;
+    gap: 1vw;
+    display: none;
+}
+
+.ruVerbs
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.uVerbs
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.irregularVerbs
+{
+    grid-row: 3;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.formal
+{
+    grid-row: 5;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.casual
+{
+    grid-row: 6;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.positive
+{
+    grid-row: 1;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.negative
+{
+    grid-row: 2;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.present
+{
+    grid-row: 5;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.past
+{
+    grid-row: 6;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.potential
+{
+    grid-row: 1;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.passive
+{
+    grid-row: 2;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.causative
+{
+    grid-row: 3;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.volitional
+{
+    grid-row: 4;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.iAdjectives
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.naAdjectives
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectiveFormal
+{
+    grid-row: 4;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectiveCasual
+{
+    grid-row: 5;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectivePositive
+{
+    grid-row: 1;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectiveNegative
+{
+    grid-row: 2;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectivePresent
+{
+    grid-row: 4;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectivePast
+{
+    grid-row: 5;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
+.kanaToRomanji
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.romanjiToKana
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.dakutenhandakuten
+{
+    grid-row: 1;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.extended
+{
+    grid-row: 2;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
 
 
 

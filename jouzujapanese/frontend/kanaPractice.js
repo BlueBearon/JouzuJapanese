@@ -6,6 +6,12 @@ question = ["", "", ""]; // [question, answer, type]
 var question_count = 0;
 var correct_count = 0;
 
+var submitButton = document.getElementById("submitButton");
+var nextButton = document.getElementById("nextButton");
+var nextButton2 = document.getElementById("nextButton2");
+var optionsbutton = document.getElementById("optionsButton");
+var closeOptionsButton = document.getElementById("closeOptionsButton");
+
 function setMode()
 {
     const urlParams = new URLSearchParams(window.location.search);
@@ -28,6 +34,16 @@ function updateStats()
     }
 }
 
+function setAllCheckboxes(value)
+{
+    var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+    for (var i = 0; i < checkboxes.length; i++) 
+    {
+        checkboxes[i].checked = value;
+    }
+}
+
 function retrieveHiraganaQuestion(options)
 {
     //Will be replaced by call to backend
@@ -37,7 +53,7 @@ function retrieveHiraganaQuestion(options)
     //random number 0 or 1
     var random = Math.floor(Math.random() * 2);
 
-    if (random == 0)
+    if (options[0] && (!options[1] || random == 0))
     {
         return ["た", "ta", "KANA"];
     }
@@ -79,10 +95,10 @@ function hiraganaPractice()
 {
     console.log("Hiragana Practice");
 
-    var includeKanaToRomaji = true; //TODO: get from options
-    var includeRomajiToKana = true; //TODO: get from options
-    var includeSpecialKana = true; //TODO: get from options
-    var includeExtendedKana = true; //TODO: get from options
+    var includeKanaToRomaji = document.getElementById("kanaToRomanji").checked;
+    var includeRomajiToKana = document.getElementById("romanjiToKana").checked;
+    var includeSpecialKana = document.getElementById("dakutenhandakuten").checked;
+    var includeExtendedKana = document.getElementById("extended").checked;
 
     var options = [includeKanaToRomaji, includeRomajiToKana, includeSpecialKana, includeExtendedKana];
 
@@ -113,10 +129,10 @@ function katakanaPractice()
 {
     console.log("Katakana Practice");
 
-    var includeKanaToRomaji = true; //TODO: get from options
-    var includeRomajiToKana = true; //TODO: get from options
-    var includeSpecialKana = true; //TODO: get from options
-    var includeExtendedKana = true; //TODO: get from options
+    var includeKanaToRomaji = document.getElementById("kanaToRomanji").checked;
+    var includeRomajiToKana = document.getElementById("romanjiToKana").checked;
+    var includeSpecialKana = document.getElementById("dakutenhandakuten").checked;
+    var includeExtendedKana = document.getElementById("extended").checked;
 
     var options = [includeKanaToRomaji, includeRomajiToKana, includeSpecialKana, includeExtendedKana];
 
@@ -195,14 +211,11 @@ function nextQuestion()
     }
 }
 
-var submitButton = document.getElementById("submitButton");
-
 submitButton.onclick = function() {
     checkAnswer();
 }
 
-var nextButton = document.getElementById("nextButton");
-var nextButton2 = document.getElementById("nextButton2");
+
 
 nextButton.onclick = function() {
     nextQuestion();
@@ -245,18 +258,94 @@ function keyboardPress(key)
 
 }
 
+optionsbutton.onclick = function() {
 
-updateStats();
+    var options = document.getElementById("options");
+    
+    options.style.display = 'block';
+    var optionscontainer = document.getElementById("kanaOptionsContainer");
+    optionscontainer.style.display = 'grid';
 
-setMode();
 
-if (mode == 0)
-{
-    hiraganaPractice();
 }
-else
-{
-    katakanaPractice();
+
+closeOptionsButton.onclick = function() {
+    var options = document.getElementById("options");
+    options.style.display = 'none';
+
+    var optionscontainer = document.getElementById("kanaOptionsContainer");
+    optionscontainer.style.display = 'none';
+
+    if(mode == 0)
+    {
+        hiraganaPractice();
+    }
+    else
+    {
+        katakanaPractice();
+    }
+
 }
+
+
+//Option Validation Functions
+
+function validateKanaOptions()
+{
+    var includeKanaToRomaji = document.getElementById("kanaToRomanji").checked;
+    var includeRomajiToKana = document.getElementById("romanjiToKana").checked;
+
+    if(includeKanaToRomaji == false && includeRomajiToKana == false)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+var kanaToRomanjiCheckbox = document.getElementById("kanaToRomanji");
+
+kanaToRomanjiCheckbox.addEventListener('change', function() {
+    if(!this.checked) {
+        if(!validateKanaOptions())
+        {
+            this.checked = true;
+        }
+    }
+});
+
+var romanjiToKanaCheckbox = document.getElementById("romanjiToKana");
+
+romanjiToKanaCheckbox.addEventListener('change', function() {
+    if(!this.checked) {
+        if(!validateKanaOptions())
+        {
+            this.checked = true;
+        }
+    }
+});
+
+
+
+function init()
+{
+    updateStats();
+
+    setMode();
+
+    setAllCheckboxes(true);
+
+    if (mode == 0)
+    {
+        hiraganaPractice();
+    }
+    else
+    {
+        katakanaPractice();
+    }
+
+}
+
+init();
 
 

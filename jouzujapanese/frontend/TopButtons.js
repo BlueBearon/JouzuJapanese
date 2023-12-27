@@ -1,14 +1,9 @@
 backbutton = document.getElementById("backButton");
-optionsbutton = document.getElementById("optionsButton");
+
 
 backbutton.onclick = function() {
     //open D:\Coding\Jouzu\JouzuJapanese\jouzujapanese\frontend\PrototypeHomePage.html
     window.location.href = "PrototypeHomePage.html";
-}
-
-optionsbutton.onclick = function() {
-    //open modal
-    console.log("Options button clicked");
 }
 
 window.onpopstate = function(event) {
