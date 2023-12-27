@@ -12,6 +12,91 @@ var nextButton2 = document.getElementById("nextButton2");
 var optionsbutton = document.getElementById("optionsButton");
 var closeOptionsButton = document.getElementById("closeOptionsButton");
 
+
+var kanaButtons = [
+    "aHira", "iHira", "uHira", "eHira", "oHira",
+    "kaHira", "kiHira", "kuHira", "keHira", "koHira",
+    "saHira", "shiHira", "suHira", "seHira", "soHira",
+    "taHira", "chiHira", "tsuHira", "teHira", "toHira",
+    "naHira", "niHira", "nuHira", "neHira", "noHira",
+    "haHira", "hiHira", "fuHira", "heHira", "hoHira",
+    "maHira", "miHira", "muHira", "meHira", "moHira",
+    "yaHira", "yuHira", "yoHira",
+    "raHira", "riHira", "ruHira", "reHira", "roHira",
+    "waHira", "woHira",
+    "smallYaHira", "smallYuHira", "smallYoHira",
+    "dakutenHira", "handakutenHira",
+    "aKata", "iKata", "uKata", "eKata", "oKata",
+    "kaKata", "kiKata", "kuKata", "keKata", "koKata",
+    "saKata", "shiKata", "suKata", "seKata", "soKata",
+    "taKata", "chiKata", "tsuKata", "teKata", "toKata",
+    "naKata", "niKata", "nuKata", "neKata", "noKata",
+    "haKata", "hiKata", "fuKata", "heKata", "hoKata",
+    "maKata", "miKata", "muKata", "meKata", "moKata",
+    "yaKata", "yuKata", "yoKata",
+    "raKata", "riKata", "ruKata", "reKata", "roKata",
+    "waKata", "woKata",
+    "smallYaKata", "smallYuKata", "smallYoKata",
+    "dakutenKata", "handakutenKata"
+];
+
+
+var dakutenConversions = {
+    "か": "が",
+    "き": "ぎ",
+    "く": "ぐ",
+    "け": "げ",
+    "こ": "ご",
+    "さ": "ざ",
+    "し": "じ",
+    "す": "ず",
+    "せ": "ぜ",
+    "そ": "ぞ",
+    "た": "だ",
+    "ち": "ぢ",
+    "つ": "づ",
+    "て": "で",
+    "と": "ど",
+    "は": "ば",
+    "ひ": "び",
+    "ふ": "ぶ",
+    "へ": "べ",
+    "ほ": "ぼ",
+    "カ": "ガ",
+    "キ": "ギ",
+    "ク": "グ",
+    "ケ": "ゲ",
+    "コ": "ゴ",
+    "サ": "ザ",
+    "シ": "ジ",
+    "ス": "ズ",
+    "セ": "ゼ",
+    "ソ": "ゾ",
+    "タ": "ダ",
+    "チ": "ヂ",
+    "ツ": "ヅ",
+    "テ": "デ",
+    "ト": "ド",
+    "ハ": "バ",
+    "ヒ": "ビ",
+    "フ":"ブ",
+    "ㇸ":"ベ",
+    "ホ":"ボ"
+};
+
+var handakutenConversions = {
+    "は": "ぱ",
+    "ひ": "ぴ",
+    "ふ": "ぷ",
+    "へ": "ぺ",
+    "ほ": "ぽ",
+    "ハ": "パ",
+    "ヒ": "ピ",
+    "フ": "プ",
+    "ㇸ": "ペ",
+    "ホ": "ポ"
+};
+
 function setMode()
 {
     const urlParams = new URLSearchParams(window.location.search);
@@ -201,6 +286,9 @@ function nextQuestion()
     document.getElementById("wrongAnswer").style.display = "none";
     document.getElementById("question").style.display = "flex";
 
+
+    resetKeyBoard();
+
     if (mode == 0)
     {
         hiraganaPractice();
@@ -239,23 +327,51 @@ document.addEventListener('keyup', function(event) {
     }
 });
 
-function keyboardPress(key)
+function keyboardPress(key, id)
 {
     console.log("Key Pressed: " + key);
 
-    if (key == "dakutenhira" || key == "dakutenkata")
+    var currentInput = document.getElementById("userInputBox").value;
+
+    if (key == "゛")
     {
-        //TODO
+        if(currentInput.length > 0 && currentInput[currentInput.length - 1] in dakutenConversions)
+        {
+            document.getElementById("userInputBox").value = currentInput.substring(0, currentInput.length - 1) + dakutenConversions[currentInput[currentInput.length - 1]];
+            document.getElementById(id).style.backgroundColor = "#e6e6e6";
+            document.getElementById(id).style.border = "1px solid green";
+        }
     }
-    else if (key == "handakutenhira" || key == "handakutenkata")
+    else if (key == "゜")
     {
-        //TODO
+        if(currentInput.length > 0 && currentInput[currentInput.length - 1] in handakutenConversions)
+        {
+            document.getElementById("userInputBox").value = currentInput.substring(0, currentInput.length - 1) + handakutenConversions[currentInput[currentInput.length - 1]];
+            document.getElementById(id).style.backgroundColor = "#e6e6e6";
+            document.getElementById(id).style.border = "1px solid green";
+        }
     }
     else
     {
         document.getElementById("userInputBox").value += key;
+        document.getElementById(id).style.backgroundColor = "#e6e6e6";
+        document.getElementById(id).style.border = "1px solid green";
     }
 
+
+    
+
+}
+
+
+function resetKeyBoard()
+{
+    for (var i = 0; i < kanaButtons.length; i++) 
+    {
+        document.getElementById(kanaButtons[i]).style.border = "none";
+        //Default is no color
+        document.getElementById(kanaButtons[i]).style.backgroundColor = "transparent";
+    }
 }
 
 optionsbutton.onclick = function() {
