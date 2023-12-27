@@ -72,7 +72,7 @@ function retrieveKatakanaQuestion(options)
     //random number 0 or 1
     var random = Math.floor(Math.random() * 2);
 
-    if (random == 0)
+    if (options[0] && (!options[1] || random == 0))
     {
         return ["タ", "ta", "KANA"];
     }
