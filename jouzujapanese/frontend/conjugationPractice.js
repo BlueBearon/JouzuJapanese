@@ -40,10 +40,10 @@ function retrieveVerbQuestion(options)
         ["のまれました", "のむ", "Passive Formal Positive Past"],
         ["よませます", "よむ", "Causative Formal Positive Present"],
         ["はなされません", "はなす", "Passive Formal Negative Present"],
-        ["およぎます", "およぐ", "Potential Formal Positive Present"],
-        ["しりませんでした", "しる", "Informal Negative Past"],
-        ["おくれる", "おく", "Potential Informal Positive Present"],
-        ["かえられる", "かえる", "Potential Informal Positive Present"],
+        ["およげます", "およぐ", "Potential Formal Positive Present"],
+        ["しりませんでした", "しる", "Casual Negative Past"],
+        ["おける", "おく", "Potential Casual Positive Present"],
+        ["かえられる", "かえる", "Potential Casual Positive Present"],
         ["かかせます", "かく", "Causative Formal Positive Present"]
     ];
 
@@ -61,12 +61,11 @@ function retrieveAdjectiveQuestion(options)
     var possibleQuestions = [
         ["たかいです", "たかい", "Formal Positive Present"],
         ["ねむくなかったです", "ねむい", "Formal Negative Past"],
-        ["あつくありません", "あつい", "Formal Negative Present"],
-        ["おおきくなります", "おおきい", "Formal Positive Future"],
+        ["あつくないです", "あつい", "Formal Negative Present"],
         ["やさしかったです", "やさしい", "Formal Positive Past"],
         ["たのしいです", "たのしい", "Formal Positive Present"],
         ["さびしかったです", "さびしい", "Formal Positive Past"],
-        ["しずかでした", "しずか", "Casual Positive Past"],
+        ["しずかでした", "しずか", "Formal Positive Past"],
         ["こわいです", "こわい", "Formal Positive Present"],
         ["あたたかくないです", "あたたかい", "Formal Negative Present"]
         
