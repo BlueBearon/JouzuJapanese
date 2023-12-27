@@ -140,11 +140,47 @@ function retrieveHiraganaQuestion(options)
 
     if (options[0] && (!options[1] || random == 0))
     {
-        return ["た", "ta", "KANA"];
+        //return ["た", "ta", "KANA"];
+        var possibleQuestions = [
+            ["た", "ta", "KANA"],
+            ["い", "i", "KANA"],
+            ["か", "ka", "KANA"],
+            ["ぬ", "nu", "KANA"],
+            ["せ", "se", "KANA"],
+            ["ろ", "ro", "KANA"],
+            ["み", "mi", "KANA"],
+            ["ね", "ne", "KANA"],
+            ["ゆ", "yu", "KANA"],
+            ["を", "wo", "KANA"],
+            ["が", "ga", "KANA"],
+            ["ぢ", "ji", "KANA"],
+            ["ぶ", "bu", "KANA"],
+            ["ぽ", "po", "KANA"]
+        ];
+
+        return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
     }
     else
     {
-        return ["ta", "た", "ROMANJI"];
+        //return ["ta", "た", "ROMANJI"];
+        var possibleQuestions = [
+            ["ta", "た", "ROMANJI"],
+            ["i", "い", "ROMANJI"],
+            ["ka", "か", "ROMANJI"],
+            ["nu", "ぬ", "ROMANJI"],
+            ["se", "せ", "ROMANJI"],
+            ["ro", "ろ", "ROMANJI"],
+            ["mi", "み", "ROMANJI"],
+            ["ne", "ね", "ROMANJI"],
+            ["yu", "ゆ", "ROMANJI"],
+            ["wo", "を", "ROMANJI"],
+            ["ga", "が", "ROMANJI"],
+            ["ji", "ぢ", "ROMANJI"],
+            ["bu", "ぶ", "ROMANJI"],
+            ["po", "ぽ", "ROMANJI"]
+        ];
+
+        return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
     }
 }
 
@@ -159,11 +195,47 @@ function retrieveKatakanaQuestion(options)
 
     if (options[0] && (!options[1] || random == 0))
     {
-        return ["タ", "ta", "KANA"];
+        //return ["タ", "ta", "KANA"];
+        var possibleQuestions = [
+            ["タ", "ta", "KANA"],
+            ["イ", "i", "KANA"],
+            ["カ", "ka", "KANA"],
+            ["ヌ", "nu", "KANA"],
+            ["セ", "se", "KANA"],
+            ["ロ", "ro", "KANA"],
+            ["ミ", "mi", "KANA"],
+            ["ネ", "ne", "KANA"],
+            ["ユ", "yu", "KANA"],
+            ["ヲ", "wo", "KANA"],
+            ["ガ", "ga", "KANA"],
+            ["ヂ", "ji", "KANA"],
+            ["ブ", "bu", "KANA"],
+            ["ポ", "po", "KANA"]
+        ];
+
+        return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
     }
     else
     {
-        return ["ta", "タ", "ROMANJI"];
+        //return ["ta", "タ", "ROMANJI"];
+        var possibleQuestions = [
+            ["ta", "タ", "ROMANJI"],
+            ["i", "イ", "ROMANJI"],
+            ["ka", "カ", "ROMANJI"],
+            ["nu", "ヌ", "ROMANJI"],
+            ["se", "セ", "ROMANJI"],
+            ["ro", "ロ", "ROMANJI"],
+            ["mi", "ミ", "ROMANJI"],
+            ["ne", "ネ", "ROMANJI"],
+            ["yu", "ユ", "ROMANJI"],
+            ["wo", "ヲ", "ROMANJI"],
+            ["ga", "ガ", "ROMANJI"],
+            ["ji", "ヂ", "ROMANJI"],
+            ["bu", "ブ", "ROMANJI"],
+            ["po", "ポ", "ROMANJI"]
+        ];
+
+        return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
     }
     
 

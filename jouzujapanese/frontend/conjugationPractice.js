@@ -33,7 +33,21 @@ function retrieveVerbQuestion(options)
 
     console.log("Retrieving Verb Question");
 
-    return ["たべられます", "たべる", "Potential Formal Positive Present"];
+    //return ["たべられます", "たべる", "Potential Formal Positive Present"];
+
+    var possibleQuestions = [
+        ["たべられます", "たべる", "Potential Formal Positive Present"],
+        ["のまれました", "のむ", "Passive Formal Positive Past"],
+        ["よませます", "よむ", "Causative Formal Positive Present"],
+        ["はなされません", "はなす", "Passive Formal Negative Present"],
+        ["およぎます", "およぐ", "Potential Formal Positive Present"],
+        ["しりませんでした", "しる", "Informal Negative Past"],
+        ["おくれる", "おく", "Potential Informal Positive Present"],
+        ["かえられる", "かえる", "Potential Informal Positive Present"],
+        ["かかせます", "かく", "Causative Formal Positive Present"]
+    ];
+
+    return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
 }
 
 function retrieveAdjectiveQuestion(options)
@@ -42,7 +56,23 @@ function retrieveAdjectiveQuestion(options)
 
     console.log("Retrieving Adjective Question");
 
-    return ["たかいです", "たかい", "Formal Positive Present"];
+    //return ["たかいです", "たかい", "Formal Positive Present"];
+
+    var possibleQuestions = [
+        ["たかいです", "たかい", "Formal Positive Present"],
+        ["ねむくなかったです", "ねむい", "Formal Negative Past"],
+        ["あつくありません", "あつい", "Formal Negative Present"],
+        ["おおきくなります", "おおきい", "Formal Positive Future"],
+        ["やさしかったです", "やさしい", "Formal Positive Past"],
+        ["たのしいです", "たのしい", "Formal Positive Present"],
+        ["さびしかったです", "さびしい", "Formal Positive Past"],
+        ["しずかでした", "しずか", "Casual Positive Past"],
+        ["こわいです", "こわい", "Formal Positive Present"],
+        ["あたたかくないです", "あたたかい", "Formal Negative Present"]
+        
+    ];
+
+    return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
 
 }
 
