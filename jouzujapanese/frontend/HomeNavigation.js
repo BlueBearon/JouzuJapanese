@@ -22,3 +22,14 @@ adjectiveButton.onclick = function() {
     //open frontend/PrototypeConjugationPractice.html
     window.location.href = "PrototypeConjugationPractice.html?mode=1";
 }
+
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent) || navigator.maxTouchPoints > 0;
+}
+
+if (isMobileDevice())
+{
+    document.getElementById("Content").style.flexDirection = "column";
+}
+
+

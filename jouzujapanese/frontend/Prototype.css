@@ -58,6 +58,7 @@ body
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    outline: none;
 }
 
 /*HOME PAGE*/
@@ -85,9 +86,8 @@ body
 
 .navButton
 {
-    background-color: white;
     color: black;
-    padding: 15px 32px;
+    padding: 10px 32px;
     text-align: center;
     font-size: 16px;
     font-family: 'Noto Sans JP', sans-serif;
@@ -96,12 +96,18 @@ body
     flex-direction: row;
     justify-content: space-around;
     height: 5vh;
-    width: 10vw;
+    background-color: #4472C4;
+    outline: none;
+    border: none;
+}
+
+.navButton:hover
+{
+    background-color: #658bcc;
 }
 
 .largeButton
 {
-    background-color: white;
     color: black;
     padding: 15px 32px;
     text-align: center;
@@ -114,6 +120,11 @@ body
     width: 45vw;
     border-radius: 10px;
     height: 15vh;
+}
+
+.largeButton:hover
+{
+    background-color: #658bcc75;
 }
 
 
@@ -185,6 +196,11 @@ body
     justify-content: space-around;
     height: 5vh;
     width: 10vw;
+}
+
+.topButton:hover
+{
+    background-color: #658bcc75;
 }
 
 .score
@@ -311,6 +327,11 @@ body
     height: 5vh;
     width: 7vw;
     font-size: 30px;
+}
+
+.submitButton:hover
+{
+    background-color: #00ff00;
 }
 
 .correctText
@@ -873,6 +894,11 @@ body
 {
     height: 7vh;
     width: 4vw;
+}
+
+.kanaButton:hover
+{
+    background-color: #658bcc75;
 }
 
 /*OPTIONS*/
