@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import './Prototype.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './HomePage';
+import Header from './Header.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App()
+{
+    return(
+        <Router>
+            <head>
+                <meta charset = "utf-8"></meta>
+                <title>Jouzu Japanese</title>
+                <link rel = "stylesheet" href = "Prototype.css"></link>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"></link>
+            </head>
+            <Header />
+            <Routes>
+                <Route path = "/" element = {<HomePage />} />
+            </Routes>
+            
+        </Router>
+
+    );
 }
 
 export default App;
