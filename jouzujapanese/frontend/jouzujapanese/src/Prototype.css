@@ -341,13 +341,13 @@ body
     color: #70AD47;
 }
 
-.conjugationParametersAnswer
+.question
 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 24px;
 }
 
-.conjugationWordAnswer
+.answerBox
 {
     display: flex;
     flex-direction: row;
@@ -355,7 +355,7 @@ body
     align-items: center;
 }
 
-.conjugationWordAnswerText
+.AnswerText
 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 36px;

@@ -4,10 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function ConjugationPractice()
 {
     return(
-        <Routes>
-            <Route path = "/verb" element = {<VerbConjugation />} />
-            <Route path = "/adjective" element = {<AdjectiveConjugation />} />
-        </Routes>
+        <ConjugationPractice>
+            
+        </ConjugationPractice>
     );
 }
 
