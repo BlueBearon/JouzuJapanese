@@ -410,7 +410,7 @@ body
 {
     height: 7vh;
     width: 4vw;
-    margin: 4px;
+    margin: 3px;
     background: none;
     border-color: #4472C4;
     outline-color: #4472C4;
@@ -427,6 +427,11 @@ body
 .kanaButton:hover
 {
     background-color: #658bcc75;
+}
+
+.pressed
+{
+    background-color: #658bcc;
 }
 
 .dakuten

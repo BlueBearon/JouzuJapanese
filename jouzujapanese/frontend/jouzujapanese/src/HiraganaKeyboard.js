@@ -1,64 +1,167 @@
-import React from "react";
+import React, {useRef } from "react";
+import Key from "./Key.js";
 
-function HiraganaKeyboard()
-{
-    return(
 
-        <div className = "hiraganaKeyboard">
-            <button id = "aHira" className = "A kanaButton" onclick="keyboardPress('あ', 'aHira')">あ</button>
-            <button id = "kaHira" className = "Ka kanaButton" onclick="keyboardPress('か', 'kaHira')">か</button>
-            <button id = "saHira" className = "Sa kanaButton" onclick="keyboardPress('さ', 'saHira')">さ</button>
-            <button id = "taHira" className = "Ta kanaButton" onclick="keyboardPress('た', 'taHira')">た</button>
-            <button id = "naHira" className = "Na kanaButton" onclick="keyboardPress('な', 'naHira')">な</button>
-            <button id = "haHira" className = "Ha kanaButton" onclick="keyboardPress('は', 'haHira')">は</button>
-            <button id = "maHira" className = "Ma kanaButton" onclick="keyboardPress('ま', 'maHira')">ま</button>
-            <button id = "yaHira" className = "Ya kanaButton" onclick="keyboardPress('や', 'yaHira')">や</button>
-            <button id = "raHira" className = "Ra kanaButton" onclick="keyboardPress('ら', 'raHira')">ら</button>
-            <button id = "waHira" className = "Wa kanaButton" onclick="keyboardPress('わ', 'waHira')">わ</button>
-            <button id = "smallYaHira" className = "smallYa kanaButton" onclick="keyboardPress('ゃ', 'smallYaHira')">ゃ</button>
-            <button id = "dakutenHira" className = "dakuten kanaButton" onclick="keyboardPress('゛', 'dakutenHira')">゛</button>
-            <button id = "iHira" className = "I kanaButton" onclick="keyboardPress('い', 'iHira')">い</button>
-            <button id = "kiHira" className = "Ki kanaButton" onclick="keyboardPress('き', 'kiHira')">き</button>
-            <button id = "shiHira" className = "Shi kanaButton" onclick="keyboardPress('し', 'shiHira')">し</button>
-            <button id = "chiHira" className = "Chi kanaButton" onclick="keyboardPress('ち', 'chiHira')">ち</button>
-            <button id = "niHira" className = "Ni kanaButton" onclick="keyboardPress('に', 'niHira')">に</button>
-            <button id = "hiHira" className = "Hi kanaButton" onclick="keyboardPress('ひ', 'hiHira')">ひ</button>
-            <button id = "miHira" className = "Mi kanaButton" onclick="keyboardPress('み', 'miHira')">み</button>
-            <button id = "riHira" className = "Ri kanaButton" onclick="keyboardPress('り', 'riHira')">り</button>
-            <button id = "smallYuHira" className = "smallYu kanaButton" onclick="keyboardPress('ゅ', 'smallYuHira')">ゅ</button>
-            <button id = "handakutenHira" className = "handakuten kanaButton" onclick="keyboardPress('゜', 'handakutenHira')">゜</button>
-            <button id = "uHira" className = "U kanaButton" onclick="keyboardPress('う', 'uHira')">う</button>
-            <button id = "kuHira" className = "Ku kanaButton" onclick="keyboardPress('く', 'kuHira')">く</button>
-            <button id = "suHira" className = "Su kanaButton" onclick="keyboardPress('す', 'suHira')">す</button>
-            <button id = "tsuHira" className = "Tsu kanaButton" onclick="keyboardPress('つ', 'tsuHira')">つ</button>
-            <button id = "nuHira" className = "Nu kanaButton" onclick="keyboardPress('ぬ', 'nuHira')">ぬ</button>
-            <button id = "fuHira" className = "Fu kanaButton" onclick="keyboardPress('ふ', 'fuHira')">ふ</button>
-            <button id = "muHira" className = "Mu kanaButton" onclick="keyboardPress('む', 'muHira')">む</button>
-            <button id = "yuHira" className = "Yu kanaButton" onclick="keyboardPress('ゆ', 'yuHira')">ゆ</button>
-            <button id = "ruHira" className = "Ru kanaButton" onclick="keyboardPress('る', 'ruHira')">る</button>
-            <button id = "woHira" className = "Wo kanaButton" onclick="keyboardPress('を', 'woHira')">を</button>
-            <button id = "smallYoHira" className = "smallYo kanaButton" onclick="keyboardPress('ょ', 'smallYoHira')">ょ</button>
-            <button id = "eHira" className = "E kanaButton" onclick="keyboardPress('え', 'eHira')">え</button>
-            <button id = "keHira" className = "Ke kanaButton" onclick="keyboardPress('け', 'keHira')">け</button>
-            <button id = "seHira" className = "Se kanaButton" onclick="keyboardPress('せ', 'seHira')">せ</button>
-            <button id = "teHira" className = "Te kanaButton" onclick="keyboardPress('て', 'teHira')">て</button>
-            <button id = "neHira" className = "Ne kanaButton" onclick="keyboardPress('ね', 'neHira')">ね</button>
-            <button id = "heHira" className = "He kanaButton" onclick="keyboardPress('へ', 'heHira')">へ</button>
-            <button id = "meHira" className = "Me kanaButton" onclick="keyboardPress('め', 'meHira')">め</button>
-            <button id = "reHira" className = "Re kanaButton" onclick="keyboardPress('れ', 'reHira')">れ</button>
-            <button id = "oHira" className = "O kanaButton" onclick="keyboardPress('お', 'oHira')">お</button>
-            <button id = "koHira" className = "Ko kanaButton" onclick="keyboardPress('こ', 'koHira')">こ</button>
-            <button id = "soHira" className = "So kanaButton" onclick="keyboardPress('そ', 'soHira')">そ</button>
-            <button id = "toHira" className = "To kanaButton" onclick="keyboardPress('と', 'toHira')">と</button>
-            <button id = "noHira" className = "No kanaButton" onclick="keyboardPress('の', 'noHira')">の</button>
-            <button id = "hoHira" className = "Ho kanaButton" onclick="keyboardPress('ほ', 'hoHira')">ほ</button>
-            <button id = "moHira" className = "Mo kanaButton" onclick="keyboardPress('も', 'moHira')">も</button>
-            <button id = "yoHira" className = "Yo kanaButton" onclick="keyboardPress('よ', 'yoHira')">よ</button>
-            <button id = "roHira" className = "Ro kanaButton" onclick="keyboardPress('ろ', 'roHira')">ろ</button>
-        
+var dakutenConversions = {
+    "か": "が",
+    "き": "ぎ",
+    "く": "ぐ",
+    "け": "げ",
+    "こ": "ご",
+    "さ": "ざ",
+    "し": "じ",
+    "す": "ず",
+    "せ": "ぜ",
+    "そ": "ぞ",
+    "た": "だ",
+    "ち": "ぢ",
+    "つ": "づ",
+    "て": "で",
+    "と": "ど",
+    "は": "ば",
+    "ひ": "び",
+    "ふ": "ぶ",
+    "へ": "べ",
+    "ほ": "ぼ",
+    "カ": "ガ",
+    "キ": "ギ",
+    "ク": "グ",
+    "ケ": "ゲ",
+    "コ": "ゴ",
+    "サ": "ザ",
+    "シ": "ジ",
+    "ス": "ズ",
+    "セ": "ゼ",
+    "ソ": "ゾ",
+    "タ": "ダ",
+    "チ": "ヂ",
+    "ツ": "ヅ",
+    "テ": "デ",
+    "ト": "ド",
+    "ハ": "バ",
+    "ヒ": "ビ",
+    "フ":"ブ",
+    "ㇸ":"ベ",
+    "ホ":"ボ"
+};
 
+var handakutenConversions = {
+    "は": "ぱ",
+    "ひ": "ぴ",
+    "ふ": "ぷ",
+    "へ": "ぺ",
+    "ほ": "ぽ",
+    "ハ": "パ",
+    "ヒ": "ピ",
+    "フ": "プ",
+    "ㇸ": "ペ",
+    "ホ": "ポ"
+};
+
+
+
+
+
+function HiraganaKeyboard(props) {
+
+    console.log("Rendering HiraganaKeyboard");
+
+    const userInput = useRef("");
+
+
+    function keyboardPress(kana) {
+        // Toggle the pressed state of the button
+
+        var result;
+
+
+        if(kana === '゛')
+        {
+            if(userInput.length === 0)
+            {
+                return false;
+            }
+
+            result = userInput.current.substring(0, userInput.current.length - 1) + dakutenConversions[userInput.current[userInput.current.length - 1]];
+            userInput.current = result;
+            props.keyboardPress(result);
+            console.log("Keyboard User Input: " + result);
+            return true;
+        }
+        else if(kana === '゜')
+        {
+            if(userInput.length === 0)
+            {
+                return false;
+            }
+            result = userInput.current.substring(0, userInput.current.length - 1) + handakutenConversions[userInput.current[userInput.current.length - 1]];
+            userInput.current = result;
+            props.keyboardPress(result);
+            console.log("Keyboard User Input: " + result);
+            return true;
+        }
+        else
+        {
+            userInput.current = userInput.current + kana;
+            props.keyboardPress(userInput.current);
+            console.log("Keyboard User Input: " + userInput.current);
+            return true;
+        }
+    }
+
+    return (
+        <div className="hiraganaKeyboard">
+            <Key kana="あ" roma="A" updateUserInput={keyboardPress} />
+            <Key kana="か" roma="Ka" updateUserInput={keyboardPress} />
+            <Key kana="さ" roma="Sa" updateUserInput={keyboardPress} />
+            <Key kana="た" roma="Ta" updateUserInput={keyboardPress} />
+            <Key kana="な" roma="Na" updateUserInput={keyboardPress} />
+            <Key kana="は" roma="Ha" updateUserInput={keyboardPress} />
+            <Key kana="ま" roma="Ma" updateUserInput={keyboardPress} />
+            <Key kana="や" roma="Ya" updateUserInput={keyboardPress} />
+            <Key kana="ら" roma="Ra" updateUserInput={keyboardPress} />
+            <Key kana="わ" roma="Wa" updateUserInput={keyboardPress} />
+            <Key kana="ゃ" roma="smallYa" updateUserInput={keyboardPress} />
+            <Key kana="゛" roma="dakuten" updateUserInput={keyboardPress} />
+            <Key kana="い" roma="I" updateUserInput={keyboardPress} />
+            <Key kana="き" roma="Ki" updateUserInput={keyboardPress} />
+            <Key kana="し" roma="Shi" updateUserInput={keyboardPress} />
+            <Key kana="ち" roma="Chi" updateUserInput={keyboardPress} />
+            <Key kana="に" roma="Ni" updateUserInput={keyboardPress} />
+            <Key kana="ひ" roma="Hi" updateUserInput={keyboardPress} />
+            <Key kana="み" roma="Mi" updateUserInput={keyboardPress} />
+            <Key kana="り" roma="Ri" updateUserInput={keyboardPress} />
+            <Key kana="ゅ" roma="smallYu" updateUserInput={keyboardPress} />
+            <Key kana="゜" roma="handakuten" updateUserInput={keyboardPress} />
+            <Key kana="う" roma="U" updateUserInput={keyboardPress} />
+            <Key kana="く" roma="Ku" updateUserInput={keyboardPress} />
+            <Key kana="す" roma="Su" updateUserInput={keyboardPress} />
+            <Key kana="つ" roma="Tsu" updateUserInput={keyboardPress} />
+            <Key kana="ぬ" roma="Nu" updateUserInput={keyboardPress} />
+            <Key kana="ふ" roma="Fu" updateUserInput={keyboardPress} />
+            <Key kana="む" roma="Mu" updateUserInput={keyboardPress} />
+            <Key kana="ゆ" roma="Yu" updateUserInput={keyboardPress} />
+            <Key kana="る" roma="Ru" updateUserInput={keyboardPress} />
+            <Key kana="を" roma="Wo" updateUserInput={keyboardPress} />
+            <Key kana="ょ" roma="smallYo" updateUserInput={keyboardPress} />
+            <Key kana="え" roma="E" updateUserInput={keyboardPress} />
+            <Key kana="け" roma="Ke" updateUserInput={keyboardPress} />
+            <Key kana="せ" roma="Se" updateUserInput={keyboardPress} />
+            <Key kana="て" roma="Te" updateUserInput={keyboardPress} />
+            <Key kana="ね" roma="Ne" updateUserInput={keyboardPress} />
+            <Key kana="へ" roma="He" updateUserInput={keyboardPress} />
+            <Key kana="め" roma="Me" updateUserInput={keyboardPress} />
+            <Key kana="れ" roma="Re" updateUserInput={keyboardPress} />
+            <Key kana="お" roma="O" updateUserInput={keyboardPress} />
+            <Key kana="こ" roma="Ko" updateUserInput={keyboardPress} />
+            <Key kana="そ" roma="So" updateUserInput={keyboardPress} />
+            <Key kana="と" roma="To" updateUserInput={keyboardPress} />
+            <Key kana="の" roma="No" updateUserInput={keyboardPress} />
+            <Key kana="ほ" roma="Ho" updateUserInput={keyboardPress} />
+            <Key kana="も" roma="Mo" updateUserInput={keyboardPress} />
+            <Key kana="よ" roma="Yo" updateUserInput={keyboardPress} />
+            <Key kana="ろ" roma="Ro" updateUserInput={keyboardPress} />
         </div>
-
     );
 }
 

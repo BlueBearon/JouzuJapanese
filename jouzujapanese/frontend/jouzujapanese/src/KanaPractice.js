@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef} from "react";
 import TopElements from "./TopElements";
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
@@ -13,10 +13,12 @@ function retrieveHiraganaQuestion(options)
     //random number 0 or 1
     var random = Math.floor(Math.random() * 2);
 
-    if (options[0] && (!options[1] || random == 0))
+    var possibleQuestions;
+
+    if (options[0] && (!options[1] || random === 0))
     {
         //return ["た", "ta", "KANA"];
-        var possibleQuestions = [
+        possibleQuestions = [
             ["た", "ta", "KANA"],
             ["い", "i", "KANA"],
             ["か", "ka", "KANA"],
@@ -38,7 +40,7 @@ function retrieveHiraganaQuestion(options)
     else
     {
         //return ["ta", "た", "ROMANJI"];
-        var possibleQuestions = [
+        possibleQuestions = [
             ["ta", "た", "ROMANJI"],
             ["i", "い", "ROMANJI"],
             ["ka", "か", "ROMANJI"],
@@ -68,10 +70,12 @@ function retrieveKatakanaQuestion(options)
     //random number 0 or 1
     var random = Math.floor(Math.random() * 2);
 
-    if (options[0] && (!options[1] || random == 0))
+    var possibleQuestions;
+
+    if (options[0] && (!options[1] || random === 0))
     {
         //return ["タ", "ta", "KANA"];
-        var possibleQuestions = [
+        possibleQuestions = [
             ["タ", "ta", "KANA"],
             ["イ", "i", "KANA"],
             ["カ", "ka", "KANA"],
@@ -93,7 +97,7 @@ function retrieveKatakanaQuestion(options)
     else
     {
         //return ["ta", "タ", "ROMANJI"];
-        var possibleQuestions = [
+        possibleQuestions = [
             ["ta", "タ", "ROMANJI"],
             ["i", "イ", "ROMANJI"],
             ["ka", "カ", "ROMANJI"],
@@ -125,30 +129,79 @@ var correct = 0;
 
 function KanaPractice(props)
 {
-    if(props.type === "katakana")
+
+    console.log("Rendering Kana Practice");
+
+    const [state, setState] = useState(0);
+    const userResponse = useRef("");
+    const questionCount = useRef(0);
+    const correct = useRef(0);
+    const question = useRef({});
+    const questionType = useRef("hiragana");
+
+
+    function checkAnswer(answer)
     {
-        mode = 1;
+        userResponse.current = answer;
+
+        questionCount.current += 1;
+
+        if(answer == question.current[1])
+        {
+            correct.current +=1;
+            setState(1);
+        }
+        else
+        {
+            setState(2);
+        }
     }
-    else
+
+    function test(answer)
     {
-        mode = 0;
+        console.log("Testing");
+
+        try
+        {
+            checkAnswer(answer);
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
+    function newQuestion()
+    {
+        setState(0);
+    }
+
+    console.log("State: " + state);
+
+    if(props.type !== questionType.current)
+    {
+        questionType.current = props.type;
+        questionCount.current = 0;
+        correct.current = 0;
     }
 
     if(state === 0)
     {
-        if(mode === 0) 
+        console.log("Rendering Question");
+
+        if(props.type === "hiragana")
         {
-            question = retrieveHiraganaQuestion([true, true]);
+            question.current = retrieveHiraganaQuestion([true, true]);
         }
         else
         {
-            question = retrieveKatakanaQuestion([true, true]);
+            question.current = retrieveKatakanaQuestion([true, true]);
         }
 
         return (
-            <div class = "questionSection">
-                <TopElements correct = {correct} questions = {questions}/>
-                <KanaQuestion word = {question[0]} type = {question[2]} kana = {props.type}/>
+            <div className = "questionSection">
+                <TopElements correct = {correct.current} questions = {questionCount.current}/>
+                <KanaQuestion word = {question.current[0]} type = {question.current[2]} kana = {props.type} checkAnswer={test}/>
             </div>
 
         );
@@ -156,9 +209,9 @@ function KanaPractice(props)
     else if(state === 1)
     {
         return(
-            <div class = "questionSection">
-                <TopElements correct = {correct} questions = {questions}/>
-                <CorrectAnswer question = {question[0]} correctAnswer ={question[1]}/>
+            <div className = "questionSection">
+                <TopElements correct = {correct.current} questions = {questionCount.current}/>
+                <CorrectAnswer question = {question.current[0]} correctAnswer ={question.current[1]} next = {newQuestion}/>
 
             </div>
         );
@@ -166,9 +219,9 @@ function KanaPractice(props)
     else
     {
         return(
-            <div class = "questionSection">
-                <TopElements correct = {correct} questions = {questions}/>
-                <WrongAnswer question = {question[0]} userAnswer = {userResponse} correctAnswer ={question[1]}/>
+            <div className = "questionSection">
+                <TopElements correct = {correct.current} questions = {questionCount.current}/>
+                <WrongAnswer question = {question.current[0]} userAnswer = {userResponse.current} correctAnswer ={question.current[1]} next = {newQuestion}/>
 
             </div>
         );

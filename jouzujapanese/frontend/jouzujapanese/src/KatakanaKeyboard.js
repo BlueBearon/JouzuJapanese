@@ -1,60 +1,170 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import Key from "./Key.js";
 
-function KatakanaKeyboard()
+var dakutenConversions = {
+    "か": "が",
+    "き": "ぎ",
+    "く": "ぐ",
+    "け": "げ",
+    "こ": "ご",
+    "さ": "ざ",
+    "し": "じ",
+    "す": "ず",
+    "せ": "ぜ",
+    "そ": "ぞ",
+    "た": "だ",
+    "ち": "ぢ",
+    "つ": "づ",
+    "て": "で",
+    "と": "ど",
+    "は": "ば",
+    "ひ": "び",
+    "ふ": "ぶ",
+    "へ": "べ",
+    "ほ": "ぼ",
+    "カ": "ガ",
+    "キ": "ギ",
+    "ク": "グ",
+    "ケ": "ゲ",
+    "コ": "ゴ",
+    "サ": "ザ",
+    "シ": "ジ",
+    "ス": "ズ",
+    "セ": "ゼ",
+    "ソ": "ゾ",
+    "タ": "ダ",
+    "チ": "ヂ",
+    "ツ": "ヅ",
+    "テ": "デ",
+    "ト": "ド",
+    "ハ": "バ",
+    "ヒ": "ビ",
+    "フ":"ブ",
+    "ㇸ":"ベ",
+    "ホ":"ボ"
+};
+
+var handakutenConversions = {
+    "は": "ぱ",
+    "ひ": "ぴ",
+    "ふ": "ぷ",
+    "へ": "ぺ",
+    "ほ": "ぽ",
+    "ハ": "パ",
+    "ヒ": "ピ",
+    "フ": "プ",
+    "ㇸ": "ペ",
+    "ホ": "ポ"
+};
+
+/**
+ * Returns the katakana keyboard
+ * 
+ * Contains all 46 regular katakana characters, as well as the dakuten and handakuten characters and the small ya, yu, and yo characters
+ * 
+ * @returns {HTMLDivElement} The katakana keyboard
+ */
+function KatakanaKeyboard(props)
 {
+
+    console.log("Rendering KatakanaKeyboard");
+
+    const userInput = useRef("");
+
+
+    function keyboardPress(kana) {
+        // Toggle the pressed state of the button
+
+        var result;
+
+
+        if(kana === '゛')
+        {
+            if(userInput.length === 0)
+            {
+                return false;
+            }
+
+            result = userInput.current.substring(0, userInput.current.length - 1) + dakutenConversions[userInput.current[userInput.current.length - 1]];
+            userInput.current = result;
+            props.keyboardPress(result);
+            console.log("Keyboard User Input: " + result);
+            return true;
+        }
+        else if(kana === '゜')
+        {
+            if(userInput.length === 0)
+            {
+                return false;
+            }
+            result = userInput.current.substring(0, userInput.current.length - 1) + handakutenConversions[userInput.current[userInput.current.length - 1]];
+            userInput.current = result;
+            props.keyboardPress(result);
+            console.log("Keyboard User Input: " + result);
+            return true;
+        }
+        else
+        {
+            userInput.current = userInput.current + kana;
+            props.keyboardPress(userInput.current);
+            console.log("Keyboard User Input: " + userInput.current);
+            return true;
+        }
+    }
+
     return(
 
-        <div className = "katakanaKeyboard">
-            <button id = "aKata" className = "A kanaButton" onclick="keyboardPress('ア', 'aKata')">ア</button>
-            <button id = "kaKata" className = "Ka kanaButton" onclick="keyboardPress('カ', 'kaKata')">カ</button>
-            <button id = "saKata" className = "Sa kanaButton" onclick="keyboardPress('サ', 'saKata')">サ</button>
-            <button id = "taKata" className = "Ta kanaButton" onclick="keyboardPress('タ', 'taKata')">タ</button>
-            <button id = "naKata" className = "Na kanaButton" onclick="keyboardPress('ナ', 'naKata')">ナ</button>
-            <button id = "haKata" className = "Ha kanaButton" onclick="keyboardPress('ハ', 'haKata')">ハ</button>
-            <button id = "maKata" className = "Ma kanaButton" onclick="keyboardPress('マ', 'maKata')">マ</button>
-            <button id = "yaKata" className = "Ya kanaButton" onclick="keyboardPress('ヤ', 'yaKata')">ヤ</button>
-            <button id = "raKata" className = "Ra kanaButton" onclick="keyboardPress('ラ', 'raKata')">ラ</button>
-            <button id = "waKata" className = "Wa kanaButton" onclick="keyboardPress('ワ', 'waKata')">ワ</button>
-            <button id = "smallYaKata" className = "SmallYa kanaButton" onclick="keyboardPress('ャ', 'smallYaKata')">ャ</button>
-            <button id = "dakutenKata" className = "Dakuten kanaButton" onclick="keyboardPress('゛', 'dakutenKata')">゛</button>
-            <button id = "iKata" className = "I kanaButton" onclick="keyboardPress('イ', 'iKata')">イ</button>
-            <button id = "kiKata" className = "Ki kanaButton" onclick="keyboardPress('キ', 'kiKata')">キ</button>
-            <button id = "shiKata" className = "Shi kanaButton" onclick="keyboardPress('シ', 'shiKata')">シ</button>
-            <button id = "chiKata" className = "Chi kanaButton" onclick="keyboardPress('チ', 'chiKata')">チ</button>
-            <button id = "niKata" className = "Ni kanaButton" onclick="keyboardPress('ニ', 'niKata')">ニ</button>
-            <button id = "hiKata" className = "Hi kanaButton" onclick="keyboardPress('ヒ', 'hiKata')">ヒ</button>
-            <button id = "miKata" className = "Mi kanaButton" onclick="keyboardPress('ミ', 'miKata')">ミ</button>
-            <button id = "riKata" className = "Ri kanaButton" onclick="keyboardPress('リ', 'riKata')">リ</button>
-            <button id = "smallYuKata" className = "SmallYu kanaButton" onclick="keyboardPress('ュ', 'smallYuKata')">ュ</button>
-            <button id = "handakutenKata" className = "Handakuten kanaButton" onclick="keyboardPress('゜', 'handakutenKata')">゜</button>
-            <button id = "uKata" className = "U kanaButton" onclick="keyboardPress('ウ', 'uKata')">ウ</button>
-            <button id = "kuKata" className = "Ku kanaButton" onclick="keyboardPress('ク', 'kuKata')">ク</button>
-            <button id = "suKata" className = "Su kanaButton" onclick="keyboardPress('ス', 'suKata')">ス</button>
-            <button id = "tsuKata" className = "Tsu kanaButton" onclick="keyboardPress('ツ', 'tsuKata')">ツ</button>
-            <button id = "nuKata" className = "Nu kanaButton" onclick="keyboardPress('ヌ', 'nuKata')">ヌ</button>
-            <button id = "fuKata" className = "Fu kanaButton" onclick="keyboardPress('フ', 'fuKata')">フ</button>
-            <button id = "muKata" className = "Mu kanaButton" onclick="keyboardPress('ム', 'muKata')">ム</button>
-            <button id = "yuKata" className = "Yu kanaButton" onclick="keyboardPress('ユ', 'yuKata')">ユ</button>
-            <button id = "ruKata" className = "Ru kanaButton" onclick="keyboardPress('ル', 'ruKata')">ル</button>
-            <button id = "woKata" className = "Wo kanaButton" onclick="keyboardPress('ヲ', 'woKata')">ヲ</button>
-            <button id = "smallYoKata" className = "SmallYo kanaButton" onclick="keyboardPress('ョ', 'smallYoKata')">ョ</button>
-            <button id = "eKata" className = "E kanaButton" onclick="keyboardPress('エ', 'eKata')">エ</button>
-            <button id = "keKata" className = "Ke kanaButton" onclick="keyboardPress('ケ', 'keKata')">ケ</button>
-            <button id = "seKata" className = "Se kanaButton" onclick="keyboardPress('セ', 'seKata')">セ</button>
-            <button id = "teKata" className = "Te kanaButton" onclick="keyboardPress('テ', 'teKata')">テ</button>
-            <button id = "neKata" className = "Ne kanaButton" onclick="keyboardPress('ネ', 'neKata')">ネ</button>
-            <button id = "heKata" className = "He kanaButton" onclick="keyboardPress('ヘ', 'heKata')">ヘ</button>
-            <button id = "meKata" className = "Me kanaButton" onclick="keyboardPress('メ', 'meKata')">メ</button>
-            <button id = "reKata" className = "Re kanaButton" onclick="keyboardPress('レ', 'reKata')">レ</button>
-            <button id = "oKata" className = "O kanaButton" onclick="keyboardPress('オ', 'oKata')">オ</button>
-            <button id = "koKata" className = "Ko kanaButton" onclick="keyboardPress('コ', 'koKata')">コ</button>
-            <button id = "soKata" className = "So kanaButton" onclick="keyboardPress('ソ', 'soKata')">ソ</button>
-            <button id = "toKata" className = "To kanaButton" onclick="keyboardPress('ト', 'toKata')">ト</button>
-            <button id = "noKata" className = "No kanaButton" onclick="keyboardPress('ノ', 'noKata')">ノ</button>
-            <button id = "hoKata" className = "Ho kanaButton" onclick="keyboardPress('ホ', 'hoKata')">ホ</button>
-            <button id = "moKata" className = "Mo kanaButton" onclick="keyboardPress('モ', 'moKata')">モ</button>
-            <button id = "yoKata" className = "Yo kanaButton" onclick="keyboardPress('ヨ', 'yoKata')">ヨ</button>
-            <button id = "roKata" className = "Ro kanaButton" onclick="keyboardPress('ロ', 'roKata')">ロ</button>
+        <div className="katakanaKeyboard">
+            <Key kana="ア" roma="A" updateUserInput={keyboardPress} />
+            <Key kana="カ" roma="Ka" updateUserInput={keyboardPress} />
+            <Key kana="サ" roma="Sa" updateUserInput={keyboardPress} />
+            <Key kana="タ" roma="Ta" updateUserInput={keyboardPress} />
+            <Key kana="ナ" roma="Na" updateUserInput={keyboardPress} />
+            <Key kana="ハ" roma="Ha" updateUserInput={keyboardPress} />
+            <Key kana="マ" roma="Ma" updateUserInput={keyboardPress} />
+            <Key kana="ヤ" roma="Ya" updateUserInput={keyboardPress} />
+            <Key kana="ラ" roma="Ra" updateUserInput={keyboardPress} />
+            <Key kana="ワ" roma="Wa" updateUserInput={keyboardPress} />
+            <Key kana="ャ" roma="SmallYa" updateUserInput={keyboardPress} />
+            <Key kana="゛" roma="dakuten" updateUserInput={keyboardPress} />
+            <Key kana="イ" roma="I" updateUserInput={keyboardPress} />
+            <Key kana="キ" roma="Ki" updateUserInput={keyboardPress} />
+            <Key kana="シ" roma="Shi" updateUserInput={keyboardPress} />
+            <Key kana="チ" roma="Chi" updateUserInput={keyboardPress} />
+            <Key kana="ニ" roma="Ni" updateUserInput={keyboardPress} />
+            <Key kana="ヒ" roma="Hi" updateUserInput={keyboardPress} />
+            <Key kana="ミ" roma="Mi" updateUserInput={keyboardPress} />
+            <Key kana="リ" roma="Ri" updateUserInput={keyboardPress} />
+            <Key kana="ュ" roma="SmallYu" updateUserInput={keyboardPress} />
+            <Key kana="゜" roma="handakuten" updateUserInput={keyboardPress} />
+            <Key kana="ウ" roma="U" updateUserInput={keyboardPress} />
+            <Key kana="ク" roma="Ku" updateUserInput={keyboardPress} />
+            <Key kana="ス" roma="Su" updateUserInput={keyboardPress} />
+            <Key kana="ツ" roma="Tsu" updateUserInput={keyboardPress} />
+            <Key kana="ヌ" roma="Nu" updateUserInput={keyboardPress} />
+            <Key kana="フ" roma="Fu" updateUserInput={keyboardPress} />
+            <Key kana="ム" roma="Mu" updateUserInput={keyboardPress} />
+            <Key kana="ユ" roma="Yu" updateUserInput={keyboardPress} />
+            <Key kana="ル" roma="Ru" updateUserInput={keyboardPress} />
+            <Key kana="ヲ" roma="Wo" updateUserInput={keyboardPress} />
+            <Key kana="ョ" roma="SmallYo" updateUserInput={keyboardPress} />
+            <Key kana="エ" roma="E" updateUserInput={keyboardPress} />
+            <Key kana="ケ" roma="Ke" updateUserInput={keyboardPress} />
+            <Key kana="セ" roma="Se" updateUserInput={keyboardPress} />
+            <Key kana="テ" roma="Te" updateUserInput={keyboardPress} />
+            <Key kana="ネ" roma="Ne" updateUserInput={keyboardPress} />
+            <Key kana="ヘ" roma="He" updateUserInput={keyboardPress} />
+            <Key kana="メ" roma="Me" updateUserInput={keyboardPress} />
+            <Key kana="レ" roma="Re" updateUserInput={keyboardPress} />
+            <Key kana="オ" roma="O" updateUserInput={keyboardPress} />
+            <Key kana="コ" roma="Ko" updateUserInput={keyboardPress} />
+            <Key kana="ソ" roma="So" updateUserInput={keyboardPress} />
+            <Key kana="ト" roma="To" updateUserInput={keyboardPress} />
+            <Key kana="ノ" roma="No" updateUserInput={keyboardPress} />
+            <Key kana="ホ" roma="Ho" updateUserInput={keyboardPress} />
+            <Key kana="モ" roma="Mo" updateUserInput={keyboardPress} />
+            <Key kana="ヨ" roma="Yo" updateUserInput={keyboardPress} />
+            <Key kana="ロ" roma="Ro" updateUserInput={keyboardPress} />
         </div>
 
     );
