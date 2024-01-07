@@ -1,20 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header()
 {
     return(
         <header className = "header">
-            <div className = "Heading">上手</div>
+            <div className = "Heading"><Link to="/" className="Heading">上手</Link></div>
 
             <div id = "nav" className = "tabs">
-                <button id = "toHiraganaTab" className = "navButton">Hiragana</button>
-                <button id = "toKatakanaTab" className = "navButton">Katakana</button>
-                <button id = "toVerbConjugationTab" className = "navButton">Verb</button>
-                <button id = "toAdjectiveConjugationTab" className = "navButton">Adjective</button>
-                <button id = "toAboutTab" className = "navButton">About</button>
-            </div>
-
-            <script src = "NavigationBar.js"></script>
+               <Link to="/KanaPractice/hiragana" className="navButton">Hiragana</Link>
+               <Link to="/KanaPractice/katakana" className="navButton">Katakana</Link>
+               <Link to="/ConjugationPractice/verb" className="navButton">Verb</Link>
+               <Link to="/ConjugationPractice/adjective" className="navButton">Adjective</Link>
+               <Link to="/About" className="navButton">About</Link>
+           </div>
 
         </header>
     );

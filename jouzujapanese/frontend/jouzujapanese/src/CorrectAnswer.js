@@ -1,18 +1,19 @@
 import React from "react";
 
 
-function CorrectAnswer()
+function CorrectAnswer(props)
 {
     return(
-        <CorrectAnswer className = "correctAnswer">
+        <div className = "correctAnswer">
             <div id = "correctText" className = "correctText">Correct</div>
-            <div id = "question" className = "question"></div>
+            <div id = "question" className = "question">{ props.question }</div>
             <div id = "answerBox" className = "answerBox">
-                <img className = "answericon" src= "Assets/Correct.png" alt="Correct"></img>
-                <div id = "AnswerText" class = "AnswerText"></div>
+                <img className = "answericon" src= "/Correct.png" alt="Correct"></img>
+                <div id = "AnswerText" className = "AnswerText">{ props.correctAnswer }</div>
             </div>
-            <button id = "nextButton" class = "submitButton">&#8594</button>
-        </CorrectAnswer>
+            <button id = "nextButton" className = "submitButton"
+            onClick = {() => props.next()}>&#8594;</button>
+        </div>
     );
 }
 

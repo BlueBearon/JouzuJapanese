@@ -1,21 +1,22 @@
 import React from "react";
 
-function WrongAnswer()
+function WrongAnswer(props)
 {
     return(
-        <WrongAnswer className = "wrongAnswer">
-            <div id = "wrongText" class = "wrongText">Incorrect</div>
-            <div id = "question" class = "question"></div>
-            <div id = "givenAnswer" class = "answerBox">
-                <img className = "answericon" src= "Assets/Incorrect.png" alt="Incorrect"></img>
-                <div id = "incorrectAnswerText" class = "AnswerText"></div>
+        <div className = "wrongAnswer">
+            <div id = "wrongText" className = "wrongText">Incorrect</div>
+            <div id = "question" className = "question">{ props.question }</div>
+            <div id = "givenAnswer" className = "answerBox">
+                <img className = "answericon" src= "/Incorrect.png" alt="Incorrect"></img>
+                <div id = "incorrectAnswerText" className = "AnswerText">{ props.userAnswer }</div>
             </div>
-            <div id = "correctAnswer" class = "answerBox">
-                <img className = "answericon" src= "Assets/Correct.png" alt="Correct"></img>
-                <div id = "correctAnswerText" class = "AnswerText"></div>
+            <div id = "correctAnswer" className = "answerBox">
+                <img className = "answericon" src= "/Correct.png" alt="Correct"></img>
+                <div id = "correctAnswerText" className = "AnswerText">{ props.correctAnswer }</div>
             </div>
-            <button id = "nextButton" class = "submitButton">&#8594</button>
-        </WrongAnswer>
+            <button id = "nextButton" className = "submitButton"
+            onClick = {() => props.next()}>&#8594;</button>
+        </div>
     );
 }
 
