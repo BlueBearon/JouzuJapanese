@@ -49,7 +49,7 @@ public class AdjectiveConjugationPractice {
      * @param max
      * @return
      */
-    private int generateRandomNum(int max)
+    private static int generateRandomNum(int max)
     {
         return gen.nextInt(max);
     }
@@ -166,7 +166,7 @@ public class AdjectiveConjugationPractice {
      * @param options
      * @return
      */
-    private int selectRandomBoolean(boolean[] options)
+    private static int selectRandomBoolean(boolean[] options)
     {
         
         //Create an arraylist of the valid options
@@ -194,7 +194,7 @@ public class AdjectiveConjugationPractice {
      * Returns a random adjective based on the options selected by the user
      * @return random adjective based on the options selected by the user
      */
-    private Adjective selectAdjective(boolean iAdjectives, boolean naAdjectives)
+    private static Adjective selectAdjective(boolean iAdjectives, boolean naAdjectives)
     {
         boolean[] options = {iAdjectives, naAdjectives};
 
@@ -215,7 +215,7 @@ public class AdjectiveConjugationPractice {
      * Returns a random formality based on the options selected by the user
      * @return random formality based on the options selected by the user
      */
-    private String selectFormality(boolean casual, boolean formal)
+    private static String selectFormality(boolean casual, boolean formal)
     {
         boolean[] options = new boolean[]{casual, formal};
 
@@ -238,7 +238,7 @@ public class AdjectiveConjugationPractice {
      * Returns a random tense based on the options selected by the user
      * @return random tense based on the options selected by the user
      */
-    private String selectPolarity(boolean affirmative, boolean negative)
+    private static String selectPolarity(boolean affirmative, boolean negative)
     {
         boolean[] options = new boolean[]{affirmative, negative};
 
@@ -261,7 +261,7 @@ public class AdjectiveConjugationPractice {
      * Returns a random tense based on the options selected by the user
      * @return random tense based on the options selected by the user
      */
-    private String selectTense(boolean present, boolean past)
+    private static String selectTense(boolean present, boolean past)
     {
         boolean[] options = new boolean[]{present, past};
 
@@ -284,7 +284,7 @@ public class AdjectiveConjugationPractice {
      * Returns a random question based on the options selected by the user
      * @return random question based on the options selected by the user
      */
-    public String[] generateQuestion(boolean[] options)
+    public static String[] generateQuestion(boolean[] options)
     {
         String[] result = {"Answer", "Hiragana", "conjugation"};
 

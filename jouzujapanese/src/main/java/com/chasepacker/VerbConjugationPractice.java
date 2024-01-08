@@ -49,7 +49,7 @@ public class VerbConjugationPractice {
      * @param max
      * @return
      */
-    private int generateRandomNum(int max)
+    private static int generateRandomNum(int max)
     {
         return gen.nextInt(max);
     }
@@ -204,7 +204,7 @@ public class VerbConjugationPractice {
      * @param options
      * @return
      */
-    private int selectRandomBoolean(boolean[] options)
+    private static int selectRandomBoolean(boolean[] options)
     {
         
         //Create an arraylist of the valid options
@@ -232,7 +232,7 @@ public class VerbConjugationPractice {
      * Returns a random verb based on the options selected by the user
      * @return random verb based on the options selected by the user
      */
-    private Verb selectVerb(boolean ruverbs, boolean uverbs, boolean irrverbs)
+    private static Verb selectVerb(boolean ruverbs, boolean uverbs, boolean irrverbs)
     {
         boolean[] options = new boolean[]{ruverbs, uverbs, irrverbs};
 
@@ -258,7 +258,7 @@ public class VerbConjugationPractice {
      * Returns a random formality based on the options selected by the user
      * @return random formality based on the options selected by the user
      */
-    private String selectFormality(boolean casual, boolean formal)
+    private static String selectFormality(boolean casual, boolean formal)
     {
         boolean[] options = new boolean[]{casual, formal};
 
@@ -281,7 +281,7 @@ public class VerbConjugationPractice {
      * Returns a random tense based on the options selected by the user
      * @return random tense based on the options selected by the user
      */
-    private String selectPolarity(boolean affirmative, boolean negative)
+    private static String selectPolarity(boolean affirmative, boolean negative)
     {
         boolean[] options = new boolean[]{affirmative, negative};
 
@@ -304,7 +304,7 @@ public class VerbConjugationPractice {
      * Returns a random tense based on the options selected by the user
      * @return random tense based on the options selected by the user
      */
-    private String selectTense(boolean present, boolean past)
+    private static String selectTense(boolean present, boolean past)
     {
         boolean[] options = new boolean[]{present, past};
 
@@ -327,7 +327,7 @@ public class VerbConjugationPractice {
      * Returns a random modifier based on the options selected by the user
      * @return random modifier based on the options selected by the user
      */
-    private String selectModifier(boolean potential, boolean passive, boolean causative, boolean volitional)
+    private static String selectModifier(boolean potential, boolean passive, boolean causative, boolean volitional)
     {
         boolean[] options = new boolean[]{potential, passive, causative, volitional, true};
 
@@ -353,7 +353,7 @@ public class VerbConjugationPractice {
      * Returns a random question based on the options selected by the user
      * @return random question based on the options selected by the user
      */
-    public String[] generateQuestion(boolean[] options)
+    public static String[] generateQuestion(boolean[] options)
     {
         String[] result = {"Answer", "Hiragana", "conjugation"};
 

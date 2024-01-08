@@ -9,7 +9,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoModifiers()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, true, true, true, true, true, true, false, false, false, false};
 
@@ -19,7 +19,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
 
             assertFalse(result[2].contains("Volitional"));
             assertFalse(result[2].contains("Potential"));
@@ -31,7 +31,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoFormal()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, true, false, true, true, true, true, true, true, true, true};
 
@@ -41,7 +41,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
 
             System.out.println(result[2]);
             assertFalse(result[2].contains("Formal"));
@@ -51,7 +51,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoCasual()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, false, true, true, true, true, true, true, true, true, true};
 
@@ -61,7 +61,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
 
             assertFalse(result[2].contains("Casual"));
         }
@@ -70,7 +70,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoNegative()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, true, true, true, true, true, false, true, true, true, true};
 
@@ -80,7 +80,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
 
             System.out.println(result[2]);
             assertFalse(result[2].contains("Negative"));
@@ -90,7 +90,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoPositive()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, true, true, false, true, false, true, true, true, true, true};
 
@@ -100,7 +100,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
             System.out.println(result[2]);
             assertFalse(result[2].contains("Positive"));
         }
@@ -109,7 +109,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoPast()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, true, true, true, false, true, true, true, true, true, true};
 
@@ -119,7 +119,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
 
             assertFalse(result[2].contains("Past"));
         }
@@ -128,7 +128,7 @@ public class VerbConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoPresent()
     {
-        VerbConjugationPractice vcp = new VerbConjugationPractice();
+        
 
         boolean[] options = {true, true, true, true, true, false, true, true, true, true, true, true, true};
 
@@ -138,7 +138,7 @@ public class VerbConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = vcp.generateQuestion(options);
+            String[] result = VerbConjugationPractice.generateQuestion(options);
             System.out.println(result[2]);
             assertFalse(result[2].contains("Present"));
         }

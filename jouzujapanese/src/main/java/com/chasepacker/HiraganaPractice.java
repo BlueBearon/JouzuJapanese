@@ -13,7 +13,7 @@ public class HiraganaPractice {
 
 
 
-    public String[] generateKanaToRomanjiQuestion()
+    public static String[] generateKanaToRomanjiQuestion()
     {
         int randomNum = random.nextInt(Word.HIRAGANA.length);
 
@@ -22,7 +22,7 @@ public class HiraganaPractice {
         return result;
     }
 
-    public String[] generateRomanjiToKanaQuestion()
+    public static String[] generateRomanjiToKanaQuestion()
     {
         int randomNum = random.nextInt(Word.ROMANJI.length);
 
@@ -31,7 +31,7 @@ public class HiraganaPractice {
         return result;
     }
 
-    public String[] generateQuestion(boolean[] options) 
+    public static String[] generateQuestion(boolean[] options) 
     {
         //Options = {Boolean Kana to Romanji, Boolean Romanji to Kana}
 

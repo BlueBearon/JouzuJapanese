@@ -10,7 +10,7 @@ public class AdjectiveConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoFormal()
     {
-        AdjectiveConjugationPractice acp = new AdjectiveConjugationPractice();
+        
 
         //{includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};
         boolean[] options = {true, true, true, false, true, true, true, true};
@@ -21,7 +21,7 @@ public class AdjectiveConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = acp.generateQuestion(options);
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
 
             System.out.println(result[2]);
             assertFalse(result[2].contains("Formal"));
@@ -31,7 +31,7 @@ public class AdjectiveConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoCasual()
     {
-        AdjectiveConjugationPractice acp = new AdjectiveConjugationPractice();
+        
 
         //{includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};
         boolean[] options = {true, true, false, true, true, true, true, true};
@@ -42,7 +42,7 @@ public class AdjectiveConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = acp.generateQuestion(options);
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
 
             assertFalse(result[2].contains("Casual"));
         }
@@ -51,7 +51,7 @@ public class AdjectiveConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoNegative()
     {
-        AdjectiveConjugationPractice acp = new AdjectiveConjugationPractice();
+        
 
         //{includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};
         boolean[] options = {true, true, true, true, true, true, true, false};
@@ -62,7 +62,7 @@ public class AdjectiveConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = acp.generateQuestion(options);
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
 
             System.out.println(result[2]);
             assertFalse(result[2].contains("Negative"));
@@ -72,7 +72,7 @@ public class AdjectiveConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoPositive()
     {
-        AdjectiveConjugationPractice acp = new AdjectiveConjugationPractice();
+        
 
         //{includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};
         boolean[] options = {true, true, true, true, true, true, false, true};
@@ -83,7 +83,7 @@ public class AdjectiveConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = acp.generateQuestion(options);
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
             System.out.println(result[2]);
             assertFalse(result[2].contains("Positive"));
         }
@@ -92,7 +92,7 @@ public class AdjectiveConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoPast()
     {
-        AdjectiveConjugationPractice acp = new AdjectiveConjugationPractice();
+        
 
         //{includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};
         boolean[] options = {true, true, true, true, true, false, true, true};
@@ -103,7 +103,7 @@ public class AdjectiveConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = acp.generateQuestion(options);
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
             System.out.println(result[2]);
             assertFalse(result[2].contains("Past"));
         }
@@ -112,7 +112,7 @@ public class AdjectiveConjugationPracticeTest {
     @Test
     public void testGenerateQuestionNoPresent()
     {
-        AdjectiveConjugationPractice acp = new AdjectiveConjugationPractice();
+        
 
         //{includeIAdjectives, includeNaAdjectives, includeCasual, includeFormal, includePresent, includePast, includeAffirmative, includeNegative};
         boolean[] options = {true, true, true, true, false, true, true, true};
@@ -123,7 +123,7 @@ public class AdjectiveConjugationPracticeTest {
 
         for (int i = 0; i < testruns; i++)
         {
-            String[] result = acp.generateQuestion(options);
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
             System.out.println(result[2]);
             assertFalse(result[2].contains("Present"));
         }
