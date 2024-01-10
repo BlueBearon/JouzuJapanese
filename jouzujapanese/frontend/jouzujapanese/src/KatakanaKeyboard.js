@@ -80,8 +80,15 @@ function KatakanaKeyboard(props)
 
         if(kana === '゛')
         {
-            if(userInput.length === 0)
+            if(userInput.current.length == 0)
             {
+                console.log("KatakanaKeyboard.js: dakuten pressed with no previous kana");
+                return false;
+            }
+
+            if(dakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
+            {
+                console.log("KatakanaKeyboard.js: dakuten pressed with no compatible previous kana");
                 return false;
             }
 
@@ -93,8 +100,15 @@ function KatakanaKeyboard(props)
         }
         else if(kana === '゜')
         {
-            if(userInput.length === 0)
+            if(userInput.current.length == 0)
             {
+                console.log("KatakanaKeyboard.js: handakuten pressed with no previous kana");
+                return false;
+            }
+
+            if(handakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
+            {
+                console.log("KatakanaKeyboard.js: handakuten pressed with no compatible previous kana");
                 return false;
             }
             result = userInput.current.substring(0, userInput.current.length - 1) + handakutenConversions[userInput.current[userInput.current.length - 1]];
@@ -105,6 +119,21 @@ function KatakanaKeyboard(props)
         }
         else
         {
+            if(userInput.current.length > 1)
+            {
+                console.log("KatakanaKeyboard.js: User has already selected their answer");
+                return false;
+            }
+
+            if(userInput.current.length == 1)
+            {
+                if(userInput.current[0] === 'ャ' || userInput.current[0] === 'ュ' || userInput.current[0] === 'ョ')
+                {
+                    console.log("KatakanaKeyboard.js: User has already selected their answer");
+                    return false;
+                }
+            }
+
             userInput.current = userInput.current + kana;
             props.keyboardPress(userInput.current);
             console.log("Keyboard User Input: " + userInput.current);

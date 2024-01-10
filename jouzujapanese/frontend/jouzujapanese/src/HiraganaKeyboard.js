@@ -77,8 +77,15 @@ function HiraganaKeyboard(props) {
 
         if(kana === '゛')
         {
-            if(userInput.length === 0)
+            if(userInput.current.length == 0)
             {
+                console.log("HiraganaKeyboard.js: dakuten pressed with no previous kana");
+                return false;
+            }
+
+            if(dakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
+            {
+                console.log("HiraganaKeyboard.js: dakuten pressed with no compatible previous kana");
                 return false;
             }
 
@@ -90,10 +97,18 @@ function HiraganaKeyboard(props) {
         }
         else if(kana === '゜')
         {
-            if(userInput.length === 0)
+            if(userInput.current.length == 0)
             {
+                console.log("HiraganaKeyboard.js: handakuten pressed with no previous kana");
                 return false;
             }
+
+            if(handakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
+            {
+                console.log("HiraganaKeyboard.js: handakuten pressed with no compatible previous kana");
+                return false;
+            }
+
             result = userInput.current.substring(0, userInput.current.length - 1) + handakutenConversions[userInput.current[userInput.current.length - 1]];
             userInput.current = result;
             props.keyboardPress(result);
@@ -102,6 +117,21 @@ function HiraganaKeyboard(props) {
         }
         else
         {
+            if(userInput.current.length > 1)
+            {
+                console.log("HiraganaKeyboard.js: User has already selected their answer");
+                return false;
+            }
+
+            if(userInput.current.length == 1)
+            {
+                if(kana !== "ゃ" && kana !== "ゅ" && kana !== "ょ" && kana !== "゛" && kana !== "゜")
+                {
+                    console.log("HiraganaKeyboard.js: User has already selected their answer");
+                    return false;
+                }
+            }
+
             userInput.current = userInput.current + kana;
             props.keyboardPress(userInput.current);
             console.log("Keyboard User Input: " + userInput.current);
