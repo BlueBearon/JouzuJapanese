@@ -135,7 +135,7 @@ function KatakanaKeyboard(props)
             <Key kana="ヒ" roma="Hi" updateUserInput={keyboardPress} />
             <Key kana="ミ" roma="Mi" updateUserInput={keyboardPress} />
             <Key kana="リ" roma="Ri" updateUserInput={keyboardPress} />
-            <Key kana="ュ" roma="SmallYu" updateUserInput={keyboardPress} />
+            <Key kana="ュ" roma="smallYu" updateUserInput={keyboardPress} />
             <Key kana="゜" roma="handakuten" updateUserInput={keyboardPress} />
             <Key kana="ウ" roma="U" updateUserInput={keyboardPress} />
             <Key kana="ク" roma="Ku" updateUserInput={keyboardPress} />
@@ -147,7 +147,7 @@ function KatakanaKeyboard(props)
             <Key kana="ユ" roma="Yu" updateUserInput={keyboardPress} />
             <Key kana="ル" roma="Ru" updateUserInput={keyboardPress} />
             <Key kana="ヲ" roma="Wo" updateUserInput={keyboardPress} />
-            <Key kana="ョ" roma="SmallYo" updateUserInput={keyboardPress} />
+            <Key kana="ョ" roma="smallYo" updateUserInput={keyboardPress} />
             <Key kana="エ" roma="E" updateUserInput={keyboardPress} />
             <Key kana="ケ" roma="Ke" updateUserInput={keyboardPress} />
             <Key kana="セ" roma="Se" updateUserInput={keyboardPress} />

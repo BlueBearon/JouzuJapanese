@@ -1,6 +1,21 @@
 
 /* MAIN ELEMENTS */
 
+@keyframes fadeIn
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes continuousRotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 .header
 {
     /*Horizontal Strip
@@ -18,7 +33,7 @@
     display: flex;
     flex-direction: row;
     height: 10vh;
-    background-color: #4472C4;
+    background: linear-gradient(to bottom, #4472C4, #003366); /* Lighter blue to darker blue */
     align-items: center;
     gap: 2vw;
 
@@ -28,19 +43,25 @@ body
 {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to bottom, #464646, #131313); /* Lighter black to darker black */
+    color: white;
 }
 
 .LargeTitle
 {
     font-size: 100px;
     font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .subTitle
 {
     font-size: 32px;
     font-family: 'Noto Sans JP', sans-serif;
+    color: white;
 }
 
 .Heading
@@ -98,7 +119,6 @@ body
     flex-direction: row;
     justify-content: space-around;
     height: 5vh;
-    background-color: #4472C4;
     outline: none;
     border: none;
     text-decoration: none;
@@ -111,7 +131,7 @@ body
 
 .largeButton
 {
-    color: black;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     font-size: 40px;
@@ -141,7 +161,7 @@ body
     flex-direction: column;
     width: 98vw;
     height: 76vh;
-    margin: 2vh 1vw; 
+    margin: 2vh 1vw;
 }
 
 .topElements
@@ -189,18 +209,20 @@ body
 
 .topButton
 {
-    background-color: white;
-    color: black;
+    background-color: transparent;
+    color: white;
     padding: 15px 15px;
     text-align: center;
     font-size: 16px;
     font-family: 'Noto Sans JP', sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     height: 5vh;
     width: 10vw;
+    border-radius: 20px;
 }
 
 .topButton:hover
@@ -216,18 +238,24 @@ body
     height: 10vh;
     align-items: flex-end;
     justify-content: flex-start;
+    color: white;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .outOf
 {
     font-size: 30px;
     font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .percentage
 {
     font-size: 30px;
     font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .conjugationquestion
@@ -239,6 +267,7 @@ body
     justify-items: center;
     height: 76vh;
     gap: 2vh;
+    animation: fadeIn 0.2s ease-in-out;
 
 }
 
@@ -251,6 +280,7 @@ body
     justify-items: center;
     height: 76vh;
     gap: 2vh;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .correctAnswer
@@ -262,6 +292,7 @@ body
     justify-items: center;
     height: 76vh;
     gap: 2vh;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .wrongAnswer
@@ -273,6 +304,7 @@ body
     justify-items: center;
     height: 76vh;
     gap: 2vh;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .conjugationParameters
@@ -330,6 +362,7 @@ body
     height: 5vh;
     width: 7vw;
     font-size: 30px;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .submitButton:hover
@@ -397,6 +430,7 @@ body
     display: grid;
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat (5, 1fr);
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .katakanaKeyboard
@@ -404,6 +438,7 @@ body
     display: grid;
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat (5, 1fr);
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .kanaButton
@@ -412,8 +447,9 @@ body
     width: 4vw;
     margin: 3px;
     background: none;
+    border-style: solid;
     border-color: #4472C4;
-    outline-color: #4472C4;
+    color: white;
     border-radius: 20px;
     font-size: 24px;
     font-family: 'Noto Sans JP', sans-serif;
@@ -905,6 +941,8 @@ body
 
 /*OPTIONS*/
 
+
+
 .options
 {
     position: fixed; /* Stay in place */
@@ -913,10 +951,10 @@ body
     top: 20vh;
     width: 60vw; /* Full width */
     height: 60vh; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgb(255, 255, 255); /* Black w/ opacity */ 
+    background-color: rgba(0, 0, 0, 0.623);
     border: 1px solid black;
     border-radius: 10px;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .optionsTopSection
@@ -924,26 +962,46 @@ body
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1vw;
-    padding-left: 1vw;
     height: 5vh;
 }
+
 
 .optionsTitle
 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 24px;
-    color: black;
+    color: white;
 }
 
-.optionsContainer
+.optionsSection
 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    padding-left: 1vw;
-    gap: 1vw;
+    display: flex;
+    flex-direction: row;
+    width: 60vw;
+    height: 60vh;
+    justify-content: space-between;
 }
+
+.optionsColumn
+{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding-left: 1vw;
+}
+
+.closeOptionsButton
+{
+    background: none;
+    border: none;
+    outline: none;
+    height: 4vh;
+    width: 4vw;
+    padding: 0;
+}
+
+
 
 .ruVerbs
 {

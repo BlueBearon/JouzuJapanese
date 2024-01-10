@@ -9,7 +9,7 @@ function TopElements(props)
         <div id = "topElements" className = "topElements">
 
             <div id = "topButtons" className = "topButtons">
-                <button id = "optionsButton" className = "topButton">Options</button>
+                <button id = "optionsButton" className = "topButton" onClick = {() => props.openOptions()}>Options</button>
             </div>
 
             <div id = "score" className = "score">

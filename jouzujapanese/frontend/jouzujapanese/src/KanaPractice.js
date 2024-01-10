@@ -1,8 +1,9 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import TopElements from "./TopElements";
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
 import KanaQuestion from "./KanaQuestion";
+import Options from "./Options";
 
 function retrieveHiraganaQuestion(options)
 {
@@ -138,8 +139,57 @@ function KanaPractice(props)
     const correct = useRef(0);
     const question = useRef({});
     const questionType = useRef("hiragana");
+    const [showOptions, setShowOptions] = useState(false);
+    const renders = useRef(0);
+    const options = useRef(
+        [
+            true, //kanaToRomanji
+            true, //romanjiToKana
+            true, //dakutenhandakuten
+            true  //extended
+        ]
+    );
+    
+    //Every time the type changes, reset the state and the options
+    useEffect(() => {
+
+        console.log("KanaPractice.js: props.type has changed to " + props.type);
+
+        for(var i = 0; i < options.current.length; i++)
+        {
+            options.current[i] = true;
+        }
+        
+        setShowOptions(false);
+        setState(0);
+    }, [props.type]);
 
 
+    //Record number of renders
+    useEffect(() => {
+        renders.current += 1;
+        console.log("KanaPractice Renders: " + renders.current);
+    });
+
+
+    /**
+     * Changes the options and hides the options menu
+     * @param {*} ops : the new options
+     */
+    function changeOptions(ops)
+    {
+        options.current = [...ops];//Copy the new options into the options array
+
+        setShowOptions(false);//Hide the options menu
+    }
+
+
+    /**
+     * Checks the user's answer to the question
+     * If the answer is correct, the state is set to 1: show CorrectAnswer
+     * If the answer is incorrect, the state is set to 2: show WrongAnswer
+     * @param {*} answer 
+     */
     function checkAnswer(answer)
     {
         userResponse.current = answer;
@@ -157,6 +207,10 @@ function KanaPractice(props)
         }
     }
 
+    /**
+     * Wrapper for checkAnswer, used to test the function
+     * @param {*} answer 
+     */
     function test(answer)
     {
         console.log("Testing");
@@ -171,6 +225,9 @@ function KanaPractice(props)
         }
     }
 
+    /**
+     * Resets the state and retrieves a new question
+     */
     function newQuestion()
     {
         setState(0);
@@ -178,6 +235,7 @@ function KanaPractice(props)
 
     console.log("State: " + state);
 
+    //If props.type has changed, reset the question count and correct count
     if(props.type !== questionType.current)
     {
         questionType.current = props.type;
@@ -185,44 +243,46 @@ function KanaPractice(props)
         correct.current = 0;
     }
 
+    //If the state is 0, show the question
     if(state === 0)
     {
         console.log("Rendering Question");
 
         if(props.type === "hiragana")
         {
-            question.current = retrieveHiraganaQuestion([true, true]);
+            question.current = retrieveHiraganaQuestion(options.current);
         }
         else
         {
-            question.current = retrieveKatakanaQuestion([true, true]);
+            question.current = retrieveKatakanaQuestion(options.current);
         }
 
         return (
             <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current}/>
+                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <KanaQuestion word = {question.current[0]} type = {question.current[2]} kana = {props.type} checkAnswer={test}/>
+                {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
             </div>
 
         );
     }
-    else if(state === 1)
+    else if(state === 1)//If the state is 1, show CorrectAnswer
     {
         return(
             <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current}/>
+                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <CorrectAnswer question = {question.current[0]} correctAnswer ={question.current[1]} next = {newQuestion}/>
-
+                {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
             </div>
         );
     }
-    else
+    else //If the state is 2, show WrongAnswer
     {
         return(
             <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current}/>
+                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <WrongAnswer question = {question.current[0]} userAnswer = {userResponse.current} correctAnswer ={question.current[1]} next = {newQuestion}/>
-
+                {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
             </div>
         );
     }
