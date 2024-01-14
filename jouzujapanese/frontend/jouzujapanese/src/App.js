@@ -13,12 +13,6 @@ function App()
 {
     return(
         <Router>
-            <head>
-                <meta charSet = "utf-8"></meta>
-                <title>Jouzu Japanese</title>
-                <link rel = "stylesheet" href = "Prototype.css"></link>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"></link>
-            </head>
             <Header />
             <Routes>
                 <Route path = "/" element = {<HomePage />} />
