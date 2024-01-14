@@ -12,6 +12,35 @@ public class HiraganaPractice {
     private static Scanner scanner = new Scanner(System.in);
 
 
+    private static final int[] regularBound = {0, 46};
+    private static final int[] dakutenHandakutenBound = {46, 71};
+    private static final int[] extendedBound = {71, 92};
+
+    private static int getRandomNum(boolean includeDakutenHandakuten, boolean includeExtended)
+    {
+
+        if(includeDakutenHandakuten && includeExtended)
+        {
+            //All options are true
+            return random.nextInt(Word.HIRAGANA.length);
+        }
+        else if(includeDakutenHandakuten)
+        {
+            //Dakuten and Handakuten are true
+            return random.nextInt(dakutenHandakutenBound[1]);
+        }
+        else if(includeExtended)
+        {
+            //Extended is true
+            return random.nextInt(extendedBound[1]);
+        }
+        else
+        {
+            //All options are false
+            return random.nextInt(regularBound[1] - regularBound[0]);
+        }
+
+    }
 
     public static String[] generateKanaToRomanjiQuestion()
     {
@@ -22,9 +51,27 @@ public class HiraganaPractice {
         return result;
     }
 
+    public static String[] generateKanaToRomanjiQuestion(boolean includeDakutenHandakuten, boolean includeExtended)
+    {
+        int randomNum = getRandomNum(includeDakutenHandakuten, includeExtended);
+
+        String[] result = {Word.HIRAGANA[randomNum], Word.ROMANJI[randomNum], "KANA"};
+
+        return result;
+    }
+
     public static String[] generateRomanjiToKanaQuestion()
     {
-        int randomNum = random.nextInt(Word.ROMANJI.length);
+        int randomNum = random.nextInt(Word.HIRAGANA.length);
+
+        String[] result = {Word.ROMANJI[randomNum], Word.HIRAGANA[randomNum], "ROMANJI"};
+
+        return result;
+    }
+
+    public static String[] generateRomanjiToKanaQuestion(boolean includeDakutenHandakuten, boolean includeExtended)
+    {
+        int randomNum = getRandomNum(includeDakutenHandakuten, includeExtended);
 
         String[] result = {Word.ROMANJI[randomNum], Word.HIRAGANA[randomNum], "ROMANJI"};
 
@@ -45,23 +92,23 @@ public class HiraganaPractice {
             if(randomNum == 0)
             {
                 //Kana to Romanji
-                return generateKanaToRomanjiQuestion();
+                return generateKanaToRomanjiQuestion(options[2], options[3]);
             }
             else
             {
                 //Romanji to Kana
-                return generateRomanjiToKanaQuestion();
+                return generateRomanjiToKanaQuestion(options[2], options[3]);
             }
         }
         else if(options[0])
         {
             //Kana to Romanji
-            return generateKanaToRomanjiQuestion();
+            return generateKanaToRomanjiQuestion(options[2], options[3]);
         }
         else if(options[1])
         {
             //Romanji to Kana
-            return generateRomanjiToKanaQuestion();
+            return generateRomanjiToKanaQuestion(options[2], options[3]);
         }
         else
         {
@@ -74,12 +121,12 @@ public class HiraganaPractice {
             if(randomNum == 0)
             {
                 //Kana to Romanji
-                return generateKanaToRomanjiQuestion();
+                return generateKanaToRomanjiQuestion(options[2], options[3]);
             }
             else
             {
                 //Romanji to Kana
-                return generateRomanjiToKanaQuestion();
+                return generateRomanjiToKanaQuestion(options[2], options[3]);
             }
         }
 

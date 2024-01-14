@@ -249,6 +249,21 @@ body
     animation: fadeIn 0.2s ease-in-out;
 }
 
+.loading
+{
+    position: fixed;
+    z-index: 1;
+    left: 50vw;
+    top: 50vh;
+}
+
+.loadingsvg
+{
+    width: 100px;
+    height: 100px;
+    animation: continuousRotate infinite 2s linear;
+}
+
 .conjugationquestion
 {
     display: flex;
@@ -926,6 +941,12 @@ body
     
     
     
+}
+
+.N
+{
+    grid-row: 3;
+    grid-column: 1;
 }
 
 

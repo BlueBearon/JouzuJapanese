@@ -166,13 +166,6 @@ function Options(props)
     function validatekanaChars(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
-
-        if(newOptions[2] === false && newOptions[3] === false)
-        {
-            newOptions[index] = true;
-            alert("At least one kana character set must be selected.");
-        }
-    
     }
 
 

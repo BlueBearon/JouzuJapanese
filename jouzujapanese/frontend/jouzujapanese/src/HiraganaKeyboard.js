@@ -191,6 +191,7 @@ function HiraganaKeyboard(props) {
             <Key kana="も" roma="Mo" updateUserInput={keyboardPress} />
             <Key kana="よ" roma="Yo" updateUserInput={keyboardPress} />
             <Key kana="ろ" roma="Ro" updateUserInput={keyboardPress} />
+            <Key kana="ん" roma="N" updateUserInput={keyboardPress} />
         </div>
     );
 }

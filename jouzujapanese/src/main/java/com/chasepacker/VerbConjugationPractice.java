@@ -327,24 +327,26 @@ public class VerbConjugationPractice {
      * Returns a random modifier based on the options selected by the user
      * @return random modifier based on the options selected by the user
      */
-    private static String selectModifier(boolean potential, boolean passive, boolean causative, boolean volitional)
+    private static String selectModifier(boolean normal, boolean potential, boolean passive, boolean causative, boolean volitional)
     {
-        boolean[] options = new boolean[]{potential, passive, causative, volitional, true};
+        boolean[] options = new boolean[]{normal, potential, passive, causative, volitional};
 
         int randomIndex = selectRandomBoolean(options);
 
         switch(randomIndex)
         {
             case 0:
-                return "Potential ";
+                return "";
             case 1:
-                return "Passive ";
+                return "Potential ";
             case 2:
-                return "Causative ";
+                return "Passive ";
             case 3:
+                return "Causative ";
+            case 4:
                 return "Volitional ";
             default:
-                return "";//Random Generator selected No special modifier
+                return "";
         }
     }
 
@@ -365,7 +367,7 @@ public class VerbConjugationPractice {
 
         String tense = selectTense(options[5], options[6]);
 
-        String modifier = selectModifier(options[9], options[10], options[11], options[12]);
+        String modifier = selectModifier(options[9], options[10], options[11], options[12], options[13]);
 
         ConjugationType conjugation = ConjugationType.fromString(modifier + formality + polarity + tense);
 
@@ -379,21 +381,8 @@ public class VerbConjugationPractice {
             {
                 conjugation = ConjugationType.VOLITIONAL_FORMAL;
             }
-            else
-            {
-                System.out.println("Error: generateQuestion() returned invalid formality");
-                System.out.println("Offending Results: " + modifier + formality + polarity + tense);
-                return generateQuestion(options);
-            }
        } 
-
-        if (conjugation == null)
-        {
-            System.out.println("Error: generateQuestion() returned invalid conjugation");
-            System.out.println("Offending Results: " + modifier + formality + polarity + tense);
-            return generateQuestion(options);
-        }
-
+       
         result[0] = verb.getConjugation(conjugation);
 
         result[1] = verb.getHiragana();

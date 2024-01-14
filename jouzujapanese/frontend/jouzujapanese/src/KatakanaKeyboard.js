@@ -194,6 +194,7 @@ function KatakanaKeyboard(props)
             <Key kana="モ" roma="Mo" updateUserInput={keyboardPress} />
             <Key kana="ヨ" roma="Yo" updateUserInput={keyboardPress} />
             <Key kana="ロ" roma="Ro" updateUserInput={keyboardPress} />
+            <Key kana="ン" roma="N" updateUserInput={keyboardPress} />
         </div>
 
     );

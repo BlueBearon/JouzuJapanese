@@ -14,15 +14,70 @@ public class QuestionController {
     /**
      * API endpoint for React application to get a verb conjugation question
      * 
-     * @param options All boolean : {includeRuVerbs, includeUVerbs, includeIrregularVerbs, 
-     * includeCasualForm, includeFormalForm, includePresentTense, includePastTense, 
-     * includeAffirmativeForm, includeNegativeForm, includePotentialForm, includePassiveForm, 
-     * includeCausativeForm, includeVolitionalForm, includeTeForm}
+     * @param options
      * @return
      */
     @GetMapping("/api/verbConjugation")
-    public Map<String, String> getVerbConjugation(@RequestParam boolean[] options) {
+    public Map<String, String> getVerbConjugation(@RequestParam Map<String, String> allParams) {
+
+        System.out.println("Received request for verb conjugation question");
+        try
+        {
+            boolean[] options = new boolean[15];
+
+            options[0] = Boolean.parseBoolean(allParams.getOrDefault("includeRuVerbs", "true"));
+            options[1] = Boolean.parseBoolean(allParams.getOrDefault("includeUVerbs", "true"));
+            options[2] = Boolean.parseBoolean(allParams.getOrDefault("includeIrregularVerbs", "true"));
+            options[3] = Boolean.parseBoolean(allParams.getOrDefault("includeCasualForm", "true"));
+            options[4] = Boolean.parseBoolean(allParams.getOrDefault("includeFormalForm", "true"));
+            options[5] = Boolean.parseBoolean(allParams.getOrDefault("includePresentTense", "true"));
+            options[6] = Boolean.parseBoolean(allParams.getOrDefault("includePastTense", "true"));
+            options[7] = Boolean.parseBoolean(allParams.getOrDefault("includeAffirmativeForm", "true"));
+            options[8] = Boolean.parseBoolean(allParams.getOrDefault("includeNegativeForm", "true"));
+            options[9] = Boolean.parseBoolean(allParams.getOrDefault("includeRegularForm", "true"));
+            options[10] = Boolean.parseBoolean(allParams.getOrDefault("includePotentialForm", "true"));
+            options[11] = Boolean.parseBoolean(allParams.getOrDefault("includePassiveForm", "true"));
+            options[12] = Boolean.parseBoolean(allParams.getOrDefault("includeCausativeForm", "true"));
+            options[13] = Boolean.parseBoolean(allParams.getOrDefault("includeVoliationalForm", "true"));
+            options[14] = Boolean.parseBoolean(allParams.getOrDefault("includeTeForm", "true"));
+
+            String[] result = VerbConjugationPractice.generateQuestion(options);
+
+            Map<String, String> response = new HashMap<>();
+
+            response.put("answer", result[0]);
+            response.put("hiragana", result[1]);
+            response.put("conjugation", result[2]);
+
+            return response;
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException("Invalid Parameters for Verb Conjugation");
+        }
         
+        
+    }
+
+    @GetMapping("/api/verbConjugation/checkString")
+    public Map<String, String> getVerbConjugation(@RequestParam String str)
+    {
+        System.out.println(str);
+
+        return getVerbConjugation();
+    }
+
+    /**
+     * API endpoint for React application to get a verb conjugation question.
+     * This endpoint is used when the frontend does not send any parameters.
+     * @return
+     */
+    @GetMapping("/api/verbConjugation/optionsFailed")
+    public Map<String, String> getVerbConjugation() {
+
+
+        boolean[] options = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+
         String[] result = VerbConjugationPractice.generateQuestion(options);
 
         Map<String, String> response = new HashMap<>();
@@ -43,8 +98,51 @@ public class QuestionController {
      * @return
      */
     @GetMapping("/api/adjectiveConjugation")
-    public Map<String, String> getAdjectiveConjugation(@RequestParam boolean[] options) {
+    public Map<String, String> getAdjectiveConjugation(@RequestParam Map<String, String> allParams) {
         
+        System.out.println("Received request for adjective conjugation question");
+
+        try
+        {
+            boolean[] options = new boolean[8];
+
+            options[0] = Boolean.parseBoolean(allParams.getOrDefault("includeIAdjectives", "true"));
+            options[1] = Boolean.parseBoolean(allParams.getOrDefault("includeNaAdjectives", "true"));
+            options[2] = Boolean.parseBoolean(allParams.getOrDefault("includeCasualForm", "true"));
+            options[3] = Boolean.parseBoolean(allParams.getOrDefault("includeFormalForm", "true"));
+            options[4] = Boolean.parseBoolean(allParams.getOrDefault("includePresentTense", "true"));
+            options[5] = Boolean.parseBoolean(allParams.getOrDefault("includePastTense", "true"));
+            options[6] = Boolean.parseBoolean(allParams.getOrDefault("includeAffirmativeForm", "true"));
+            options[7] = Boolean.parseBoolean(allParams.getOrDefault("includeNegativeForm", "true"));
+
+            
+            String[] result = AdjectiveConjugationPractice.generateQuestion(options);
+
+            Map<String, String> response = new HashMap<>();
+
+            response.put("answer", result[0]);
+            response.put("hiragana", result[1]);
+            response.put("conjugation", result[2]);
+
+            return response;
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException("Invalid Parameters for Verb Conjugation");
+        }
+        
+        
+    }
+
+    /**
+     * API endpoint for React application to get an adjective conjugation question.
+     * This endpoint is used when the frontend does not send any parameters.
+     * @return
+     */
+    @GetMapping("/api/adjectiveConjugation/optionsFailed")
+    public Map<String, String> getAdjectiveConjugation()
+    {
+        boolean[] options = {true, true, true, true, true, true, true, true};
 
         String[] result = AdjectiveConjugationPractice.generateQuestion(options);
 
@@ -55,18 +153,54 @@ public class QuestionController {
         response.put("conjugation", result[2]);
 
         return response;
-        
     }
 
     /**
      * API endpoint for React application to get a hiragana question
      * 
-     * @param options All boolean : {kanaToRomanji, romanjiToKana, dakuten, extendedKana}
+     * @param options All boolean : {kanaToRomanji, romanjiToKana, dakuten, extended}
      * @return
      */
     @GetMapping("/api/hiragana")
-    public Map<String, String> getHiragana(@RequestParam boolean[] options) {
+    public Map<String, String> getHiragana(@RequestParam Map<String, String> allParams) {
+
+        try
+        {
+            boolean[] options = new boolean[4];
+
+            options[0] = Boolean.parseBoolean(allParams.getOrDefault("kanaToRomanji", "true"));
+            options[1] = Boolean.parseBoolean(allParams.getOrDefault("romanjiToKana", "true"));
+            options[2] = Boolean.parseBoolean(allParams.getOrDefault("dakutenhandakuten", "true"));
+            options[3] = Boolean.parseBoolean(allParams.getOrDefault("extended", "true"));
+
+            String[] result = HiraganaPractice.generateQuestion(options);
+
+            Map<String, String> response = new HashMap<>();
+
+            response.put("question", result[0]);
+            response.put("answer", result[1]);
+            response.put("type", result[2]);
+
+        return response;
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException("Invalid Parameters for Verb Conjugation");
+        }
         
+        
+    }
+
+    /**
+     * API endpoint for React application to get a hiragana question.
+     * This endpoint is used when the frontend does not send any parameters.
+     * @return
+     */
+    @GetMapping("/api/hiragana/optionsFailed")
+    public Map<String, String> getHiragana() {
+        
+
+        boolean[] options = {true, true, true, true};
 
         String[] result = HiraganaPractice.generateQuestion(options);
 
@@ -80,15 +214,45 @@ public class QuestionController {
         
     }
 
+
     /**
      * API endpoint for React application to get a katakana question
      * 
-     * @param options All boolean : {kanaToRomanji, romanjiToKana, dakuten, extendedKana}
+     * @param options All boolean : {kanaToRomanji, romanjiToKana, dakuten, extended}
      * @return
      */
     @GetMapping("/api/katakana")
-    public Map<String, String> getKatakana(@RequestParam boolean[] options) {
+    public Map<String, String> getKatakana(@RequestParam Map<String, String> allParams) {
         
+
+        boolean[] options = new boolean[4];
+
+        options[0] = Boolean.parseBoolean(allParams.getOrDefault("kanaToRomanji", "true"));
+        options[1] = Boolean.parseBoolean(allParams.getOrDefault("romanjiToKana", "true"));
+        options[2] = Boolean.parseBoolean(allParams.getOrDefault("dakutenhandakuten", "true"));
+        options[3] = Boolean.parseBoolean(allParams.getOrDefault("extended", "true"));
+
+        String[] result = KatakanaPractice.generateQuestion(options);
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("question", result[0]);
+        response.put("answer", result[1]);
+        response.put("type", result[2]);
+
+        return response; 
+    }
+
+    /**
+     * API endpoint for React application to get a katakana question.
+     * This endpoint is used when the frontend does not send any parameters.
+     * @return
+     */
+    @GetMapping("/api/katakana/optionsFailed")
+    public Map<String, String> getKatakana() {
+        
+
+        boolean[] options = {true, true, true, true};
 
         String[] result = KatakanaPractice.generateQuestion(options);
 
@@ -100,6 +264,11 @@ public class QuestionController {
 
         return response;
         
+    }
+
+    @GetMapping("/api/test")
+    public String test() {
+        return "Hello World";
     }
 
 

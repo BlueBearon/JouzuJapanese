@@ -24,4 +24,14 @@ public class GlobalExceptionHandler {
    public ResponseEntity<?> handleAll(Exception ex) {
        return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
    }
+
+   /**
+    * Handles IllegalArgumentExceptions thrown by the API
+    * @param ex
+    * @return
+    */
+   @ExceptionHandler(IllegalArgumentException.class)
+   public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex) {
+       return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+   }
 }

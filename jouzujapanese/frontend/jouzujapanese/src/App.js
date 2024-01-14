@@ -3,8 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import Header from './Header.js';
-import ConjugationPractice from './ConjugationPractice.js';
-import KanaPractice from './KanaPractice.js';
+import AdjectiveConjugationPractice from './AdjectiveConjugationPractice.js';
+import VerbConjugationPractice from './VerbConjugationPractice.js';
+import HiraganaPractice from './HiraganaPractice.js';
+import KatakanaPractice from './KatakanaPractice.js';
 import About from './About.js';
 
 function App()
@@ -20,10 +22,10 @@ function App()
             <Header />
             <Routes>
                 <Route path = "/" element = {<HomePage />} />
-                <Route path = "/ConjugationPractice/verb" element = {<ConjugationPractice type="verb"/>} />
-                <Route path = "/ConjugationPractice/adjective" element = {<ConjugationPractice type="adjective"/>} />
-                <Route path = "/KanaPractice/hiragana" element = {<KanaPractice type="hiragana"/>} />
-                <Route path = "/KanaPractice/katakana" element = {<KanaPractice type="katakana"/>} />
+                <Route path = "/ConjugationPractice/verb" element = {<VerbConjugationPractice/>} />
+                <Route path = "/ConjugationPractice/adjective" element = {<AdjectiveConjugationPractice/>} />
+                <Route path = "/KanaPractice/hiragana" element = {<HiraganaPractice />} />
+                <Route path = "/KanaPractice/katakana" element = {<KatakanaPractice />} />
                 <Route path = "/About" element = {<About />} />
             </Routes>
             

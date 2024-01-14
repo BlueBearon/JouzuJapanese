@@ -33,24 +33,23 @@ function OLDretrieveVerbQuestion(options)
 }
 
 
-function retrieveVerbQuestion(options)
+const retrieveVerbQuestion = (options) => 
 {
     console.log("ConjugationPractice.js: Retrieving Verb Question");
 
-    return OLDretrieveVerbQuestion(options);
 
-    axios.get(apiLink + "/api/verbConjugation", {params: {options: options}})
+    return axios.get(apiLink + "/api/verbConjugation", {params: {options: options}})
         .then(response => {
             console.log(response);
 
             let result = [response.data.answer, response.data.hiragana, response.data.conjugation];
             return result;
-        })
-        .catch(error => {
+        }
+        ).catch(error => {
             console.log(error);
-            alert("Error retrieving verb question");
             return OLDretrieveVerbQuestion(options);
-        }); 
+        });
+
 }
 
 function OLDretrieveAdjectiveQuestion(options)
@@ -79,36 +78,28 @@ function retrieveAdjectiveQuestion(options)
 {
     console.log("ConjugationPractice.js: Retrieving Adjective Question");
 
-    return OLDretrieveAdjectiveQuestion(options);
-
-    axios.get(apiLink + "/api/adjectiveConjugation", {params: {options: options}})
+    return axios.get(apiLink + "/api/adjectiveConjugation", {params: {options: options}})
         .then(response => {
             console.log(response);
 
             let result = [response.data.answer, response.data.hiragana, response.data.conjugation];
             return result;
-        })
-        .catch(error => {
+        }
+        ).catch(error => {
             console.log(error);
-            alert("Error retrieving adjective question");
             return OLDretrieveAdjectiveQuestion(options);
         });
 
 }
 
 
-
-
 function ConjugationPractice(props)
 {
-
-    console.log("ConjugationPractice.js: Rendering Conjugation Practice");
-
     const [state, setState] = useState(0);
     const userResponse = useRef("");
     const questionCount = useRef(0);
     const correct = useRef(0);
-    const question = useRef([]);
+    const [question, setQuestion] = useState([]);
     const questionType = useRef("verb");
     const [showOptions, setShowOptions] = useState(false);
     const renders = useRef(0);
@@ -172,7 +163,7 @@ function ConjugationPractice(props)
 
         questionCount.current += 1;
 
-        if(answer === question.current[0])
+        if(answer === question[0])
         {
             correct.current +=1;
             console.log("ConjugationPractice.js: Answer is correct, setting state to 1");
@@ -205,18 +196,43 @@ function ConjugationPractice(props)
         console.log("ConjugationPractice.js: newQuestion() called. Question Type: " + props.type);
         if(props.type === "verb")
         {
-            question.current = retrieveVerbQuestion(verbOptions.current);
+            retrieveVerbQuestion(verbOptions.current).then(result => {
+                setQuestion(result);
+                if(state !== 0)
+                {
+                    console.log("ConjugationPractice.js: Setting state to 0");
+                    setState(0);
+                }
+            }).catch(error => {
+                console.log(error);
+                setQuestion(OLDretrieveVerbQuestion(verbOptions.current));
+                if(state !== 0)
+                {
+                    console.log("ConjugationPractice.js: Setting state to 0");
+                    setState(0);
+                }
+            });
         }
         else
         {
-            question.current = retrieveAdjectiveQuestion(adjectiveOptions.current);
+            retrieveAdjectiveQuestion(adjectiveOptions.current).then(result => {
+                setQuestion(result);
+                if(state !== 0)
+                {
+                    console.log("ConjugationPractice.js: Setting state to 0");
+                    setState(0);
+                }
+            }).catch(error => {
+                console.log(error);
+                setQuestion(OLDretrieveAdjectiveQuestion(adjectiveOptions.current));
+                if(state !== 0)
+                {
+                    console.log("ConjugationPractice.js: Setting state to 0");
+                    setState(0);
+                }
+            });
         }
 
-        if(state !== 0)
-        {
-            console.log("ConjugationPractice.js: State is not 0. Setting state to 0");
-            setState(0);
-        }
     }
 
     if(props.type !== questionType.current)
@@ -227,7 +243,6 @@ function ConjugationPractice(props)
         correct.current = 0;
 
         newQuestion();
-        setState(0);
     }
 
     useEffect(() => {
@@ -242,7 +257,7 @@ function ConjugationPractice(props)
     {
         console.log("ConjugationPractice.js: Rendering Question");
 
-        if(question.current.length === 0)
+        if(question.length === 0)
         {
             newQuestion();
         }
@@ -250,7 +265,7 @@ function ConjugationPractice(props)
         return (
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <ConjugationQuestion params = {question.current[2]} word = {question.current[1]}  checkAnswer={test}/>
+                <ConjugationQuestion params = {question[2]} word = {question[1]}  checkAnswer={test}/>
                 {showOptions && <Options options = {props.type === "verb" ? verbOptions.current : adjectiveOptions.current} submit = {props.type === "verb" ? changeVerbOptions : changeAdjectiveOptions} set = {props.type}/>}
             </div>
         );
@@ -261,7 +276,7 @@ function ConjugationPractice(props)
         return(
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <CorrectAnswer question = {question.current[2]} correctAnswer ={question.current[0]} next = {() => newQuestion()}/>
+                <CorrectAnswer question = {question[2]} correctAnswer ={question[0]} next = {() => newQuestion()}/>
                 {showOptions && <Options options = {props.type === "verb" ? verbOptions.current : adjectiveOptions.current} submit = {props.type === "verb" ? changeVerbOptions : changeAdjectiveOptions} set = {props.type}/>}
             </div>
         );
@@ -272,7 +287,7 @@ function ConjugationPractice(props)
         return(
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <WrongAnswer question = {question.current[2]} userAnswer = {userResponse.current} correctAnswer ={question.current[0]} next = {() => newQuestion()}/>
+                <WrongAnswer question = {question[2]} userAnswer = {userResponse.current} correctAnswer ={question[0]} next = {() => newQuestion()}/>
                 {showOptions && <Options options = {props.type === "verb" ? verbOptions : adjectiveOptions} submit = {props.type === "verb" ? changeVerbOptions : changeAdjectiveOptions} set = {props.type}/>}
             </div>
         );

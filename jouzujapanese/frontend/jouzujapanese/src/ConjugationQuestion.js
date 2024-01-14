@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 
 function ConjugationQuestion(props)
 {
     const [userInput, updateInput] = useState("");
+    const renders = useRef(0);
 
     return (
         <div id = "question" className = "conjugationquestion">

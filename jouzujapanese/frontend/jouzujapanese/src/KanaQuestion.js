@@ -11,6 +11,9 @@ function KanaQuestion(props)
 
     console.log("User Input: " + userInput);
 
+    console.log("props.type: " + props.type);
+    console.log("props.kana: " + props.kana);
+
 
     function updateKeyboardInput(result)
     {
