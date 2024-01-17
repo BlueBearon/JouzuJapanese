@@ -1,4 +1,5 @@
 import React, {useState, useRef} from "react";
+import "./KanaQuestion.css";
 import HiraganaKeyboard from "./HiraganaKeyboard";
 import KatakanaKeyboard from "./KatakanaKeyboard";
 

@@ -1,0 +1,33 @@
+@keyframes continuousRotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+.questionSection
+{
+    display: flex;
+    flex-direction: column;
+    width: 98vw;
+    height: 76vh;
+    margin: 2vh 1vw;
+}
+
+.loading
+{
+    position: fixed;
+    z-index: 1;
+    left: 50vw;
+    top: 50vh;
+}
+
+.loadingsvg
+{
+    width: 100px;
+    height: 100px;
+    animation: continuousRotate infinite 2s linear;
+}

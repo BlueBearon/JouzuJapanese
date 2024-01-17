@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import Key from "./Key.js";
+import "./Keyboard.css";
 
 var dakutenConversions = {
     "か": "が",

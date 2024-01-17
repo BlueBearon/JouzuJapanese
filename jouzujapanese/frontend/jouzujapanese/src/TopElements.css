@@ -1,0 +1,73 @@
+@keyframes fadeIn
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+.topElements
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98vw;
+    height: 10vh;
+}
+
+.topButtons
+{
+    display: flex;
+    flex-direction: row;
+    width: 25vw;
+    height: 10vh;
+    align-items: top;
+    gap: 2vw;
+}
+
+.topButton
+{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 50px;
+    height: 50px;
+}
+
+.topButton:hover
+{
+    background-color: #658bcc75;
+}
+
+.answericon
+{
+    width: 36px;
+    height: 36px;
+}
+
+.score
+{
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: 10vh;
+    align-items: flex-end;
+    justify-content: flex-start;
+    color: white;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.outOf
+{
+    font-size: 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.percentage
+{
+    font-size: 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    animation: fadeIn 0.2s ease-in-out;
+}

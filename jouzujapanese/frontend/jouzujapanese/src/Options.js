@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './Options.css';
 
 
 function Options(props)
@@ -235,65 +236,65 @@ function Options(props)
             {props.set == "verb" &&
             <div className = "optionsSection">
                 <div className = "optionsColumn">
-                    <div className = "ruVerbs">
+                    <div className = "option">
                         <input type="checkbox" id="ruVerbs" name="ruVerbs" checked={options[0]} onChange={() => {changeOptions(0)}}/>
                         <label for="ruVerbs">Include Ru Verbs</label>
                     </div>
-                    <div className = "uVerbs">
+                    <div className = "option">
                         <input type="checkbox" id="uVerbs" name="uVerbs" checked={options[1]} onChange={() => {changeOptions(1)}}/>
                         <label for="uVerbs">Include U Verbs</label>
                     </div>
-                    <div className = "irregularVerbs">
+                    <div className = "option">
                         <input type="checkbox" id="irregularVerbs" name="irregularVerbs" checked={options[2]} onChange={() => {changeOptions(2)}}/>
                         <label for="irregularVerbs">Include Irregular Verbs</label>
                     </div>
                     <br />
-                    <div className = "casualForm">
+                    <div className = "option">
                         <input type="checkbox" id="casualForm" name="casualForm" checked={options[3]} onChange={() => {changeOptions(3)}}/>
                         <label for="casualForm">Include Casual Form</label>
                     </div>
-                    <div className = "formalForm">
+                    <div className = "option">
                         <input type="checkbox" id="formalForm" name="formalForm" checked={options[4]} onChange={() => {changeOptions(4)}}/>
                         <label for="formalForm">Include Formal Form</label>
                     </div>
                 </div>
                 <div className = "optionsColumn">
-                    <div className = "presentTense">
+                    <div className = "option">
                         <input type="checkbox" id="presentTense" name="presentTense" checked={options[5]} onChange={() => {changeOptions(5)}}/>
                         <label for="presentTense">Include Present Tense</label>
                     </div>
-                    <div className = "pastTense">
+                    <div className = "option">
                         <input type="checkbox" id="pastTense" name="pastTense" checked={options[6]} onChange={() => {changeOptions(6)}}/>
                         <label for="pastTense">Include Past Tense</label>
                     </div>
                     <br />
-                    <div className = "affirmativeForm">
+                    <div className = "option">
                         <input type="checkbox" id="affirmativeForm" name="affirmativeForm" checked={options[7]} onChange={() => {changeOptions(7)}}/>
                         <label for="affirmativeForm">Include Affirmative Form</label>
                     </div>
-                    <div className = "negativeForm">
+                    <div className = "option">
                         <input type="checkbox" id="negativeForm" name="negativeForm" checked={options[8]} onChange={() => {changeOptions(8)}}/>
                         <label for="negativeForm">Include Negative Form</label>
                     </div>
                 </div>
                 <div className = "optionsColumn">
-                    <div className = "regularForm">
+                    <div className = "option">
                         <input type="checkbox" id="regularForm" name="regularForm" checked={options[9]} onChange={() => {changeOptions(9)}}/>
                         <label for="regularForm">Include Regular Form</label>
                     </div>
-                    <div className = "potentialForm">
+                    <div className = "option">
                         <input type="checkbox" id="potentialForm" name="potentialForm" checked={options[10]} onChange={() => {changeOptions(10)}}/>
                         <label for="potentialForm">Include Potential Form</label>
                     </div>
-                    <div className = "passiveForm">
+                    <div className = "option">
                         <input type="checkbox" id="passiveForm" name="passiveForm" checked={options[11]} onChange={() => {changeOptions(11)}}/>
                         <label for="passiveForm">Include Passive Form</label>
                     </div>
-                    <div className = "causativeForm">
+                    <div className = "option">
                         <input type="checkbox" id="causativeForm" name="causativeForm" checked={options[12]} onChange={() => {changeOptions(12)}}/>
                         <label for="causativeForm">Include Causative Form</label>
                     </div>
-                    <div className = "volitionalForm">
+                    <div className = "option">
                         <input type="checkbox" id="volitionalForm" name="volitionalForm" checked={options[13]} onChange={() => {changeOptions(13)}}/>
                         <label for="volitionalForm">Include Volitional Form</label>
                     </div>
@@ -303,39 +304,39 @@ function Options(props)
             {props.set == "adjective" &&
             <div className = "optionsSection">
                 <div className = "optionsColumn">
-                    <div className = "iAdjectives">
+                    <div className = "option">
                         <input type="checkbox" id="iAdjectives" name="iAdjectives" checked={options[0]} onChange={() => {changeOptions(0)}}/>
                         <label for="iAdjectives">Include I Adjectives</label>
                     </div>
-                    <div className = "naAdjectives">
+                    <div className = "option">
                         <input type="checkbox" id="naAdjectives" name="naAdjectives" checked={options[1]} onChange={() => {changeOptions(1)}}/>
                         <label for="naAdjectives">Include Na Adjectives</label>
                     </div>
                     <br />
-                    <div className = "casualForm">
+                    <div className = "option">
                         <input type="checkbox" id="casualForm" name="casualForm" checked={options[2]} onChange={() => {changeOptions(2)}}/>
                         <label for="casualForm">Include Casual Form</label>
                     </div>
-                    <div className = "formalForm">
+                    <div className = "option">
                         <input type="checkbox" id="formalForm" name="formalForm" checked={options[3]} onChange={() => {changeOptions(3)}}/>
                         <label for="formalForm">Include Formal Form</label>
                     </div>
                 </div>
                 <div className = "optionsColumn">
-                    <div className = "presentTense">
+                    <div className = "option">
                         <input type="checkbox" id="presentTense" name="presentTense" checked={options[4]} onChange={() => {changeOptions(4)}}/>
                         <label for="presentTense">Include Present Tense</label>
                     </div>
-                    <div className = "pastTense">
+                    <div className = "option">
                         <input type="checkbox" id="pastTense" name="pastTense" checked={options[5]} onChange={() => {changeOptions(5)}}/>
                         <label for="pastTense">Include Past Tense</label>
                     </div>
                     <br />
-                    <div className = "affirmativeForm">
+                    <div className = "option">
                         <input type="checkbox" id="affirmativeForm" name="affirmativeForm" checked={options[6]} onChange={() => {changeOptions(6)}}/>
                         <label for="affirmativeForm">Include Affirmative Form</label>
                     </div>
-                    <div className = "negativeForm">
+                    <div className = "option">
                         <input type="checkbox" id="negativeForm" name="negativeForm" checked={options[7]} onChange={() => {changeOptions(7)}}/>
                         <label for="negativeForm">Include Negative Form</label>
                     </div>
@@ -345,21 +346,21 @@ function Options(props)
             {props.set == "kana" &&
                 <div className = "optionsSection">
                     <div className = "optionsColumn">
-                        <div className = "kanaToRomanji">
+                        <div className = "option">
                             <input type="checkbox" id="kanaToRomanji" name="kanaToRomanji" checked={options[0]} onChange={() => {changeOptions(0)}}/>
                             <label for="kanaToRomanji">Include Kana to Romanji</label>
                         </div>
-                        <div className = "romanjiToKana">
+                        <div className = "option">
                             <input type="checkbox" id="romanjiToKana" name="romanjiToKana" checked={options[1]} onChange={() => {changeOptions(1)}}/>
                             <label for="romanjiToKana">Include Romanji to Kana</label>
                         </div>
                     </div>
                     <div className = "optionsColumn">
-                        <div className = "dakutenhandakuten">
+                        <div className = "option">
                             <input type="checkbox" id="dakutenhandakuten" name="dakutenhandakuten" checked={options[2]} onChange={() => {changeOptions(2)}}/>
                             <label for="dakutenhandakuten">Include Dakuten and Handakuten</label>
                         </div>
-                        <div className = "extended">
+                        <div className = "option">
                             <input type="checkbox" id="extended" name="extended" checked={options[3]} onChange={() => {changeOptions(3)}}/>
                             <label for="extended">Include Extended Kana</label>
                         </div>
