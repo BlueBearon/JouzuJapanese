@@ -1,8 +1,19 @@
+/**
+ * @file HiraganaKeyboard.js
+ * 
+ * @fileoverview This file contains the HiraganaKeyboard component. This component is responsible for rendering the hiragana keyboard.
+ * It also contains the logic for the keyboard.
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2024
+ */
+
 import React, {useRef } from "react";
 import Key from "./Key.js";
 import "./Keyboard.css";
 
-
+//Dakuten conversions, used for dakuten button
 var dakutenConversions = {
     "か": "が",
     "き": "ぎ",
@@ -46,6 +57,7 @@ var dakutenConversions = {
     "ホ":"ボ"
 };
 
+//Handakuten conversions, used for handakuten button
 var handakutenConversions = {
     "は": "ぱ",
     "ひ": "ぴ",
@@ -62,54 +74,70 @@ var handakutenConversions = {
 
 
 
-
+/**
+ * The HiraganaKeyboard component, responsible for rendering the hiragana keyboard.
+ * Contains the hiragana keys.
+ * @param {*} props keyboardPress: function to update the user input
+ * @returns The HiraganaKeyboard component, responsible for rendering the hiragana keyboard.
+ */
 function HiraganaKeyboard(props) {
 
     console.log("Rendering HiraganaKeyboard");
 
-    const userInput = useRef("");
+    const userInput = useRef("");//Keeps track of the user input
 
-
+    /**
+     * Updates the user input and calls the keyboardPress function passed in through props.
+     * Handles dakuten and handakuten conversions as well.
+     * @param {*} kana 
+     * @returns 
+     */
     function keyboardPress(kana) {
         // Toggle the pressed state of the button
 
         var result;
 
 
-        if(kana === '゛')
+        if(kana === '゛')//if dakuten button is pressed
         {
+            //If the user has not selected a kana yet, do nothing
             if(userInput.current.length == 0)
             {
                 console.log("HiraganaKeyboard.js: dakuten pressed with no previous kana");
                 return false;
             }
 
+            //If the previous kana is not compatible with dakuten, do nothing
             if(dakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
             {
                 console.log("HiraganaKeyboard.js: dakuten pressed with no compatible previous kana");
                 return false;
             }
 
+            //Replace the previous kana with the dakuten version
             result = userInput.current.substring(0, userInput.current.length - 1) + dakutenConversions[userInput.current[userInput.current.length - 1]];
             userInput.current = result;
             props.keyboardPress(result);
             console.log("Keyboard User Input: " + result);
             return true;
         }
-        else if(kana === '゜')
+        else if(kana === '゜')//if handakuten button is pressed
         {
+            //If the user has not selected a kana yet, do nothing
             if(userInput.current.length == 0)
             {
                 console.log("HiraganaKeyboard.js: handakuten pressed with no previous kana");
                 return false;
             }
 
+            //If the previous kana is not compatible with handakuten, do nothing
             if(handakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
             {
                 console.log("HiraganaKeyboard.js: handakuten pressed with no compatible previous kana");
                 return false;
             }
 
+            //Replace the previous kana with the handakuten version
             result = userInput.current.substring(0, userInput.current.length - 1) + handakutenConversions[userInput.current[userInput.current.length - 1]];
             userInput.current = result;
             props.keyboardPress(result);
@@ -118,12 +146,14 @@ function HiraganaKeyboard(props) {
         }
         else
         {
+            //If the user has already selected their answer, do nothing
             if(userInput.current.length > 1)
             {
                 console.log("HiraganaKeyboard.js: User has already selected their answer");
                 return false;
             }
 
+            //Only allow small kana and dakuten/handakuten if the user has already selected a kana
             if(userInput.current.length == 1)
             {
                 if(kana !== "ゃ" && kana !== "ゅ" && kana !== "ょ" && kana !== "゛" && kana !== "゜")
@@ -133,6 +163,7 @@ function HiraganaKeyboard(props) {
                 }
             }
 
+            //If the user has selected a small kana, add it to the previous kana
             userInput.current = userInput.current + kana;
             props.keyboardPress(userInput.current);
             console.log("Keyboard User Input: " + userInput.current);
@@ -140,7 +171,7 @@ function HiraganaKeyboard(props) {
         }
     }
 
-    return (
+    return ( //A key for each hiragana character
         <div className="hiraganaKeyboard">
             <Key kana="あ" roma="A" updateUserInput={keyboardPress} />
             <Key kana="か" roma="Ka" updateUserInput={keyboardPress} />

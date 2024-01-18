@@ -1,10 +1,23 @@
+/**
+ * @fileoverview This file contains the Options component. This component displays the options for the practice sets.
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2024
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import './Options.css';
 
-
+/**
+ * This function renders the Options component, which displays the options for the practice sets. It also handles the logic for the options.
+ * @param {*} props: options: the current options, submit: the function called when the user presses the submit button, set: the set of options to display
+ * @returns The Options component
+ */
 function Options(props)
 {
 
+    //Hook to store the current options
     const [options, setOptions] = useState(props.options);
 
     //Set options to the current options passed in from the parent component
@@ -38,7 +51,6 @@ function Options(props)
      * If the user tries to deselect all verb formalities, the one they tried to deselect will be reselected.
      * @param {*} index
      * @param {*} newOptions
-     * @returns
      */
     function validateVerbFormality(index, newOptions)
     {
@@ -51,7 +63,13 @@ function Options(props)
         }
     }
 
-
+    /**
+     * Validate the verb tense options.
+     * At least one verb tense must be selected.
+     * If the user tries to deselect all verb tenses, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateVerbTense(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -63,6 +81,13 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the verb polarity options.
+     * At least one verb polarity must be selected.
+     * If the user tries to deselect all verb polarities, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateVerbPolarity(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -74,6 +99,13 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the verb form options.
+     * At least one verb form must be selected.
+     * If the user tries to deselect all verb forms, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions
+     */
     function validateVerbForm(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -85,30 +117,42 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the verb options. Depending on the index of the option that was changed, call the appropriate validation function.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function verbValidation(index, newOptions)
     {
-        if(index < 3)
+        if(index < 3)//Ru, U, or Irregular
         {
             validateVerbType(index, newOptions);
         }
-        else if(index < 5)
+        else if(index < 5)//Casual or Formal
         {
             validateVerbFormality(index, newOptions);
         }
-        else if(index < 7)
+        else if(index < 7)//Present or Past
         {
             validateVerbTense(index, newOptions);
         }
-        else if(index < 9)
+        else if(index < 9)//Affirmative or Negative
         {
             validateVerbPolarity(index, newOptions);
         }
-        else
+        else//Regular, Potential, Passive, Causative, or Volitional
         {
             validateVerbForm(index, newOptions);
         }
     }
 
+    /**
+     * Validate the adjective type options.
+     * At least one adjective type must be selected.
+     * If the user tries to deselect all adjective types, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateAdjectiveType(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -120,6 +164,13 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the adjective formality options.
+     * At least one adjective formality must be selected.
+     * If the user tries to deselect all adjective formalities, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateAdjectiveFormality(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -131,6 +182,13 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the adjective tense options.
+     * At least one adjective tense must be selected.
+     * If the user tries to deselect all adjective tenses, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateAdjectiveTense(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -142,6 +200,13 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the adjective polarity options.
+     * At least one adjective polarity must be selected.
+     * If the user tries to deselect all adjective polarities, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateAdjectivePolarity(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -153,6 +218,13 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the kana type options.
+     * At least one kana type must be selected.
+     * If the user tries to deselect all kana types, the one they tried to deselect will be reselected.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validateKanaType(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
@@ -164,64 +236,82 @@ function Options(props)
         }
     }
 
+    /**
+     * Validate the kana character options.
+     * No validation is needed for this option.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function validatekanaChars(index, newOptions)
     {
         newOptions[index] = !newOptions[index];
     }
 
-
+    /**
+     * Validate the adjective options. Depending on the index of the option that was changed, call the appropriate validation function.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function adjectiveValidation(index, newOptions)
     {
-        if(index < 2)
+        if(index < 2)//I or Na
         {
             validateAdjectiveType(index, newOptions);
         }
-        else if(index < 4)
+        else if(index < 4)//Casual or Formal
         {
             validateAdjectiveFormality(index, newOptions);
         }
-        else if(index < 6)
+        else if(index < 6)//Present or Past
         {
             validateAdjectiveTense(index, newOptions);
         }
-        else
+        else//Affirmative or Negative
         {
             validateAdjectivePolarity(index, newOptions);
         }
     }
 
+    /**
+     * Validate the kana options. Depending on the index of the option that was changed, call the appropriate validation function.
+     * @param {*} index 
+     * @param {*} newOptions 
+     */
     function kanaValidation(index, newOptions)
     {
-        if(index < 2)
+        if(index < 2)//Kana to Romanji or Romanji to Kana
         {
             validateKanaType(index, newOptions);
         }
-        else
+        else//Dakuten and Handakuten or Extended
         {
             validatekanaChars(index, newOptions);
         }
     }
 
 
-    //Change the options based on the index of the option that was changed and the new value
+    /**
+     * Change the options based on the index of the option that was changed and the set of options.
+     * @param {*} index 
+     */
     function changeOptions(index)
     {
-        var newOptions = [...options];
+        var newOptions = [...options];//Copy the current options
 
-        if(props.set == "verb")
+        if(props.set == "verb")//If the set is verb, call the verb validation function
         {
             verbValidation(index, newOptions);
         }
-        else if(props.set == "adjective")
+        else if(props.set == "adjective")//If the set is adjective, call the adjective validation function
         {
             adjectiveValidation(index, newOptions);
         }
-        else if(props.set == "kana")
+        else if(props.set == "kana")//If the set is kana, call the kana validation function
         {
             kanaValidation(index, newOptions);
         }
 
-        setOptions(newOptions);
+        setOptions(newOptions);//Set the options to the new options
 
     }
 
@@ -231,9 +321,10 @@ function Options(props)
         <div className="options">
             <div  className = "optionsTopSection">
                 <button className = "closeOptionsButton" onClick = {() => props.submit(options)}><img className = "closeOptionsButton" src = "/closeButton.svg" alt = "X" /></button>
+                {/*The close button is displayed at the top left of the screen. Uses parent submit function to give options to parent*/}
                 <div className = "optionsTitle">Options</div>
             </div>
-            {props.set == "verb" &&
+            {props.set == "verb" && 
             <div className = "optionsSection">
                 <div className = "optionsColumn">
                     <div className = "option">

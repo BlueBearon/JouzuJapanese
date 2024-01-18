@@ -2,13 +2,18 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
+
+/**
+ * The Header component, which contains the header for the website, containing the name of the website and the navigation bar.
+ * @returns The Header component, which contains the header for the website.
+ */
 function Header()
 {
     return(
         <header className = "header">
-            <div className = "Heading"><Link to="/" className="Heading">上手</Link></div>
+            <div className = "Heading"><Link to="/" className="Heading">上手</Link></div>{/*Name of the website*/}
 
-            <div id = "nav" className = "tabs">
+            <div id = "nav" className = "tabs">{/*Navigation bar: Links to other activities*/}
                <Link to="/KanaPractice/hiragana" className="navButton">Hiragana</Link>
                <Link to="/KanaPractice/katakana" className="navButton">Katakana</Link>
                <Link to="/ConjugationPractice/verb" className="navButton">Verb</Link>

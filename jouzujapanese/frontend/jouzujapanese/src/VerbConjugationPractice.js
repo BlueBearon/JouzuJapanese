@@ -1,3 +1,13 @@
+/**
+ * @fileoverview This file contains the VerbConjugationPractice component. This component contains the top elements, the question, and the options modal.
+ * 
+ * The VerbConjugationPractice component is the main component for the verb conjugation practice section of the website. It contains the top elements, the question, and the options modal.
+ * 
+ * Author: Chase Packer
+ * 
+ * Date: 1/17/2024
+ */
+
 import React, {useState, useEffect, useRef} from "react";
 import "./Practice.css";
 import TopElements from "./TopElements.js";
@@ -7,15 +17,17 @@ import WrongAnswer from "./WrongAnswer";
 import Options from "./Options";
 import axios from 'axios';
 
-
+//The link to the backend
 let apiLink = "http://localhost:8080/api/verbConjugation";
 let apiBackupLink = "http://localhost:8080/api/verbConjugation/optionsFailed";
 
+/**
+ * Back up function for retrieving a verb conjugation question.
+ * @param {*} options 
+ * @returns 
+ */
 function OLDretrieveVerbQuestion(options)
 {
-    //Will be replaced by call to backend
-
-    //return ["たべられます", "たべる", "Potential Formal Positive Present"];
 
     var possibleQuestions = [
         ["たべられます", "たべる", "Potential Formal Positive Present"],
@@ -32,11 +44,16 @@ function OLDretrieveVerbQuestion(options)
     return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
 }
 
-
+/**
+ * Retrieves a verb conjugation question from the backend.
+ * @param {*} options: The options for verb conjugation
+ * @returns [answer, hiragana, conjugation]: The answer to the question, the hiragana of the question, and the conjugation parameters of the question
+ */
 const retrieveQuestion = (options) => 
 {
     console.log("ConjugationPractice.js: Retrieving Verb Question");
 
+    //options object for axios call
     var optionsObject = {
         params: {
             "includeRuVerbs": options[0], 
@@ -59,22 +76,22 @@ const retrieveQuestion = (options) =>
 
 
     return axios.get(apiLink, optionsObject)
-        .then(response => {
+        .then(response => {//If the call to the backend is successful, return the answer, hiragana, and conjugation parameters
             console.log(response);
 
-            let result = [response.data.answer, response.data.hiragana, response.data.conjugation];
+            let result = [response.data.answer, response.data.hiragana, response.data.conjugation];//The answer, hiragana, and conjugation parameters are stored in the response.data object
             return result;
         }
         ).catch(error => {
             console.log(error);
             
-            return axios.get(apiBackupLink).then(response => {
+            return axios.get(apiBackupLink).then(response => {//If the call fails with options, try again with the default options
                 console.log(response);
 
                 let result = [response.data.answer, response.data.hiragana, response.data.conjugation];
                 return result;
             }
-            ).catch(error => {
+            ).catch(error => {//If the call fails with default options, try again with the OLDretrieveVerbQuestion function
                 console.log(error);
                 return OLDretrieveVerbQuestion(options);
             });
@@ -82,8 +99,11 @@ const retrieveQuestion = (options) =>
 
 }
 
-
-function VerbConjugationPractice(props)
+/**
+ * This function renders the VerbConjugationPractice component, which contains the top elements, the question, and the options modal
+ * @returns The VerbConjugationPractice component
+ */
+function VerbConjugationPractice()
 {
 
     //Hooks********************************************************************************/
@@ -196,7 +216,7 @@ function VerbConjugationPractice(props)
 
     if(loading)
     {
-        return(
+        return(//Shows loading screen if the question has not been retrieved yet
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <div className = "loading"><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
@@ -207,7 +227,7 @@ function VerbConjugationPractice(props)
 
     if(screen === 0)//Question Screen
     {
-        return (
+        return (//The question is displayed in the center of the screen, with the top elements
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <ConjugationQuestion params = {question[2]} word = {question[1]}  checkAnswer={checkAnswer}/>
@@ -218,7 +238,7 @@ function VerbConjugationPractice(props)
     else if(screen === 1)//Correct Answer Screen
     {
         console.log("ConjugationPractice.js: Rendering Correct Answer");
-        return(
+        return(//The correct answer is displayed in the center of the screen, with the top elements, give information about the correct answer
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <CorrectAnswer question = {question[2]} correctAnswer ={question[0]} next = {() => newQuestion()}/>
@@ -229,7 +249,7 @@ function VerbConjugationPractice(props)
     else//Wrong Answer Screen
     {
         console.log("ConjugationPractice.js: Rendering Wrong Answer");
-        return(
+        return(//Wrong answer screen is displayed if the user's answer was incorrect, Give information about the correct answer
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <WrongAnswer question = {question[2]} userAnswer = {userResponse.current} correctAnswer ={question[0]} next = {() => newQuestion()}/>

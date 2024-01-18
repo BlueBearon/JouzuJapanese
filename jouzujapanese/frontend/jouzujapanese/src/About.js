@@ -1,5 +1,20 @@
+/**
+ * @file About.js
+ * 
+ * This file contains the About component, explaining the purpose of the program.
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2024
+ */
+
 import React from 'react';
 
+
+/**
+ * The About component, explaining the purpose of the program. Simply returns a div with the information.
+ * @returns A div containing the information about the program
+ */
 function About()
 {
     return(

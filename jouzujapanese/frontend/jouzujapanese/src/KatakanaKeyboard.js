@@ -1,7 +1,16 @@
+/**
+ * @fileoverview This file contains the KatakanaKeyboard component which is used to display the katakana keyboard
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2021
+ */
+
 import React, {useRef} from 'react';
 import Key from "./Key.js";
 import "./Keyboard.css";
 
+//Dakuten and handakuten conversions
 var dakutenConversions = {
     "か": "が",
     "き": "ぎ",
@@ -72,27 +81,32 @@ function KatakanaKeyboard(props)
 
     const userInput = useRef("");
 
-
+    /**
+     * Updates the user's input, and calls the parent's keyboardPress function
+     * @param {*} kana: the kana that was pressed
+     * @returns true or false to indicate whether the button press was valid and the button color should change
+     */
     function keyboardPress(kana) {
         // Toggle the pressed state of the button
 
         var result;
 
 
-        if(kana === '゛')
-        {
-            if(userInput.current.length == 0)
+        if(kana === '゛')//If the dakuten button is pressed
+        {   
+            if(userInput.current.length == 0)//If there is no previous kana, do nothing and return false
             {
                 console.log("KatakanaKeyboard.js: dakuten pressed with no previous kana");
                 return false;
             }
 
-            if(dakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
+            if(dakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)//If the previous kana is not compatible with dakuten, do nothing and return false
             {
                 console.log("KatakanaKeyboard.js: dakuten pressed with no compatible previous kana");
                 return false;
             }
 
+            //Otherwise, convert the previous kana to the dakuten version, update the user's input, call the parent's keyboardPress function, and return true
             result = userInput.current.substring(0, userInput.current.length - 1) + dakutenConversions[userInput.current[userInput.current.length - 1]];
             userInput.current = result;
             props.keyboardPress(result);
@@ -101,17 +115,19 @@ function KatakanaKeyboard(props)
         }
         else if(kana === '゜')
         {
-            if(userInput.current.length == 0)
+            if(userInput.current.length == 0)//If there is no previous kana, do nothing and return false
             {
                 console.log("KatakanaKeyboard.js: handakuten pressed with no previous kana");
                 return false;
             }
 
-            if(handakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)
+            if(handakutenConversions[userInput.current[userInput.current.length - 1]] === undefined)//If the previous kana is not compatible with handakuten, do nothing and return false
             {
                 console.log("KatakanaKeyboard.js: handakuten pressed with no compatible previous kana");
                 return false;
             }
+
+            //Otherwise, convert the previous kana to the handakuten version, update the user's input, call the parent's keyboardPress function, and return true
             result = userInput.current.substring(0, userInput.current.length - 1) + handakutenConversions[userInput.current[userInput.current.length - 1]];
             userInput.current = result;
             props.keyboardPress(result);
@@ -120,21 +136,22 @@ function KatakanaKeyboard(props)
         }
         else
         {
-            if(userInput.current.length > 1)
+            if(userInput.current.length > 1)//If the user has already selected their answer, do nothing and return false
             {
                 console.log("KatakanaKeyboard.js: User has already selected their answer");
                 return false;
             }
 
-            if(userInput.current.length == 1)
+            if(userInput.current.length == 1)//If the user has selected one kana, check if it is a small ya, yu, or yo character
             {
-                if(userInput.current[0] === 'ャ' || userInput.current[0] === 'ュ' || userInput.current[0] === 'ョ')
+                if(userInput.current[0] !== 'ャ' || userInput.current[0] !== 'ュ' || userInput.current[0] !== 'ョ')//If it is not a small ya, yu, or yo character, do nothing and return false
                 {
                     console.log("KatakanaKeyboard.js: User has already selected their answer");
                     return false;
                 }
             }
 
+            //Otherwise, update the user's input, call the parent's keyboardPress function, and return true
             userInput.current = userInput.current + kana;
             props.keyboardPress(userInput.current);
             console.log("Keyboard User Input: " + userInput.current);
@@ -142,7 +159,7 @@ function KatakanaKeyboard(props)
         }
     }
 
-    return(
+    return(//A key for each kana, provide css information and the keyboardPress function
 
         <div className="katakanaKeyboard">
             <Key kana="ア" roma="A" updateUserInput={keyboardPress} />

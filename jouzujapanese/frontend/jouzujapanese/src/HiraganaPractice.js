@@ -1,3 +1,11 @@
+/**
+ * @fileoverview This file contains the HiraganaPractice component, which is the main component for the Hiragana Practice page, responsible for rendering the question, correct answer, and wrong answer screens.
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2024
+ */
+
 import React, {useState, useRef, useEffect} from "react";
 import "./Practice.css";
 import TopElements from "./TopElements";
@@ -12,13 +20,11 @@ let apiBackupLink = "http://localhost:8080/api/hiragana/optionsFailed";
 
 /**
  * Retrieves a hiragana question if backend is non-responsive
- * @param {*} options 
- * @returns 
+ * @param {*} options options[0]: includeHiraganaToRomanji, options[1]: incluceRomanjiToHiragana, options[2]: dakutenhandakuten, options[3]: extended
+ * @returns A hiragana question, in the form [question, answer, type]
  */
 function OLDretrieveHiraganaQuestion(options)
 {
-    //Will be replaced by call to backend
-
     console.log("Retrieving Hiragana Question");
 
     //random number 0 or 1
@@ -26,6 +32,7 @@ function OLDretrieveHiraganaQuestion(options)
 
     var possibleQuestions;
 
+    //If the user wants to practice hiragana to romanji, and either romanji to hiragana is not selected or random is 0
     if (options[0] && (!options[1] || random === 0))
     {
         //return ["た", "ta", "KANA"];
@@ -46,9 +53,9 @@ function OLDretrieveHiraganaQuestion(options)
             ["ぽ", "po", "KANA"]
         ];
 
-        return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];
+        return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)];//returns a random question, from the list of possible questions
     }
-    else
+    else//If the user wants to practice romanji to hiragana, and either hiragana to romanji is not selected or random is 1
     {
         //return ["ta", "た", "ROMANJI"];
         possibleQuestions = [
@@ -72,10 +79,16 @@ function OLDretrieveHiraganaQuestion(options)
     }
 }
 
+/**
+ * Retrieves a hiragana question from the backend, if the backend is responsive
+ * @param {*} options 
+ * @returns A hiragana question, in the form [question, answer, type]
+ */
 const retrieveQuestion = (options) =>
 {
     console.log("HiraganaPractice.js: Retrieving Hiragana Question");
 
+    //Options object for axios
     var optionsObject = {
         params: {
             "kanaToRomanji": options[0], 
@@ -86,13 +99,13 @@ const retrieveQuestion = (options) =>
     };
 
     return axios.get(apiLink, optionsObject)
-        .then(response => {
+        .then(response => {//If the backend is responsive
             console.log(response);
 
-            let result = [response.data.question, response.data.answer, response.data.type];
+            let result = [response.data.question, response.data.answer, response.data.type];//Set result to the question, answer, and type from the response
             return result;
         }
-        ).catch(error => {
+        ).catch(error => {//If backend fails with options, try again with no options
             console.log(error);
             
             return axios.get(apiBackupLink).then(response => {
@@ -101,7 +114,7 @@ const retrieveQuestion = (options) =>
                 let result = [response.data.question, response.data.answer, response.data.type];
                 return result;
             }
-            ).catch(error => {
+            ).catch(error => {// If backend fails with no options, return a random question
                 console.log(error);
                 console.log("HiraganaPractice.js: Retrieving Hiragana Question Failed");
                 return OLDretrieveHiraganaQuestion(options);
@@ -110,6 +123,12 @@ const retrieveQuestion = (options) =>
 
 }
 
+/**
+ * The HiraganaPractice component is the main component for the Hiragana Practice page, responsible for rendering the question, correct answer, and wrong answer screens.
+ * Contains the question, correct answer, and wrong answer screens.
+ * @param {*} props 
+ * @returns 
+ */
 function HiraganaPractice(props)
 {
     //Hooks********************************************************************************/
@@ -207,18 +226,18 @@ function HiraganaPractice(props)
 
     if(loading)
     {
-        return(
+        return( //TopElements, Loading, Options
             <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>{/*Passes the openOptions function to the TopElements component*/}
                 <div className = "loading"><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"kana"}/>}
+                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"kana"}/>}{/*Passes the options and submit function to the Options component*/}
             </div>
         );
     }
 
     if(screen === 0)//Question Screen
     {
-        return (
+        return ( //TopElements, KanaQuestion, Options
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <KanaQuestion word = {question[0]} type = {question[2]} kana = "hiragana" checkAnswer={checkAnswer}/>
@@ -229,7 +248,7 @@ function HiraganaPractice(props)
     }
     else if(screen === 1)//Correct Answer Screen
     {
-        return(
+        return(//TopElements, CorrectAnswer, Options
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <CorrectAnswer question = {question[0]} correctAnswer ={question[1]} next = {newQuestion}/>
@@ -239,7 +258,7 @@ function HiraganaPractice(props)
     }
     else//Wrong Answer Screen
     {
-        return(
+        return( //TopElements, WrongAnswer, Options
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <WrongAnswer question = {question[0]} userAnswer = {userResponse.current} correctAnswer ={question[1]} next = {newQuestion}/>

@@ -1,12 +1,24 @@
+/**
+ * @fileoverview This file contains the TopElements component. This component contains the score and options button at the top of the screen.
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2021
+ */
+
 import React from "react";
 import "./TopElements.css";
 
-
+/**
+ * This function renders the TopElements component, which contains the score and options button at the top of the screen.
+ * @param {*} props: correct: the number of correct answers, questions: the number of questions answered, openOptions: the function called when the options button is pressed
+ * @returns The TopElements component
+ */
 function TopElements(props)
 {
-    var percent = props.questions === 0 ? 0 : props.correct/props.questions;
+    var percent = props.questions === 0 ? 0 : props.correct/props.questions;//Calculate the percentage of questions answered correctly, if no questions have been answered, set the percentage to 0
 
-    return (
+    return (//The score is displayed at the top right of the screen, the options button is displayed at the top left of the screen
         <div id = "topElements" className = "topElements">
 
             <div id = "topButtons" className = "topButtons">

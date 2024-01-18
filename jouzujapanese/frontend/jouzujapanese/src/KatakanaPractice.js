@@ -1,3 +1,15 @@
+/**
+ * @file KatakanaPractice.js
+ * This file contains the KatakanaPractice component
+ * This component is the main component for the katakana practice page
+ * 
+ * Author: Chase Packer
+ * 
+ * Current as of: 1/17/2024
+ */
+
+
+
 import React, {useState, useRef, useEffect} from "react";
 import TopElements from "./TopElements";
 import CorrectAnswer from "./CorrectAnswer";
@@ -6,7 +18,9 @@ import KanaQuestion from "./KanaQuestion";
 import Options from "./Options";
 import axios from 'axios';
 
-let apiLink = "http://localhost:8080/api/katakana";
+
+//IMPORTANT: MAKE SURE THE BACKEND IS RUNNING BEFORE RUNNING THE FRONTEND
+let apiLink = "http://localhost:8080/api/katakana";//Link to backend
 let apiBackupLink = "http://localhost:8080/api/katakana/optionsFailed";
 
 /**
@@ -73,10 +87,17 @@ function OLDretrieveKatakanaQuestion(options)
 
 }
 
+
+/**
+ * Retrieves a katakana question from the backend
+ * @param {*} options 
+ * @returns 
+ */
 const retrieveQuestion = (options) =>
 {
     console.log("KatakanaPractice.js: Retrieving Katakana Question");
 
+    //Options to be sent to backend
     var optionsObject = {
         params: {
             "kanaToRomanji": options[0], 
@@ -87,22 +108,22 @@ const retrieveQuestion = (options) =>
     };
 
     return axios.get(apiLink, optionsObject)
-        .then(response => {
+        .then(response => {//If successful
             console.log(response);
 
-            let result = [response.data.question, response.data.answer, response.data.type];
+            let result = [response.data.question, response.data.answer, response.data.type];//Set question to the api response
             return result;
         }
         ).catch(error => {
             console.log(error);
             
-            return axios.get(apiBackupLink).then(response => {
+            return axios.get(apiBackupLink).then(response => {//If backend fails with options, try again with default options
                 console.log(response);
 
                 let result = [response.data.question, response.data.answer, response.data.type];
                 return result;
             }
-            ).catch(error => {
+            ).catch(error => {//If backend fails with default options, try again with old function
                 console.log(error);
                 return OLDretrieveKatakanaQuestion(options);
             });
@@ -110,7 +131,13 @@ const retrieveQuestion = (options) =>
 
 }
 
-function KatakanaPractice(props)
+
+/**
+ * The component for the katakana practice page.
+ * Contains the top elements (score, options, etc.), the question, and the correct/wrong answer screens, as well as the options modal
+ * @returns KatakanaPractice component
+ */
+function KatakanaPractice()
 {
     //Hooks********************************************************************************/
     //Manages which screen is displayed 0: Question, 1: Correct Answer, 2: Wrong Answer
@@ -205,9 +232,9 @@ function KatakanaPractice(props)
             });
     }, []);
 
-    if(loading)
+    if(loading)//Loading Screen, if we are waiting for a question to be retrieved
     {
-        return(
+        return(//Load Top Elements and Loading Image
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <div className = "loading"><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
@@ -218,7 +245,7 @@ function KatakanaPractice(props)
 
     if(screen === 0)//Question Screen
     {
-        return (
+        return (//Load Top Elements and Question
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <KanaQuestion word = {question[0]} type = {question[2]} kana = "katakana" checkAnswer={checkAnswer}/>
@@ -229,7 +256,7 @@ function KatakanaPractice(props)
     }
     else if(screen === 1)//Correct Answer Screen
     {
-        return(
+        return(//Load Top Elements and Correct Answer
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <CorrectAnswer question = {question[0]} correctAnswer ={question[1]} next = {newQuestion}/>
@@ -239,7 +266,7 @@ function KatakanaPractice(props)
     }
     else//Wrong Answer Screen
     {
-        return(
+        return(//Load Top Elements and Wrong Answer
             <div className = "questionSection">
                 <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
                 <WrongAnswer question = {question[0]} userAnswer = {userResponse.current} correctAnswer ={question[1]} next = {newQuestion}/>
