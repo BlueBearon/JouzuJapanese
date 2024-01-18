@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import "./TopElements.css";
+import "./css/TopElements.css";
 
 /**
  * This function renders the TopElements component, which contains the score and options button at the top of the screen.

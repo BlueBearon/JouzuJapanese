@@ -10,7 +10,7 @@
 
 
 import React, {useState, useEffect, useRef} from "react";
-import "./ConjugationQuestion.css";
+import "./css/ConjugationQuestion.css";
 
 /**
  * The ConjugationQuestion component, responsible for rendering the conjugation question.

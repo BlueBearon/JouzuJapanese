@@ -11,7 +11,7 @@
 
 import React, {useRef } from "react";
 import Key from "./Key.js";
-import "./Keyboard.css";
+import "./css/Keyboard.css";
 
 //Dakuten conversions, used for dakuten button
 var dakutenConversions = {

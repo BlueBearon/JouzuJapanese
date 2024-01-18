@@ -7,7 +7,7 @@
  */
 
 import React, {useState, useRef, useEffect} from "react";
-import "./Practice.css";
+import "./css/Practice.css";
 import TopElements from "./TopElements";
 import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";

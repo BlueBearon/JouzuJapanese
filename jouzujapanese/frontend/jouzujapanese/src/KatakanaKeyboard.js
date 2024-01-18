@@ -8,7 +8,7 @@
 
 import React, {useRef} from 'react';
 import Key from "./Key.js";
-import "./Keyboard.css";
+import "./css/Keyboard.css";
 
 //Dakuten and handakuten conversions
 var dakutenConversions = {

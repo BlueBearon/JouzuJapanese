@@ -9,7 +9,7 @@
  */
 
 import React, {useState, useEffect, useRef} from "react";
-import "./Practice.css";
+import "./css/Practice.css";
 import TopElements from "./TopElements.js";
 import ConjugationQuestion from "./ConjugationQuestion";
 import CorrectAnswer from "./CorrectAnswer";

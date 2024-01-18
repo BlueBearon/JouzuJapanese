@@ -8,7 +8,7 @@
 
 
 import React from "react";
-import "./Result.css";
+import "./css/Result.css";
 
 /**
  * The CorrectAnswer component displays the correct answer for a question.

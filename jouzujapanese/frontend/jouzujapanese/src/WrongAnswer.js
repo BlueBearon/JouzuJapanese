@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import "./Result.css";
+import "./css/Result.css";
 
 /**
  * This function renders the WrongAnswer component, which displays the correct answer and the user's answer when the user answers incorrectly.

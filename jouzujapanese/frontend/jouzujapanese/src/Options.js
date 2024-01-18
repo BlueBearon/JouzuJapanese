@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import './Options.css';
+import './css/Options.css';
 
 /**
  * This function renders the Options component, which displays the options for the practice sets. It also handles the logic for the options.
