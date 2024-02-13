@@ -1,12 +1,35 @@
-Great, with the provided information, here's an updated README:
-
 # JouzuJapanese
 
-**IN PROGRESS**
+JouzuJapanese is a web application designed to assist beginner Japanese language students by providing practice activities such as verb and adjective conjugation, as well as practicing
+hiragana and katakana.  More practices on the way.
 
-More Detailed README coming.
+This front-end of this program was written in React, while the back-end is a spring-boot
+RESTful API programmed in Java. The back-end is responsible for producing questions for the
+front-end, with a significant amount of code related to handling japanese conjugation logic.
 
-A web application for practicing Japanese language skills.
+Last Updated: February 13, 2024
+
+![Home Screen](READMEImages/HomeScreen.png)
+# Table of Contents
+
+1. [Requirements](#requirements)
+   1. [Frontend (React)](#frontend-react)
+   2. [Backend (Java Spring Boot)](#backend-java-spring-boot)
+
+2. [Getting Started](#getting-started)
+
+3. [Features](#features)
+   1. [Hiragana Practice](#hiragana-practice)
+   2. [Katakana Practice](#katakana-practice)
+   3. [Verb Conjugation Practice](#verb-conjugation-practice)
+   4. [Adjective Conjugation Practice](#adjective-conjugation-practice)
+
+4. [Typing Japanese Characters](#typing-japanese-characters)
+   1. [Windows](#windows)
+   2. [Mac](#mac)
+   3. [Linux](#linux)
+
+5. [File Structure](#file-structure)
 
 ## Requirements
 
@@ -80,22 +103,168 @@ To set up the Java Spring Boot backend, follow these steps:
 
 3. The backend will be accessible at `http://localhost:8080/`.
 
-### Features
-
-![Home Screen](READMEImages/HomeScreen.png)
+## Features
 
 Currently, four type of practices are implemented:
-    
-1. Hiragana Practice
 
-![Hiragana Practice w/ Keyboard](READMEImages/HiraganaPracticeKeyboard.png)
+### Hiragana Practice
 
-![Hiragana Practice w/o Keyboard](READMEImages/HiraganaPracticeRegular.png)
+This practice involves two types of questions:
+         
+- Hiragana to romaji: Given the Hiragana, type to romaji.
 
-2. Katakana Practice
+    ![Hiragana Practice w/o Keyboard](READMEImages/HiraganaPracticeRegular.png)
 
-3. Verb Conjugation Practice
+- romaji to Hiragana: Given the romaji, use the on-screen keyboard to input the hiragana.
 
-4. Adjective Conjugation Practice
+    ![Hiragana Practice w/ Keyboard](READMEImages/HiraganaPracticeKeyboard.png)
+
+### Katakana Practice
+
+This practice involves the same types of questions as Hiragana Practice, but with Katakana instead.
+
+![Katakana Practice w/o Keyboard](READMEImages/KatakanaPracticeRegular.png)
+
+![Katakana Practice w/ Keyboard](READMEImages/KatakanaPracticeKeyboard.png)
+
+### Verb Conjugation Practice
+
+This practice involves conjugating the given verb with the requested conjugation parameters. 
+
+For Example: 
+
+- する (suru) -> Passive Casual Positive Past -> された (sareta)
+
+![Verb Conjugation Practice](READMEImages/VerbConjugation.png)
+
+### Adjective Conjugation Practice
+
+Similarly, this practice involves conjugating the given adjective with the requested
+conjugation parameters.
+
+For Example:
+
+- きれい (kirei) -> Formal Negative Present -> きれいじゃないです
+
+    - **Currently this program requests じゃない not ではない, though this will be addressed in a future update**
+
+![Adjective Conjugation Practice](READMEImages/AdjectiveConjugation.png)
+
+# Typing Japanese Characters
+
+**Currently for the Conjugation Practices, the only input they will except is Hiragana.**
+
+Here are the system specific instructions for how to type Japanese characters on your computer.
+
+In a future update, the ability to accept romaji answers may be implemented.
+
+## Windows
+
+### Using Microsoft IME (Input Method Editor)
+
+1. **Enable Microsoft IME:**
+   - Go to Control Panel > Clock and Region > Region and Language.
+   - In the 'Keyboards and Languages' tab, click on 'Change keyboards...'
+   - Add Japanese (Microsoft IME) from the list.
+
+2. **Switch to Japanese Input:**
+   - Use `Alt` + `Shift` to toggle between English and Japanese input modes.
+
+3. **Type Hiragana and Katakana:**
+   - While in Japanese mode, type in romaji, and Microsoft IME will convert it to hiragana or katakana. Press `Space` to confirm.
+
+4. **Switch to Kanji Input:**
+   - Press `F7` to convert hiragana to kanji. Select the desired kanji from the list.
+
+## Mac
+
+### Using Kotoeri Input Method
+
+1. **Enable Kotoeri:**
+   - Go to System Preferences > Keyboard > Input Sources.
+   - Add 'Japanese' from the list.
+
+2. **Switch to Japanese Input:**
+   - Use `Command` + `Space` to toggle between English and Japanese input modes.
+
+3. **Type Hiragana and Katakana:**
+   - While in Japanese mode, type in romaji, and Kotoeri will convert it to hiragana or katakana. Press `Enter` to confirm.
+
+4. **Switch to Kanji Input:**
+   - Press `Space` to convert hiragana to kanji. Select the desired kanji from the list.
+
+## Linux
+
+### Using IBus-Anthy or Fcitx-Mozc
+
+1. **Install Input Method Framework:**
+   - Install IBus or Fcitx as your input method framework. For example, on Ubuntu, you can use:
+     ```bash
+     sudo apt-get install ibus-anthy
+     ```
+     or
+     ```bash
+     sudo apt-get install fcitx-mozc
+     ```
+
+2. **Add Japanese Input Method:**
+   - Open the IBus Preferences or Fcitx Configuration tool to add the Japanese input method.
+
+3. **Switch to Japanese Input:**
+   - Use the configured hotkey to toggle between English and Japanese input modes.
+
+4. **Type Hiragana and Katakana:**
+   - While in Japanese mode, type in romaji, and the input method will convert it to hiragana or katakana.
+
+5. **Switch to Kanji Input:**
+   - Depending on the input method, you may need to press a specific key to convert hiragana to kanji.
+
+Now you can use these methods to input Japanese characters on your respective operating system while using JouzuJapanese.
+
+
+## File Structure
+
+- The front-end code for the React application is located in the following folder:
+
+    ```bash
+    cd frontend/jouzujapanese
+    ```
+
+    - The actual code files are located in:
+
+        ```bash
+        cd src
+        ```
+
+- The back-end code is located in the following folder:
+
+    ```bash
+    cd src/main/java/com/chasepacker/
+    ```
+
+    - Code related to conjugation code is located in:
+
+        ```bash
+        cd ConjugationCode
+        ```
+
+    - XML files containing the japanese words being used are in:
+
+        ```bash
+        cd Words
+        ```
+
+        - If you wish to add words to the XML files, return to the root of the repository
+        and run the following file. (Python is required)
+
+            ```bash
+            python pythonScripts/addWords.py
+            ```
+
+        
+
+
+
+
 
 
