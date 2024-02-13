@@ -7,6 +7,11 @@ This front-end of this program was written in React, while the back-end is a spr
 RESTful API programmed in Java. The back-end is responsible for producing questions for the
 front-end, with a significant amount of code related to handling japanese conjugation logic.
 
+Created by: Chase Packer
+- packerchase@hotmail.com
+- https://github.com/BlueBearon
+- https://www.linkedin.com/in/chase-packer/
+  
 Last Updated: February 13, 2024
 
 ![Home Screen](jouzujapanese/READMEImages/HomeScreen.png)
