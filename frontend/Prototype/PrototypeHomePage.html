@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- English app for practicing Japanese, needs Japanese characters-->
+<html lang = "en">
+
+<head>
+    <meta charset = "utf-8">
+    <title>Jouzu Japanese</title>
+    <link rel = "stylesheet" href = "Prototype.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap">
+</head>
+
+<body>
+
+    <div id = "header" class = "header">
+        <div class = "Heading">上手</div>
+
+        <div id = "nav" class = "tabs">
+            <button id = "toHiraganaTab" class = "navButton">Hiragana</button>
+            <button id = "toKatakanaTab" class = "navButton">Katakana</button>
+            <button id = "toVerbConjugationTab" class = "navButton">Verb</button>
+            <button id = "toAdjectiveConjugationTab" class = "navButton">Adjective</button>
+            <button id = "toAboutTab" class = "navButton">About</button>
+        </div>
+
+        <script src = "NavigationBar.js"></script>
+        
+    </div>
+
+    <div id = "Content" class = "twoSection">
+
+        <div id = "left" class = "section">
+            <div class = "LargeTitle">上手</div>
+            <div class = "subTitle">Jouzu</div>
+        </div>
+
+        <div id = "right" class = "section">
+            <button id="toHiraganaButton" class = "largeButton">ひらがな Hiragana</button>
+            <button id="toKatakanaButton" class = "largeButton">カタカナ Katakana</button>
+            <button id="toVerbConjugationButton" class = "largeButton">Verb Conjugation</button>
+            <button id="toAdjectiveConjugationButton" class = "largeButton">Adjective Conjugation</button>
+        </div>
+
+        <script src = "HomeNavigation.js"></script>
+
+    </div>
+
+
+</body>
+
+</html>

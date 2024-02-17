@@ -1,0 +1,1184 @@
+
+/* MAIN ELEMENTS */
+
+.header
+{
+    /*Horizontal Strip
+    Blue
+    100% width
+    10% height
+    
+    Title
+    4 Navigation Buttons
+    */
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    background-color: #4472C4;
+    align-items: center;
+    gap: 2vw;
+
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.LargeTitle
+{
+    font-size: 100px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.subTitle
+{
+    font-size: 32px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.Heading
+{
+    font-size: 40px;
+    margin-left: 1vw;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.tabs
+{
+    /*Bottom strip*/
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+/*HOME PAGE*/
+
+.twoSection
+{
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    height: 80vh;
+    margin: 5vh 5vw;
+}
+
+.section 
+{
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+
+}
+
+.navButton
+{
+    color: black;
+    padding: 10px 32px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 5vh;
+    background-color: #4472C4;
+    outline: none;
+    border: none;
+}
+
+.navButton:hover
+{
+    background-color: #658bcc;
+}
+
+.largeButton
+{
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 45vw;
+    border-radius: 10px;
+    height: 15vh;
+}
+
+.largeButton:hover
+{
+    background-color: #658bcc75;
+}
+
+
+/*PRACTICE PAGES*/
+
+.questionSection
+{
+    display: flex;
+    flex-direction: column;
+    width: 98vw;
+    height: 76vh;
+    margin: 2vh 1vw; 
+}
+
+.topElements
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98vw;
+    height: 10vh;
+}
+
+.topButtons
+{
+    display: flex;
+    flex-direction: row;
+    width: 25vw;
+    height: 10vh;
+    align-items: top;
+    gap: 2vw;
+}
+
+.backButton
+{
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+    padding: 15px 15px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 5vh;
+    width: 6vw;
+}
+
+.backicon
+{
+    width: 10vw;
+    height: 5vh;
+}
+
+.topButton
+{
+    background-color: white;
+    color: black;
+    padding: 15px 15px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 5vh;
+    width: 10vw;
+}
+
+.topButton:hover
+{
+    background-color: #658bcc75;
+}
+
+.score
+{
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: 10vh;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.outOf
+{
+    font-size: 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.percentage
+{
+    font-size: 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.conjugationquestion
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    height: 76vh;
+    gap: 2vh;
+
+}
+
+.kanaquestion
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    height: 76vh;
+    gap: 2vh;
+}
+
+.correctAnswer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    height: 76vh;
+    gap: 2vh;
+    display: none;
+}
+
+.wrongAnswer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    height: 76vh;
+    gap: 2vh;
+    display: none;
+}
+
+.conjugationParameters
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 36px;
+}
+
+.conjugationWord
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 36px;
+}
+
+.userInput
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    height: 5vh;
+
+}
+
+.kanaUserInput
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.userInputBox
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    width: 40vw;
+    height: 5vh;
+}
+
+.kanaInputBox
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    width: 7vw;
+    height: 5vh;
+}
+
+.submitButton
+{
+    background-color: #70AD47;
+    color: white;
+    height: 5vh;
+    width: 7vw;
+    font-size: 30px;
+}
+
+.submitButton:hover
+{
+    background-color: #00ff00;
+}
+
+.correctText
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 48px;
+    color: #70AD47;
+}
+
+.conjugationParametersAnswer
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+}
+
+.conjugationWordAnswer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.conjugationWordAnswerText
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 36px;
+}
+
+.wrongText
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 48px;
+    color: #FF0000;
+}
+
+.answerGiven
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 36px;
+}
+
+.kana
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 48px;
+}
+
+.answericon
+{
+    width: 36px;
+    height: 36px;
+}
+
+
+/*Hiragana and Katakana Keyboard*/
+
+.hiraganaKeyboard
+{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat (5, 1fr);
+    display: none;
+}
+
+.katakanaKeyboard
+{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat (5, 1fr);
+    display: none;
+}
+
+.dakuten
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.handakuten
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.smallYa
+{
+    grid-row: 1;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.smallYu
+{
+    grid-row: 2;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.smallYo
+{
+    grid-row: 3;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Wa
+{
+    grid-row: 1;
+    grid-column: 4;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ra
+{
+    grid-row: 1;
+    grid-column: 5;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ya
+{
+    grid-row: 1;
+    grid-column: 6;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ma
+{
+    grid-row: 1;
+    grid-column: 7;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ha
+{
+    grid-row: 1;
+    grid-column: 8;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Na
+{
+    grid-row: 1;
+    grid-column: 9;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ta
+{
+    grid-row: 1;
+    grid-column: 10;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Sa
+{
+    grid-row: 1;
+    grid-column: 11;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ka
+{
+    grid-row: 1;
+    grid-column: 12;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.A
+{
+    grid-row: 1;
+    grid-column: 13;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.Ri
+{
+    grid-row: 2;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Mi
+{
+    grid-row: 2;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Hi
+{
+    grid-row: 2;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ni
+{
+    grid-row: 2;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Chi
+{
+    grid-row: 2;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Shi
+{
+    grid-row: 2;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ki
+{
+    grid-row: 2;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.I
+{
+    grid-row: 2;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ru
+{
+    grid-row: 3;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Yu
+{
+    grid-row: 3;
+    grid-column: 6;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Mu
+{
+    grid-row: 3;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Fu
+{
+    grid-row: 3;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Nu
+{
+    grid-row: 3;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Tsu
+{
+    grid-row: 3;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Su
+{
+    grid-row: 3;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ku
+{
+    grid-row: 3;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.U
+{
+    grid-row: 3;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Re
+{
+    grid-row: 4;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Me
+{
+    grid-row: 4;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.He
+{
+    grid-row: 4;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ne
+{
+    grid-row: 4;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Te
+{
+    grid-row: 4;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Se
+{
+    grid-row: 4;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ke
+{
+    grid-row: 4;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.E
+{
+    grid-row: 4;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Wo
+{
+    grid-row: 5;
+    grid-column: 4;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ro
+{
+    grid-row: 5;
+    grid-column: 5;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Yo
+{
+    grid-row: 5;
+    grid-column: 6;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Mo
+{
+    grid-row: 5;
+    grid-column: 7;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ho
+{
+    grid-row: 5;
+    grid-column: 8;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.No
+{
+    grid-row: 5;
+    grid-column: 9;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.To
+{
+    grid-row: 5;
+    grid-column: 10;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.So
+{
+    grid-row: 5;
+    grid-column: 11;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.Ko
+{
+    grid-row: 5;
+    grid-column: 12;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.O
+{
+    grid-row: 5;
+    grid-column: 13;
+    background: none;
+    border: none;
+    padding: none;
+    outline: none;
+}
+
+.kanaButton
+{
+    height: 7vh;
+    width: 4vw;
+}
+
+.kanaButton:hover
+{
+    background-color: #658bcc75;
+}
+
+/*OPTIONS*/
+
+.options
+{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 20vw;
+    top: 20vh;
+    width: 60vw; /* Full width */
+    height: 60vh; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgb(255, 255, 255); /* Black w/ opacity */ 
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.optionsTopSection
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1vw;
+    padding-left: 1vw;
+    height: 5vh;
+}
+
+.optionsTitle
+{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    color: black;
+}
+
+.optionsContainer
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    padding-left: 1vw;
+    gap: 1vw;
+    display: none;
+}
+
+.ruVerbs
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.uVerbs
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.irregularVerbs
+{
+    grid-row: 3;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.formal
+{
+    grid-row: 5;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.casual
+{
+    grid-row: 6;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.positive
+{
+    grid-row: 1;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.negative
+{
+    grid-row: 2;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.present
+{
+    grid-row: 5;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.past
+{
+    grid-row: 6;
+    grid-column: 2;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.potential
+{
+    grid-row: 1;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.passive
+{
+    grid-row: 2;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.causative
+{
+    grid-row: 3;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.volitional
+{
+    grid-row: 4;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.iAdjectives
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.naAdjectives
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectiveFormal
+{
+    grid-row: 4;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectiveCasual
+{
+    grid-row: 5;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectivePositive
+{
+    grid-row: 1;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectiveNegative
+{
+    grid-row: 2;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectivePresent
+{
+    grid-row: 4;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.adjectivePast
+{
+    grid-row: 5;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
+.kanaToRomanji
+{
+    grid-row: 1;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.romanjiToKana
+{
+    grid-row: 2;
+    grid-column: 1;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.dakutenhandakuten
+{
+    grid-row: 1;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.extended
+{
+    grid-row: 2;
+    grid-column: 3;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
