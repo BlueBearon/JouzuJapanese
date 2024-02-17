@@ -14,7 +14,7 @@ Created by: Chase Packer
   
 Last Updated: February 13, 2024
 
-![Home Screen](jouzujapanese/READMEImages/HomeScreen.png)
+![Home Screen](READMEImages/HomeScreen.png)
 # Table of Contents
 
 1. [Requirements](#requirements)
@@ -72,7 +72,7 @@ To set up the React frontend, follow these steps:
 2. Navigate to the frontend directory:
 
     ```bash
-    cd JouzuJapanese/jouzujapanese/frontend/jouzujapanese
+    cd frontend/jouzujapanese
     ```
 
 3. Install dependencies:
@@ -93,20 +93,13 @@ To set up the React frontend, follow these steps:
 
 To set up the Java Spring Boot backend, follow these steps:
 
-
-1. Navigate to the backend directory:
-
-    ```bash
-    cd JouzuJapanese/jouzujapanese
-    ```
-
-2. Build and run the backend using Maven:
+1. Build and run the backend using Maven:
 
     ```bash
     mvn spring-boot:run
     ```
 
-3. The backend will be accessible at `http://localhost:8080/`.
+2. The backend will be accessible at `http://localhost:8080/`.
 
 ## Features
 
@@ -118,19 +111,19 @@ This practice involves two types of questions:
          
 - Hiragana to romaji: Given the Hiragana, type to romaji.
 
-    ![Hiragana Practice w/o Keyboard](jouzujapanese/READMEImages/HiraganaPracticeRegular.png)
+    ![Hiragana Practice w/o Keyboard](READMEImages/HiraganaPracticeRegular.png)
 
 - romaji to Hiragana: Given the romaji, use the on-screen keyboard to input the hiragana.
 
-    ![Hiragana Practice w/ Keyboard](jouzujapanese/READMEImages/HiraganaPracticeKeyboard.png)
+    ![Hiragana Practice w/ Keyboard](READMEImages/HiraganaPracticeKeyboard.png)
 
 ### Katakana Practice
 
 This practice involves the same types of questions as Hiragana Practice, but with Katakana instead.
 
-![Katakana Practice w/o Keyboard](jouzujapanese/READMEImages/KatakanaPracticeRegular.png)
+![Katakana Practice w/o Keyboard](READMEImages/KatakanaPracticeRegular.png)
 
-![Katakana Practice w/ Keyboard](jouzujapanese/READMEImages/KatakanaPracticeKeyboard.png)
+![Katakana Practice w/ Keyboard](READMEImages/KatakanaPracticeKeyboard.png)
 
 ### Verb Conjugation Practice
 
@@ -140,7 +133,7 @@ For Example:
 
 - する (suru) -> Passive Casual Positive Past -> された (sareta)
 
-![Verb Conjugation Practice](jouzujapanese/READMEImages/VerbConjugation.png)
+![Verb Conjugation Practice](READMEImages/VerbConjugation.png)
 
 ### Adjective Conjugation Practice
 
@@ -153,7 +146,7 @@ For Example:
 
     - **Currently this program requests じゃない not ではない, though this will be addressed in a future update**
 
-![Adjective Conjugation Practice](jouzujapanese/READMEImages/AdjectiveConjugation.png)
+![Adjective Conjugation Practice](READMEImages/AdjectiveConjugation.png)
 
 # Typing Japanese Characters
 
