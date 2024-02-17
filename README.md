@@ -3,6 +3,16 @@
 JouzuJapanese is a web application designed to assist beginner Japanese language students by providing practice activities such as verb and adjective conjugation, as well as practicing
 hiragana and katakana.  More practices on the way.
 
+[Go to Live Website](https://jouzujapanese.netlify.app/)
+
+**The Java RESTful API is currently not deployed, so the conjugation practices will use default questions.
+If you wish to run the full application with the RESTful API, please follow the instructions to run the backend.**
+
+[Requirements](#backend-java-spring-boot)
+
+[Getting Started](#run-backend-java-spring-boot)
+
+
 This front-end of this program was written in React, while the back-end is a spring-boot
 RESTful API programmed in Java. The back-end is responsible for producing questions for the
 front-end, with a significant amount of code related to handling japanese conjugation logic.
@@ -59,7 +69,7 @@ To run the Java Spring Boot backend of JouzuJapanese, you need:
 
 ## Getting Started
 
-### Frontend (React)
+### Run Frontend (React)
 
 To set up the React frontend, follow these steps:
 
@@ -89,7 +99,7 @@ To set up the React frontend, follow these steps:
 
 5. Open your web browser and go to `http://localhost:3000/` to view the frontend.
 
-### Backend (Java Spring Boot)
+### Run Backend (Java Spring Boot)
 
 To set up the Java Spring Boot backend, follow these steps:
 
