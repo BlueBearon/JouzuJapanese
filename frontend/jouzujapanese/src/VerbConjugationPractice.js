@@ -18,8 +18,8 @@ import Options from "./Options";
 import axios from 'axios';
 
 //The link to the backend
-let apiLink = "http://localhost:8080/api/verbConjugation";
-let apiBackupLink = "http://localhost:8080/api/verbConjugation/optionsFailed";
+let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/verbConjugation";
+let apiBackupLink = "http://localhost:8080/api/verbConjugation";
 
 /**
  * Back up function for retrieving a verb conjugation question.

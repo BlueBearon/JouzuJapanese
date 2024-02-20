@@ -21,8 +21,8 @@ import axios from 'axios';
 
 
 //IMPORTANT: MAKE SURE THE BACKEND IS RUNNING BEFORE RUNNING THE FRONTEND
-let apiLink = "http://localhost:8080/api/katakana";//Link to backend
-let apiBackupLink = "http://localhost:8080/api/katakana/optionsFailed";
+let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/katakana";//Link to backend
+let apiBackupLink = "http://localhost:8080/api/katakana";
 
 /**
  * Retrieves a katakana question if backend is non-responsive

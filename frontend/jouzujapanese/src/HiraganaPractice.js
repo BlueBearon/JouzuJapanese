@@ -15,8 +15,8 @@ import KanaQuestion from "./KanaQuestion";
 import Options from "./Options";
 import axios from 'axios';
 
-let apiLink = "http://localhost:8080/api/hiragana";
-let apiBackupLink = "http://localhost:8080/api/hiragana/optionsFailed";
+let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/hiragana";//Link to backend
+let apiBackupLink = "http://localhost:8080/api/hiragana";
 
 /**
  * Retrieves a hiragana question if backend is non-responsive

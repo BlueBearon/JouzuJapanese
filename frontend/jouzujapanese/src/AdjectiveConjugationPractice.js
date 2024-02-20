@@ -15,8 +15,8 @@ import WrongAnswer from "./WrongAnswer";
 import Options from "./Options";
 import axios from 'axios';
 
-let apiLink = "http://localhost:8080/api/adjectiveConjugation";
-let apiBackupLink = "http://localhost:8080/api/adjectiveConjugation/optionsFailed";
+let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/adjectiveConjugation";//Link to backend
+let apiBackupLink = "http://localhost:8080/api/adjectiveConjugation";
 
 /**
  * Retrieves an adjective conjugation question if the backend is non-reponsive using
