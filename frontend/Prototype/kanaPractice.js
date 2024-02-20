@@ -343,7 +343,7 @@ function checkAnswer()
         document.getElementById("question").style.display = "none";
         document.getElementById("wrongAnswer").style.display = "flex";
         document.getElementById("questionsymbol2").innerHTML = question[0];
-        document.getElementById("incorrectAnswerText").innerHTML = userAnswer;
+        document.getElementById("incorrectAnswerText").textContent = userAnswer;
         document.getElementById("correctAnswerText2").innerHTML = question[1];
 
         updateStats();
