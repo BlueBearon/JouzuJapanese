@@ -198,7 +198,7 @@ function checkAnswer()
         document.getElementById("question").style.display = "none";
         document.getElementById("wrongAnswer").style.display = "flex";
         document.getElementById("conjugationParametersAnswer").innerHTML = question[2];
-        document.getElementById("incorrectAnswerText").innerHTML = userAnswer;
+        document.getElementById("incorrectAnswerText").textContent = userAnswer;
         document.getElementById("correctWordAnswerText2").innerHTML = question[0];
 
         updateStats();
