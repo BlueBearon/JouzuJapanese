@@ -16,6 +16,7 @@ import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
 import Options from "./Options";
 import axios from 'axios';
+import { romajiParser } from "./JapaneseMethods.js";
 
 //The link to the backend
 let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/verbConjugation";
@@ -170,7 +171,8 @@ function VerbConjugationPractice()
         userResponse.current = answer;
         questionCount.current++;
 
-        if(userResponse.current === question[0])
+        if(userResponse.current === question[0] ||
+            romajiParser(userResponse.current) === question[0])
         {
             correct.current++;
             setScreen(1);

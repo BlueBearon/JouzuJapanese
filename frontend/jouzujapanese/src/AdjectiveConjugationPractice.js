@@ -14,6 +14,7 @@ import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
 import Options from "./Options";
 import axios from 'axios';
+import { hiraganaParser } from "./JapaneseMethods.js";
 
 let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/adjectiveConjugation";//Link to backend
 let apiBackupLink = "http://localhost:8080/api/adjectiveConjugation";
@@ -158,7 +159,8 @@ function AdjectiveConjugationPractice(props)
         userResponse.current = answer;
         questionCount.current++;
 
-        if(userResponse.current === question[0])
+        if(userResponse.current === question[0] || 
+            hiraganaParser(userResponse.current) === question[0])
         {
             correct.current++;
             setScreen(1);
