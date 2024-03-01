@@ -21,6 +21,13 @@ function KanaQuestion(props)
     const [userInput, updateInput] = useState("");
     const keyboardInput = useRef("");
 
+    const handleKeyPress = (event) => {
+        if(event.key === "Enter")
+        {
+            props.checkAnswer(userInput);
+        }
+    };
+
 
     console.log("User Input: " + userInput);
 
@@ -46,7 +53,10 @@ function KanaQuestion(props)
                 <div id = "kana" className = "kana">{props.word}</div>
                 <div id = "userInput" className = "kanaUserInput">
                  <input id = "userInputBox" className = "kanaInputBox" type = "text" name = "userInputBox" value = {userInput.current}
-                 onChange={event => updateInput(event.target.value)}></input>{/*give callback function to update the user's input*/}
+                 onChange={event => updateInput(event.target.value)}
+                 onKeyDown = {handleKeyPress}
+                 >
+                    </input>{/*give callback function to update the user's input*/}
                  <button id = "submitButton" className = "submitButton"
                  onClick = {() => props.checkAnswer(userInput)}>&rarr;</button>{/*callback function to check the user's answer*/}
                 </div>

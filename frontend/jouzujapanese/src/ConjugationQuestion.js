@@ -25,6 +25,13 @@ function ConjugationQuestion(props)
     const [userInput, updateInput] = useState("");//User input for the conjugation question
     const renders = useRef(0);
 
+    const handleKeyPress = (event) => {
+        if(event.key === "Enter")
+        {
+            props.checkAnswer(userInput);
+        }
+    };
+
     return (//The conjugation question
         <div id = "question" className = "conjugationquestion">
 
@@ -38,6 +45,7 @@ function ConjugationQuestion(props)
                 name = "userInputBox" 
                 value = {userInput}
                 onChange = {event => updateInput(event.target.value)}
+                onKeyDown = {handleKeyPress}
                 ></input>{/*User input box*/}
                 <button 
                 id = "submitButton" 

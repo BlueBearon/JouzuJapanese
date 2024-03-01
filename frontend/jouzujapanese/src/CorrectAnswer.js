@@ -18,8 +18,17 @@ import "./css/Result.css";
  */
 function CorrectAnswer(props)
 {
+
+    const onKeyPress = (event) => {
+        if(event.key === "Enter")
+        {
+            props.next();
+        }
+    };
+
     return(
-        <div className = "correctAnswer">
+        <div className = "correctAnswer"
+        onKeyDown = {onKeyPress} tabIndex="0">
             <div id = "correctText" className = "correctText">Correct</div>{/*Correct text*/}
             <div id = "question" className = "question">{ props.question }</div>{/*Conjugation question*/}
             <div id = "answerBox" className = "answerBox">{/*Correct answer*/}
@@ -27,7 +36,9 @@ function CorrectAnswer(props)
                 <div id = "AnswerText" className = "AnswerText">{ props.correctAnswer }</div>
             </div>
             <button id = "nextButton" className = "submitButton"
-            onClick = {() => props.next()}>&#8594;</button>{/*Next button*/}
+            onClick = {() => props.next()}
+            onKeyDown={onKeyPress}
+            >&#8594;</button>{/*Next button*/}
         </div>
     );
 }

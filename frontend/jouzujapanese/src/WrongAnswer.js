@@ -16,8 +16,17 @@ import "./css/Result.css";
  */
 function WrongAnswer(props)
 {
+
+    const onKeyPress = (event) => {
+        if(event.key === "Enter")
+        {
+            props.next();
+        }
+    };
+
     return(
-        <div className = "wrongAnswer">
+        <div className = "wrongAnswer"
+        onKeyDown = {onKeyPress} tabIndex="0">
             <div id = "wrongText" className = "wrongText">Incorrect</div>{/*The text "Incorrect" is displayed at the top of the screen*/}
             <div id = "question" className = "question">{ props.question }</div>{/*The question that was answered incorrectly is displayed*/}
             <div id = "givenAnswer" className = "answerBox">{/*The user's answer is displayed with a red X*/}
@@ -29,7 +38,9 @@ function WrongAnswer(props)
                 <div id = "correctAnswerText" className = "AnswerText">{ props.correctAnswer }</div>
             </div>
             <button id = "nextButton" className = "submitButton"
-            onClick = {() => props.next()}>&#8594;</button>{/*The next button is displayed at the bottom*/}
+            onClick = {() => props.next()}
+            onKeyDown={onKeyPress}
+            >&#8594;</button>{/*The next button is displayed at the bottom*/}
         </div>
     );
 }
