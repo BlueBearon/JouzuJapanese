@@ -52,7 +52,7 @@
     height: 10vh;
     align-items: flex-end;
     justify-content: flex-start;
-    color: white;
+    color: black;
     animation: fadeIn 0.2s ease-in-out;
 }
 
@@ -60,7 +60,7 @@
 {
     font-size: 30px;
     font-family: 'Noto Sans JP', sans-serif;
-    color: white;
+    color: black;
     animation: fadeIn 0.2s ease-in-out;
 }
 
@@ -68,6 +68,6 @@
 {
     font-size: 30px;
     font-family: 'Noto Sans JP', sans-serif;
-    color: white;
+    color: black;
     animation: fadeIn 0.2s ease-in-out;
 }

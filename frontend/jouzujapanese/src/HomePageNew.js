@@ -9,6 +9,8 @@ import backgroundImage from './HomePageBanner.jpg';
 import { Typography } from '@mui/material';
 import { darkContext } from './App';
 
+
+
 function HomePage() {
 
     const useDark = React.useContext(darkContext).darkMode;

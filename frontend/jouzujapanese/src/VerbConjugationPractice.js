@@ -8,7 +8,7 @@
  * Date: 1/17/2024
  */
 
-import React, {useState, useEffect, useRef} from "react";
+import * as React from 'react';
 import "./css/Practice.css";
 import TopElements from "./TopElements.js";
 import ConjugationQuestion from "./ConjugationQuestion";
@@ -16,6 +16,9 @@ import CorrectAnswer from "./CorrectAnswer";
 import WrongAnswer from "./WrongAnswer";
 import Options from "./Options";
 import axios from 'axios';
+import { darkContext } from './App';
+import '@fontsource/klee-one';
+import Box from '@mui/material/Box';
 
 //The link to the backend
 let apiLink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/verbConjugation";
@@ -109,19 +112,19 @@ function VerbConjugationPractice()
     //Hooks********************************************************************************/
     
     //Manages which screen is displayed 0: Question, 1: Correct Answer, 2: Wrong Answer
-    const [screen, setScreen] = useState(0);
+    const [screen, setScreen] = React.useState(0);
     //Manages the question being displayed [0]: Answer, [1]: Hiragana, [2]: Conjugation Parameters
-    const [question, setQuestion] = useState([]);
+    const [question, setQuestion] = React.useState([]);
     //Manages whether the options modal is on screen or not, false: not on screen, true: on screen
-    const [showOptions, setShowOptions] = useState(false);
+    const [showOptions, setShowOptions] = React.useState(false);
     //The user's response to the question
-    const userResponse = useRef("");
+    const userResponse = React.useRef("");
     //The number of questions answered
-    const questionCount = useRef(0);
+    const questionCount = React.useRef(0);
     //The number of questions answered correctly
-    const correct = useRef(0);
+    const correct = React.useRef(0);
     //The options for verb conjugation
-    const options = useRef(
+    const options = React.useRef(
     [
         true, //includeRuVerbs
         true, //includeUVerbs
@@ -142,7 +145,10 @@ function VerbConjugationPractice()
     );
 
     //Manages whether the loading screen is on screen or not, false: not on screen, true: on screen
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = React.useState(true);
+
+    //Context********************************************************************************/
+    const darkMode = React.useContext(darkContext).darkMode;//Get the darkMode variable from the darkContext
 
     /**************************************************************************************/
     //Helper Functions*********************************************************************/
@@ -204,7 +210,7 @@ function VerbConjugationPractice()
     //Render Component******************************************************************
 
     //Initial question, Rendered once at the beginning
-    useEffect(() => {
+    React.useEffect(() => {
         retrieveQuestion(options.current).then(result => 
             {
                 setQuestion(result);
@@ -217,44 +223,127 @@ function VerbConjugationPractice()
     if(loading)
     {
         return(//Shows loading screen if the question has not been retrieved yet
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+            <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: '98%',
+                    height: '90vh',
+                    backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+                    padding: "2vh 1vw",
+                    border: '2px solid blue'
+                }}    
+            >
                 <div className = "loading"><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
-            </div>
+            </Box>
         );
     }
 
     if(screen === 0)//Question Screen
     {
         return (//The question is displayed in the center of the screen, with the top elements
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <ConjugationQuestion params = {question[2]} word = {question[1]}  checkAnswer={checkAnswer}/>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
-            </div>
+            
+            <Box
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '91.75vh',
+                    backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+                }}
+            > 
+                <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '60%',
+                    height: '60vh',
+                    padding: "1vw",
+                }}    
+                >
+                    <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                    <ConjugationQuestion params = {question[2]} word = {question[1]}  checkAnswer={checkAnswer}/>
+                    {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
+                </Box>
+            </Box>
+            
         );
     }
     else if(screen === 1)//Correct Answer Screen
     {
         console.log("ConjugationPractice.js: Rendering Correct Answer");
         return(//The correct answer is displayed in the center of the screen, with the top elements, give information about the correct answer
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <CorrectAnswer question = {question[2]} correctAnswer ={question[0]} next = {() => newQuestion()}/>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
-            </div>
+            <Box
+            sx = {{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '91.75vh',
+                backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+            }}
+        > 
+                <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '60%',
+                    height: '60vh',
+                    padding: "1vw",
+                }}    
+                >
+                    <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                    <CorrectAnswer question = {question[2]} correctAnswer ={question[0]} next = {() => newQuestion()}/>
+                    {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
+                </Box>
+            </Box>
         );
     }
     else//Wrong Answer Screen
     {
         console.log("ConjugationPractice.js: Rendering Wrong Answer");
         return(//Wrong answer screen is displayed if the user's answer was incorrect, Give information about the correct answer
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <WrongAnswer question = {question[2]} userAnswer = {userResponse.current} correctAnswer ={question[0]} next = {() => newQuestion()}/>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
-            </div>
+            <Box
+            sx = {{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '91.75vh',
+                backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+            }}
+        > 
+                <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '60%',
+                    height: '60vh',
+                    padding: "1vw",
+                }}    
+                >
+                    <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                    <WrongAnswer question = {question[2]} userAnswer = {userResponse.current} correctAnswer ={question[0]} next = {() => newQuestion()}/>
+                    {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"verb"}/>}
+
+                </Box>
+
+            </Box>
         );
     }
 

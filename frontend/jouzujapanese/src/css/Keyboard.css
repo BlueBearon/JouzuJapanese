@@ -28,10 +28,9 @@
     background: none;
     border-style: solid;
     border-color: #4472C4;
-    color: white;
     border-radius: 20px;
     font-size: 24px;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'klee one', sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: center;

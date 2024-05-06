@@ -6,7 +6,7 @@
  * Current as of: 1/17/2021
  */
 
-import React, {useRef} from 'react';
+import * as React from 'react';
 import Key from "./Key.js";
 import "./css/Keyboard.css";
 
@@ -79,7 +79,7 @@ function KatakanaKeyboard(props)
 
     console.log("Rendering KatakanaKeyboard");
 
-    const userInput = useRef("");
+    const userInput = React.useRef("");
 
     /**
      * Updates the user's input, and calls the parent's keyboardPress function

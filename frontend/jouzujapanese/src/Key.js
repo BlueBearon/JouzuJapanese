@@ -6,7 +6,9 @@
  * Current as of: 1/17/2024
  */
 
-import React, { useState } from 'react';
+import * as React from 'react';
+import { darkContext } from './App';
+import '@fontsource/klee-one';
 
 /**
  * A single key on the keyboard. When pressed, the button will call the parent's updateUserInput function
@@ -15,9 +17,13 @@ import React, { useState } from 'react';
  */
 function Key(props) {
 
+
+
     const [pressed, setPressed] = React.useState(false);//Manages whether the button is pressed or not, false: not pressed, true: pressed
 
     var css = "kanaButton" + (pressed ? " pressed" : "");//Determines the css class of the button, if pressed, the button will be highlighted
+
+    const darkMode = React.useContext(darkContext).darkMode;//Determines if the dark theme is enabled
 
     /**
      * Called when the button is pressed
@@ -37,7 +43,14 @@ function Key(props) {
     }
 
     return(//Props.roma determines location in grid layout, css var determines if button is pressed, keyboardPress() is the function called when the button is pressed, props.kana is the kana displayed on the button
-       <div className={props.roma}><button className={css} onClick={() => keyboardPress()}>{props.kana}</button></div>
+       <div className={props.roma}>
+        
+            <button className={css} 
+                onClick={() => keyboardPress()}
+                style={{fontFamily: 'Klee One', color: darkMode ? 'white' : 'black'}}
+                >
+                {props.kana}
+        </button></div>
     );
 
 }

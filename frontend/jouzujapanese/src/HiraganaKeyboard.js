@@ -9,7 +9,7 @@
  * Current as of: 1/17/2024
  */
 
-import React, {useRef } from "react";
+import * as React from 'react';
 import Key from "./Key.js";
 import "./css/Keyboard.css";
 
@@ -84,7 +84,7 @@ function HiraganaKeyboard(props) {
 
     console.log("Rendering HiraganaKeyboard");
 
-    const userInput = useRef("");//Keeps track of the user input
+    const userInput = React.useRef("");//Keeps track of the user input
 
     /**
      * Updates the user input and calls the keyboardPress function passed in through props.

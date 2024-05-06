@@ -8,7 +8,7 @@
  * Current as of: 1/17/2024
  */
 
-import React from 'react';
+import * as React from 'react';
 
 
 /**

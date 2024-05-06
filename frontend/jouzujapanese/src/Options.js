@@ -6,8 +6,19 @@
  * Current as of: 1/17/2024
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
 import './css/Options.css';
+import { Typography } from '@mui/material';
+import { darkContext } from './App';
+import Box from '@mui/material/Box';
+import { TextField } from '@mui/material';
+import RightArrow from '@mui/icons-material/ArrowForward';
+import Close from '@mui/icons-material/Close';
+import Check from '@mui/icons-material/Check';
+import '@fontsource/klee-one';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 /**
  * This function renders the Options component, which displays the options for the practice sets. It also handles the logic for the options.
@@ -18,10 +29,10 @@ function Options(props)
 {
 
     //Hook to store the current options
-    const [options, setOptions] = useState(props.options);
+    const [options, setOptions] = React.useState(props.options);
 
     //Set options to the current options passed in from the parent component
-    useEffect(() => {
+    React.useEffect(() => {
 
         setOptions(props.options);
 
@@ -461,5 +472,6 @@ function Options(props)
         </div>
     );
 }
+
 
 export default Options;
