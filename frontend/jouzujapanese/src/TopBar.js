@@ -30,19 +30,30 @@ function TopBar() {
     //userInfo = {user, setUser, auth, setAuth}
     const navigate = useNavigate();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+    const [profileAnchorEl, setProfileAnchorEl] = React.useState(null);
+    const profileOpen = Boolean(profileAnchorEl);
 
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
+    const [practiceAnchorEl, setPracticeAnchorEl] = React.useState(null);
+    const practiceOpen = Boolean(practiceAnchorEl);
+
+    const handleProfileMenu = (event) => {
+        setProfileAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleProfileClose = () => {
+        setProfileAnchorEl(null);
+    };
+
+    const handlePracticeMenu = (event) => {
+        setPracticeAnchorEl(event.currentTarget);
+    };
+
+    const handlePracticeClose = () => {
+        setPracticeAnchorEl(null);
     };
 
     const logOut = () => {
-        setAnchorEl(null);
+        setProfileAnchorEl(null);
 
         userInfo.setUser(null);
         userInfo.setAuth(false);
@@ -76,7 +87,39 @@ function TopBar() {
     };
 
 
+    const navigateHiraganaPractice = () => {
 
+        handlePracticeClose();
+            
+        navigate('/HiraganaPractice');
+    
+    };
+
+    const navigateKatakanaPractice = () => {
+
+        handlePracticeClose();
+
+        navigate('/KatakanaPractice');
+
+    };
+
+    const navigateAdjectiveConjugationPractice = () => {
+
+        handlePracticeClose();
+
+        navigate('/AdjectiveConjugationPractice');
+
+    };
+
+    const navigateVerbConjugationPractice = () => {
+
+        handlePracticeClose();
+
+        navigate('/VerbConjugationPractice');
+    
+    };
+
+    
 
 
 
@@ -111,12 +154,14 @@ function TopBar() {
 
                             <Button color="inherit"
                             sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem' }}
-
+                            onClick={handlePracticeMenu}
                             >
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <Edit sx={{marginRight: '0.75rem'}}/>
                                     Practice
                                 </Box>
+
+
                             </Button>
 
                             {userInfo.auth ? <Button color="inherit"
@@ -182,7 +227,7 @@ function TopBar() {
                                  display: 'flex', alignItems: 'center', justifyItems: 'center'
                                 }}
 
-                            onClick={handleMenu}
+                            onClick={handleProfileMenu}
                         >
                             <AccountCircle
                             sx = {{
@@ -195,17 +240,31 @@ function TopBar() {
                         
                     }
 
+
                     <Menu
-                        anchorEl={anchorEl}
-                        open={open ? 'basic-menu' : undefined}
+                        anchorEl={practiceAnchorEl}
+                        open={practiceOpen ? 'basic-menu' : undefined}
                         aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        onClose={handleClose}
+                        aria-expanded={practiceOpen ? 'true' : undefined}
+                        onClose={handlePracticeClose}
+                        >
+
+                        <MenuItem onClick={navigateHiraganaPractice}>は Hiragana</MenuItem>
+                        <MenuItem onClick={navigateKatakanaPractice}>カ Katakana</MenuItem>
+                        <MenuItem onClick={navigateAdjectiveConjugationPractice}>Adjective Conjugation</MenuItem>
+                        <MenuItem onClick={navigateVerbConjugationPractice}>Verb Conjugation</MenuItem>
+                        
+                    </Menu>
+
+                    <Menu
+                        anchorEl={profileAnchorEl}
+                        open={profileOpen ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={profileOpen ? 'true' : undefined}
+                        onClose={handleProfileClose}
                         >
                         <MenuItem onClick={logOut}>Logout</MenuItem>
                     </Menu>
-
-
 
 
                     </Box>

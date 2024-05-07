@@ -10,7 +10,7 @@
 
 
 
-import React, {useState, useRef, useEffect} from "react";
+import * as React from 'react';
 import "./css/Practice.css";
 import TopElements from "./TopElements";
 import CorrectAnswer from "./CorrectAnswer";
@@ -18,6 +18,9 @@ import WrongAnswer from "./WrongAnswer";
 import KanaQuestion from "./KanaQuestion";
 import Options from "./Options";
 import axios from 'axios';
+import { darkContext } from './App';
+import '@fontsource/klee-one';
+import Box from '@mui/material/Box';
 
 
 //IMPORTANT: MAKE SURE THE BACKEND IS RUNNING BEFORE RUNNING THE FRONTEND
@@ -142,19 +145,19 @@ function KatakanaPractice()
 {
     //Hooks********************************************************************************/
     //Manages which screen is displayed 0: Question, 1: Correct Answer, 2: Wrong Answer
-    const [screen, setScreen] = useState(0);
+    const [screen, setScreen] = React.useState(0);
     //Manages the question being displayed [0]: Answer, [1]: Katakana, [2]: Conjugation Parameters
-    const [question, setQuestion] = useState([]);
+    const [question, setQuestion] = React.useState([]);
     //Manages whether the options modal is on screen or not, false: not on screen, true: on screen
-    const [showOptions, setShowOptions] = useState(false);
+    const [showOptions, setShowOptions] = React.useState(false);
     //The user's response to the question
-    const userResponse = useRef("");
+    const userResponse = React.useRef("");
     //The number of questions answered
-    const questionCount = useRef(0);
+    const questionCount = React.useRef(0);
     //The number of questions answered correctly
-    const correct = useRef(0);
+    const correct = React.useRef(0);
     //The options for Katakana
-    const options = useRef(
+    const options = React.useRef(
     [
         true, //includeKatakana
         true, //includeRomaji
@@ -164,7 +167,10 @@ function KatakanaPractice()
     );
 
     //Manages whether the loading screen is on screen or not, false: not on screen, true: on screen
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = React.useState(true);
+
+    //Context********************************************************************************/
+    const darkMode = React.useContext(darkContext).darkMode;//Get the darkMode variable from the darkContext
 
     /************************************************************************************************/
 
@@ -225,7 +231,7 @@ function KatakanaPractice()
     /************************************************************************************************/
 
     //Initial question, Rendered once at the beginning
-    useEffect(() => {
+    React.useEffect(() => {
         retrieveQuestion(options.current).then(result => 
             {
                 setQuestion(result);
@@ -233,46 +239,126 @@ function KatakanaPractice()
             });
     }, []);
 
-    if(loading)//Loading Screen, if we are waiting for a question to be retrieved
+    if(loading)
     {
-        return(//Load Top Elements and Loading Image
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <div className = "loading"><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = {"kana"}/>}
-            </div>
+        return( //TopElements, Loading, Options
+        <Box 
+
+        sx = {{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: '98%',
+            height: '90vh',
+            backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+            padding: "2vh 1vw",
+            border: '2px solid blue'
+        }}    
+    >
+        <div className = "loading"><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
+        </Box>
         );
     }
 
     if(screen === 0)//Question Screen
     {
-        return (//Load Top Elements and Question
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <KanaQuestion word = {question[0]} type = {question[2]} kana = "katakana" checkAnswer={checkAnswer}/>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
-            </div>
+        return ( //TopElements, KanaQuestion, Options
+            <Box
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '91.75vh',
+                    backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+                }}
+            > 
+                <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '60%',
+                    height: '60vh',
+                    padding: "1vw",
+                }}    
+                >
+                    <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                    <KanaQuestion word = {question[0]} type = {question[2]} kana = "katakana" checkAnswer={checkAnswer}/>
+                    {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
+
+                </Box>
+            </Box>
 
         );
     }
     else if(screen === 1)//Correct Answer Screen
     {
-        return(//Load Top Elements and Correct Answer
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <CorrectAnswer question = {question[0]} correctAnswer ={question[1]} next = {newQuestion}/>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
-            </div>
+        return(//TopElements, CorrectAnswer, Options
+            <Box
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '91.75vh',
+                    backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+                }}
+            > 
+                <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '60%',
+                    height: '60vh',
+                    padding: "1vw",
+                }}    
+                >
+                    <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                    <CorrectAnswer question = {question[0]} correctAnswer ={question[1]} next = {newQuestion}/>
+                    {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
+                </Box>
+            </Box>
         );
     }
     else//Wrong Answer Screen
     {
-        return(//Load Top Elements and Wrong Answer
-            <div className = "questionSection">
-                <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
-                <WrongAnswer question = {question[0]} userAnswer = {userResponse.current} correctAnswer ={question[1]} next = {newQuestion}/>
-                {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
-            </div>
+        return( //TopElements, WrongAnswer, Options
+            <Box
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '91.75vh',
+                    backgroundColor: darkMode ? '#131F24' : '#f0f0f0',
+                }}
+            >   
+                <Box 
+
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '60%',
+                    height: '60vh',
+                    padding: "1vw",
+                }}    
+                >
+                    <TopElements correct = {correct.current} questions = {questionCount.current} openOptions = {() => setShowOptions(true)}/>
+                    <WrongAnswer question = {question[0]} userAnswer = {userResponse.current} correctAnswer ={question[1]} next = {newQuestion}/>
+                    {showOptions && <Options options = {options.current} submit = {changeOptions} set = "kana"/>}
+                </Box>
+            </Box>
         );
     }
 

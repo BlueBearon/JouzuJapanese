@@ -6,15 +6,26 @@
  * Current as of: 1/17/2024
  */
 
-import React from "react";
+import * as React from 'react';
 import "./css/Result.css";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import { Typography } from '@mui/material';
+import { darkContext } from './App';
+import { TextField } from '@mui/material';
+import RightArrow from '@mui/icons-material/ArrowForward';
+import Close from '@mui/icons-material/Close';
+import Check from '@mui/icons-material/Check';
+import '@fontsource/klee-one';
+
 
 /**
  * This function renders the WrongAnswer component, which displays the correct answer and the user's answer when the user answers incorrectly.
  * @param {*} props: question: the question that was answered incorrectly, userAnswer: the user's answer, correctAnswer: the correct answer, next: the function called when the user presses the next button
  * @returns The WrongAnswer component
  */
-function WrongAnswer(props)
+function OldWrongAnswer(props)
 {
     return(
         <div className = "wrongAnswer">
@@ -31,6 +42,98 @@ function WrongAnswer(props)
             <button id = "nextButton" className = "submitButton"
             onClick = {() => props.next()}>&#8594;</button>{/*The next button is displayed at the bottom*/}
         </div>
+    );
+}
+
+
+function WrongAnswer({question, userAnswer, correctAnswer, next}) {
+
+    const useDark = React.useContext(darkContext).darkMode;
+
+    return (
+        <Box 
+        
+        sx={
+            {
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '2vh',
+                height: '76%',
+                fontFamily: 'klee one',
+                backgroundColor: useDark ? '#131F24' : '#fff',
+                color: useDark ? '#fff' : '#131F24'
+
+            }
+        }
+        >
+            <Typography variant="h3"
+            sx={
+                {
+                    marginBottom: '1rem',
+                    color: 'red',
+                    fontFamily: 'klee one'
+                }
+            }
+            >Incorrect</Typography>
+            <Typography variant="h5"
+            sx={
+                {
+                    marginBottom: '1rem',
+                    color: useDark ? '#fff' : '#131F24',
+                    fontFamily: 'klee one'
+                }
+            }
+            >{question}</Typography>
+            <Typography variant="h5"
+            sx={
+                {
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginBottom: '1rem',
+                    color: useDark ? '#fff' : '#131F24',
+                    fontFamily: 'klee one'
+                }
+            }
+            >
+                <Close 
+                sx={{color
+                    : 'red', fontSize: '2rem', marginRight: '1rem'
+                }}/> 
+                {userAnswer}</Typography>
+            <Typography variant="h5"
+            sx={
+                {
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginBottom: '1rem',
+                    color: useDark ? '#fff' : '#131F24',
+                    fontFamily: 'klee one'
+                }
+            }>
+                <Check 
+                sx={{color: 'green', fontSize: '2rem', marginRight: '1rem'}}
+                />
+                {correctAnswer}
+            </Typography>
+            <Button
+                 
+                 sx = {{
+                    backgroundColor: "#1976D2",
+                    color: "white",
+                    fontFamily: 'klee one !important',
+                    fontSize: '2rem',
+                    width: '4vw',
+                    height: '6vh',
+                    fontSize: '2rem',
+                 }}
+                
+                onClick = {() => next()}
+                ><RightArrow/></Button>{/*Submit button*/}
+        </Box>
     );
 }
 

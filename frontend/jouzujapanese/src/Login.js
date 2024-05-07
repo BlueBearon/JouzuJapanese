@@ -20,7 +20,7 @@ function Login() {
     const useDark = React.useContext(darkContext);
     const navigate = useNavigate();
 
-    const [email, setEmail] = React.useState('');
+    const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const [loading, setLoading] = React.useState(false);
@@ -53,7 +53,7 @@ function Login() {
             if (authenticate()) {
     
                 userInfo.setAuth(true);
-                userInfo.setUser(email);
+                userInfo.setUser(username);
                 navigate('/');
     
             }
@@ -105,8 +105,8 @@ function Login() {
             <TextField
                 label="Email"
                 variant="outlined"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 sx={{marginBottom: '1rem'}}
             />
 

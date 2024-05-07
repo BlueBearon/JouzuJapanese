@@ -13,8 +13,6 @@
     justify-items: center;
     height: 76vh;
     gap: 2vh;
-    animation: fadeIn 0.2s ease-in-out;
-
 }
 
 .conjugationParameters

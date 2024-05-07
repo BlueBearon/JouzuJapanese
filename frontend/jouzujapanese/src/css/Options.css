@@ -12,10 +12,11 @@
     top: 20vh;
     width: 60vw; /* Full width */
     height: 60vh; /* Full height */
-    background-color: rgba(0, 0, 0, 0.623);
+    background-color: rgba(0, 0, 0, 1);
     border: 1px solid black;
     border-radius: 10px;
     animation: fadeIn 0.2s ease-in-out;
+    color: white;
 }
 
 .optionsTopSection

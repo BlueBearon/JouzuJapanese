@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from 'react';
 import "./css/Header.css";
 import { Link } from "react-router-dom";
 
