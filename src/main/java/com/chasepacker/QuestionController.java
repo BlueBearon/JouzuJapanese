@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 
+
+
 @RestController
 public class QuestionController {
 
@@ -265,6 +267,97 @@ public class QuestionController {
         return response;
         
     }
+
+
+    /**
+     * API endpoint for React application to retrieve diary entry from SQL database
+     * @return
+     */
+    @GetMapping("/api/retrieveDiary")
+    public Map<String, String> retrieveDiary(@RequestParam Map<String, String> allParams) {
+        
+        String user = allParams.get("user");
+        String date = allParams.get("date");
+
+        String content = SQLInterface.retrieveDiaryEntry(user, date);
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("content", content);
+
+        return response;
+    }
+
+    /**
+     * API endpoint for React application to create a new diary entry in the SQL database
+     * @return
+     */
+    @GetMapping("/api/createDiary")
+    public void createDiary(@RequestParam Map<String, String> allParams) {
+        
+        String user = allParams.get("user");
+        String date = allParams.get("date");
+        String content = allParams.get("content");
+
+        SQLInterface.createDiaryEntry(user, date, content);
+
+        return;
+    }
+
+    /**
+     * API endpoint for React application to update a diary entry in the SQL database
+     * @return
+     */
+    @GetMapping("/api/updateDiary")
+    public void updateDiary(@RequestParam Map<String, String> allParams) {
+
+        String user = allParams.get("user");
+        String date = allParams.get("date");
+        String content = allParams.get("content");
+
+        SQLInterface.updateDiaryEntry(user, date, content);
+
+        return;
+    }
+
+    /**
+     * API endpoint for React application to delete a diary entry in the SQL database 
+     * @return
+     */
+    @GetMapping("/api/deleteDiary")
+    public void deleteDiary(@RequestParam Map<String, String> allParams) {
+
+        String user = allParams.get("user");
+        String date = allParams.get("date");
+
+        SQLInterface.deleteDiaryEntry(user, date);
+
+        return;
+    }
+
+    /**
+     * API endpoint for React application to retrieve a list of all dates with diary entries
+     * for a requested user and month
+     * @return
+     */
+    @GetMapping("/api/retrieveDiaryDates")
+    public Map<String, String> retrieveDiaryDates(@RequestParam Map<String, String> allParams) {
+
+        String user = allParams.get("user");
+        String startDate = allParams.get("startDate");
+        String endDate = allParams.get("endDate");
+
+        String[] dates = SQLInterface.retrieveDiaryDates(user, startDate, endDate);
+
+        Map<String, String> response = new HashMap<>();
+
+        //React app will recieve a list of dates in one object
+        response.put("dates", String.join(",", dates));
+        
+        return null;
+    }
+
+
 
     @GetMapping("/api/test")
     public String test() {
