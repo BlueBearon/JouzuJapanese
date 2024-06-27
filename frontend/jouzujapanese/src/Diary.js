@@ -13,6 +13,23 @@ import { darkContext } from './App';
 import { userContext } from './App';
 import { useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
+
+
+
+//API Links
+let baseAPILink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/";
+let backendAPILink = "http://localhost:8080/api/";
+
+//API Endpoints
+let retrieveDiaryEndpoint = "retrieveDiary";
+let createDiaryEndpoint = "createDiary";
+let updateDiaryEndpoint = "updateDiary";
+let deleteDiaryEndpoint = "deleteDiary";
+let retrieveDiaryDatesEndpoint = "retrieveDiaryDates";
+
+
+
 
 
 function Diary() {
@@ -32,13 +49,78 @@ function Diary() {
 
     const clearContent = () => {
         setEditorState(() => EditorState.createEmpty());
+
+        //Clear the unique kanji set
+        uniqueKanji.clear();
+
+        //Delete the database entry for the current date
+        //delete requires user and date
+        var data = {
+            user: userInfo.user,
+            date: diaryDate,
+        };
+
+        try{
+            axios.post(baseAPILink + deleteDiaryEndpoint, data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+        catch(error){
+            console.log(error);
+        }
+
     };
 
     const save = () => {
 
         //Save the content of the editor to the database
 
-        //Not Implemented Yet
+        var update = checkDiaryEntry(diaryDate);
+
+        //Needs user, date, and content
+        var data = {
+            user: userInfo.user,
+            date: diaryDate,
+            content: editorState.getCurrentContent().getPlainText(),
+        };
+
+        if(update){
+                
+            try{
+                axios.post(baseAPILink + updateDiaryEndpoint, data)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+            catch(error){
+                console.log(error);
+            }
+
+        }
+        else{
+    
+            try{
+                axios.post(baseAPILink + createDiaryEndpoint, data)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+            catch(error){
+                console.log(error);
+            }
+
+        }
+
 
     };
 
@@ -71,8 +153,9 @@ function Diary() {
         setDiaryDate(date);
 
         //Retrieve the diary entry for the given date
-        //Not Implemented Yet
 
+        retrieveDiaryEntry(date);
+        
         
     };
 
@@ -80,9 +163,35 @@ function Diary() {
 
         //Check if there is a diary entry for the given date
 
-        //Not Implemented Yet  
-        
-        return false;
+        //Just call the retrieve diary endpoint and check if the response is null
+
+        var data = {
+            user: userInfo.user,
+            date: date,
+        };
+
+        try{
+            axios.post(baseAPILink + retrieveDiaryEndpoint, data)
+            .then((response) => {
+                console.log(response);
+                if(response.data === null){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                return false;
+            }
+            );
+        }
+        catch(error){
+            console.log(error);
+            return false;
+        }
+
 
     };
 
@@ -90,7 +199,29 @@ function Diary() {
 
         //Retrieve the diary entry for the given date
 
-        //Not Implemented Yet
+        var data = {
+            user: userInfo.user,
+            date: date,
+        };
+
+        try{
+            axios.post(baseAPILink + retrieveDiaryEndpoint, data)
+            .then((response) => {
+                console.log(response);
+                if(response.data === null){
+                    setEditorState(() => EditorState.createEmpty());
+                }
+                else{
+                    setEditorState(() => EditorState.createWithContent(response.data));
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+        catch(error){
+            console.log(error);
+        }
 
     };
 
@@ -265,7 +396,7 @@ function Diary() {
                         </Button>
 
                         <Button
-                            onClcik = {save}
+                            onClick = {save}
                             sx = {{
                                 marginRight: '1rem',
                             }}
