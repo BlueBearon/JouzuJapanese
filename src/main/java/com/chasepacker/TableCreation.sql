@@ -5,7 +5,8 @@ BEGIN TRANSACTION;
 
 -- Create the User table
 CREATE TABLE User (
-    username VARCHAR(10) PRIMARY KEY
+    username VARCHAR(10) PRIMARY KEY,
+    hashed_password VARCHAR(64),
 );
 
 -- Create the DiaryEntry table

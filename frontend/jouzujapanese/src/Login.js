@@ -14,6 +14,13 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
+let loginLink = "";
+let loginTestLink = "http://localhost:8080/login";
+
+let registerLink = "";
+let registerTestLink = "http://localhost:8080/register";
+
+
 function Login() {
 
     const userInfo = React.useContext(userContext);
@@ -24,28 +31,56 @@ function Login() {
     const [password, setPassword] = React.useState('');
 
     const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState('');
 
 
     const authenticate = () => {
 
         setLoading(true);
-        /*
-        fetch('http://localhost:5000/authenticate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-
-        .then(response => response.json();
-
-        */
 
         return true;
+    };
+
+
+    const authenticateINPROGRESS = async () => {
+        
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await fetch( loginTestLink, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const result = await response.text();
+
+            if (response.ok) {
+                userInfo.setAuth(true);
+                userInfo.setUser(username);
+                navigate('/');
+            } else {
+                setError(result);
+            }
+        } catch (error) {
+            setError('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+
+
+
+
+    };
+
+    const registerINPROGRESS = () => {
+
+        setLoading(true);
+        setError('');
+
     };
 
     const submitEvent = () => {

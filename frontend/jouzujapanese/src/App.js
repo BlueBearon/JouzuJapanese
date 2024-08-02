@@ -32,7 +32,7 @@ function App() {
 
   const [user, setUser] = React.useState(null);
   const [darkMode, setDarkMode] = React.useState(false);
-  const [auth, setAuth] = React.useState(false);
+  const [auth, setAuth] = React.useState(false); 
 
 
   return (
