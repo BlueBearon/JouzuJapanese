@@ -13,20 +13,42 @@ import { darkContext } from './App';
 import { userContext } from './App';
 import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
+import apiCall from './APIFunctions';
 
-
-
-//API Links
+// API Links
 let baseAPILink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/";
-let backendAPILink = "http://localhost:8080/api/";
+let backendAPILink = "http://localhost:8080/diary/";
 
-//API Endpoints
-let retrieveDiaryEndpoint = "retrieveDiary";
-let createDiaryEndpoint = "createDiary";
-let updateDiaryEndpoint = "updateDiary";
-let deleteDiaryEndpoint = "deleteDiary";
-let retrieveDiaryDatesEndpoint = "retrieveDiaryDates";
+// API Endpoints
+let getEntryEndpoint = "getEntry";
+let createEntryEndpoint = "createEntry";
+let updateEntryEndpoint = "updateEntry";
+let deleteEntryEndpoint = "deleteEntry";
+let getDiaryDatesEndpoint = "getDiaryDates";
+
+// Data packaging functions
+function getEntryDataPackaging(day) {
+    return {
+        date: day,
+        token: localStorage.getItem('token')
+    };
+}
+
+function diaryEntryDataPackaging(day, content) {
+    return {
+        date: day,
+        entry: content,
+        token: localStorage.getItem('token')  
+    };
+}
+
+function diaryDateDataPackaging(sDate, eDate) {
+    return {
+        startDate: sDate,
+        endDate: eDate,
+        token: localStorage.getItem('token')
+    };
+}
 
 
 
@@ -35,95 +57,118 @@ let retrieveDiaryDatesEndpoint = "retrieveDiaryDates";
 function Diary() {
 
     const navigate = useNavigate();
-
     const userInfo = React.useContext(userContext);
 
     //Default to today's date
     const [diaryDate, setDiaryDate] = React.useState(new Date());
-
     const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
 
+    //Dates with diary entries, in a O(1) lookup structure
+    const datesWithEntries = React.useRef(new Set());
+
     const useDark = React.useContext(darkContext).darkMode;
-
     const darkShade = '#282c34';
+    const token = localStorage.getItem('token');
 
+
+    //For the initial load and when the date changes
+        //Get the list of dates with diary entries for the current month
+        //Get the diary entry for the current date
+
+
+    const updateDatesWithEntries = async () => {
+
+        const startDate = new Date(diaryDate.getFullYear(), diaryDate.getMonth(), 1);
+        const endDate = new Date(diaryDate.getFullYear(), diaryDate.getMonth() + 1, 0);
+
+        const data = diaryDateDataPackaging(startDate, endDate);
+
+        let response = await apiCall(getDiaryDatesEndpoint, 'GET', data);
+
+        //Clear current set
+        datesWithEntries.current.clear();
+
+
+        //Add the dates to the set
+
+        let dates = response.dates.split(", ");
+
+        for(let i = 0; i < dates.length; i++){
+
+            datesWithEntries.current.add(new Date(dates[i]));
+
+        }
+
+    };
+
+
+    //Get list of dates with diary entries for the current month
+    React.useEffect(() => {
+
+        updateDatesWithEntries();
+
+    }, [diaryDate]);
+
+
+    /**
+     * Clears the content of the editor
+     *
+     */
     const clearContent = () => {
         setEditorState(() => EditorState.createEmpty());
 
         //Clear the unique kanji set
         uniqueKanji.clear();
-
-        //Delete the database entry for the current date
-        //delete requires user and date
-        var data = {
-            user: userInfo.user,
-            date: diaryDate,
-        };
-
-        try{
-            axios.post(baseAPILink + deleteDiaryEndpoint, data)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        }
-        catch(error){
-            console.log(error);
-        }
-
     };
 
-    const save = () => {
+    /**
+     * Saves the content of the editor to the database
+     * 
+     * If the content is empty, delete the entry
+     * 
+     * If the entry already exists, update it
+     * 
+     * If the entry does not exist, create it
+     * 
+     */
+    const save = async () => {
 
-        //Save the content of the editor to the database
+        const content = editorState.getCurrentContent().getPlainText();
 
-        var update = checkDiaryEntry(diaryDate);
+        const data = diaryEntryDataPackaging(diaryDate, content);
 
-        //Needs user, date, and content
-        var data = {
-            user: userInfo.user,
-            date: diaryDate,
-            content: editorState.getCurrentContent().getPlainText(),
-        };
+        let update = datesWithEntries.current.has(diaryDate);
 
-        if(update){
-                
-            try{
-                axios.post(baseAPILink + updateDiaryEndpoint, data)
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-            }
-            catch(error){
-                console.log(error);
-            }
+        let empty = content.length === 0;
+
+        if(empty && update){
+
+            apiCall(deleteEntryEndpoint, 'POST', data);
+
+            datesWithEntries.current.delete(diaryDate);
+  
+        }
+        else if(update){
+
+            apiCall(updateEntryEndpoint, 'POST', data);
 
         }
         else{
-    
-            try{
-                axios.post(baseAPILink + createDiaryEndpoint, data)
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-            }
-            catch(error){
-                console.log(error);
-            }
+
+            apiCall(createEntryEndpoint, 'POST', data);
+
+            datesWithEntries.current.add(diaryDate);
 
         }
 
-
     };
 
+    /**
+     * Updates the unique kanji count
+     * 
+     * @returns {number} The number of unique kanji in the editor
+     * 
+     */
     const updateKanjiCount = () => {
 
         const content = editorState.getCurrentContent().getPlainText();
@@ -142,86 +187,58 @@ function Diary() {
     
     };
 
-    const handleDateChange = (date) => {
+    /**
+     * Handles the date change in the diary
+     * 
+     * Saves the current diary entry, clears the editor, 
+     * and retrieves the diary entry for the given date
+     * 
+     * 
+     * @param {*} date 
+     */
+    const handleDateChange = async (date) => {
 
         //Save the current diary entry
-        //Not Implemented Yet
+        save();
 
-        //Clear the editor
-        clearContent();
+        //Clear the editor, but not the data for the day
+        setEditorState(() => EditorState.createEmpty());
 
         setDiaryDate(date);
 
         //Retrieve the diary entry for the given date
-
         retrieveDiaryEntry(date);
         
         
     };
 
+    /**
+     * Checks if there is a diary entry for the given date
+     * 
+     * @param {*} date 
+     * @returns {boolean} True if there is a diary entry for the given date, false otherwise
+     */
     const checkDiaryEntry = (date) => {
 
-        //Check if there is a diary entry for the given date
-
-        //Just call the retrieve diary endpoint and check if the response is null
-
-        var data = {
-            user: userInfo.user,
-            date: date,
-        };
-
-        try{
-            axios.post(baseAPILink + retrieveDiaryEndpoint, data)
-            .then((response) => {
-                console.log(response);
-                if(response.data === null){
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                return false;
-            }
-            );
-        }
-        catch(error){
-            console.log(error);
-            return false;
-        }
-
+        return datesWithEntries.current.has(date);
 
     };
 
-    const retrieveDiaryEntry = (date) => {
+    /**
+     * Retrieves the diary entry for the given date
+     * 
+     * @param {*} date
+     * 
+     * @returns {string} The diary entry for the given date
+     * 
+     */
+    const retrieveDiaryEntry = async (date) => {
 
-        //Retrieve the diary entry for the given date
+        const data = getEntryDataPackaging(date);
 
-        var data = {
-            user: userInfo.user,
-            date: date,
-        };
+        let response = await apiCall(getEntryEndpoint, 'GET', data);
 
-        try{
-            axios.post(baseAPILink + retrieveDiaryEndpoint, data)
-            .then((response) => {
-                console.log(response);
-                if(response.data === null){
-                    setEditorState(() => EditorState.createEmpty());
-                }
-                else{
-                    setEditorState(() => EditorState.createWithContent(response.data));
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        }
-        catch(error){
-            console.log(error);
-        }
+        setEditorState(() => EditorState.createWithContent(response.entry));
 
     };
 

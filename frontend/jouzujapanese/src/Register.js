@@ -6,21 +6,22 @@ import { TextField } from '@mui/material';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Alert } from '@mui/material';
+import { AlertTitle } from '@mui/material';
 import { CircularProgress } from '@mui/material';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import apiCall from './APIFunctions';
 
-// URL for the login endpoint
-let loginTestLink = "http://localhost:8080/login";
+// URL for the registration endpoint
+let registerLink = "http://localhost:8080/register";
 
 /**
- * Login component for user authentication.
+ * Register component for user registration.
  * 
- * This component renders a login form and handles the authentication process.
+ * This component renders a registration form and handles the registration process.
  * It uses Material-UI components for styling and React hooks for state management.
  */
-function Login() {
+function Register() {
     // Contexts for user information and theme
     const userInfo = React.useContext(userContext);
     const useDark = React.useContext(darkContext);
@@ -31,27 +32,27 @@ function Login() {
     const [password, setPassword] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState('');
+    const [success, setSuccess] = React.useState('');
 
     /**
-     * Handles the authentication process.
+     * Handles the registration process.
      * 
-     * Sends a POST request to the login endpoint with the username and password.
+     * Sends a POST request to the registration endpoint with the username and password.
      * Updates the state based on the response.
      */
-    const authenticate = async () => {
+    const register = async () => {
         setLoading(true);
         setError('');
-    
+        setSuccess('');
+
         try {
-            const result = await apiCall('/login', 'POST', { username, password });
-    
-            userInfo.setAuth(true);
-            userInfo.setUser(username);
-            localStorage.setItem('token', result.token);
-            navigate('/');
+            const result = await apiCall(registerLink, 'POST', { username, password });
+
+            setSuccess('User registered successfully');
+            setTimeout(() => navigate('/login'), 2000);
         } catch (error) {
             if (error.response && error.response.data) {
-                setError(error.response.data.error || 'Invalid email or password');
+                setError(error.response.data.error || 'Registration failed');
             } else {
                 setError('An error occurred. Please try again.');
             }
@@ -60,16 +61,17 @@ function Login() {
         }
     };
 
+
     /**
      * Handles form submission.
      * 
-     * Prevents the default form submission behavior and calls the authenticate function.
+     * Prevents the default form submission behavior and calls the register function.
      * 
      * @param {React.FormEvent} e - The form submission event.
      */
     const handleSubmit = (e) => {
         e.preventDefault();
-        authenticate();
+        register();
     };
 
     return (
@@ -91,7 +93,7 @@ function Login() {
                     fontFamily: 'klee one'
                 }}
             >
-                上手
+                Register
             </Typography>
 
             <form onSubmit={handleSubmit}>
@@ -120,6 +122,12 @@ function Login() {
                     </Alert>
                 )}
 
+                {success && (
+                    <Alert severity="success" sx={{ marginBottom: '1rem' }}>
+                        {success}
+                    </Alert>
+                )}
+
                 <Button
                     variant="contained"
                     type="submit"
@@ -127,15 +135,11 @@ function Login() {
                     disabled={loading}
                     fullWidth
                 >
-                    {loading ? <CircularProgress size={24} /> : 'Login'}
+                    {loading ? <CircularProgress size={24} /> : 'Register'}
                 </Button>
             </form>
-
-            <Typography variant="body2" sx={{ marginTop: '1rem' }}>
-                Don't have an account? <Link to="/register">Register</Link>
-            </Typography>
         </Box>
     );
 }
 
-export default Login;
+export default Register;
