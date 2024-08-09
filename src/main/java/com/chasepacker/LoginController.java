@@ -13,12 +13,14 @@
 
 package com.chasepacker;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -148,6 +150,13 @@ public class LoginController {
         }
     }
 
+
+    public class PasswordIncorrectException extends Exception {
+        public PasswordIncorrectException(String message) {
+            super(message);
+        }
+    } 
+
     /**
      * This method validates the user's login credentials. It checks if the user
      * exists in the database and if the password is correct. If the credentials
@@ -156,17 +165,19 @@ public class LoginController {
      * @return - The generated token
      * @throws Exception - If the user does not exist or the password is incorrect
      */
-    private String validateLogin(LoginRequest req) throws Exception {
+    private String validateLogin(LoginRequest req) throws UsernameNotFoundException, PasswordIncorrectException, SQLException {
         if (!dbManager.userExists(req.getUsername())) {
-            throw new Exception("User does not exist");
+            throw new UsernameNotFoundException("User not found");
         }
 
-        if (!dbManager.passwordCorrect(req.getUsername(), req.getPassword())) {
-            throw new Exception("Invalid password");
+        // See if username, password pair exists in database
+        if (!dbManager.passwordCorrect(req.getUsername(), req.getPassword()))
+        {
+            throw new PasswordIncorrectException("Invalid password");
         }
 
         // Generate Token (this is a placeholder, implement your token generation logic)
-        return "generated_token";
+        return TokenUtil.generateToken(req.getUsername());
     }
 }
 

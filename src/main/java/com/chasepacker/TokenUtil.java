@@ -8,8 +8,7 @@ import java.util.Date;
 
 public class TokenUtil {
 
-    private static final String SECRET_KEY = "your_secret_key";
-
+    private static final String SECRET_KEY = "CrLs2bH0sItusUD8Cbk5DMC4DulqyVZJvU9NY+VhbGY=";
     public static String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)

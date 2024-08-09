@@ -25,12 +25,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 /**
  * DBManager
  * 
  * This class is used to manage the database
  */
+@Component
 public class DBManager {
 
 
@@ -59,6 +63,9 @@ public class DBManager {
 
 
     // ****************************************************************************************************
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     // Database Queries ************************************************************************************
@@ -90,7 +97,7 @@ public class DBManager {
             private String userExistsQuery = "SELECT * FROM Account WHERE username = ?;";
 
             // Check if a password is correct
-            private String passwordCorrectQuery = "SELECT * FROM Account WHERE username = ? AND hashed_password = ?;";
+            private String passwordCorrectQuery = "SELECT hashed_password FROM Account WHERE username = ?;";
 
             // Create a new user
             private String createUserQuery = "INSERT INTO Account (username, hashed_password) VALUES (?, ?);";
@@ -356,19 +363,28 @@ public class DBManager {
      */
     public  boolean passwordCorrect(String username, String password) throws SQLException
     {
-        String[] args = {username, password}; // Arguments for the query
+        String[] args = {username}; // Arguments for the query
 
-        ResultSet rs = userHandler_executeQuery(passwordCorrectQuery, args);  // Execute the query
+        ResultSet rs = userHandler_executeQuery(passwordCorrectQuery, args);  // Execute the query, returns the encoded password to compare
 
         // Check if the result set is not empty
         try
         {
-            return rs.next(); // If the result set is not empty, the password is correct
+            if(rs.next())
+            {
+                return passwordEncoder.matches(password, rs.getString("hashed_password"));
+            }
+            else
+            {
+                return false;
+            }
         }
-        catch(SQLException e) 
+        catch(SQLException e)
         {
             return false;
         }
+
+        
     }
 
     /**

@@ -1,17 +1,12 @@
 package com.chasepacker;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -20,35 +15,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            )
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                     .requestMatchers("/login").permitAll()
+                    .requestMatchers("/register").permitAll()
                     .requestMatchers("/api/**").permitAll() // Allow all API requests
+                    .requestMatchers("/diary/**").permitAll() // Allow all diary requests, tokens will be validated in the controller
                     .anyRequest().authenticated()
             )
-            .formLogin(formLogin ->
-                formLogin
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/home", true)
-                    .permitAll()
-            )
-            .logout(logout ->
-                logout.permitAll()
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(sessionManagement ->
+                sessionManagement
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
             );
         return http.build();
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails user = User.builder()
-            .username("user")
-            .password(passwordEncoder.encode("password"))
-            .roles("USER")
-            .build();
-        return new InMemoryUserDetailsManager(user);
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
+
 }
