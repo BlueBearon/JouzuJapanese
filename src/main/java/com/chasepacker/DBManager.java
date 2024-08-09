@@ -574,14 +574,12 @@ public class DBManager {
 
         Map<String, String> result = new HashMap<String, String>();
         List<String> dates = new ArrayList<String>();
-        int i = 0;
         // Check if the result set is not empty
         try
         {
             while(rs.next())
             {
                 dates.add(rs.getString("entry_date"));
-                i++;
             }
         }
         catch(SQLException e)
