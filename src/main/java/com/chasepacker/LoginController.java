@@ -80,6 +80,25 @@ public class LoginController {
         }
     }
 
+
+    @PostMapping("/login/token")
+    public ResponseEntity<Map<String, String>> loginWithToken(@RequestBody TokenLoginRequest req) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(req.getToken());
+            if (tokenValidationResponse.isValid()) {
+                response.put("username", tokenValidationResponse.getUsername());
+                return ResponseEntity.ok(response);
+            } else {
+                response.put("error", "Invalid token");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+        } catch (Exception e) {
+            response.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+    }
+
     /**
      * This endpoint is used to register a new user. The request body should contain
      * the username and password. If the username already exists, the endpoint
@@ -179,5 +198,21 @@ class LoginRequest {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+}
+
+class TokenLoginRequest {
+    private String token;
+
+    public TokenLoginRequest(String token) {
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -33,7 +33,7 @@ public class DBManager {
 
 
     // The URL of the database
-    private String databaseURL = "NOT SET UP YET";
+    private String databaseURL = "jdbc:sqlserver://jouzudb.database.windows.net";
 
     // Database Credentials ********************************************************************************
 
@@ -41,16 +41,15 @@ public class DBManager {
         // This is to ensure that the user data is not compromised by a SQL Injection attack on the diary data.
 
         // Connection for handling user data (Greater Permissions)
-        private String userHandler_dbUsername = "root";
-        private String userHandler_dbPassword = "NOT SET UP YET";
+        private String userHandler_dbUsername = "jouzuroot";
+        private String userHandler_dbPassword = "s5flcrlC0yohlkEFl_1w";
         private Connection userHandler_dbConnection = null;
-
 
 
 
         // Connection for handling diary data (Lesser Permissions i.e. Cannot read or delete information from users table)
         private String diaryHandler_dbUsername = "diaryHandler";
-        private String diaryHandler_dbPassword = "NOT SET UP YET";
+        private String diaryHandler_dbPassword = "zizosPOHEPis1Isw@cRo";
         private Connection diaryHandler_dbConnection = null;
 
 
@@ -83,19 +82,19 @@ public class DBManager {
         // User Handler Queries
 
             // Check if a user exists
-            private String userExistsQuery = "SELECT * FROM User WHERE username = ?;";
+            private String userExistsQuery = "SELECT * FROM Account WHERE username = ?;";
 
             // Check if a password is correct
-            private String passwordCorrectQuery = "SELECT * FROM User WHERE username = ? AND hashed_password = ?;";
+            private String passwordCorrectQuery = "SELECT * FROM Account WHERE username = ? AND hashed_password = ?;";
 
             // Create a new user
-            private String createUserQuery = "INSERT INTO User (username, hashed_password) VALUES (?, ?);";
+            private String createUserQuery = "INSERT INTO Account (username, hashed_password) VALUES (?, ?);";
 
             // Delete a user
-            private String deleteUserQuery = "DELETE FROM User WHERE username = ?;";
+            private String deleteUserQuery = "DELETE FROM Account WHERE username = ?;";
 
             // Update a user
-            private String updateUserQuery = "UPDATE User SET hashed_password = ? WHERE username = ?;";
+            private String updateUserQuery = "UPDATE Account SET hashed_password = ? WHERE username = ?;";
 
         // Diary Handler Queries
 

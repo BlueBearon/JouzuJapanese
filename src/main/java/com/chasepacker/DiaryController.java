@@ -14,6 +14,10 @@ package com.chasepacker;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import ch.qos.logback.core.subst.Token;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 
@@ -74,19 +78,8 @@ import java.util.HashMap;
 public class DiaryController {
 
 
+    @Autowired
     private DBManager dbManager = new DBManager(); // Used to interact with the database
-
-    /**
-     * Validates the token
-     * 
-     * @param token
-     * @return true if token is valid
-     */
-    private boolean validateToken(String token)
-    {
-        //Check if token is valid
-        return true;
-    }
 
     /**
      * Get a diary entry for a specific date
@@ -96,19 +89,21 @@ public class DiaryController {
      * @return ResponseEntity containing the diary entry or an error message
      */
     @GetMapping("/diary/getEntry")
-    public ResponseEntity<Map<String, String>> getEntry(@RequestParam String date, @RequestParam String username, @RequestParam String token)
+    public ResponseEntity<Map<String, String>> getEntry(@RequestParam String date, @RequestParam String token)
     {
         Map<String, String> response = new HashMap<>();
 
+        TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(token);
+
         //Validate token
-        if (!validateToken(token))
+        if (!tokenValidationResponse.isValid())
         {
             response.put("error", "Invalid token");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
         //Get entry from database
-        String entry = dbManager.getDiaryEntry(username, date);
+        String entry = dbManager.getDiaryEntry(tokenValidationResponse.getUsername(), date);
 
         response.put("entry", entry);
 
@@ -125,11 +120,11 @@ public class DiaryController {
     public ResponseEntity<String> createEntry(@RequestBody DiaryEntry entry)
     {
         //Validate token
-        if (!validateToken(entry.getToken()))
+        if (!entry.validToken())
         {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
-
+        
         //Save entry to database
         dbManager.createDiaryEntry(entry.getUsername(), entry.getDate(), entry.getEntry());
 
@@ -145,7 +140,7 @@ public class DiaryController {
     public ResponseEntity<String> updateEntry(@RequestBody DiaryEntry entry)
     {
         //Validate token
-        if (!validateToken(entry.getToken()))
+        if (!entry.validToken())
         {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
@@ -165,7 +160,7 @@ public class DiaryController {
     public ResponseEntity<String> deleteEntry(@RequestBody DiaryEntry entry)
     {
         //Validate token
-        if (!validateToken(entry.getToken()))
+        if (!entry.validToken())
         {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
@@ -186,19 +181,20 @@ public class DiaryController {
      * @return ResponseEntity containing a list of dates or an error message
      */
     @GetMapping("/diary/getDiaryDates")
-    public ResponseEntity<Map<String, String>> getDiaryDates(@RequestParam String user, @RequestParam String startDate, @RequestParam String endDate, @RequestParam String token)
+    public ResponseEntity<Map<String, String>> getDiaryDates(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String token)
     {
         Map<String, String> response = new HashMap<>();
 
         //Validate token
-        if (!validateToken(token))
+        TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(token);
+        if (!tokenValidationResponse.isValid())
         {
             response.put("error", "Invalid token");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
         //Get dates from database
-        Map<String, String> dates = dbManager.getDiaryDates(user, startDate, endDate);
+        Map<String, String> dates = dbManager.getDiaryDates(tokenValidationResponse.getUsername(), startDate, endDate);
 
         return ResponseEntity.ok(dates);
         
@@ -213,10 +209,10 @@ public class DiaryController {
  */
 class DiaryEntry
 {
-    private String username;
     private String date;
     private String entry;
     private String token;
+    private TokenValidationResponse tokenValidationResponse;
 
     /**
      * Constructor
@@ -225,12 +221,12 @@ class DiaryEntry
      * @param entry
      * @param token
      */
-    public DiaryEntry(String username, String date, String entry, String token)
+    public DiaryEntry(String date, String entry, String token)
     {
-        this.username = username;
         this.date = date;
         this.entry = entry;
         this.token = token;
+        this.tokenValidationResponse = TokenUtil.validateToken(token);
     }
 
     /**
@@ -239,7 +235,7 @@ class DiaryEntry
      */
     public String getUsername()
     {
-        return username;
+        return tokenValidationResponse.getUsername();
     }
 
     /**
@@ -267,5 +263,14 @@ class DiaryEntry
     public String getToken()
     {
         return token;
+    }
+
+    /**
+     * getTokenValidationResponse
+     * @return tokenValidationResponse
+     */
+    public boolean validToken()
+    {
+        return tokenValidationResponse.isValid();
     }
 }
