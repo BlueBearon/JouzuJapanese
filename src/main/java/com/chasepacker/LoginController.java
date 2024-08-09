@@ -22,6 +22,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import com.chasepacker.DBManager.ConnectionFailedException;
+
+import jakarta.annotation.PostConstruct;
+
 /**
  * LoginController
  * 
@@ -57,6 +61,18 @@ public class LoginController {
 
     @Autowired
     private DBManager dbManager; // Used to interact with the database
+
+
+    @PostConstruct
+    public void init()
+    {
+        try {
+            dbManager = new DBManager();
+        } catch (ConnectionFailedException e) {
+            e.printStackTrace();
+        }
+        
+    }
 
 
     /**
@@ -109,9 +125,16 @@ public class LoginController {
      */
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody LoginRequest req) {
-        if (dbManager.userExists(req.getUsername())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
+
+        try{
+            if (dbManager.userExists(req.getUsername())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
+            }
         }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+        
 
         String encodedPassword = passwordEncoder.encode(req.getPassword());
         try {
@@ -119,6 +142,9 @@ public class LoginController {
             return ResponseEntity.ok("User registered successfully");
         } catch (DBManager.UsernameExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

@@ -15,6 +15,10 @@ package com.chasepacker;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.chasepacker.DBManager.ConnectionFailedException;
+
+import jakarta.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -77,7 +81,18 @@ public class DiaryController {
 
 
     @Autowired
-    private DBManager dbManager = new DBManager(); // Used to interact with the database
+    private DBManager dbManager;
+
+    @PostConstruct
+    public void init()
+    {
+        try {
+            dbManager = new DBManager();
+        } catch (ConnectionFailedException e) {
+            e.printStackTrace();
+        }
+        
+    }
 
     /**
      * Get a diary entry for a specific date
@@ -144,7 +159,11 @@ public class DiaryController {
         }
 
         //Update entry in database
-        dbManager.updateDiaryEntry(entry.getUsername(), entry.getDate(), entry.getEntry());
+        try {
+            dbManager.updateDiaryEntry(entry.getUsername(), entry.getDate(), entry.getEntry());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
 
         return ResponseEntity.ok("Entry updated successfully");
     }
@@ -192,9 +211,13 @@ public class DiaryController {
         }
 
         //Get dates from database
-        Map<String, String> dates = dbManager.getDiaryDates(tokenValidationResponse.getUsername(), startDate, endDate);
-
-        return ResponseEntity.ok(dates);
+        try {
+            Map<String, String> dates = dbManager.getDiaryDates(tokenValidationResponse.getUsername(), startDate, endDate);
+            return ResponseEntity.ok(dates);
+        } catch (Exception e) {
+            response.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
         
     }
 

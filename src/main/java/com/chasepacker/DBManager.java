@@ -14,7 +14,9 @@
 package com.chasepacker;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import java.sql.Connection;
@@ -32,10 +34,13 @@ import java.sql.SQLException;
 public class DBManager {
 
 
-    // The URL of the database
-    private String databaseURL = "jdbc:sqlserver://jouzudb.database.windows.net";
-
+    
+   
     // Database Credentials ********************************************************************************
+
+        // Database URL
+        String databaseURL = "jdbc:sqlserver://jouzudb.database.windows.net:1433;database=JouzuDB;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+
 
         // We are using two different connections to the database in order to separate the permissions of the two connections
         // This is to ensure that the user data is not compromised by a SQL Injection attack on the diary data.
@@ -62,7 +67,7 @@ public class DBManager {
 
 
         /*
-           CREATE TABLE User (
+           CREATE TABLE Account (
                 username VARCHAR(10) PRIMARY KEY,
                 hashed_password VARCHAR(64),
             );
@@ -118,20 +123,61 @@ public class DBManager {
 
 
     // Constructor
-    public DBManager(){
+    public DBManager() throws ConnectionFailedException{
 
         try{ // Attempt to connect to the database
+
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
             this.userHandler_dbConnection = DriverManager.getConnection(databaseURL, userHandler_dbUsername, userHandler_dbPassword);
             this.diaryHandler_dbConnection = DriverManager.getConnection(databaseURL, diaryHandler_dbUsername, diaryHandler_dbPassword);
+        }
+        catch(ClassNotFoundException e)
+        {
+            throw new ConnectionFailedException("Driver does not exist to handle Database.  " + e.getMessage());
+        }
+        catch(SQLException e)
+        {
+            throw new ConnectionFailedException("Attempted creating connections to database, but failed.  " + e.getMessage());
+        }
+        
+    }
+
+    public class ConnectionFailedException extends Exception {
+        public ConnectionFailedException(String message) {
+            super(message);
+        }
+    }
+
+    /**
+     * Returns list of tables in database
+     * @return
+     * @throws SQLException
+     */
+    public List<String> checkExistingTables() throws SQLException
+    {
+        String[] args = {}; // Arguments for the query
+
+        ResultSet rs = userHandler_executeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLES", args);  // Execute the query
+
+        List<String> tables = new ArrayList<String>();
+        // Check if the result set is not empty
+        try
+        {
+            while(rs.next())
+            {
+                tables.add(rs.getString("TABLE_NAME"));
+            }
         }
         catch(SQLException e)
         {
             e.printStackTrace();
         }
-        
+
+        return tables;
     }
 
-    private void closeConnections() throws SQLException
+    public void closeConnections() throws SQLException
     {
 
         if (userHandler_dbConnection != null)
@@ -158,7 +204,7 @@ public class DBManager {
      * @param args
      * @return ResultSet
      */
-    private ResultSet executeQuery(Connection conn, String query, String[] args)
+    private ResultSet executeQuery(Connection conn, String query, String[] args) throws SQLException
     {
         if(conn == null)
         {
@@ -178,8 +224,7 @@ public class DBManager {
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 
@@ -229,7 +274,7 @@ public class DBManager {
      * @param args The arguments for the query
      * @return ResultSet The result of the query
      */
-    private ResultSet userHandler_executeQuery(String query, String[] args)
+    private ResultSet userHandler_executeQuery(String query, String[] args) throws SQLException
     {
         return executeQuery(userHandler_dbConnection, query, args);
     }
@@ -257,7 +302,7 @@ public class DBManager {
      * @param args The arguments for the query
      * @return ResultSet The result of the query
      */
-    private ResultSet diaryHandler_executeQuery(String query, String[] args)
+    private ResultSet diaryHandler_executeQuery(String query, String[] args) throws SQLException
     {
         return executeQuery(diaryHandler_dbConnection, query, args);
     }
@@ -284,7 +329,7 @@ public class DBManager {
      * @param username The username of the user
      * @return boolean True if the user exists, false otherwise
      */
-    public boolean userExists(String username)
+    public boolean userExists(String username) throws SQLException
     {
         String[] args = {username}; // Arguments for the query
 
@@ -309,7 +354,7 @@ public class DBManager {
      * @param username The username of the user
      * @param password The password to check
      */
-    public  boolean passwordCorrect(String username, String password)
+    public  boolean passwordCorrect(String username, String password) throws SQLException
     {
         String[] args = {username, password}; // Arguments for the query
 
@@ -357,7 +402,7 @@ public class DBManager {
      * @param password The password of the user
      * @throws UsernameExistsException Thrown if the username already exists in the database
      */
-    public void createNewUser(String username, String password) throws UsernameExistsException
+    public void createNewUser(String username, String password) throws UsernameExistsException, SQLException
     {
         if(userExists(username))
         {
@@ -377,7 +422,7 @@ public class DBManager {
      * @param username The username of the user
      * @throws UsernameDoesNotExistException Thrown if the username does not exist in the database
      */
-    public void deleteUser(String username) throws UsernameDoesNotExistException
+    public void deleteUser(String username) throws UsernameDoesNotExistException, SQLException
     {
         if(!userExists(username))
         {
@@ -399,16 +444,27 @@ public class DBManager {
      * @param password The new password of the user
      * @throws UsernameDoesNotExistException Thrown if the username does not exist in the database
      */
-    public  void updateUser(String username, String password) throws UsernameDoesNotExistException
+    public void updateUser(String username, String password) throws UsernameDoesNotExistException, SQLException
     {
         if(!userExists(username))
         {
             throw new UsernameDoesNotExistException("Username does not exist");
         }
 
-        String[] args = {username, password}; // Arguments for the query
+        String[] args = {password, username}; // Arguments for the query
 
-        userHandler_executeUpdate(updateUserQuery, args);  // Execute the query
+        boolean success = userHandler_executeUpdate(updateUserQuery, args);  // Execute the query
+
+        if(!success)
+        {
+            throw new SQLException("Failed to update user");
+        }
+
+        // Verify that the user was updated
+        if(!passwordCorrect(username, password))
+        {
+            throw new SQLException("Failed to update user");
+        }
     }
 
 
@@ -472,11 +528,16 @@ public class DBManager {
      * @param entry The content of the diary entry
      * @return String The content of the diary entry
      */
-    public  void updateDiaryEntry(String user, String date, String entry)
+    public  void updateDiaryEntry(String user, String date, String entry) throws SQLException
     {
-        String[] args = {user, date, entry}; // Arguments for the query
+        String[] args = {entry, user, date}; // Arguments for the query
 
-        diaryHandler_executeUpdate(updateDiaryEntryQuery, args);  // Execute the query
+        boolean success = diaryHandler_executeUpdate(updateDiaryEntryQuery, args);  // Execute the query
+
+        if(!success)
+        {
+            throw new SQLException("Failed to update diary entry");
+        }
     }
 
     /**
@@ -505,24 +566,21 @@ public class DBManager {
      * @param endDate
      * @return {dates: 1-1-2021, 1-2-2021, 1-3-2021, etc.}
      */
-    public  Map<String, String> getDiaryDates(String user, String startDate, String endDate)
+    public  Map<String, String> getDiaryDates(String user, String startDate, String endDate) throws SQLException
     {
         String[] args = {user, startDate, endDate}; // Arguments for the query
 
         ResultSet rs = diaryHandler_executeQuery(getDiaryDatesQuery, args);  // Execute the query
 
         Map<String, String> result = new HashMap<String, String>();
-        String[] dates = null;
+        List<String> dates = new ArrayList<String>();
         int i = 0;
         // Check if the result set is not empty
         try
         {
-
-            dates = new String[rs.getFetchSize()];
-
             while(rs.next())
             {
-                dates[i] = rs.getString("entry_date");
+                dates.add(rs.getString("entry_date"));
                 i++;
             }
         }
@@ -535,7 +593,12 @@ public class DBManager {
         // Result Format
         // {dates: 1-1-2021, 1-2-2021, 1-3-2021, etc.}
 
-        result.put("dates", String.join(", ", dates));
+        String resultString = dates.toString();
+
+        // Remove the brackets from the string
+        resultString = resultString.substring(1, resultString.length() - 1);
+
+        result.put("dates", resultString);
 
         return result;
 
