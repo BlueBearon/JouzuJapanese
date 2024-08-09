@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.chasepacker.DBManager.ConnectionFailedException;
@@ -57,9 +56,6 @@ import jakarta.annotation.PostConstruct;
  */
 @RestController
 public class LoginController {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder; // Used to encode the user's password
 
     @Autowired
     private DBManager dbManager; // Used to interact with the database
@@ -136,11 +132,10 @@ public class LoginController {
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-        
 
-        String encodedPassword = passwordEncoder.encode(req.getPassword());
+        
         try {
-            dbManager.createNewUser(req.getUsername(), encodedPassword);
+            dbManager.createNewUser(req.getUsername(), req.getPassword()); //Password will be encoded by the DBManager
             return ResponseEntity.ok("User registered successfully");
         } catch (DBManager.UsernameExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

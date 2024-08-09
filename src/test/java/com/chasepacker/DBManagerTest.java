@@ -3,54 +3,49 @@ package com.chasepacker;
 import java.sql.*;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
-import com.chasepacker.DBManager.ConnectionFailedException;
 import com.chasepacker.DBManager.UsernameDoesNotExistException;
 import com.chasepacker.DBManager.UsernameExistsException;
-
-import java.util.Map;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.runner.RunWith;
 
+import static org.junit.Assert.*;
+import java.util.Map;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class DBManagerTest {
 
+    @Autowired
     private DBManager dbManager;
-
-    public void setUp(){
-
-        try {
-            dbManager = new DBManager();
-        } catch (ConnectionFailedException e) {
-            e.printStackTrace();
-            fail("Connection failed: " + e.getMessage());
-        }
-    }
-
-    public void tearDown() {
-        try {
-            dbManager.closeConnections();
-            dbManager = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("Error closing connections: " + e.getMessage());
-        }
-    }
 
 
     @Test
     public void testDBManager() {
 
-        setUp();
         assertNotNull(dbManager);
-        tearDown();
+
+    }
+
+    @AfterAll
+    public void cleanUp() {
+
+        try {
+            dbManager.closeConnections();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
 
 
 
     @Test 
     public void testTablesExist(){
-        setUp();
-
+        
         List<String> tables;
 
         try {
@@ -63,14 +58,14 @@ public class DBManagerTest {
             fail("Error checking if tables exist: " + e.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
     public void testUserExists() throws SQLException {
         String username = "testUser";
 
-        setUp();
+        
 
         try {
             assertFalse(dbManager.userExists(username));
@@ -86,7 +81,7 @@ public class DBManagerTest {
             assertTrue(false);
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -94,7 +89,7 @@ public class DBManagerTest {
         String username = "testUser";
         String password = "password";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -109,7 +104,7 @@ public class DBManagerTest {
             fail("Error deleting user: " + u.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -117,7 +112,7 @@ public class DBManagerTest {
         String username = "testUser";
         String password = "password";
 
-        setUp();
+        
 
         // Successful creation, should work
         try {
@@ -143,7 +138,7 @@ public class DBManagerTest {
             fail("Error deleting user: " + u.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -151,7 +146,7 @@ public class DBManagerTest {
         String username = "testUser";
         String password = "password";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -166,7 +161,7 @@ public class DBManagerTest {
             fail("Error deleting user: " + u.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -175,7 +170,7 @@ public class DBManagerTest {
         String password = "password";
         String newPassword = "newPassword";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -192,7 +187,7 @@ public class DBManagerTest {
             fail("Error deleting user: " + u.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -202,7 +197,7 @@ public class DBManagerTest {
         String date = "2021-01-01";
         String entry = "This is a test entry";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -218,7 +213,7 @@ public class DBManagerTest {
             fail("Error deleting user: " + u.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -229,7 +224,7 @@ public class DBManagerTest {
         String date = "2021-01-01";
         String entry = "This is a test entry";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -249,7 +244,7 @@ public class DBManagerTest {
             fail("Error creating diary entry: " + e.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -260,7 +255,7 @@ public class DBManagerTest {
         String date = "2021-01-01";
         String entry = "This is a test entry";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -281,7 +276,7 @@ public class DBManagerTest {
             fail("Error creating diary entry: " + e.getMessage());
         }
 
-        tearDown();
+        
     }
 
    @Test
@@ -293,7 +288,7 @@ public class DBManagerTest {
         String entry = "This is a test entry";
         String newEntry = "This is a new test entry";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -315,7 +310,7 @@ public class DBManagerTest {
             fail("Error creating diary entry: " + e.getMessage());
         }
 
-        tearDown();
+        
     }
 
     @Test
@@ -325,7 +320,7 @@ public class DBManagerTest {
         String startDate = "2021-01-01";
         String endDate = "2021-01-10";
 
-        setUp();
+        
 
         try {
             dbManager.createNewUser(username, password);
@@ -376,7 +371,7 @@ public class DBManagerTest {
             fail("Error creating diary entry: " + e.getMessage());
         }
 
-        tearDown();
+        
     }
 
 }

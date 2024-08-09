@@ -150,10 +150,38 @@ public class DBManager {
         
     }
 
+    // Constructor for testing giving it a passwordEncoder
+    public DBManager(PasswordEncoder encoder) throws ConnectionFailedException
+    {
+        this.passwordEncoder = encoder;
+
+        try{ // Attempt to connect to the database
+
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            this.userHandler_dbConnection = DriverManager.getConnection(databaseURL, userHandler_dbUsername, userHandler_dbPassword);
+            this.diaryHandler_dbConnection = DriverManager.getConnection(databaseURL, diaryHandler_dbUsername, diaryHandler_dbPassword);
+        }
+        catch(ClassNotFoundException e)
+        {
+            throw new ConnectionFailedException("Driver does not exist to handle Database.  " + e.getMessage());
+        }
+        catch(SQLException e)
+        {
+            throw new ConnectionFailedException("Attempted creating connections to database, but failed.  " + e.getMessage());
+        }
+    }
+
     public class ConnectionFailedException extends Exception {
         public ConnectionFailedException(String message) {
             super(message);
         }
+    }
+
+
+    public boolean checkPasswordEncoderInitialized()
+    {
+        return passwordEncoder != null;
     }
 
     /**
@@ -372,6 +400,9 @@ public class DBManager {
         {
             if(rs.next())
             {
+                System.out.println("Unencoded Password: " + password);
+                System.out.println("Encoded Password: " + rs.getString("hashed_password"));
+                System.out.println("Password Correct: " + passwordEncoder.matches(password, rs.getString("hashed_password")));
                 return passwordEncoder.matches(password, rs.getString("hashed_password"));
             }
             else
@@ -425,6 +456,8 @@ public class DBManager {
             throw new UsernameExistsException("Username already exists");
         }
 
+        password = passwordEncoder.encode(password); // Encode the password
+
         String[] args = {username, password}; // Arguments for the query
 
         userHandler_executeUpdate(createUserQuery, args);  // Execute the query
@@ -467,7 +500,9 @@ public class DBManager {
             throw new UsernameDoesNotExistException("Username does not exist");
         }
 
-        String[] args = {password, username}; // Arguments for the query
+        String encodedPassword = passwordEncoder.encode(password); // Encode the password
+
+        String[] args = {encodedPassword, username}; // Arguments for the query
 
         boolean success = userHandler_executeUpdate(updateUserQuery, args);  // Execute the query
 

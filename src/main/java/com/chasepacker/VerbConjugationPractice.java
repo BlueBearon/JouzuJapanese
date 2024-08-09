@@ -219,6 +219,8 @@ public class VerbConjugationPractice {
             }
         }
 
+        System.out.println("Valid Options: " + validOptions.size());
+
         //Select a random index from the arraylist
         int randomIndex = generateRandomNum(validOptions.size());
 
