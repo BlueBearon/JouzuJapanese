@@ -17,8 +17,10 @@ import HiraganaPractice from './HiraganaPractice';
 import KatakanaPractice from './KatakanaPractice';
 import AdjectiveConjugationPractice from './AdjectiveConjugationPractice';
 import VerbConjugationPractice from './VerbConjugationPractice';
+import apiCall from './APIFunctions';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '@fontsource/klee-one';
+import { validateToken } from './APIFunctions';
 
 
 
@@ -28,42 +30,34 @@ export const userContext = React.createContext({user: null, setUser: () => {}, a
 
 function App() {
 
-  const {darkMode, setDarkMode} = React.useContext(darkContext);
-  const {user, setUser, auth, setAuth} = React.useContext(userContext);
+  const [user, setUser] = React.useState(null);
+  const [darkMode, setDarkMode] = React.useState(false);
+  const [auth, setAuth] = React.useState(false);
 
 
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      fetch('/login/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.username) {
-            // Token is valid, proceed with authenticated state
-            console.log('Token is valid, user:', data.username);
 
-            setUser(data.username);
-            setAuth(true);
+    if (localStorage.getItem('token')) {
+      // If token exists, validate it
+      var username = validateToken();
 
-          } else {
-            // Token is invalid, handle error
-            console.error('Invalid token:', data.error);
-            // Optionally, redirect to login page
-            // window.location.href = '/login';
-          }
-        })
-        .catch(error => {
-          console.error('Error validating token:', error);
-        });
+      if(username)
+      {
+        setUser(username);
+        setAuth(true);
+      }
+      else
+      {
+        setUser(null);
+        setAuth(false);
+      }
     }
-  }, []);
 
+
+    console.log("Dark mode: ", darkMode);
+    console.log("User: ", user);
+
+  }, []);
 
   return (
       <div>

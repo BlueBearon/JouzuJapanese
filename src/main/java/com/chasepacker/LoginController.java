@@ -23,9 +23,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import com.chasepacker.DBManager.ConnectionFailedException;
-
-import jakarta.annotation.PostConstruct;
 
 /**
  * LoginController
@@ -60,19 +57,6 @@ public class LoginController {
     @Autowired
     private DBManager dbManager; // Used to interact with the database
 
-
-    @PostConstruct
-    public void init()
-    {
-        try {
-            dbManager = new DBManager();
-        } catch (ConnectionFailedException e) {
-            e.printStackTrace();
-        }
-        
-    }
-
-
     /**
      * This endpoint is used to validate the user's login credentials. The request
      * body should contain the username and password. If the credentials are valid,
@@ -83,31 +67,79 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest req) {
+
+        System.out.println("**************************");
+        System.out.println("LoginController.java: Recieved login request");
+        System.out.println("    Username: " + req.getUsername());
+        System.out.println("    Password: " + req.getPassword());
+
+
+
+
         Map<String, String> response = new HashMap<>();
         try {
+
             String token = validateLogin(req);
+
+            System.out.println("    Login successful");
+            System.out.println("    Token: " + token);
+            System.out.println("**************************");
+
+
+            TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(token);
+
+            System.out.println("    Token validation response: " + tokenValidationResponse.isValid());
+
             response.put("token", token);
             return ResponseEntity.ok(response);
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
+
+            System.out.println("    Login failed");
+            System.out.println("    " + e.getMessage());
+            System.out.println("**************************");
+
             response.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
 
+    @PostMapping("/token")
+    public ResponseEntity<Map<String, String>> loginWithToken(@RequestBody LoginRequest req) {
 
-    @PostMapping("/login/token")
-    public ResponseEntity<Map<String, String>> loginWithToken(@RequestBody TokenLoginRequest req) {
+
+        System.out.println("**************************");
+        System.out.println("Recieved login with token request");
+        System.out.println("Token: " + req.getPassword());
+
+
         Map<String, String> response = new HashMap<>();
         try {
-            TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(req.getToken());
+            TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(req.getPassword());
+
+            System.out.println("Token validation response: " + tokenValidationResponse.isValid());
+
             if (tokenValidationResponse.isValid()) {
                 response.put("username", tokenValidationResponse.getUsername());
+                
+                System.out.println("username: " + tokenValidationResponse.getUsername());
+                System.out.println("**************************");
+
                 return ResponseEntity.ok(response);
             } else {
+
+                System.out.println("Invalid token");
+                System.out.println("**************************");
+
+
                 response.put("error", "Invalid token");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }
         } catch (Exception e) {
+
+            System.out.println("Error validating token");
+            System.out.println("**************************");
+
             response.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
@@ -124,23 +156,60 @@ public class LoginController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody LoginRequest req) {
 
+        System.out.println("**************************");
+        System.out.println("LoginController.java: Recieved register request");
+        System.out.println("    Username: " + req.getUsername());
+        System.out.println("    Password: " + req.getPassword());
+        System.out.println("");
+
         try{
             if (dbManager.userExists(req.getUsername())) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
+
+                System.out.println("    Username already exists");
+                System.out.println("**************************");
+
+
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("    Username already exists");
             }
+
+            System.out.println("    Confirmed user does not yet exist, proceeding to create new user");
+            System.out.println("");
         }
         catch (Exception e) {
+
+            System.out.println("    Error checking if user exists");
+            System.out.println("**************************");
+
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
         
         try {
+
+            System.out.println("    Attempting database operation to create new user");
+            System.out.println("");
+
             dbManager.createNewUser(req.getUsername(), req.getPassword()); //Password will be encoded by the DBManager
+
+            System.out.println("    User registered successfully");
+            System.out.println("**************************");
+
             return ResponseEntity.ok("User registered successfully");
         } catch (DBManager.UsernameExistsException e) {
+
+            System.out.println("    Username already exists");
+            System.out.println("**************************");
+
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
         catch (Exception e) {
+
+            System.out.println("    Error registering user");
+            System.out.println("");
+            System.out.println("    " + e.getMessage());
+            System.out.println("**************************");
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
@@ -162,17 +231,29 @@ public class LoginController {
      */
     private String validateLogin(LoginRequest req) throws UsernameNotFoundException, PasswordIncorrectException, SQLException {
         if (!dbManager.userExists(req.getUsername())) {
+
+            System.out.println("    User does not exist");
             throw new UsernameNotFoundException("User not found");
         }
 
         // See if username, password pair exists in database
         if (!dbManager.passwordCorrect(req.getUsername(), req.getPassword()))
         {
+
+            System.out.println("    Password incorrect");
+
             throw new PasswordIncorrectException("Invalid password");
         }
 
+        System.out.println("    Password correct");
+        System.out.println("    Generating token");
+
+        String token = TokenUtil.generateToken(req.getUsername());
+
+        System.out.println("    Token generated");
+
         // Generate Token (this is a placeholder, implement your token generation logic)
-        return TokenUtil.generateToken(req.getUsername());
+        return token;
     }
 }
 
@@ -230,21 +311,5 @@ class LoginRequest {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-}
-
-class TokenLoginRequest {
-    private String token;
-
-    public TokenLoginRequest(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 }

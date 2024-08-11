@@ -21,6 +21,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { darkContext } from './App';
 import { userContext } from './App';
+import { validateToken } from './APIFunctions';
 
 
 function TopBar() {
@@ -58,6 +59,8 @@ function TopBar() {
         userInfo.setUser(null);
         userInfo.setAuth(false);
 
+        localStorage.removeItem('token');
+
         navigate('/');
     }
 
@@ -68,19 +71,7 @@ function TopBar() {
     
     };
 
-    const navigateLessons = () => {
-
-        navigate('/lessons');
-
-    };
-
     const navigateDiary = () => {
-
-        // Authenticated users can access the Diary page
-
-        //Not Implemented Yet
-
-        //For now just navigate to the Diary page
 
         navigate('/diary');
 
@@ -121,6 +112,8 @@ function TopBar() {
 
     
 
+    
+
 
 
 
@@ -141,17 +134,7 @@ function TopBar() {
                         />
 
                         <Box sx={{ display: { xs: 'none', md: 'flex', marginLeft: '1rem' }}}>
-                            <Button color="inherit"
-                            sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem' }}
-
-                            onClick={() => navigateLessons()}
-                            >
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <School sx={{marginRight: '0.75rem'}}/>
-                                    Lessons
-                                </Box>
-                            </Button>
-
+                            
                             <Button color="inherit"
                             sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem' }}
                             onClick={handlePracticeMenu}
@@ -174,6 +157,7 @@ function TopBar() {
                                     Diary
                                 </Box>
                             </Button> : null}
+                            
                             
                         </Box>
                     </Box>

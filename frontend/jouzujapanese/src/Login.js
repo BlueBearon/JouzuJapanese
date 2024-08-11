@@ -12,7 +12,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import apiCall from './APIFunctions';
 
 // URL for the login endpoint
-let loginTestLink = "http://localhost:8080/login";
+let loginEndpoint = "login";
 
 /**
  * Login component for user authentication.
@@ -39,11 +39,20 @@ function Login() {
      * Updates the state based on the response.
      */
     const authenticate = async () => {
+
+        console.log("********************************************");
+        console.log("Authenticating user: ", username, password);
+
+
         setLoading(true);
         setError('');
     
         try {
-            const result = await apiCall('/login', 'POST', { username, password });
+            const result = await apiCall(loginEndpoint, 'POST', { username, password });
+
+            console.log("Login successful: ", result);
+            console.log("Token: ", result.token);
+            console.log("********************************************");
     
             userInfo.setAuth(true);
             userInfo.setUser(username);
@@ -51,14 +60,23 @@ function Login() {
             navigate('/');
         } catch (error) {
             if (error.response && error.response.data) {
+                console.error("Login failed: ", error.response.data.error);
+                console.log("********************************************");
                 setError(error.response.data.error || 'Invalid email or password');
             } else {
+                console.error("Login failed: ", error.message);
+                console.log("********************************************");
                 setError('An error occurred. Please try again.');
             }
         } finally {
             setLoading(false);
         }
     };
+
+
+    const testOtherEndpoint = async () => { 
+
+    }
 
     /**
      * Handles form submission.
@@ -134,6 +152,7 @@ function Login() {
             <Typography variant="body2" sx={{ marginTop: '1rem' }}>
                 Don't have an account? <Link to="/register">Register</Link>
             </Typography>
+
         </Box>
     );
 }

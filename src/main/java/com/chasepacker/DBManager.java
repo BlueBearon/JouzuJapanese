@@ -400,9 +400,9 @@ public class DBManager {
         {
             if(rs.next())
             {
-                System.out.println("Unencoded Password: " + password);
-                System.out.println("Encoded Password: " + rs.getString("hashed_password"));
-                System.out.println("Password Correct: " + passwordEncoder.matches(password, rs.getString("hashed_password")));
+                System.out.println("    Unencoded Password: " + password);
+                System.out.println("    Encoded Password: " + rs.getString("hashed_password"));
+                System.out.println("    Password Correct: " + passwordEncoder.matches(password, rs.getString("hashed_password")));
                 return passwordEncoder.matches(password, rs.getString("hashed_password"));
             }
             else

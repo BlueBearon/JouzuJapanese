@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import apiCall from './APIFunctions';
 
 // URL for the registration endpoint
-let registerLink = "http://localhost:8080/register";
+let registerEndpoint = "register";
 
 /**
  * Register component for user registration.
@@ -41,19 +41,31 @@ function Register() {
      * Updates the state based on the response.
      */
     const register = async () => {
+
+        console.log("********************************************");
+        console.log("Registering user: ", username, password);
+
+
         setLoading(true);
         setError('');
         setSuccess('');
 
         try {
-            const result = await apiCall(registerLink, 'POST', { username, password });
+            const result = await apiCall(registerEndpoint, 'POST', { username, password });
+
+            console.log("Login successful: ", result);
+            console.log("********************************************");
 
             setSuccess('User registered successfully');
             setTimeout(() => navigate('/login'), 2000);
         } catch (error) {
             if (error.response && error.response.data) {
+                console.log("Error registering user: ", error.response.data.error);
+                console.log("********************************************");
                 setError(error.response.data.error || 'Registration failed');
             } else {
+                console.log("Error registering user: ", error.message);
+                console.log("********************************************");
                 setError('An error occurred. Please try again.');
             }
         } finally {

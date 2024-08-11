@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.chasepacker.DBManager.ConnectionFailedException;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -18,6 +20,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                     .requestMatchers("/login").permitAll()
+                    .requestMatchers("/token").permitAll()
                     .requestMatchers("/register").permitAll()
                     .requestMatchers("/api/**").permitAll() // Allow all API requests
                     .requestMatchers("/diary/**").permitAll() // Allow all diary requests, tokens will be validated in the controller
@@ -36,6 +39,18 @@ public class SecurityConfig {
 
         System.out.println("Password encoder bean created");
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean 
+    public DBManager dbManager() {
+        
+        try {
+            return new DBManager();
+        } 
+        catch (ConnectionFailedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
