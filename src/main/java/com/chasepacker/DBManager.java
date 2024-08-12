@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -225,6 +226,29 @@ public class DBManager {
             diaryHandler_dbConnection.close();
         }
     
+    }
+
+    @Scheduled(fixedRate = 3600000) // 1 hour
+    public void resetConnections() throws ConnectionFailedException
+    {
+        try{
+            if (userHandler_dbConnection != null)
+            {
+                userHandler_dbConnection.close();
+            }
+    
+            if (diaryHandler_dbConnection != null)
+            {
+                diaryHandler_dbConnection.close();
+            }
+
+            this.userHandler_dbConnection = DriverManager.getConnection(databaseURL, userHandler_dbUsername, userHandler_dbPassword);
+            this.diaryHandler_dbConnection = DriverManager.getConnection(databaseURL, diaryHandler_dbUsername, diaryHandler_dbPassword);
+        }
+        catch(SQLException e)
+        {
+            throw new ConnectionFailedException("Attempted creating connections to database, but failed.  " + e.getMessage());
+        }
     }
 
     /**

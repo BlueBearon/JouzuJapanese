@@ -15,10 +15,6 @@ package com.chasepacker;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.chasepacker.DBManager.ConnectionFailedException;
-
-import jakarta.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -79,149 +75,132 @@ import java.util.HashMap;
 @RestController
 public class DiaryController {
 
-
     @Autowired
     private DBManager dbManager;
 
-    @PostConstruct
-    public void init()
-    {
-        try {
-            dbManager = new DBManager();
-        } catch (ConnectionFailedException e) {
-            e.printStackTrace();
-        }
-        
-    }
-
-    /**
-     * Get a diary entry for a specific date
-     * @param date 
-     * @param username
-     * @param token
-     * @return ResponseEntity containing the diary entry or an error message
-     */
     @GetMapping("/diary/getEntry")
-    public ResponseEntity<Map<String, String>> getEntry(@RequestParam String date, @RequestParam String token)
-    {
-        Map<String, String> response = new HashMap<>();
+    public ResponseEntity<Map<String, String>> getEntry(@RequestParam String date, @RequestParam String token) {
+        System.out.println("**************************");
+        System.out.println("DiaryController.java: Received getEntry request");
+        System.out.println("    Date: " + date);
+        System.out.println("    Token: " + token);
 
+        Map<String, String> response = new HashMap<>();
         TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(token);
 
-        //Validate token
-        if (!tokenValidationResponse.isValid())
-        {
+        if (!tokenValidationResponse.isValid()) {
+            System.out.println("    Invalid token");
+            System.out.println("**************************");
             response.put("error", "Invalid token");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
-        //Get entry from database
         String entry = dbManager.getDiaryEntry(tokenValidationResponse.getUsername(), date);
-
         response.put("entry", entry);
 
+        System.out.println("    Entry retrieved successfully");
+        System.out.println("**************************");
         return ResponseEntity.ok(response);
-        
     }
 
-    /**
-     * Create a new diary entry
-     * @param entry
-     * @return ResponseEntity containing a success message or an error message
-     */
     @PostMapping("/diary/createEntry")
-    public ResponseEntity<String> createEntry(@RequestBody DiaryEntry entry)
-    {
-        //Validate token
-        if (!entry.validToken())
-        {
+    public ResponseEntity<String> createEntry(@RequestBody DiaryEntry entry) {
+        System.out.println("**************************");
+        System.out.println("DiaryController.java: Received createEntry request");
+        System.out.println("    Date: " + entry.getDate());
+        System.out.println("    Entry: " + entry.getEntry());
+        System.out.println("    Token: " + entry.getToken());
+
+        if (!entry.validToken()) {
+            System.out.println("    Invalid token");
+            System.out.println("**************************");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
-        
-        //Save entry to database
+
         dbManager.createDiaryEntry(entry.getUsername(), entry.getDate(), entry.getEntry());
 
+        System.out.println("    Entry created successfully");
+        System.out.println("**************************");
         return ResponseEntity.ok("Entry created successfully");
     }
 
-    /**
-     * Update an existing diary entry
-     * @param entry
-     * @return ResponseEntity containing a success message or an error message
-     */
     @PostMapping("/diary/updateEntry")
-    public ResponseEntity<String> updateEntry(@RequestBody DiaryEntry entry)
-    {
-        //Validate token
-        if (!entry.validToken())
-        {
+    public ResponseEntity<String> updateEntry(@RequestBody DiaryEntry entry) {
+        System.out.println("**************************");
+        System.out.println("DiaryController.java: Received updateEntry request");
+        System.out.println("    Date: " + entry.getDate());
+        System.out.println("    Entry: " + entry.getEntry());
+        System.out.println("    Token: " + entry.getToken());
+
+        if (!entry.validToken()) {
+            System.out.println("    Invalid token");
+            System.out.println("**************************");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
 
-        //Update entry in database
         try {
             dbManager.updateDiaryEntry(entry.getUsername(), entry.getDate(), entry.getEntry());
+            System.out.println("    Entry updated successfully");
         } catch (Exception e) {
+            System.out.println("    Update failed: " + e.getMessage());
+            System.out.println("**************************");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
+        System.out.println("**************************");
         return ResponseEntity.ok("Entry updated successfully");
     }
 
-    /**
-     * Delete a diary entry
-     * @param entry
-     * @return ResponseEntity containing a success message or an error message
-     */
     @PostMapping("/diary/deleteEntry")
-    public ResponseEntity<String> deleteEntry(@RequestBody DiaryEntry entry)
-    {
-        //Validate token
-        if (!entry.validToken())
-        {
+    public ResponseEntity<String> deleteEntry(@RequestBody DiaryEntry entry) {
+        System.out.println("**************************");
+        System.out.println("DiaryController.java: Received deleteEntry request");
+        System.out.println("    Date: " + entry.getDate());
+        System.out.println("    Token: " + entry.getToken());
+
+        if (!entry.validToken()) {
+            System.out.println("    Invalid token");
+            System.out.println("**************************");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
 
-        //Delete entry from database
         dbManager.deleteDiaryEntry(entry.getUsername(), entry.getDate());
 
+        System.out.println("    Entry deleted successfully");
+        System.out.println("**************************");
         return ResponseEntity.ok("Entry deleted successfully");
     }
 
-
-    /**
-     * Get a list of diary dates for a specific user within a date range
-     * @param user
-     * @param startDate
-     * @param endDate
-     * @param token
-     * @return ResponseEntity containing a list of dates or an error message
-     */
     @GetMapping("/diary/getDiaryDates")
-    public ResponseEntity<Map<String, String>> getDiaryDates(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String token)
-    {
-        Map<String, String> response = new HashMap<>();
+    public ResponseEntity<Map<String, String>> getDiaryDates(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String token) {
+        System.out.println("**************************");
+        System.out.println("DiaryController.java: Received getDiaryDates request");
+        System.out.println("    Start Date: " + startDate);
+        System.out.println("    End Date: " + endDate);
+        System.out.println("    Token: " + token);
 
-        //Validate token
+        Map<String, String> response = new HashMap<>();
         TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(token);
-        if (!tokenValidationResponse.isValid())
-        {
+
+        if (!tokenValidationResponse.isValid()) {
+            System.out.println("    Invalid token");
+            System.out.println("**************************");
             response.put("error", "Invalid token");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
-        //Get dates from database
         try {
             Map<String, String> dates = dbManager.getDiaryDates(tokenValidationResponse.getUsername(), startDate, endDate);
+            System.out.println("    Dates retrieved successfully");
+            System.out.println("**************************");
             return ResponseEntity.ok(dates);
         } catch (Exception e) {
+            System.out.println("    Retrieval failed: " + e.getMessage());
+            System.out.println("**************************");
             response.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
-        
     }
-
-  
 }
 
 
