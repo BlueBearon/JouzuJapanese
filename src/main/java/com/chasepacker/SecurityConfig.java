@@ -45,14 +45,22 @@ public class SecurityConfig {
 
     @Bean 
     public DBManager dbManager() {
+        int attempts = 0;
+        int maxAttempts = 5;
         
-        try {
-            return new DBManager();
-        } 
-        catch (ConnectionFailedException e) {
-            e.printStackTrace();
-            return null;
+        while (attempts < maxAttempts) {
+            try {
+                return new DBManager();
+            } 
+            catch (ConnectionFailedException e) {
+                attempts++;
+                if (attempts >= maxAttempts) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
         }
+        return null; // This line should never be reached
     }
 
 }

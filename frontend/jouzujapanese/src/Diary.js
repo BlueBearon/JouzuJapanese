@@ -83,21 +83,43 @@ function Diary() {
 
         const data = diaryDateDataPackaging(startDate, endDate);
 
-        let response = await apiCall(getDiaryDatesEndpoint, 'GET', data);
 
-        //Clear current set
-        datesWithEntries.current.clear();
+        try
+        {
+            console.log("Getting diary dates: ");
 
+            let response = await apiCall(getDiaryDatesEndpoint, 'GET', data);
 
-        //Add the dates to the set
+            console.log("Response: ", response);
 
-        let dates = response.dates.split(", ");
+            //Clear current set
+            datesWithEntries.current.clear();
 
-        for(let i = 0; i < dates.length; i++){
+            //Add the dates to the set
 
-            datesWithEntries.current.add(new Date(dates[i]));
+            let dates = response.dates.split(", ");
 
+            for(let i = 0; i < dates.length; i++){
+
+                datesWithEntries.current.add(new Date(dates[i]));
+
+            }
+
+            
         }
+        catch(error)
+        {
+            
+            if(error.response && error.response.data)
+            {
+                console.error("Error getting diary dates: ", error.response.data.error);
+            }
+            else
+            {
+                console.error("Error getting diary dates: ", error.message);
+            }
+        }
+
 
     };
 
@@ -198,16 +220,36 @@ function Diary() {
      */
     const handleDateChange = async (date) => {
 
-        //Save the current diary entry
-        save();
 
-        //Clear the editor, but not the data for the day
-        setEditorState(() => EditorState.createEmpty());
+        try{
 
-        setDiaryDate(date);
+            console.log("Changing date: ", date);
 
-        //Retrieve the diary entry for the given date
-        retrieveDiaryEntry(date);
+            //Save the current diary entry
+            console.log("Saving current entry: ");
+            save();
+            console.log("Current entry saved.");
+
+            //Clear the editor, but not the data for the day
+            console.log("Clearing editor: ");
+            setEditorState(() => EditorState.createEmpty());
+            console.log("Editor cleared.");
+
+            //Update the diary date
+            console.log("Updating diary date: ");
+            setDiaryDate(date);
+            console.log("Diary date updated.");
+
+            //Retrieve the diary entry for the given date
+            console.log("Retrieving diary entry: ");
+            retrieveDiaryEntry(date);
+            console.log("Diary entry retrieved.");
+
+        }
+        catch(error)
+        {
+            console.error("Error changing date: ", error.message);
+        }
         
         
     };
