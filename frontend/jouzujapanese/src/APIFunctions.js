@@ -18,24 +18,54 @@ async function apiCall(endpoint, method, data) {
     console.log("Full URL is: ", url);
     console.log("");
 
-    const options = {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        data: data // 'data' is used for the request body in axios
-    };
+    let options = {};
 
-    try {
-        const response = await axios(url, options);
-        console.log("");
-        return response.data;
-    } catch (error) {
-        console.error("API call failed:", error);
-        console.log("");
-        throw error; // Re-throw the error to handle it in the calling function
+    if(method === 'GET') //for GET requests we send parameters
+    {
+       var optionsObject = {
+            params: data
+       };
+
+        try {
+
+            const response = await axios(url, {params: data});
+            console.log("");
+            return response.data;
+
+        }
+        catch (error) {
+            console.error("API call failed: ", error);
+            console.log("");
+            throw error; // Re-throw the error to handle it in the calling function
+        }
+
+    }
+    else // for POST requests we send data
+    { 
+        options = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: data // 'data' is used for the request body in axios
+        };
+
+        try{
+            const response = await axios(url, options);
+            console.log("");
+            return response.data;
+        }
+        catch (error) {
+            console.error("API call failed: ", error);
+            console.log("");
+            throw error; // Re-throw the error to handle it in the calling function
+        }
+
     }
 }
+
+
+
 
 async function validateToken() {
 

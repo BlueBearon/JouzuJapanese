@@ -374,4 +374,64 @@ public class DBManagerTest {
         
     }
 
+
+    // Test case for inserting japnese characters
+    @Test
+    public void testJapaneseCharacters() throws SQLException {
+        String username = "testUser";
+        String password = "password";
+        String date = "2021-01-01";
+        String entry = "これはテストエントリです";
+
+        
+
+        try {
+            dbManager.createNewUser(username, password);
+            dbManager.createDiaryEntry(username, date, entry);
+            assertEquals(entry, dbManager.getDiaryEntry(username, date));
+            dbManager.deleteDiaryEntry(username, date);
+            dbManager.deleteUser(username);
+        } catch (UsernameExistsException u) {
+            u.printStackTrace();
+            fail("Error creating user: " + u.getMessage());
+        } catch (UsernameDoesNotExistException u) {
+            u.printStackTrace();
+            fail("Error deleting user: " + u.getMessage());
+        }
+
+        
+    }
+
+    //Test case for updating with japanese characters
+    @Test
+    public void testUpdateDiaryEntryJapanese() throws SQLException {
+        String username = "testUser";
+        String password = "password";
+        String date = "2021-01-01";
+        String entry = "これはテストエントリです";
+        String newEntry = "これは新しいテストエントリです";
+
+        
+
+        try {
+            dbManager.createNewUser(username, password);
+            dbManager.createDiaryEntry(username, date, entry);
+            assertEquals(entry, dbManager.getDiaryEntry(username, date));
+            dbManager.updateDiaryEntry(username, date, newEntry);
+            assertEquals(newEntry, dbManager.getDiaryEntry(username, date));
+            dbManager.deleteDiaryEntry(username, date);
+            dbManager.deleteUser(username);
+        } catch (UsernameExistsException u) {
+            u.printStackTrace();
+            fail("Error creating user: " + u.getMessage());
+        } 
+        catch (UsernameDoesNotExistException u) {
+            u.printStackTrace();
+            fail("Error deleting user: " + u.getMessage());
+        }
+
+        
+    }
+
+
 }

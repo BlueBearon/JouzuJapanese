@@ -8,23 +8,19 @@ import Calendar from 'react-calendar';
 import './Calendar.css';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, ContentState } from 'draft-js';
 import { darkContext } from './App';
 import { userContext } from './App';
 import { useNavigate } from 'react-router-dom';
 
 import apiCall from './APIFunctions';
 
-// API Links
-let baseAPILink = "https://jouzujapanesebackend-768f8f815a31.herokuapp.com/api/";
-let backendAPILink = "http://localhost:8080/diary/";
-
 // API Endpoints
-let getEntryEndpoint = "getEntry";
-let createEntryEndpoint = "createEntry";
-let updateEntryEndpoint = "updateEntry";
-let deleteEntryEndpoint = "deleteEntry";
-let getDiaryDatesEndpoint = "getDiaryDates";
+let getEntryEndpoint = "diary/getEntry";
+let createEntryEndpoint = "diary/createEntry";
+let updateEntryEndpoint = "diary/updateEntry";
+let deleteEntryEndpoint = "diary/deleteEntry";
+let getDiaryDatesEndpoint = "diary/getDiaryDates";
 
 // Data packaging functions
 function getEntryDataPackaging(day) {
@@ -71,6 +67,31 @@ function Diary() {
     const token = localStorage.getItem('token');
 
 
+    //On Load
+    React.useEffect(() => {
+            
+        if(userInfo.auth === true){
+    
+            initialLoad();
+            
+        }
+    
+    }, []);
+
+
+    const initialLoad = async () => {
+
+        //Get the dates with diary entries for the current month
+        await updateDatesWithEntries();
+
+        //Get the diary entry for the current date
+        retrieveDiaryEntry(diaryDate);
+
+
+
+    };
+
+
     //For the initial load and when the date changes
         //Get the list of dates with diary entries for the current month
         //Get the diary entry for the current date
@@ -78,8 +99,16 @@ function Diary() {
 
     const updateDatesWithEntries = async () => {
 
-        const startDate = new Date(diaryDate.getFullYear(), diaryDate.getMonth(), 1);
-        const endDate = new Date(diaryDate.getFullYear(), diaryDate.getMonth() + 1, 0);
+        //Strings for Microsoft SQL Server
+        let startDate = new Date(diaryDate.getFullYear(), diaryDate.getMonth(), 1);
+        let endDate = new Date(diaryDate.getFullYear(), diaryDate.getMonth() + 1, 0);
+
+        startDate = startDate.toISOString().split('T')[0];
+        endDate = endDate.toISOString().split('T')[0];
+
+        console.log("Start date: ", startDate);
+        console.log("End date: ", endDate);
+
 
         const data = diaryDateDataPackaging(startDate, endDate);
 
@@ -94,18 +123,18 @@ function Diary() {
 
             //Clear current set
             datesWithEntries.current.clear();
-
+            
             //Add the dates to the set
 
             let dates = response.dates.split(", ");
 
+            console.log("Dates: ", dates);
+
             for(let i = 0; i < dates.length; i++){
-
-                datesWithEntries.current.add(new Date(dates[i]));
-
+                datesWithEntries.current.add(dates[i]);
             }
 
-            
+            console.log("Dates with entries: ", datesWithEntries.current);
         }
         catch(error)
         {
@@ -123,15 +152,6 @@ function Diary() {
 
     };
 
-
-    //Get list of dates with diary entries for the current month
-    React.useEffect(() => {
-
-        updateDatesWithEntries();
-
-    }, [diaryDate]);
-
-
     /**
      * Clears the content of the editor
      *
@@ -141,6 +161,8 @@ function Diary() {
 
         //Clear the unique kanji set
         uniqueKanji.clear();
+
+        save();
     };
 
     /**
@@ -155,32 +177,74 @@ function Diary() {
      */
     const save = async () => {
 
+
         const content = editorState.getCurrentContent().getPlainText();
 
-        const data = diaryEntryDataPackaging(diaryDate, content);
+        console.log(content);
 
-        let update = datesWithEntries.current.has(diaryDate);
+        let date = diaryDate.toISOString().split('T')[0];
+
+        const data = diaryEntryDataPackaging(date, content);
+
+        console.log("data: ", data);
+
+        let update = datesWithEntries.current.has(date)
+
+        console.log("update: ", update);
 
         let empty = content.length === 0;
 
-        if(empty && update){
+        console.log("empty: ", empty);
 
-            apiCall(deleteEntryEndpoint, 'POST', data);
+        try
+        {
 
-            datesWithEntries.current.delete(diaryDate);
-  
+            if(empty && update){
+
+                console.log("Deleting entry: ");
+
+                apiCall(deleteEntryEndpoint, 'POST', data);
+
+                console.log("Entry deleted.");
+
+                datesWithEntries.current.delete(diaryDate);
+
+                console.log("Dates with entries: ", datesWithEntries.current);
+    
+            }
+            else if(update){
+
+                console.log("Updating entry: ");
+
+                apiCall(updateEntryEndpoint, 'POST', data);
+
+                console.log("Entry updated.");
+
+            }
+            else if (!empty){
+
+                console.log("Creating entry: ");
+
+                apiCall(createEntryEndpoint, 'POST', data);
+
+                console.log("Entry created.");
+
+                datesWithEntries.current.add(diaryDate);
+
+                console.log("Dates with entries: ", datesWithEntries.current);
+
+            }
         }
-        else if(update){
-
-            apiCall(updateEntryEndpoint, 'POST', data);
-
-        }
-        else{
-
-            apiCall(createEntryEndpoint, 'POST', data);
-
-            datesWithEntries.current.add(diaryDate);
-
+        catch(error)
+        {
+            if(error.response && error.response.data)
+            {
+                console.error("Error saving diary entry: ", error.response.data.error);
+            }
+            else
+            {
+                console.error("Error saving diary entry: ", error.message);
+            }
         }
 
     };
@@ -220,7 +284,6 @@ function Diary() {
      */
     const handleDateChange = async (date) => {
 
-
         try{
 
             console.log("Changing date: ", date);
@@ -235,24 +298,33 @@ function Diary() {
             setEditorState(() => EditorState.createEmpty());
             console.log("Editor cleared.");
 
-            //Update the diary date
-            console.log("Updating diary date: ");
-            setDiaryDate(date);
-            console.log("Diary date updated.");
+            //Update the dates with entries
+            console.log("Updating dates with entries: ");
+            updateDatesWithEntries();
+            console.log("Dates with entries updated.");
 
             //Retrieve the diary entry for the given date
             console.log("Retrieving diary entry: ");
             retrieveDiaryEntry(date);
             console.log("Diary entry retrieved.");
 
+            //Update the diary date
+            console.log("Updating diary date: ");
+            setDiaryDate(date);
+            console.log("Diary date updated.");
+
+
+            return true;
+
+
         }
         catch(error)
         {
             console.error("Error changing date: ", error.message);
         }
-        
-        
+          
     };
+
 
     /**
      * Checks if there is a diary entry for the given date
@@ -262,6 +334,10 @@ function Diary() {
      */
     const checkDiaryEntry = (date) => {
 
+
+        //Format date to String for comparison yyyy/mm/dd
+        date = date.toISOString().split('T')[0];
+    
         return datesWithEntries.current.has(date);
 
     };
@@ -280,7 +356,15 @@ function Diary() {
 
         let response = await apiCall(getEntryEndpoint, 'GET', data);
 
-        setEditorState(() => EditorState.createWithContent(response.entry));
+        const entry = response.entry;
+
+        console.log("Entry: ", entry);
+
+        const contentState = ContentState.createFromText(entry);
+
+        setEditorState(() => EditorState.createWithContent(contentState));
+
+        return entry;
 
     };
 
@@ -444,15 +528,6 @@ function Diary() {
                             }
                         }
                         >
-
-                        <Button
-                            onClick = {clearContent}
-                            sx = {{
-                                marginRight: '1rem',
-                            }}
-                            > 
-                                Clear
-                        </Button>
 
                         <Button
                             onClick = {save}

@@ -135,17 +135,37 @@ public class DBManager {
 
         try{ // Attempt to connect to the database
 
+            System.out.println("********************************************************************");
+            System.out.println("Connecting to SQL Database");
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             this.userHandler_dbConnection = DriverManager.getConnection(databaseURL, userHandler_dbUsername, userHandler_dbPassword);
+
+            System.out.println("\nUser Handler Connection Established");
+
             this.diaryHandler_dbConnection = DriverManager.getConnection(databaseURL, diaryHandler_dbUsername, diaryHandler_dbPassword);
+
+            System.out.println("\nDiary Handler Connection Established");
+
+            System.out.println("/nConnections Successfully Established");
+            System.out.println("********************************************************************");
         }
         catch(ClassNotFoundException e)
         {
+            System.out.println("\nDriver does not exist to handle Database.  " + e.getMessage());
+
+            System.out.println("********************************************************************");
+
             throw new ConnectionFailedException("Driver does not exist to handle Database.  " + e.getMessage());
         }
         catch(SQLException e)
         {
+
+            System.out.println("\nAttempted creating connections to database, but failed.  " + e.getMessage());
+
+            System.out.println("********************************************************************");
+
             throw new ConnectionFailedException("Attempted creating connections to database, but failed.  " + e.getMessage());
         }
         
@@ -231,22 +251,29 @@ public class DBManager {
     @Scheduled(fixedRate = 3600000) // 1 hour
     public void resetConnections() throws ConnectionFailedException
     {
+
+        System.out.println("********************************************************************");
+        System.out.println("Resetting Connection to SQL Database");
+
         try{
-            if (userHandler_dbConnection != null)
-            {
-                userHandler_dbConnection.close();
-            }
-    
-            if (diaryHandler_dbConnection != null)
-            {
-                diaryHandler_dbConnection.close();
-            }
+            
+            closeConnections();
+
+            System.out.println("\nConnections Successfully Closed");
+
+            System.out.println("\nAttempting to Reconnect");
 
             this.userHandler_dbConnection = DriverManager.getConnection(databaseURL, userHandler_dbUsername, userHandler_dbPassword);
             this.diaryHandler_dbConnection = DriverManager.getConnection(databaseURL, diaryHandler_dbUsername, diaryHandler_dbPassword);
+
+            System.out.println("\nConnections Successfully Reopened");
+            System.out.println("********************************************************************");
         }
         catch(SQLException e)
         {
+
+            System.out.println("\nFailed to Reconnect");
+            System.out.println("********************************************************************");
             throw new ConnectionFailedException("Attempted creating connections to database, but failed.  " + e.getMessage());
         }
     }
@@ -269,6 +296,16 @@ public class DBManager {
         {
             return null;
         }
+
+
+        try{
+            resetConnectionsIfDown();
+        }
+        catch(ConnectionFailedException e)
+        {
+            throw new SQLException();
+        }
+
 
         try
         {
@@ -306,6 +343,14 @@ public class DBManager {
             return false;
         }
 
+        try{
+            resetConnectionsIfDown();
+        }
+        catch(ConnectionFailedException e)
+        {
+            return false;
+        }
+
         try
         {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -324,6 +369,26 @@ public class DBManager {
             return false;
         }
     }
+
+    /**
+     * Method checks to see if connection is live.
+     * 
+     * If it is not live, it attempts to reconnect
+     */
+    private void resetConnectionsIfDown() throws ConnectionFailedException {
+        try {
+            if (this.userHandler_dbConnection.isClosed() || this.diaryHandler_dbConnection.isClosed())
+            {
+                resetConnections();
+            }
+        } 
+        catch(SQLException e) {
+            throw new ConnectionFailedException("Attempted creating connections to database, but failed.  " + e.getMessage());
+        }
+    }
+
+
+
     /**
      * userHandler_executeQuery
      * 

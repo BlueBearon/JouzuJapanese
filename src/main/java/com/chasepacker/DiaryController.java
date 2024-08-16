@@ -98,6 +98,8 @@ public class DiaryController {
         String entry = dbManager.getDiaryEntry(tokenValidationResponse.getUsername(), date);
         response.put("entry", entry);
 
+        System.out.println("Entry: " + entry);
+
         System.out.println("    Entry retrieved successfully");
         System.out.println("**************************");
         return ResponseEntity.ok(response);
@@ -172,13 +174,19 @@ public class DiaryController {
     }
 
     @GetMapping("/diary/getDiaryDates")
-    public ResponseEntity<Map<String, String>> getDiaryDates(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String token) {
+    public ResponseEntity<Map<String, String>> getDiaryDates(@RequestParam Map<String, String> params) {
         System.out.println("**************************");
+
+        String startDate = params.get("startDate");
+        String endDate = params.get("endDate");
+        String token = params.get("token");
+
         System.out.println("DiaryController.java: Received getDiaryDates request");
         System.out.println("    Start Date: " + startDate);
         System.out.println("    End Date: " + endDate);
         System.out.println("    Token: " + token);
 
+        
         Map<String, String> response = new HashMap<>();
         TokenValidationResponse tokenValidationResponse = TokenUtil.validateToken(token);
 
