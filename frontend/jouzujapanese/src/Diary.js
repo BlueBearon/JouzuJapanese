@@ -58,14 +58,13 @@ function Diary() {
     //Default to today's date
     const [diaryDate, setDiaryDate] = React.useState(new Date());
     const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
+    const [loading, setLoading] = React.useState(true);
 
     //Dates with diary entries, in a O(1) lookup structure
     const datesWithEntries = React.useRef(new Set());
 
     const useDark = React.useContext(darkContext).darkMode;
     const darkShade = '#282c34';
-    const token = localStorage.getItem('token');
-
 
     //On Load
     React.useEffect(() => {
@@ -234,6 +233,8 @@ function Diary() {
                 console.log("Dates with entries: ", datesWithEntries.current);
 
             }
+
+            updateDatesWithEntries();
         }
         catch(error)
         {
@@ -352,6 +353,8 @@ function Diary() {
      */
     const retrieveDiaryEntry = async (date) => {
 
+        setLoading(true);
+
         const data = getEntryDataPackaging(date);
 
         let response = await apiCall(getEntryEndpoint, 'GET', data);
@@ -363,6 +366,8 @@ function Diary() {
         const contentState = ContentState.createFromText(entry);
 
         setEditorState(() => EditorState.createWithContent(contentState));
+
+        setLoading(false);
 
         return entry;
 
@@ -486,31 +491,47 @@ function Diary() {
                             <Divider orientation="horizontal" flexItem/>
 
                             </Box>
-                    
-                        <Box
-                        sx={
-                            {
-                                width: '47vw',
-                                height: '70vh',
-                                border: useDark ? '1px solid white' : '1px solid black',
-                                marginTop: '1rem',
-                                borderRadius: '1rem',
-                                padding: '1rem',
-                                backgroundColor: useDark ? darkShade : '#f5f3e7',
-                                color: useDark ? '#f5f3e7' : 'black',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'space-between',
-                                
-                            }
-                        }
-                        >{/*Diary Box */}
 
-                            <Editor editorState={editorState} onChange={setEditorState} height="55vh"
-                            fontFamily = "klee one"/>
-
-        
-                        </Box>
+                            {loading ? (
+                            <Box
+                                sx={{
+                                    width: '47vw',
+                                    height: '70vh',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    alignSelf: 'center',
+                                    alignContent: 'center',
+                                }}
+                            >
+                                {/* Replace this with your loading graphic */}
+                                <div><img src = "/loading.svg" className = "loadingsvg" alt = "Loading..."></img></div>
+                            </Box>
+                        ) : (
+                            <Box
+                                sx={{
+                                    width: '47vw',
+                                    height: '70vh',
+                                    border: useDark ? '1px solid white' : '1px solid black',
+                                    marginTop: '1rem',
+                                    borderRadius: '1rem',
+                                    padding: '1rem',
+                                    backgroundColor: useDark ? darkShade : '#f5f3e7',
+                                    color: useDark ? '#f5f3e7' : 'black',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                {/* Diary Box */}
+                                <Editor 
+                                    editorState={editorState} 
+                                    onChange={setEditorState} 
+                                    height="55vh"
+                                    fontFamily="klee one"
+                                />
+                            </Box>
+                        )}
 
                         
 

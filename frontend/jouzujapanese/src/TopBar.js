@@ -28,6 +28,8 @@ function TopBar() {
 
     const useDark = React.useContext(darkContext);
     const userInfo = React.useContext(userContext);
+
+    const [loggedin, setLoggedin] = React.useState(false);
     //userInfo = {user, setUser, auth, setAuth}
     const navigate = useNavigate();
 
@@ -36,6 +38,19 @@ function TopBar() {
 
     const [practiceAnchorEl, setPracticeAnchorEl] = React.useState(null);
     const practiceOpen = Boolean(practiceAnchorEl);
+
+
+    React.useEffect(() => {
+
+        // Token check occurs in main page, check to see if user is logged in by checking context
+        if (userInfo.auth) {
+            setLoggedin(true);
+        }
+        else {
+            setLoggedin(false);
+        }
+
+    }, [userInfo.auth]);
 
     const handleProfileMenu = (event) => {
         setProfileAnchorEl(event.currentTarget);
@@ -58,6 +73,7 @@ function TopBar() {
 
         userInfo.setUser(null);
         userInfo.setAuth(false);
+        setLoggedin(false);
 
         localStorage.removeItem('token');
 
@@ -196,7 +212,7 @@ function TopBar() {
                     </Box>
 
                     {
-                        !userInfo.auth ? 
+                        !loggedin ? 
                         <Button color="inherit"
                             sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem'}}
 
