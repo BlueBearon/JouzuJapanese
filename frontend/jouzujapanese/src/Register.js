@@ -43,7 +43,7 @@ function Register() {
     const register = async () => {
 
         console.log("********************************************");
-        console.log("Registering user: ", username, password);
+        console.log("Registering user: ");
 
 
         setLoading(true);

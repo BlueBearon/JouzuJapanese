@@ -41,7 +41,7 @@ function Login() {
     const authenticate = async () => {
 
         console.log("********************************************");
-        console.log("Authenticating user: ", username, password);
+        console.log("Authenticating user");
 
 
         setLoading(true);
