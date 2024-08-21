@@ -30,7 +30,7 @@ com\chasepacker\ConjugationCode\NaAdjective.class
 com\chasepacker\ConjugationCode\RuVerb$1.class
 com\chasepacker\ConjugationCode\IAdjective$1.class
 com\chasepacker\GlobalExceptionHandler.class
-com\chasepacker\TokenLoginRequest.class
+com\chasepacker\ApplicationStartupListener.class
 com\chasepacker\XMLParser.class
 com\chasepacker\ConjugationCode\IrrVerb.class
 com\chasepacker\DBManager.class
