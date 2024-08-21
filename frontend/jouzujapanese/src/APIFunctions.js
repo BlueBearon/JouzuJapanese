@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base API link (you might need to define this or import it from a config file)
-const baseAPILink = 'http://localhost:8080/';
+const baseAPILink = 'https://jouzujapanese-ara8dvazd4hghshc.eastus-01.azurewebsites.net/';
 
 // Axios-based API call function
 async function apiCall(endpoint, method, data) {
