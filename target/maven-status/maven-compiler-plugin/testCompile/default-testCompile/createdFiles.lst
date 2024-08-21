@@ -7,3 +7,4 @@ com\chasepacker\NaAdjectiveTest.class
 com\chasepacker\RuVerbTest.class
 com\chasepacker\VerbConjugationPracticeTest.class
 com\chasepacker\IrrVerbTest.class
+com\chasepacker\DBManagerTest.class

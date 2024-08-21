@@ -11,7 +11,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, true, true, true, true, true, true, false, false, false, false};
+        boolean[] options = {true, true, true, true, true, true, true, true, true, true, false, false, false, false};
 
         XMLParser.scan();
 
@@ -33,7 +33,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, true, false, true, true, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, false, true, true, true, true, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -53,7 +53,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, false, true, true, true, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, false, true, true, true, true, true, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -72,7 +72,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, true, true, true, true, true, false, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, true, true, true, false, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -92,7 +92,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, true, true, false, true, false, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, false, true, false, true, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -111,7 +111,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, true, true, true, false, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, true, false, true, true, true, true, true, true, true};
 
         XMLParser.scan();
 
@@ -130,7 +130,7 @@ public class VerbConjugationPracticeTest {
     {
         
 
-        boolean[] options = {true, true, true, true, true, false, true, true, true, true, true, true, true};
+        boolean[] options = {true, true, true, true, true, false, true, true, true, true, true, true, true, true};
 
         XMLParser.scan();
 

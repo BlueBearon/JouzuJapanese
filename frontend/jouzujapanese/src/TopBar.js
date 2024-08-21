@@ -21,12 +21,15 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { darkContext } from './App';
 import { userContext } from './App';
+import { validateToken } from './APIFunctions';
 
 
 function TopBar() {
 
     const useDark = React.useContext(darkContext);
     const userInfo = React.useContext(userContext);
+
+    const [loggedin, setLoggedin] = React.useState(false);
     //userInfo = {user, setUser, auth, setAuth}
     const navigate = useNavigate();
 
@@ -35,6 +38,19 @@ function TopBar() {
 
     const [practiceAnchorEl, setPracticeAnchorEl] = React.useState(null);
     const practiceOpen = Boolean(practiceAnchorEl);
+
+
+    React.useEffect(() => {
+
+        // Token check occurs in main page, check to see if user is logged in by checking context
+        if (userInfo.auth) {
+            setLoggedin(true);
+        }
+        else {
+            setLoggedin(false);
+        }
+
+    }, [userInfo.auth]);
 
     const handleProfileMenu = (event) => {
         setProfileAnchorEl(event.currentTarget);
@@ -57,6 +73,9 @@ function TopBar() {
 
         userInfo.setUser(null);
         userInfo.setAuth(false);
+        setLoggedin(false);
+
+        localStorage.removeItem('token');
 
         navigate('/');
     }
@@ -68,19 +87,7 @@ function TopBar() {
     
     };
 
-    const navigateLessons = () => {
-
-        navigate('/lessons');
-
-    };
-
     const navigateDiary = () => {
-
-        // Authenticated users can access the Diary page
-
-        //Not Implemented Yet
-
-        //For now just navigate to the Diary page
 
         navigate('/diary');
 
@@ -121,6 +128,8 @@ function TopBar() {
 
     
 
+    
+
 
 
 
@@ -141,17 +150,7 @@ function TopBar() {
                         />
 
                         <Box sx={{ display: { xs: 'none', md: 'flex', marginLeft: '1rem' }}}>
-                            <Button color="inherit"
-                            sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem' }}
-
-                            onClick={() => navigateLessons()}
-                            >
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <School sx={{marginRight: '0.75rem'}}/>
-                                    Lessons
-                                </Box>
-                            </Button>
-
+                            
                             <Button color="inherit"
                             sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem' }}
                             onClick={handlePracticeMenu}
@@ -174,6 +173,7 @@ function TopBar() {
                                     Diary
                                 </Box>
                             </Button> : null}
+                            
                             
                         </Box>
                     </Box>
@@ -212,7 +212,7 @@ function TopBar() {
                     </Box>
 
                     {
-                        !userInfo.auth ? 
+                        !loggedin ? 
                         <Button color="inherit"
                             sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'klee one', fontSize: '1rem', marginRight: '1rem'}}
 

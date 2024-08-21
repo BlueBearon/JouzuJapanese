@@ -12,7 +12,23 @@
     top: 20vh;
     width: 60vw; /* Full width */
     height: 60vh; /* Full height */
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 10px;
+    animation: fadeIn 0.2s ease-in-out;
+    color: black;
+}
+
+
+.optionsDarkMode
+{
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 20vw;
+    top: 20vh;
+    width: 60vw; /* Full width */
+    height: 60vh; /* Full height */
+    background-color: black;
     border: 1px solid black;
     border-radius: 10px;
     animation: fadeIn 0.2s ease-in-out;
@@ -32,7 +48,6 @@
 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 24px;
-    color: white;
 }
 
 .optionsSection

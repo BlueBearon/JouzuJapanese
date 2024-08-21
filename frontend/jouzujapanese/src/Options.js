@@ -31,6 +31,8 @@ function Options(props)
     //Hook to store the current options
     const [options, setOptions] = React.useState(props.options);
 
+    const darkMode = React.useContext(darkContext).darkMode;//Get the darkMode variable from the darkContext
+
     //Set options to the current options passed in from the parent component
     React.useEffect(() => {
 
@@ -329,7 +331,7 @@ function Options(props)
 
     return(
         
-        <div className="options">
+        <div className = {darkMode ? 'optionsDarkMode' : 'options'}>
             <div  className = "optionsTopSection">
                 <button className = "closeOptionsButton" onClick = {() => props.submit(options)}><img className = "closeOptionsButton" src = "/closeButton.svg" alt = "X" /></button>
                 {/*The close button is displayed at the top left of the screen. Uses parent submit function to give options to parent*/}

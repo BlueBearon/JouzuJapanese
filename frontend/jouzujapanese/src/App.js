@@ -10,22 +10,22 @@ import * as React from 'react';
 import TopBar from './TopBar';
 import HomePage from './HomePageNew';
 import Login from './Login';
+import Register from './Register';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Diary from './Diary';
 import HiraganaPractice from './HiraganaPractice';
 import KatakanaPractice from './KatakanaPractice';
 import AdjectiveConjugationPractice from './AdjectiveConjugationPractice';
 import VerbConjugationPractice from './VerbConjugationPractice';
+import apiCall from './APIFunctions';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '@fontsource/klee-one';
+import { validateToken } from './APIFunctions';
 
 
 
 export const darkContext = React.createContext({darkMode: false, setDarkMode: () => {}});
 export const userContext = React.createContext({user: null, setUser: () => {}, auth: false, setAuth: () => {}});
-
-
-const propelAuthURL = 'https://31455942.propelauthtest.com';
 
 
 function App() {
@@ -34,6 +34,30 @@ function App() {
   const [darkMode, setDarkMode] = React.useState(false);
   const [auth, setAuth] = React.useState(false);
 
+
+  React.useEffect(() => {
+
+    if (localStorage.getItem('token')) {
+      // If token exists, validate it
+      var username = validateToken();
+
+      if(username)
+      {
+        setUser(username);
+        setAuth(true);
+      }
+      else
+      {
+        setUser(null);
+        setAuth(false);
+      }
+    }
+
+
+    console.log("Dark mode: ", darkMode);
+    console.log("User: ", user);
+
+  }, []);
 
   return (
       <div>
@@ -45,6 +69,7 @@ function App() {
                 <Route path="/" element={<HomePage  />} />
                 <Route path="/diary" element={<Diary />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/HiraganaPractice" element={<HiraganaPractice />} />
                 <Route path="/KatakanaPractice" element={<KatakanaPractice />} />
                 <Route path="/AdjectiveConjugationPractice" element={<AdjectiveConjugationPractice />} />
